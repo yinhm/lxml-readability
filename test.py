@@ -3,11 +3,13 @@ import lxml.html
 import lxml.html.diff
 import os
 import os.path
+import re
 import readability
 import sys
 import unittest
 import yaml
 
+YAML_EXTENSION = '.yaml'
 ORIGINAL_SUFFIX = '-orig.html'
 READABLE_SUFFIX = '-rdbl.html'
 RESULT_SUFFIX = '-result.html'
@@ -18,9 +20,11 @@ TEST_OUTPUT_PATH = 'test_output'
 
 class ReadabilityTest:
 
-    def __init__(self, dir_path, name, orig_path, rdbl_path):
+    def __init__(self, dir_path, enabled, name, desc, orig_path, rdbl_path):
         self.dir_path = dir_path
+        self.enabled = enabled
         self.name = name
+        self.desc = desc
         self.orig_path = orig_path
         self.rdbl_path = rdbl_path
 
@@ -38,6 +42,10 @@ class ReadabilityTestResult:
         self.result_html = result_html
         self.diff_html = diff_html
 
+def read_yaml(path):
+    with open(path, 'r') as f:
+        return yaml.load(f)
+
 def strip_with_suffix(suffix, files):
     filtered = [x for x in files if x.endswith(suffix)]
     stripped = [x.replace(suffix, '') for x in filtered]
@@ -53,20 +61,19 @@ def check_missing(lhs, rhs, rhs_description):
                 )
         raise Exception(s)
 
-def resolve_test_names(files):
-    orig_names = strip_with_suffix(ORIGINAL_SUFFIX, files)
-    rdbl_names = strip_with_suffix(READABLE_SUFFIX, files)
-    check_missing(orig_names, rdbl_names, READABLE_SUFFIX)
-    check_missing(rdbl_names, orig_names, ORIGINAL_SUFFIX)
-    return orig_names
-
 def make_path(dir_path, name, suffix):
     return os.path.join(dir_path, ''.join([name, suffix]))
 
-def make_readability_test(dir_path, name):
+def make_readability_test(dir_path, name, spec_dict):
+    if 'enabled' in spec_dict:
+        enabled = spec_dict['enabled']
+    else:
+        enabled = True
     return ReadabilityTest(
             dir_path,
+            enabled,
             name,
+            spec_dict['test_description'],
             make_path(dir_path, name, ORIGINAL_SUFFIX),
             make_path(dir_path, name, READABLE_SUFFIX)
             )
@@ -77,8 +84,14 @@ def load_test_data(test):
     return ReadabilityTestData(test, orig, rdbl)
 
 def load_readability_tests(dir_path, files):
-    names = resolve_test_names(files)
-    return [make_readability_test(dir_path, name) for name in names]
+    yaml_files = [f for f in files if f.endswith(YAML_EXTENSION)]
+    yaml_paths = [os.path.join(dir_path, f) for f in yaml_files]
+    names = [re.sub('.yaml$', '', f) for f in yaml_files]
+    spec_dicts = [read_yaml(p) for p in yaml_paths]
+    return [
+            make_readability_test(dir_path, name, spec_dict)
+            for (name, spec_dict) in zip(names, spec_dicts)
+            ]
 
 def execute_test(test_data):
     doc = readability.Document(test_data.orig_html)
@@ -152,13 +165,23 @@ def write_result(output_dir_path, result):
     for (html, suffix) in specs:
         write_output_fragment(html, output_dir_path, test_name, suffix)
 
+def print_test_info(test):
+    name_string = '%s' % test.name
+    if test.enabled:
+        skipped = ''
+    else:
+        skipped = ' (SKIPPED)'
+    print('%20s: %s%s' % (name_string, test.desc, skipped))
+
 def run_readability_tests():
     files = os.listdir(TEST_DATA_PATH)
     tests = load_readability_tests(TEST_DATA_PATH, files)
     for test in tests:
-        test_data = load_test_data(test)
-        result = execute_test(test_data)
-        write_result(TEST_OUTPUT_PATH, result)
+        print_test_info(test)
+        if test.enabled:
+            test_data = load_test_data(test)
+            result = execute_test(test_data)
+            write_result(TEST_OUTPUT_PATH, result)
 
 class TestStripWithSuffix(unittest.TestCase):
 
