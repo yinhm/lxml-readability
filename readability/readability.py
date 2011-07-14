@@ -8,6 +8,8 @@ from lxml.html import builder as B
 import logging
 import re
 import sys
+import unittest
+import urlparse
 
 logging.basicConfig(level=logging.INFO)
 
@@ -56,6 +58,87 @@ def clean(text):
 def text_length(i):
     return len(clean(i.text_content() or ""))
 
+def clean_segment_extension(num_segments, index, segment):
+    if segment.find('.') == -1:
+        return segment
+    else:
+        split_segment = segment.split('.')
+        possible_type = split_segment[1]
+        has_non_alpha = re.search(r'[^a-zA-Z]', possible_type)
+        if has_non_alpha:
+            return segment
+        else:
+            return split_segment[0]
+
+def clean_segment_ewcms(num_segments, index, segment):
+    """
+    EW-CMS specific segment cleaning.  Quoth the original source:
+        "EW-CMS specific segment replacement. Ugly.
+         Example: http://www.ew.com/ew/article/0,,20313460_20369436,00.html"
+    """
+    return segment.replace(',00', '')
+
+def clean_segment_page_number(num_segments, index, segment):
+    # If our first or second segment has anything looking like a page number,
+    # remove it.
+    if index >= (num_segments - 2):
+        pattern = r'((_|-)?p[a-z]*|(_|-))[0-9]{1,2}$'
+        cleaned = re.sub(pattern, '', segment, re.IGNORECASE)
+        if cleaned == '':
+            return None
+        else:
+            return cleaned
+    else:
+        return segment
+
+def clean_segment_number(num_segments, index, segment):
+    # If this is purely a number, and it's the first or second segment, it's
+    # probably a page number.  Remove it.
+    if index >= (num_segments - 2) and re.search(r'^\d{1,2}$', segment):
+        return None
+    else:
+        return segment
+
+def clean_segment(num_segments, index, segment):
+    """
+    Cleans a single segment of a URL to find the base URL.  The base URL is as
+    a reference when evaluating URLs that might be next-page links.  Returns a
+    cleaned segment string or None, if the segment should be omitted entirely
+    from the base URL.
+    """
+    funcs = [
+            clean_segment_extension,
+            clean_segment_ewcms,
+            clean_segment_page_number,
+            clean_segment_number
+            ]
+    cleaned_segment = segment
+    for func in funcs:
+        if cleaned_segment is None:
+            break
+        cleaned_segment = func(num_segments, index, cleaned_segment)
+    return cleaned_segment
+
+def filter_none(seq):
+    return [x for x in seq if x is not None]
+
+def clean_segments(segments):
+    cleaned = [
+            clean_segment(len(segments), i, s)
+            for i, s in enumerate(segments)
+            ]
+    return filter_none(cleaned)
+
+def find_base_url(url):
+    if url is None:
+        return None
+    parts = urlparse.urlsplit(url)
+    segments = parts.path.split('/')
+    cleaned_segments = clean_segments(segments)
+    new_path = '/'.join(cleaned_segments)
+    new_parts = (parts.scheme, parts.netloc, new_path, '', '')
+    return urlparse.urlunsplit(new_parts)
+
 class Unparseable(ValueError):
     pass
 
@@ -79,6 +162,8 @@ class Document:
         self.options = defaultdict(lambda: None)
         for k, v in options.items():
             self.options[k] = v
+        if not self.options['urlfetch']:
+            self.options['urlfetch'] = urlfetch.UrlFetch()
         self.html = None
 
     def _html(self, force=False):
@@ -95,7 +180,7 @@ class Document:
         else:
             doc.resolve_base_href()
         return doc
-    
+
     def content(self):
         return get_body(self._html(True))
     
@@ -165,6 +250,17 @@ class Document:
             if sibling is best_elem:
                 append = True
             sibling_key = sibling #HashableElement(sibling)
+
+            # Print out sibling information for debugging.
+            if sibling_key in candidates:
+                sibling_candidate = candidates[sibling_key]
+                self.debug(
+                        "Sibling: %6.3f %s" %
+                        (sibling_candidate['content_score'], describe(sibling))
+                        )
+            else:
+                self.debug("Sibling: %s" % describe(sibling))
+
             if sibling_key in candidates and candidates[sibling_key]['content_score'] >= sibling_score_threshold:
                 append = True
 
@@ -214,6 +310,7 @@ class Document:
 
         ordered = []
         for elem in self.tags(self.html, "p", "pre", "td"):
+            self.debug('Scoring %s' % describe(elem))
             parent_node = elem.getparent()
             if parent_node is None:
                 continue 
@@ -310,7 +407,7 @@ class Document:
         for elem in self.tags(self.html, 'div'):
             # transform <div>s that do not contain other block elements into <p>s
             if not REGEXES['divToPElementsRe'].search(unicode(''.join(map(tostring, list(elem))))):
-                #self.debug("Altering %s to p" % (describe(elem)))
+                self.debug("Altering %s to p" % (describe(elem)))
                 elem.tag = "p"
                 #print "Fixed element "+describe(elem)
                 
@@ -320,6 +417,7 @@ class Document:
                 p.text = elem.text
                 elem.text = None
                 elem.insert(0, p)
+                self.debug("Appended %s to %s" % (tounicode(p), describe(elem)))
                 #print "Appended "+tounicode(p)+" to "+describe(elem)
             
             for pos, child in reversed(list(enumerate(elem))):
@@ -328,10 +426,15 @@ class Document:
                     p.text = child.tail
                     child.tail = None
                     elem.insert(pos + 1, p)
+                    self.debug("Inserted %s to %s" % (tounicode(p), describe(elem)))
                     #print "Inserted "+tounicode(p)+" to "+describe(elem)
                 if child.tag == 'br':
                     #print 'Dropped <br> at '+describe(elem) 
                     child.drop_tree()
+
+    def findNextPageLink(self, elem):
+        allLinks = self.tags(elem, ['a'])
+        baseUrl = self.find_base_url(self.options['url'])
 
     def tags(self, node, *tag_names):
         for tag_name in tag_names:
@@ -501,7 +604,103 @@ class HashableElement():
     def __getattr__(self, tag):
         return getattr(self.node, tag)
 
-def main():
+class TestFindBaseUrl(unittest.TestCase):
+
+    def setUp(self):
+        self.longMessage = True
+
+    def _assert_url(self, url, expected_base_url, msg = None):
+        actual_base_url = find_base_url(url)
+        self.assertEqual(expected_base_url, actual_base_url, msg)
+
+    def _run_urls(self, specs):
+        """
+        Asserts expected results on a sequence of specs, where each spec is a
+        pair: (URL, expected base URL).
+        """
+        for spec in specs:
+            url = spec[0]
+            expected = spec[1]
+            if len(spec) > 2:
+                msg = spec[2]
+            else:
+                msg = None
+            self._assert_url(url, expected, msg)
+
+    def test_none(self):
+        self._assert_url(None, None)
+
+    def test_no_change(self):
+        url = 'http://foo.com/article'
+        self._assert_url(url, url)
+
+    def test_extension_stripping(self):
+        specs = [
+                (
+                'http://foo.com/article.html',
+                'http://foo.com/article',
+                'extension should be stripped'
+                ),
+                (
+                'http://foo.com/path/to/article.html',
+                'http://foo.com/path/to/article',
+                'extension should be stripped'
+                ),
+                (
+                'http://foo.com/article.123not',
+                'http://foo.com/article.123not',
+                '123not is not extension'
+                ),
+                (
+                'http://foo.com/path/to/article.123not',
+                'http://foo.com/path/to/article.123not',
+                '123not is not extension'
+                )
+                ]
+        self._run_urls(specs)
+
+    def test_ewcms(self):
+        self._assert_url(
+                'http://www.ew.com/ew/article/0,,20313460_20369436,00.html',
+                'http://www.ew.com/ew/article/0,,20313460_20369436'
+                )
+
+    def test_page_numbers(self):
+        specs = [
+                (
+                'http://foo.com/page5.html',
+                'http://foo.com',
+                'page number should be stripped'
+                ),
+                (
+                'http://foo.com/path/to/page5.html',
+                'http://foo.com/path/to',
+                'page number should be stripped'
+                ),
+                (
+                'http://foo.com/article-5.html',
+                'http://foo.com/article',
+                'page number should be stripped'
+                )
+                ]
+        self._run_urls(specs)
+
+    def test_numbers(self):
+        specs = [
+                (
+                'http://foo.com/5.html',
+                'http://foo.com',
+                'number should be stripped'
+                ),
+                (
+                'http://foo.com/path/to/5.html',
+                'http://foo.com/path/to',
+                'number should be stripped'
+                )
+                ]
+        self._run_urls(specs)
+
+def readability_main():
     from optparse import OptionParser
     parser = OptionParser(usage="%prog: [options] [file]")
     parser.add_option('-v', '--verbose', action='store_true')
@@ -520,9 +719,16 @@ def main():
     else:
         file = open(args[0])
     try:
-        print Document(file.read(), debug=options.verbose).summary().encode('ascii','ignore')
+        print Document(file.read(), debug=options.verbose).summary().html
     finally:
         file.close()
+
+def main():
+    if len(sys.argv) == 2 and sys.argv[1] == 'test':
+        del sys.argv[1]
+        unittest.main()
+    else:
+        readability_main()
 
 if __name__ == '__main__':
     main()
