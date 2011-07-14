@@ -58,7 +58,7 @@ def clean(text):
 def text_length(i):
     return len(clean(i.text_content() or ""))
 
-def clean_segment_extension(num_segments, index, segment):
+def clean_segment_extension(segments, index, segment):
     if segment.find('.') == -1:
         return segment
     else:
@@ -70,7 +70,7 @@ def clean_segment_extension(num_segments, index, segment):
         else:
             return split_segment[0]
 
-def clean_segment_ewcms(num_segments, index, segment):
+def clean_segment_ewcms(segments, index, segment):
     """
     EW-CMS specific segment cleaning.  Quoth the original source:
         "EW-CMS specific segment replacement. Ugly.
@@ -78,10 +78,10 @@ def clean_segment_ewcms(num_segments, index, segment):
     """
     return segment.replace(',00', '')
 
-def clean_segment_page_number(num_segments, index, segment):
+def clean_segment_page_number(segments, index, segment):
     # If our first or second segment has anything looking like a page number,
     # remove it.
-    if index >= (num_segments - 2):
+    if index >= (len(segments) - 2):
         pattern = r'((_|-)?p[a-z]*|(_|-))[0-9]{1,2}$'
         cleaned = re.sub(pattern, '', segment, re.IGNORECASE)
         if cleaned == '':
@@ -91,22 +91,36 @@ def clean_segment_page_number(num_segments, index, segment):
     else:
         return segment
 
-def clean_segment_number(num_segments, index, segment):
+def clean_segment_number(segments, index, segment):
     # If this is purely a number, and it's the first or second segment, it's
     # probably a page number.  Remove it.
-    if index >= (num_segments - 2) and re.search(r'^\d{1,2}$', segment):
+    if index >= (len(segments) - 2) and re.search(r'^\d{1,2}$', segment):
         return None
     else:
         return segment
 
-def clean_segment_index(num_segments, index, segment):
-    if index == (num_segments - 1) and segment.lower() == 'index':
+def clean_segment_index(segments, index, segment):
+    if index == (len(segments) - 1) and segment.lower() == 'index':
         return None
     else:
         return segment
 
+def clean_segment_short(segments, index, segment):
+    # It is not clear to me what this is accomplishing.  The original
+    # readability source just says:
+    #
+    #   "If our first or second segment is smaller than 3 characters, and the
+    #    first segment was purely alphas, remove it."
+    #
+    # However, the code actually checks to make sure that there are no alphas
+    # in the segment, rather than checking for purely alphas.
+    alphas = re.search(r'[a-z]', segments[-1], re.IGNORECASE)
+    if index >= (len(segments) - 2) and len(segment) < 3 and not alphas:
+        return None
+    else:
+        return segment
 
-def clean_segment(num_segments, index, segment):
+def clean_segment(segments, index, segment):
     """
     Cleans a single segment of a URL to find the base URL.  The base URL is as
     a reference when evaluating URLs that might be next-page links.  Returns a
@@ -118,13 +132,14 @@ def clean_segment(num_segments, index, segment):
             clean_segment_ewcms,
             clean_segment_page_number,
             clean_segment_number,
-            clean_segment_index
+            clean_segment_index,
+            clean_segment_short
             ]
     cleaned_segment = segment
     for func in funcs:
         if cleaned_segment is None:
             break
-        cleaned_segment = func(num_segments, index, cleaned_segment)
+        cleaned_segment = func(segments, index, cleaned_segment)
     return cleaned_segment
 
 def filter_none(seq):
@@ -132,7 +147,7 @@ def filter_none(seq):
 
 def clean_segments(segments):
     cleaned = [
-            clean_segment(len(segments), i, s)
+            clean_segment(segments, i, s)
             for i, s in enumerate(segments)
             ]
     return filter_none(cleaned)
@@ -719,6 +734,21 @@ class TestFindBaseUrl(unittest.TestCase):
                 'http://foo.com/path/to/index.html',
                 'http://foo.com/path/to',
                 'index should be stripped'
+                )
+                ]
+        self._run_urls(specs)
+
+    def test_short(self):
+        specs = [
+                (
+                'http://foo.com/en/1234567890',
+                'http://foo.com/1234567890',
+                'short segment should be stripped'
+                ),
+                (
+                'http://foo.com/en/de/1234567890',
+                'http://foo.com/en/1234567890',
+                'short segment should be stripped'
                 )
                 ]
         self._run_urls(specs)
