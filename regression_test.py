@@ -25,8 +25,8 @@ READABLE_SUFFIX = '-rdbl.html'
 RESULT_SUFFIX = '-result.html'
 DIFF_SUFFIX = '-diff.html'
 
-TEST_DATA_PATH = 'test_data'
-TEST_OUTPUT_PATH = 'test_output'
+TEST_DATA_PATH = 'regression_test_data'
+TEST_OUTPUT_PATH = 'regression_test_output'
 TEST_SUMMARY_PATH = os.path.join(TEST_OUTPUT_PATH, 'index.html')
 
 SUMMARY_CSS = '''

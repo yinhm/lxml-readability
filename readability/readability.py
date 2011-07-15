@@ -9,6 +9,7 @@ import logging
 import re
 import sys
 import unittest
+import urlfetch
 import urlparse
 
 logging.basicConfig(level=logging.INFO)
@@ -18,7 +19,12 @@ REGEXES = {
     'okMaybeItsACandidateRe': re.compile('and|article|body|column|main|shadow',re.I),
     'positiveRe': re.compile('article|body|content|entry|hentry|main|page|pagination|post|text|blog|story',re.I),
     'negativeRe': re.compile('combx|comment|com-|contact|foot|footer|footnote|masthead|media|meta|outbrain|promo|related|scroll|shoutbox|sidebar|sponsor|shopping|tags|tool|widget',re.I),
+    'extraneous': re.compile(r'print|archive|comment|discuss|e[\-]?mail|share|reply|all|login|sign|single', re.I),
     'divToPElementsRe': re.compile('<(a|blockquote|dl|div|img|ol|p|pre|table|ul)',re.I),
+    'nextLink': re.compile(r'(next|weiter|continue|>[^\|]|$)', re.I), # Match: next, continue, >, >>, but not >|, as those usually mean last.
+    'prevLink': re.compile(r'(prev|earl|old|new|<)', re.I),
+    'page': re.compile(r'pag(e|ing|inat)', re.I),
+    'firstLast': re.compile(r'(first|last)', re.I)
     #'replaceBrsRe': re.compile('(<br[^>]*>[ \n\r\t]*){2,}',re.I),
     #'replaceFontsRe': re.compile('<(\/?)font[^>]*>',re.I),
     #'trimRe': re.compile('^\s+|\s+$/'),
@@ -57,6 +63,11 @@ def clean(text):
 
 def text_length(i):
     return len(clean(i.text_content() or ""))
+
+def tags(node, *tag_names):
+    for tag_name in tag_names:
+        for e in node.findall('.//%s' % tag_name):
+            yield e
 
 def clean_segment_extension(segments, index, segment):
     if segment.find('.') == -1:
@@ -162,6 +173,119 @@ def find_base_url(url):
     new_parts = (parts.scheme, parts.netloc, new_path, '', '')
     return urlparse.urlunsplit(new_parts)
 
+class CandidatePage():
+
+    def __init__(self, link_text, href):
+        self.link_text = link_text
+        self.href = href
+        self.score = 0
+
+def same_domain(lhs, rhs):
+    split_lhs = urlparse.urlsplit(lhs)
+    split_rhs = urlparse.urlsplit(rhs)
+    if split_lhs.netloc == '' or split_rhs.netloc == '':
+        return True
+    else:
+        return split_lhs.netloc == split_rhs.netloc
+
+def strip_trailing_slash(s):
+    return re.sub(r'/$', '', s)
+
+def eval_possible_next_page_link(
+        parsed_urls,
+        url,
+        base_url,
+        candidates,
+        link
+        ):
+    raw_href = link.get('href')
+
+    # If we've already seen this page, ignore it.
+    if raw_href is None:
+        return
+
+    href = strip_trailing_slash(raw_href)
+    logging.debug('evaluating next page link: %s' % href)
+        
+    if href == base_url or href == url or href in parsed_urls:
+        return
+
+    # If it's on a different domain, skip it.
+    if not same_domain(url, href):
+        logging.debug('rejecting %s: different domain' % href)
+        return
+
+    link_text = clean(link.text_content() or '')
+
+    if REGEXES['extraneous'].search(link_text) or len(link_text) > 25:
+        return
+
+    href_leftover = href.replace(base_url, '')
+    if not re.search(r'\d', href_leftover):
+        return
+
+    if href in candidates:
+        candidates[href].link_text += ' | ' + link_text
+    else:
+        candidates[href] = CandidatePage(link_text, href)
+
+    candidate = candidates[href]
+
+    if href.find(base_url) != 0:
+        candidate.score -= 25
+
+    link_class_name = link.get('class') or ''
+    link_id = link.get('id') or ''
+    link_data = ' '.join([link_text, link_class_name, link_id])
+
+    if REGEXES['nextLink'].search(link_data):
+        candidate.score += 50
+
+    if REGEXES['page'].search(link_data):
+        candidate.score += 25
+
+    if REGEXES['firstLast'].search(link_data):
+        if not REGEXES['nextLink'].search(candidate.link_text):
+            candidate.score -= 65
+
+    neg_re = REGEXES['negativeRe']
+    ext_re = REGEXES['extraneous']
+    if neg_re.search(link_data) or ext_re.search(link_data):
+        candidate.score -= 50
+
+    if REGEXES['prevLink'].search(link_data):
+        candidate.score -= 200
+
+    # TODO: Score ancestry.
+    # TODO: Score a bunch of other stuff.
+
+def find_next_page_link(parsed_urls, url, elem):
+    links = tags(elem, 'a')
+    base_url = find_base_url(url)
+    # candidates is a mapping from URLs to CandidatePage objects that represent
+    # information used to determine if a URL points to the next page in the
+    # article.
+    candidates = {}
+    for link in links:
+        eval_possible_next_page_link(
+                parsed_urls,
+                url,
+                base_url,
+                candidates,
+                link
+                )
+    top_page = None
+    for url, page in candidates.items():
+        logging.debug('next page score of %s: %s' % (url, page.score))
+        if 50 <= page.score and (not top_page or top_page.score < page.score):
+            top_page = page
+
+    if top_page:
+        parsed_urls.add(top_page.href)
+        return top_page.href
+    else:
+        return None
+
 class Unparseable(ValueError):
     pass
 
@@ -219,9 +343,9 @@ class Document:
             while True:
                 self._html(True)
                 
-                for i in self.tags(self.html, 'script', 'style'):
+                for i in tags(self.html, 'script', 'style'):
                     i.drop_tree()
-                for i in self.tags(self.html, 'body'):
+                for i in tags(self.html, 'body'):
                     i.set('id', 'readabilityBody')
                 if ruthless: 
                     self.remove_unlikely_candidates()
@@ -329,10 +453,10 @@ class Document:
     def score_paragraphs(self, ):
         MIN_LEN = self.options.get('min_text_length', self.TEXT_LENGTH_THRESHOLD)
         candidates = {}
-        #self.debug(str([describe(node) for node in self.tags(self.html, "div")]))
+        #self.debug(str([describe(node) for node in tags(self.html, "div")]))
 
         ordered = []
-        for elem in self.tags(self.html, "p", "pre", "td"):
+        for elem in tags(self.html, "p", "pre", "td"):
             self.debug('Scoring %s' % describe(elem))
             parent_node = elem.getparent()
             if parent_node is None:
@@ -427,14 +551,14 @@ class Document:
                 elem.drop_tree()
 
     def transform_misused_divs_into_paragraphs(self):
-        for elem in self.tags(self.html, 'div'):
+        for elem in tags(self.html, 'div'):
             # transform <div>s that do not contain other block elements into <p>s
             if not REGEXES['divToPElementsRe'].search(unicode(''.join(map(tostring, list(elem))))):
                 self.debug("Altering %s to p" % (describe(elem)))
                 elem.tag = "p"
                 #print "Fixed element "+describe(elem)
                 
-        for elem in self.tags(self.html, 'div'):
+        for elem in tags(self.html, 'div'):
             if elem.text and elem.text.strip():
                 p = fragment_fromstring('<p/>')
                 p.text = elem.text
@@ -455,15 +579,6 @@ class Document:
                     #print 'Dropped <br> at '+describe(elem) 
                     child.drop_tree()
 
-    def findNextPageLink(self, elem):
-        allLinks = self.tags(elem, ['a'])
-        baseUrl = self.find_base_url(self.options['url'])
-
-    def tags(self, node, *tag_names):
-        for tag_name in tag_names:
-            for e in node.findall('.//%s' % tag_name):
-                yield e
-
     def reverse_tags(self, node, *tag_names):
         for tag_name in tag_names:
             for e in reversed(node.findall('.//%s' % tag_name)):
@@ -471,11 +586,11 @@ class Document:
 
     def sanitize(self, node, candidates):
         MIN_LEN = self.options.get('min_text_length', self.TEXT_LENGTH_THRESHOLD)
-        for header in self.tags(node, "h1", "h2", "h3", "h4", "h5", "h6"):
+        for header in tags(node, "h1", "h2", "h3", "h4", "h5", "h6"):
             if self.class_weight(header) < 0 or self.get_link_density(header) > 0.33: 
                 header.drop_tree()
 
-        for elem in self.tags(node, "form", "iframe", "textarea"):
+        for elem in tags(node, "form", "iframe", "textarea"):
             elem.drop_tree()
         allowed = {}
         # Conditionally clean <table>s, <ul>s, and <div>s
@@ -556,7 +671,7 @@ class Document:
 #                    if valid_img:
 #                        to_remove = False
 #                        self.debug("Allowing %s" %el.text_content())
-#                        for desnode in self.tags(el, "table", "ul", "div"):
+#                        for desnode in tags(el, "table", "ul", "div"):
 #                            allowed[desnode] = True
 
                     #find x non empty preceding and succeeding siblings
@@ -583,7 +698,7 @@ class Document:
                     if siblings and sum(siblings) > 1000 :
                         to_remove = False
                         self.debug("Allowing %s" % describe(el))
-                        for desnode in self.tags(el, "table", "ul", "div"):
+                        for desnode in tags(el, "table", "ul", "div"):
                             allowed[desnode] = True
 
                 if to_remove:
@@ -752,6 +867,20 @@ class TestFindBaseUrl(unittest.TestCase):
                 )
                 ]
         self._run_urls(specs)
+
+class TestFindNextPageLink(unittest.TestCase):
+
+    def test_nytimes(self):
+        # This better work for the New York Times.
+        with open('test_data/nytimes-next-page.html', 'r') as f:
+            html = f.read()
+        expected = '/2011/07/10/magazine/the-dark-art-of-breaking-bad.html?pagewanted=2&_r=1'
+
+        doc = document_fromstring(html)
+        url = 'http://www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html'
+        parsed_urls = {url}
+        actual = find_next_page_link(parsed_urls, url, doc)
+        logging.debug('next page link: ' + str(actual))
 
 def readability_main():
     from optparse import OptionParser
