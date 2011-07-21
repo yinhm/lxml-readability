@@ -5,6 +5,7 @@ from htmls import build_doc, get_body, get_title, shorten_title
 from lxml.etree import tostring, tounicode
 from lxml.html import fragment_fromstring, document_fromstring
 from lxml.html import builder as B
+from lxml.html.diff import htmldiff
 import logging
 import re
 import sys
@@ -1021,8 +1022,20 @@ class TestMultiPage(unittest.TestCase):
                 }
         doc = Document(html, **options)
         summary = doc.summary()
-        with open('foo.html', 'w') as f:
-            f.write(summary.html)
+        with open('test_data/basic-multi-page-expected.html', 'r') as f:
+            expected_html = f.read()
+        diff_html = htmldiff(expected_html, summary.html)
+        diff_doc = document_fromstring(diff_html)
+        insertions = diff_doc.xpath('//ins')
+        deletions = diff_doc.xpath('//del')
+        if len(insertions) != 0:
+            for i in insertions:
+                print('unexpected insertion: %s' % i.xpath('string()'))
+            self.fail('readability result does not match expected')
+        if len(deletions) != 0:
+            for i in deletions:
+                print('unexpected deletion: %s' % i.xpath('string()'))
+            self.fail('readability result does not match expected')
 
 def readability_main():
     from optparse import OptionParser
