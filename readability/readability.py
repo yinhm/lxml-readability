@@ -21,7 +21,7 @@ REGEXES = {
     'negativeRe': re.compile('combx|comment|com-|contact|foot|footer|footnote|masthead|media|meta|outbrain|promo|related|scroll|shoutbox|sidebar|sponsor|shopping|tags|tool|widget',re.I),
     'extraneous': re.compile(r'print|archive|comment|discuss|e[\-]?mail|share|reply|all|login|sign|single', re.I),
     'divToPElementsRe': re.compile('<(a|blockquote|dl|div|img|ol|p|pre|table|ul)',re.I),
-    'nextLink': re.compile(r'(next|weiter|continue|>[^\|]|$)', re.I), # Match: next, continue, >, >>, but not >|, as those usually mean last.
+    'nextLink': re.compile(r'(next|weiter|continue|>[^\|]$)', re.I), # Match: next, continue, >, >>, but not >|, as those usually mean last.
     'prevLink': re.compile(r'(prev|earl|old|new|<)', re.I),
     'page': re.compile(r'pag(e|ing|inat)', re.I),
     'firstLast': re.compile(r'(first|last)', re.I)
@@ -153,7 +153,7 @@ def get_link_density(elem):
     total_length = text_length(elem)
     return float(link_length) / max(total_length, 1)
 
-def score_paragraphs(doc, min_text_len):
+def score_paragraphs(doc, options):
     candidates = {}
     #logging.debug(str([describe(node) for node in tags(doc, "div")]))
 
@@ -169,7 +169,7 @@ def score_paragraphs(doc, min_text_len):
         inner_text_len = len(inner_text)
 
         # If this paragraph is less than 25 characters, don't even count it.
-        if inner_text_len < min_text_len:
+        if inner_text_len < options['min_text_len']:
             continue
 
         if parent_node not in candidates:
@@ -219,7 +219,7 @@ def reverse_tags(node, *tag_names):
         for e in reversed(node.findall('.//%s' % tag_name)):
             yield e
 
-def sanitize(node, candidates, min_text_len):
+def sanitize(node, candidates, options):
     for header in tags(node, "h1", "h2", "h3", "h4", "h5", "h6"):
         if class_weight(header) < 0 or get_link_density(header) > 0.33: 
             header.drop_tree()
@@ -277,7 +277,7 @@ def sanitize(node, candidates, min_text_len):
             elif counts["input"] > (counts["p"] / 3):
                 reason = "less than 3x <p>s than <input>s"
                 to_remove = True
-            elif content_length < (min_text_len) and (counts["img"] == 0 or counts["img"] > 2):
+            elif content_length < options['min_text_length'] and (counts["img"] == 0 or counts["img"] > 2):
                 reason = "too short content length %s without a single image" % content_length
                 to_remove = True
             elif weight < 25 and link_density > 0.2:
@@ -394,7 +394,7 @@ def get_raw_article(candidates, best_candidate):
     #    article.append(best_elem)
     return article
 
-def get_article(doc, min_text_len, retry_len):
+def get_article(doc, options):
     try:
         ruthless = True
         while True:
@@ -405,7 +405,7 @@ def get_article(doc, min_text_len, retry_len):
             if ruthless: 
                 remove_unlikely_candidates(doc)
             transform_misused_divs_into_paragraphs(doc)
-            candidates = score_paragraphs(doc, min_text_len)
+            candidates = score_paragraphs(doc, options)
             
             best_candidate = select_best_candidate(candidates)
             if best_candidate:
@@ -422,15 +422,11 @@ def get_article(doc, min_text_len, retry_len):
                     logging.debug("Ruthless and lenient parsing did not work. Returning raw html")
                     return Summary(0, None)
 
-            unicode_cleaned_article = sanitize(
-                    article,
-                    candidates,
-                    min_text_len
-                    )
+            unicode_cleaned_article = sanitize(article, candidates, options)
             cleaned_doc = fragment_fromstring(unicode_cleaned_article)
             cleaned_article = tostring(cleaned_doc)
 
-            of_acceptable_length = len(cleaned_article or '') >= retry_len
+            of_acceptable_length = len(cleaned_article or '') >= options['retry_length']
             if ruthless and not of_acceptable_length:
                 ruthless = False
                 continue # try again
@@ -543,9 +539,12 @@ def find_base_url(url):
     cleaned_segments = clean_segments(segments)
     new_path = '/'.join(cleaned_segments)
     new_parts = (parts.scheme, parts.netloc, new_path, '', '')
-    return urlparse.urlunsplit(new_parts)
+    base_url = urlparse.urlunsplit(new_parts)
+    logging.debug('url: %s' % url)
+    logging.debug('base_url: %s' % base_url)
+    return base_url
 
-class CandidatePage():
+class NextPageCandidate():
     '''
     An object that tracks a single href that is a candidate for the location of
     the next page.  Note that this is distinct from the candidates used when
@@ -594,7 +593,7 @@ def eval_link_text(link):
     else:
         return link_text, True
 
-def find_or_create_page(candidates, href, link_text):
+def find_or_create_page_candidate(candidates, href, link_text):
     '''
     Finds or creates a candidate page object for a next-page href.  If one
     exists already, which happens if there are multiple links with the same
@@ -605,7 +604,7 @@ def find_or_create_page(candidates, href, link_text):
     if href in candidates:
         return candidates[href], False
     else:
-        candidate = CandidatePage(link_text, href)
+        candidate = NextPageCandidate(link_text, href)
         candidates[href] = candidate
         return candidate, True
 
@@ -627,21 +626,31 @@ def eval_possible_next_page_link(
         if not re.search(r'\d', href_leftover):
             return
 
-    candidate, created = find_or_create_page(candidates, href, link_text)
+    candidate, created = find_or_create_page_candidate(
+            candidates,
+            href,
+            link_text
+            )
+
     if not created:
         candidate.link_text += ' | ' + link_text
 
     link_class_name = link.get('class') or ''
     link_id = link.get('id') or ''
     link_data = ' '.join([link_text, link_class_name, link_id])
+    logging.debug('link: %s' % tostring(link))
+    logging.debug('link_data: %s' % link_data)
 
     if base_url is not None and href.find(base_url) != 0:
+        logging.debug('no base_url')
         candidate.score -= 25
 
     if REGEXES['nextLink'].search(link_data):
+        logging.debug('link_data nextLink regex match')
         candidate.score += 50
 
     if REGEXES['page'].search(link_data):
+        logging.debug('link_data page regex match')
         candidate.score += 25
 
     if REGEXES['firstLast'].search(link_data):
@@ -675,6 +684,7 @@ def eval_possible_next_page_link(
         parent = parent.getparent()
 
     if REGEXES['page'].search(href):
+        logging.debug('href regex match')
         candidate.score += 25
 
     if REGEXES['extraneous'].search(href):
@@ -692,12 +702,12 @@ def eval_possible_next_page_link(
     except ValueError as e:
         pass
 
-def find_next_page_link(parsed_urls, url, elem):
+def find_next_page_url(parsed_urls, url, elem):
     links = tags(elem, 'a')
     base_url = find_base_url(url)
-    # candidates is a mapping from URLs to CandidatePage objects that represent
-    # information used to determine if a URL points to the next page in the
-    # article.
+    # candidates is a mapping from URLs to NextPageCandidate objects that
+    # represent information used to determine if a URL points to the next page
+    # in the article.
     candidates = {}
     for link in links:
         eval_possible_next_page_link(
@@ -720,15 +730,29 @@ def find_next_page_link(parsed_urls, url, elem):
     else:
         return None
 
-def append_next_page(fetcher, next_page_link, doc):
-    # html = fetcher.urlread(next_page_link)
-    # page_doc = parse(html, next_page_link)
-    pass
+def append_next_page(parsed_urls, page_url, doc, options):
+    logging.debug('appending next page: %s' % page_url)
+    fetcher = options['urlfetch']
+    html = fetcher.urlread(page_url)
+    orig_page_doc = parse(html, page_url)
+    next_page_url = find_next_page_url(parsed_urls, page_url, orig_page_doc)
+    page_article = get_article(orig_page_doc, options)
+    page_doc = fragment_fromstring(page_article.html)
+    # page_doc is a singular element containing the page article elements.  We
+    # want to add its children to the main article document to which we are
+    # appending a page.
+    for elem in page_doc:
+        print 'appending: %s' % tostring(elem)
+        doc.append(elem)
+    if next_page_url is not None:
+        append_next_page(parsed_urls, next_page_url, doc, options)
 
 def parse(input, url):
     raw_doc = build_doc(input)
     doc = html_cleaner.clean_html(raw_doc)
+    logging.debug('parse url: %s', url)
     if url:
+        logging.debug('making links absolute')
         doc.make_links_absolute(url, resolve_base_href=True)
     else:
         doc.resolve_base_href()
@@ -755,10 +779,16 @@ class Document:
     def __init__(self, input, **options):
         self.input = input
         self.options = defaultdict(lambda: None)
+
+        # Set some defaults for the options before overwriting them with what's
+        # passed in.
+        self.options['urlfetch'] = urlfetch.UrlFetch()
+        self.options['min_text_length'] = self.TEXT_LENGTH_THRESHOLD
+        self.options['retry_length'] = self.RETRY_LENGTH
+
         for k, v in options.items():
             self.options[k] = v
-        if not self.options['urlfetch']:
-            self.options['urlfetch'] = urlfetch.UrlFetch()
+
         self.html = None
 
     def _html(self, force=False):
@@ -781,20 +811,17 @@ class Document:
         url = self.options['url']
         if url is not None:
             parsed_urls.add(url)
-        next_page_link = find_next_page_link(parsed_urls, url, doc)
-        if next_page_link is not None:
-            fetcher = self.options['urlfetch']
-            append_next_page(fetcher, next_page_link, doc)
-        min_text_len = self.options.get(
-                'min_text_length',
-                self.TEXT_LENGTH_THRESHOLD
-                )
-        retry_len = self.options.get('retry_length', self.RETRY_LENGTH)
-        return get_article(doc, min_text_len, retry_len)
-
-    def debug(self, *a):
-        #if self.options['debug']:
-            logging.debug(*a)
+        next_page_url = find_next_page_url(parsed_urls, url, doc)
+        article = get_article(doc, self.options)
+        article_doc = fragment_fromstring(article.html)
+        if next_page_url is not None:
+            append_next_page(
+                    parsed_urls,
+                    next_page_url,
+                    article_doc,
+                    self.options
+                    )
+        return Summary(article.confidence, tostring(article_doc))
 
 class HashableElement():
     def __init__(self, node):
@@ -955,7 +982,7 @@ class TestFindNextPageLink(unittest.TestCase):
             html = f.read()
         doc = parse(html, url)
         parsed_urls = {url}
-        actual = find_next_page_link(parsed_urls, url, doc)
+        actual = find_next_page_url(parsed_urls, url, doc)
         self.assertEqual(expected, actual)
 
     def test_basic(self):
@@ -997,6 +1024,8 @@ class TestMultiPage(unittest.TestCase):
                 }
         doc = Document(html, **options)
         summary = doc.summary()
+        with open('foo.html', 'w') as f:
+            f.write(summary.html)
 
 def readability_main():
     from optparse import OptionParser
