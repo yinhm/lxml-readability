@@ -12,8 +12,6 @@ import unittest
 import urlfetch
 import urlparse
 
-logging.basicConfig(level=logging.DEBUG)
-
 REGEXES = {
     'unlikelyCandidatesRe': re.compile('combx|comment|community|disqus|extra|foot|header|menu|remark|rss|shoutbox|sidebar|sponsor|ad-break|agegate|pagination|pager|popup|tweet|twitter',re.I),
     'okMaybeItsACandidateRe': re.compile('and|article|body|column|main|shadow',re.I),
@@ -742,7 +740,6 @@ def append_next_page(parsed_urls, page_url, doc, options):
     # want to add its children to the main article document to which we are
     # appending a page.
     for elem in page_doc:
-        print 'appending: %s' % tostring(elem)
         doc.append(elem)
     if next_page_url is not None:
         append_next_page(parsed_urls, next_page_url, doc, options)
@@ -1051,10 +1048,16 @@ def readability_main():
         file.close()
 
 def main():
-    if len(sys.argv) == 2 and sys.argv[1] == 'test':
+    if len(sys.argv) > 1 and sys.argv[1] == 'test':
+        if len(sys.argv) > 2 and sys.argv[2] == '--debug':
+            del sys.argv[2]
+            logging.basicConfig(level = logging.DEBUG)
+        else:
+            logging.basicConfig(level = logging.INFO)
         del sys.argv[1]
         unittest.main()
     else:
+        logging.basicConfig(level = logging.INFO)
         readability_main()
 
 if __name__ == '__main__':
