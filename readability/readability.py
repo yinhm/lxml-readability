@@ -33,6 +33,8 @@ REGEXES = {
     #skipFootnoteLink:      /^\s*(\[?[a-z0-9]{1,2}\]?|^|edit|citation needed)\s*$/i,
 }
 
+PAGE_CLASS = 'article-page'
+
 def describe(node, depth=1):
     if not hasattr(node, 'tag'):
         return "[%s]" % type(node)
@@ -354,7 +356,7 @@ def get_raw_article(candidates, best_candidate):
 
     sibling_score_threshold = max([10, best_candidate['content_score'] * 0.2])
     article = B.DIV()
-    article.attrib['id'] = 'article'
+    article.attrib['id'] = 'page'
     best_elem = best_candidate['elem']
     for sibling in best_elem.getparent().getchildren():
         #if isinstance(sibling, NavigableString): continue#in lxml there no concept of simple text 
@@ -741,7 +743,36 @@ def find_next_page_url(parsed_urls, url, elem):
     else:
         return None
 
-def append_next_page(parsed_urls, page_url, doc, options):
+def page_id(i):
+    return 'page-%d' % (i + 1)
+
+def make_page_elem(page_index, elem):
+    elem.attrib['id'] = page_id(page_index)
+    elem.attrib['class'] = PAGE_CLASS
+
+def first_paragraph(elem):
+    paragraphs = elem.xpath('.//p')
+    logging.debug('len(paragraphs) is %d' % len(paragraphs))
+    if len(paragraphs) > 0:
+        return paragraphs[0]
+    else:
+        return None
+
+def is_suspected_duplicate(doc, page_doc):
+    page_p = first_paragraph(page_doc)
+    if page_p is None:
+        return False
+    pages = doc.xpath('//*[contains(@class, $name)]', name = PAGE_CLASS)
+    for existing_page in pages:
+        existing_page_p = first_paragraph(existing_page)
+        if existing_page_p is not None:
+            page_p_content = page_p.xpath('string()')
+            existing_page_p_content = existing_page_p.xpath('string()')
+            if page_p.xpath('string()') == existing_page_p.xpath('string()'):
+                return True
+    return False
+
+def append_next_page(parsed_urls, page_index, page_url, doc, options):
     logging.debug('appending next page: %s' % page_url)
     fetcher = options['urlfetch']
     html = fetcher.urlread(page_url)
@@ -749,13 +780,17 @@ def append_next_page(parsed_urls, page_url, doc, options):
     next_page_url = find_next_page_url(parsed_urls, page_url, orig_page_doc)
     page_article = get_article(orig_page_doc, options)
     page_doc = fragment_fromstring(page_article.html)
-    # page_doc is a singular element containing the page article elements.  We
-    # want to add its children to the main article document to which we are
-    # appending a page.
-    for elem in page_doc:
-        doc.append(elem)
-    if next_page_url is not None:
-        append_next_page(parsed_urls, next_page_url, doc, options)
+    make_page_elem(page_index, page_doc)
+    if not is_suspected_duplicate(doc, page_doc):
+        doc.append(page_doc)
+        if next_page_url is not None:
+            append_next_page(
+                    parsed_urls,
+                    page_index + 1,
+                    next_page_url,
+                    doc,
+                    options
+                    )
 
 def parse(input, url):
     raw_doc = build_doc(input)
@@ -824,16 +859,21 @@ class Document:
         if url is not None:
             parsed_urls.add(url)
         next_page_url = find_next_page_url(parsed_urls, url, doc)
-        article = get_article(doc, self.options)
-        article_doc = fragment_fromstring(article.html)
+        page_0 = get_article(doc, self.options)
+        page_0_doc = fragment_fromstring(page_0.html)
+        page_index = 0
+        make_page_elem(page_index, page_0_doc)
+        article_doc = B.DIV(page_0_doc)
+        article_doc.attrib['id'] = 'article'
         if next_page_url is not None:
             append_next_page(
                     parsed_urls,
+                    page_index + 1,
                     next_page_url,
                     article_doc,
                     self.options
                     )
-        return Summary(article.confidence, tostring(article_doc))
+        return Summary(page_0.confidence, tostring(article_doc))
 
 class HashableElement():
     def __init__(self, node):
@@ -1050,6 +1090,26 @@ class TestMultiPage(unittest.TestCase):
             for i in deletions:
                 print('unexpected deletion: %s' % i.xpath('string()'))
             self.fail('readability result does not match expected')
+
+class TestIsSuspectedDuplicate(unittest.TestCase):
+
+    def setUp(self):
+        super(TestIsSuspectedDuplicate, self).setUp()
+        with open('test_data/duplicate-page-article.html') as f:
+            html = f.read()
+            self._article = fragment_fromstring(html)
+
+    def test_unique(self):
+        with open('test_data/duplicate-page-unique.html') as f:
+            html = f.read()
+            page = fragment_fromstring(html)
+        self.assertFalse(is_suspected_duplicate(self._article, page))
+
+    def test_duplicate(self):
+        with open('test_data/duplicate-page-duplicate.html') as f:
+            html = f.read()
+            page = fragment_fromstring(html)
+        self.assertTrue(is_suspected_duplicate(self._article, page))
 
 def readability_main():
     from optparse import OptionParser
