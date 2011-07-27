@@ -19,10 +19,10 @@ class UrlFetch():
 class MockUrlFetch(UrlFetch):
 
     def __init__(self, urldict):
-        self._urldict = urldict
+        self.urldict = urldict
 
     def urlread(self, url):
-        path = self._urldict[url]
+        path = self.urldict[url]
         with open(path, 'r') as f:
             return f.read()
 

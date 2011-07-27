@@ -114,20 +114,31 @@ def create(args):
 
 def genbench(args):
     spec_dict = read_spec(args.test_name)
+    url = spec_dict['url']
+
+    # TODO: Make this less ugly.
     if args.refetch:
-        url = spec_dict['url']
+        site_path = os.path.join(TEST_DATA_PATH, args.test_name)
+        fetcher = readability.urlfetch.LocalCopyUrlFetch(site_path)
     else:
-        url = None
-    url_map = adjust_url_map(args.test_name, spec_dict.get('url_map', dict()))
-    fetcher = readability.urlfetch.MockUrlFetch(url_map)
+        rel_url_map = spec_dict.get('url_map', dict())
+        url_map = adjust_url_map(args.test_name, rel_url_map)
+        fetcher = readability.urlfetch.MockUrlFetch(url_map)
+
+    orig = fetcher.urlread(spec_dict['url'])
+
+    if args.refetch:
+        rel_path = fetcher.urldict[url]
+        site_path = os.path.join(TEST_DATA_PATH, args.test_name)
+        path = os.path.join(site_path, rel_path)
+    else:
+        path = fetcher.urldict[url]
+
+    rdbl_path = ''.join([path, READABLE_SUFFIX])
     options = {'url': spec_dict['url'], 'urlfetch': fetcher}
-    orig, success = read_orig(args.test_name, url)
-    if not success:
+    if not write_readable(rdbl_path, orig, options):
         return False
-    rdbl_doc = readability.Document(orig, **options)
-    summary = rdbl_doc.summary()
-    if not write_file(args.test_name, READABLE_SUFFIX, summary.html):
-        return False
+
     return True
 
 DESCRIPTION = 'Create a readability regression test case.'
