@@ -1,0 +1,4 @@
+# robots.txt, college.nytimes.com 12/17/2003
+#
+User-agent: *
+Disallow:   /

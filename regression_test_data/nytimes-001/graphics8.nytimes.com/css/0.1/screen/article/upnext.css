@@ -1,0 +1,62 @@
+/* $Id: upnext.css 36422 2010-04-13 19:42:13Z mtam $ */
+
+#upNext {
+  width: 360px;
+  padding: 10px 20px 10px 10px;
+  border-top: 2px solid #000;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background-color: #fff;
+  -moz-box-shadow: 0 4px 10px #666;
+  -webkit-box-shadow: 0 4px 10px #666;
+  box-shadow: 0 4px 10px #666;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Color=#cccccc, direction=270, strength=7)";
+  filter: progid:DXImageTransform.Microsoft.Shadow(Color=#cccccc, direction=270, strength=7);
+  _position: absolute;
+  _top: 0;
+}
+
+* html #upNextWrapper {
+  position: absolute;
+  overflow: hidden;
+  right: 0;
+}
+
+#upNext h6 {
+  text-transform: uppercase;
+  font: bold 1em arial,helvetica,sans-serif;
+}
+
+#upNext h6 span {
+  color: #888;
+  font-weight: normal;
+}
+
+#upNext h3 {
+  margin: 5px 0;
+}
+
+#upNext button {
+  border: none;
+  padding: 0;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 13px;
+  height: 13px;
+  background: #fff url(http://graphics8.nytimes.com/images/article/comments/buttons/close_window.gif) no-repeat 0 0;
+  text-indent: -999em;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* Blog post overrides */
+.blogPost #upNext {
+  text-align:left;
+  z-index:100;
+}
+.blogPost #upNext h3 {
+  font-size:1.5em;
+  font-family:georgia,"times new roman",times,serif; /* for dealbook.blogs */
+}

@@ -1,0 +1,208 @@
+/* $Id: navigation.css 52994 2010-12-15 13:37:17Z Madhan $
+/css/0.1/screen/common/navigation.css 
+(c)2006 - 2009 The New York Times Company */ 
+
+.navigation {
+  bottom: 0 !important;
+	clear: both;
+	text-align: center;
+}
+
+.navigation a:link,
+.navigation a:visited,
+.navigation a:hover,
+.navigation a:active {
+	color: #333;
+}          
+
+.navigation ul li {
+	height: 18px; 
+	padding: 7px 0 0 0;
+	font-family: georgia, "times new roman", times, serif;
+	font-size: 1.1em;
+	border-width: 0 0 1px 1px;
+	border-color: #d3d3d3;
+	background: #fff;
+	background-image: none;
+}
+
+.navigation ul li.first {
+	border-left: none;
+}
+
+.navigation ul li.selected {
+	padding: 7px 0pt 28px;
+	background: #f4f4f4;
+	border-bottom: 1px solid #f4f4f4;
+}
+
+#navJobs.selected,
+#navRealestate.selected,
+#navAutomobiles.selected {
+	background: #f4f4f4;
+}
+
+.navigation .subNavigation li {
+	font-size: 1em;
+}
+
+.navigation .subNavigation {
+	width: 940px;
+	height: 19px; 
+	margin: 0;
+	padding: 8px 15px 0 15px;
+	border-top: none;
+	background: #f4f4f4;
+	list-style: none;
+	white-space: nowrap;
+	font-weight: normal;
+	clear: both;
+	position: absolute;
+	top: 26px;
+	left: 0;
+	text-transform: uppercase;
+	white-space: normal;
+	border-bottom: 1px solid #d3d3d3;
+}
+
+.navigation .subNavigation li,
+.navigation ul.tabs li.selected ul li {
+	float: none;
+	display: inline;
+	margin: 0;
+	padding: 0 6px;
+	border: none;
+	font-family: arial, helvetica, sans-serif;
+	font-weight: normal;
+	background: #f4f4f4;
+}
+
+#navWorld { width: 58px; }
+#navUs	{ width: 36px; }
+#navNyregion { width: 89px; }
+#navBusiness { width: 71px; }
+#navTechnology	{ width: 96px; }
+#navScience { width: 65px; }
+#navHealth	{ width: 63px; }
+#navSports	{ width: 60px; }
+#navOpinion { width: 67px; }
+#navArts { width: 46px; }
+#navStyle { width: 52px; }
+#navTravel { width: 63px; }
+#navJobs { width: 48px;}
+#navRealestate	{ width: 85px; }
+#navAutomobiles { width: 57px; }
+
+#navJobs,
+#navRealestate,
+#navAutomobiles {
+	font-family: arial, helvetica, sans-serif;
+	font-weight: bold;
+	background: #e6eff8;
+}   
+
+.navigation .subNavigation ul#subnavWorld,
+.navigation .subNavigation ul#subnavUS,
+.navigation .subNavigation ul#subnavNYRegion,
+.navigation .subNavigation ul#subnavBusiness,
+.navigation .subNavigation ul#subnavTechnology ,
+#navWorld.selected ul,
+#navUs.selected ul,
+#navNyregion.selected ul,
+#navBusiness.selected ul,
+#navTechnology.selected ul {
+	text-align: left;
+}
+
+.navigation ul#subnavTravel { /* where is this found in travel, pre-travel redesign? */
+	text-align: right !important;
+}
+
+.navigation .subNavigation ul li.children,
+.navigation .tabs li.selected ul li.children {
+	padding: 4px 10px 3px;
+	height:auto;
+	background: #fff;
+	border: 1px solid #ccc;
+	font-weight: bold;
+	line-height:13px !important;
+}
+
+.navigation .subNavigation ul li.children ul,
+.navigation .tabs li.selected ul li.selected ul {
+	width: auto;
+	margin: 0;
+	padding: 0;
+	display: inline;
+	border-top: none;
+	background: none;
+	font-weight: normal;
+}
+
+.navigation .subNavigation ul li.children ul li,
+.navigation .tabs li.selected ul li.selected ul li {
+	margin: 0;
+	background: none;
+	text-transform: none;
+	padding: 0 !important;
+}
+
+.navigation .subNavigation ul li.children ul li a,
+.navigation .tabs li.selected ul li.children ul li a {
+	color: #004276;
+	padding: 4px 8px 3px 8px;
+}
+
+.navigation .subNavigation ul li.nochildren,
+.navigation .tabs li.selected ul li.nochildren {
+	font-weight: bold;
+}   
+
+.navigation .subNavigation ul li.children ul li.selected,
+.navigation .tabs li.selected ul li.children ul li.selected {
+	padding: 0 6px;
+	font-weight: bold;
+	background: #fff;
+}	
+
+/* BEGIN fixing for noNavChild */
+.navigation.nochild {
+	height: auto;
+}
+/* END fixing for noNavChild */
+
+#subNav_video-games,
+#subNavvideo-games {
+  padding-right: 0;
+}
+
+#subSubNav_specialoffers a{
+  background-color: #e6eff8;
+  border-left: 1px solid #e2e2e2;
+}
+
+#navNyregion.selected {
+  padding: 7px 0 0;
+  border-bottom: 1px solid #d3d3d3;
+}
+
+#navNyregion .subNavigation {
+  display: none;
+}
+
+#subNav_sportstickets a{
+  font-weight: bold;
+  color: #004276;
+  font-size: .909em;
+}
+
+#subNav_sportstickets a:link,
+#subNav_sportstickets a:visited{
+  font-weight: bold;
+}
+
+#subNav_sportstickets{
+  border: 1px solid #ccc;
+  padding: 3px 6px 2px 6px;
+  position: relative;
+}

@@ -1,0 +1,5 @@
+test_description: cnet article
+url: http://news.cnet.com/8301-30685_3-20078671-264/google-faces-thorny-online-identity-issues/index.html
+url_map:
+  http://news.cnet.com/8301-30685_3-20078671-264/google-faces-thorny-online-identity-issues/index.html: news.cnet.com/8301-30685_3-20078671-264/google-faces-thorny-online-identity-issues/index.html
+  http://news.cnet.com/8601-30685_3-20078671-1.html?communityId=2140&targetCommunityId=2140&blogId=264: news.cnet.com/8601-30685_3-20078671-1.html

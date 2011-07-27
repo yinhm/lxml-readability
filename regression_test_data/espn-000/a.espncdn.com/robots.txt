@@ -1,0 +1,24 @@
+# robots.txt for Disallow: /
+
+User-agent: *
+Disallow: /cgi
+Disallow: /ad/
+Disallow: /espnradio/podcast/feeds/easports/
+Disallow: /members/
+Disallow: *print?id
+Disallow: /travel/passport/event
+Disallow: /travel/passport/events
+Disallow: /travel/passport/add
+Disallow: /travel/passport/stats
+Disallow: /travel/passport/rankings
+Disallow: /travel/passport/activity
+Disallow: /travel/passport/venues
+Disallow: /travel/passport/photos
+Disallow: /travel/passport/map
+Disallow: /travel/passport/invite
+Disallow: /mlb/stats/batting/_/sort
+Disallow: /mlb/stats/pitching/_/sort
+Disallow: /mlb/stats/*/split/
+Disallow: /mlb/stats/*/hand/
+Disallow: /mlb/stats/*/minage/
+Disallow: /mlb/stats/*/minpa/

@@ -1,0 +1,5 @@
+test_description: arstechnica multi-page article
+url: http://arstechnica.com/science/news/2011/07/running-high-performance-neural-networks-on-a-gamer-gpu.ars/1
+url_map:
+  http://arstechnica.com/science/news/2011/07/running-high-performance-neural-networks-on-a-gamer-gpu.ars/1: arstechnica.com/science/news/2011/07/running-high-performance-neural-networks-on-a-gamer-gpu.ars/1.html
+  http://arstechnica.com/science/news/2011/07/running-high-performance-neural-networks-on-a-gamer-gpu.ars/2: arstechnica.com/science/news/2011/07/running-high-performance-neural-networks-on-a-gamer-gpu.ars/2.html

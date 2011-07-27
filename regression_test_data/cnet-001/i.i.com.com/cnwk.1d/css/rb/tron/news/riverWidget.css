@@ -1,0 +1,101 @@
+#riverWidget{
+	background-color: #E5E9EC;
+	margin-top: 14px;
+	padding-top: 28px;
+	width: 330px;
+	height: 275px;
+	position: relative;
+	-webkit-border-radius: 4px 0 0 4px;
+	-moz-border-radius:4px 0 0 4px;
+	-o-border-radius: 4px 0 0 4px;
+	border-radius:4px 0 0 4px;
+}
+
+#riverWidget ul {
+    height: 270px;
+    margin-top: 5px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#riverWidget ul li {
+    border-top: 1px solid #FFFFFF;
+	border-bottom: 1px solid #D5D9DC;
+    clear: both;
+    color: #606060;
+    display: block;
+    float: left;
+    list-style: none outside none;
+    padding-bottom: 12px;
+    padding-top: 7px;
+    width: 314px;
+}
+
+#pe-socialMediaMain .firstEntry {
+    border-top: none;
+}
+
+#viewRiver {
+	background: url("../../../../i/tron/reviews/FD/reviewsSprite.gif") no-repeat scroll right 2px transparent;
+	margin-right: 14px;
+    position: relative;
+    text-align: right;
+	bottom: 292px;
+	font: bold 85% helvetica;
+	text-transform: uppercase;
+	*bottom: 287px;
+}
+
+#viewRiver a {
+    color: #FFFFFF;
+    left: -12px;
+    position: relative;
+}
+
+#riverWidget div.mediaType {
+    background:url("../../../../../../www.cnet.com/i/tron/features/ces10/river/picBgSm.gif") no-repeat scroll -61px 0 transparent;
+	height: 21px;
+	float:left;
+	width:27px;
+	margin-left: 10px;
+}
+
+#riverWidget div.mediaType img {
+    display: block;
+    height: 16px;
+    margin-left: 1px;
+    padding-top: 3px;
+    width: 16px;
+}
+
+#riverWidget div.infoLine, #riverWidget div.infoTime, #riverWidget p.entryDescription, #riverWidget div.showHide, #riverWidget ul.infoLine, #riverWidget div.videoEntryDescription{
+	display: none;
+}
+
+#riverWidget p.tweet, #riverWidget p.styledTweet{
+	display: block;
+}
+
+#riverWidget div.mediaEntry {
+	float:right;
+	width:259px;
+	padding-right: 6px;
+}
+
+#riverWidgetHeader {
+    background-color: #424244;
+    color: #FFFFFF;
+    display: block;
+	font: bold 116.7%/24px helvetica;
+    height: 24px;
+    margin-left: 6px;
+    padding-left: 7px;
+    position: absolute;
+	text-transform: uppercase;
+    top: 5px;
+    width: 317px;
+	-webkit-border-radius: 4px 0 0 4px;
+	-moz-border-radius:4px 0 0 4px;
+	-o-border-radius: 4px 0 0 4px;
+	border-radius:4px 0 0 4px;
+}

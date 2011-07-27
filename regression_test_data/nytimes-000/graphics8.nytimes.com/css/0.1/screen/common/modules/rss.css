@@ -1,0 +1,22 @@
+/*$Id: rss.css 5746 2008-10-06 17:20:23Z jon $
+/css/0.1/screen/common/modules/rss.css
+(c)2006 - 2008 The New York Times Company */
+
+ul.rssCcolumn li {
+  font-size: 1.1em;
+  font-weight: bold;
+  font-family: Arial,sans-serif;
+  background: transparent url(http://graphics8.nytimes.com/images/global/icons/feed_icon_12x12.gif) no-repeat 0 0;
+  padding: 0 0 2px 16px;
+  line-height: 1.2em;
+}
+
+ul.rssCcolumn .rssSubsection li {
+  font-size: .909em;
+  font-weight: normal;
+  float: left;
+  width: 55px;
+  background: transparent url(http://graphics8.nytimes.com/images/global/icons/feed_icon_8x8.gif) no-repeat 0 2px;
+  padding: 0 0 0 12px;
+  margin-top: 3px;
+}

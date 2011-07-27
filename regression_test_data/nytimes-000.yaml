@@ -1,2 +1,4 @@
 test_description: nytimes article
-url: http://thecaucus.blogs.nytimes.com/2011/07/12/mcconnell-proposal-gives-obama-power-to-increase-debt-limit/?hp
+url: http://thecaucus.blogs.nytimes.com/2011/07/12/mcconnell-proposal-gives-obama-power-to-increase-debt-limit/index.html?hp
+url_map:
+  http://thecaucus.blogs.nytimes.com/2011/07/12/mcconnell-proposal-gives-obama-power-to-increase-debt-limit/index.html?hp: thecaucus.blogs.nytimes.com/2011/07/12/mcconnell-proposal-gives-obama-power-to-increase-debt-limit/index.html?hp.html

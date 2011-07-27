@@ -1,0 +1,236 @@
+/*$Id: expedia.css 14951 2009-02-18 20:44:28Z fisherc $
+/css/0.1/screen/section/travel/modules/expedia.css 
+(c)2006 - 2009 The New York Times Company */
+
+#CalFrame { 
+  width: 162px;
+  height: 216px;
+  z-index: 10000;
+}
+
+.expediaBooking a.expediaLogo {
+  float:right;
+  display:block;       
+  padding:21px 10px 0px 37px; 
+  height:0;
+  overflow: hidden;
+  background:transparent url(http://graphics8.nytimes.com/images/section/travel/expedia_moduleHeader.gif) no-repeat top left;
+}
+
+.size11select,
+.text1B,
+.expediaHeading {
+  font-family:arial, sans-serif;
+  font-size:11px
+}
+
+.text1B {
+  max-width:120px;
+}
+
+.expediaBooking {width:335px;margin-bottom:12px; border:1px solid #ccc;}
+.expediaBooking .bookingInfo input { margin-top: 3px; }
+.expediaBooking th {background-color:#B3C4E1;text-align:right;}
+.expediaBooking th img {margin-right:7px;float:right;}
+.expediaBooking th span{display:none;}
+
+.expediaHeading {
+  float: left;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding-left: 8px;
+  margin-top: 3px;
+}
+
+.expediaBooking div form{padding:0;margin:0;text-align:left;}
+
+.expediaBooking form.radioGroup {
+  padding:0;
+  width:auto;
+  margin:0;
+}
+
+.expediaBooking form.rGroup span {display:block;float:left;width:65px;}
+.expediaBooking form.rGroup span label {
+  display: inline;
+  font-size:9px;
+  text-transform:uppercase;
+  vertical-align:bottom;
+  font-family:arial,sans-serif;
+}
+
+.expediaBooking form.rGroup span.last{width:95px;}
+
+.expediaBooking form.rGroup .row1,
+.expediaBooking form.rGroup .row2 {width:306px;clear:left;padding-left:2px;}
+.expediaBooking form.rGroup .row1{padding-top:9px;_padding-top:4px;}
+.expediaBooking form.rGroup .row2{overflow:auto;margin-bottom:9px;padding-top:6px;_padding-top:0;}
+.expediaBooking form.rGroup span input {vertical-align:middle; margin-bottom:0;}
+
+.expediaBooking select {
+  vertical-align: middle;
+}
+
+#hot, #flt, #car, #pac, #cru, #tsh {margin-left:7px;}
+#expediaSFModule #flt {margin-left:0px;}
+
+.bookingInfo td label,
+.bookingInfo .newlineLabel {display:block; font-family: arial,sans-serif; font-size:11px;}
+.passengers td label {width:48px;}
+.passengers select {width:45px; font-size:11px;margin-right:8px; margin-top:3px; font-family:arial,sans-serif;} /* adults-seniors-children */
+
+.passengers {margin-top:9px;}
+.lastrow {padding-bottom:12px;}
+.expleft{float:left;margin-right:3px;}
+.expright{float:right;} /* for standalone divs */
+
+td.expSearch{width:100%;text-align:right;} /* for td containing search button */
+.expSearchButton {cursor:default;cursor:hand;margin-top:16px;margin-right:7px;} /* srchButton table */
+
+td.expSearchMitte {
+  background:url(http://media.expedia.com/media/content/shared/graphics/other/button_middle.gif) repeat-x;
+  font-family:arial,sans-serif;
+  color: #fff;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+
+.explong {font-family:arial, sans-serif;font-size:11px;width:152px;_width:150px;margin-right:7px;margin-bottom:7px;}
+select.explong {margin-top:3px; width:156px;_width:155px;}
+.expdate  {font-family:arial, sans-serif;font-size:11px;width:76px;margin-right:2px;}
+select.exptime {font-family:arial, sans-serif;font-size:11px;width:70px;_width:69px;}
+
+#flt .expSearchButton {margin-top:13px;}
+#car .expSearchButton {float:right;_margin-right:3px;}
+#car .expSearchMitte {padding-bottom:;}
+#cru .lastrow {padding-bottom:5px;}
+
+#hot .explong {margin-right:4px;width:147px;_width:142px;margin-bottom:0;}
+#hot .expdate {margin-right:4px;}
+#hot .passengers td{padding-top:0px;}
+#hot .expSearchButton {margin-top:10px;}
+#hot .roomNum {font-family:arial, sans-serif;font-size:11px;margin-top:20px;padding-right:17px;padding-left:0px;}
+#hot #hotrm2, #hot #hotrm3 {padding-top:4px;}
+#hot .expSearchButton{margin-top:15px;float:right;padding-bottom:10px;_margin-right:4px;}
+#hot #rm1txt{display:none;_display:inline;font-size:0;height:0px;margin-top:-2px;}
+
+#pac .expleft{margin-right:0;}
+#pac .expleft.first{margin-right:3px;}
+#pac .explong{_width:150px;margin-right:0px;}
+#pac .expSearchButton {margin-left:17px;}
+form#PkgType {/*display:block;*/}
+form#PkgType .newlineLabel{padding-left:1px;}
+form#PkgType select.explong {_width:155px;_margin-right:6px;}
+.shortPkgHeader{width:156px;float:left;}
+.normalPkgHeader{width:180px;float:none;}
+
+#PkgGoingto {
+  /*	float:right;*/
+  display:inline;
+  width:160px;
+  margin-left:7px;
+}
+
+#PkgGoingto .newlineLabel{
+  margin-left:163px;
+  _margin-left:156px;
+  _margin-top:-1px;
+}
+
+#PkgGoingto input{
+  margin-left:0;
+  padding-left:0;
+}
+
+#PkgNoFlight .expleft.first {margin-right:8px;_margin-right:4px;}
+#PkgNoFlight .expleft .expdate{_margin-right:1px;}
+#PkgNoFlight .expleft.second .expdate {_margin-left:1px;}
+
+#PkgWithFlight .expleft.first {margin-right:8px;_margin-right:4px;}
+
+
+
+
+/* BEGIN expedia Deals
+------------------------------------------------ */
+.expediaBooking.Deals {
+  width: 100%;
+  border-bottom: 0;
+  font-size: small;
+}
+
+.expediaBooking.Deals td {
+  border-bottom: 1px solid #e2e2e2; 
+  font-family: arial,sans-serif;
+  font-size: 85%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.expediaBooking.Deals td a {
+  text-decoration: underline;
+} 
+
+.expediaBooking.Deals .hotelName {
+  border-left: 8px solid white;
+  _padding-left: 1px;
+}
+
+.expediaBooking.Deals #moreHotels{ 
+  padding-right: 8px;
+  _padding-right: 1px;
+  text-align: right;
+  font-weight: bold;
+}
+
+.expediaBooking.Deals #moreHotels a:link, 
+.expediaBooking.Deals #moreHotels a:visited { 
+  text-decoration: none;
+}
+
+.expediaBooking.Deals #moreHotels a:hover{
+  text-decoration: underline;
+}
+
+.expediaBooking.Deals .rate {
+  border-right: 8px solid white; 
+  width: 12%;
+  text-align: right;
+}
+
+.cColumn .expediaBooking.Deals .rate {
+  width: 25%;
+}
+
+.expediaBooking.Deals tr:last-child .hotelName {
+  padding-left: 8px;
+}
+
+.expediaBooking.Deals tr:last-child .hotelName,
+.expediaBooking.Deals tr:last-child .rate {
+  border-left: 0;
+  border-right: 0;
+}
+
+.expediaBooking.Deals tr:last-child .rate {
+  padding-right: 8px;
+}	
+
+.expediaBooking.Deals tr .hotelName{
+  padding-left: expression( parentNode == this.parentNode.parentNode.lastChild ? "8px" : "1px" );
+  border-left: expression( parentNode == this.parentNode.parentNode.lastChild ? "none" : "8px solid white" );
+  border-right: expression( parentNode == this.parentNode.parentNode.lastChild ? "none" : "" );
+}
+
+
+.expediaBooking.Deals tr .rate{
+  padding-right: expression( parentNode == this.parentNode.parentNode.lastChild ? "8px" : "0px" );
+  border-right: expression( parentNode == this.parentNode.parentNode.lastChild ? "none" : "8px solid white" );
+  border-left: expression( parentNode == this.parentNode.parentNode.lastChild ? "none" : "" );
+}
+
+/* END expedia Deals
+------------------------------------------------ */
+
+

@@ -1,0 +1,6 @@
+Sitemap: http://www.businessinsider.com/sitemap
+Sitemap: http://www.businessinsider.com/sitemap?format=news
+Sitemap: http://www.businessinsider.com/sitemap?format=video
+Sitemap: http://www.businessinsider.com/sitemap?format=categories
+Sitemap: http://www.businessinsider.com/sitemap?format=posts
+Sitemap: http://www.businessinsider.com/sitemap?format=blackboard

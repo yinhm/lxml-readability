@@ -1,0 +1,22 @@
+/* site specific stuff -- deadspin */
+.frontpage #header_info,
+.classic_frontpage #header_info,
+.tagpage #header_info,
+#thread_label,
+a { color: #0F4561; }
+.post h1 a { color: #000; }
+
+#frontpage {
+	background: url("../img/logo-deadspin.png") no-repeat scroll left top transparent;
+	height: 50px;
+	left: 8px;
+	top: -7px;
+	width: 338px;
+}
+
+.site-bg-color {
+	background-color: #0f4561;
+	color: #fff;
+}
+
+#thumbList .thumb.current { border-color: #0f4561; }

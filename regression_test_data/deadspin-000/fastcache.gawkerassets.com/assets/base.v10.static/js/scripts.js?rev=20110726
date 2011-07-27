@@ -1,0 +1,159 @@
+	if( location.hash != '' && location.hash.indexOf( '#!' ) == 0 ) {
+		var newHref = location.hash.substr( 2 );
+		if( newHref.indexOf( '/' ) != 0 ) {
+			newHref = '/' + newHref;
+		}
+		location.href = newHref;
+	}
+
+	try { Typekit.load(); } catch(e) {}
+
+	jQuery(document).ready( function() {
+
+		var sharebutton = jQuery('#share');
+		var comments = jQuery('#comments');
+		jQuery( '#presence_external_templates' ).load( '/static/items/' + siteConfig['canonicalHost'] + '/presence_external_templates_static.html', function() {
+			presence_options = { isReloading : false };
+			GawkerClientside.pushWidget('presence', jQuery('#auth').PresenceWidget(presence_options).data('PresenceWidget'));
+			GawkerClientside.pushWidget('notificationControl', jQuery('#notifications').NotificationWidget().data('NotificationWidget'));
+			GawkerClientside.pushWidget('commenter', jQuery('.gawkerwidget.commenter_area').CommenterWidget({}).data('CommenterWidget'));
+			if ( comments.length ) {
+				GawkerClientside.pushWidget('thread', jQuery('#comments').ThreadWidget( {} ).data('ThreadWidget'));
+				GawkerClientside.pushWidget('threadadmin', jQuery('.gawkerwidget.threadadmin_area').ThreadAdminWidget({}).data('ThreadAdminWidget'));
+				GawkerClientside.pushWidget('commenteradmin', jQuery('.gawkerwidget.commenteradmin_area').CommenterAdminWidget({}).data('CommenterAdminWidget'));
+				GawkerClientside.pushWidget('commentform', jQuery('.commentform_container #postform_widget').CommentFormWidget().data('CommentFormWidget'));
+			}
+			if ( sharebutton.length ) {
+				GawkerClientside.widgets.simpleform_mail2 = [ jQuery('#share_email').SimpleFormWidget(settings.widgets.simpleform.byselector['#share_email'].options).data('SimpleFormWidget') ];
+			}
+			GawkerClientside.pushWidget('editorcontrols', jQuery('.gawkerwidget.editorcontrols_area').EditorControlsWidget().data('EditorControlsWidget'));
+			GawkerClientside.pushWidget('republishtool', jQuery('.gawkerwidget.republish_area').RepublishToolWidget( republishOptions ).data('EditorControlsWidget'));
+
+			/** HACK WARNING
+			 *
+			 * widgets in static view are loaded in a funky way. if the forumloaded event is raised BEFORE
+			 * the subscribing widgets are initialized, registerEventHandler will not work, meh.
+			 */
+			if (typeof forum_load_options !== 'undefined' && forum_load_options !== undefined) {
+				adRobot.raiseEvent('maincontent.forumloaded', forum_load_options);
+			}
+		} );
+
+		if ( sharebutton.length ) {
+			jQuery('#share_button').click( function( e ) {
+				e.stopPropagation();
+				e.preventDefault();
+				jQuery('#share_menu').show();
+				jQuery('#share_menu').bind( "clickoutside", function() { jQuery('#share_menu').hide(); } );
+			});
+			jQuery('#share_menu .heading span').click( function( e ) {
+				e.stopPropagation();
+				e.preventDefault();
+				jQuery('#share_menu').hide();
+			});
+		}
+
+		if ( window.pageType == 'post' ) {
+			adRobot.raiseEvent( 'maincontent.postloaded', { data: { id: window.postId, action: 'post' } } );
+		}
+
+		if ( window.pageType == 'search' )
+		{
+			jQuery('#search_term').focus( function( e ) {
+				o = jQuery( this );
+				if ( o.hasClass('empty') ) {
+					o.val('');
+					o.removeClass('empty');
+				}
+			});
+			jQuery('#search_term').focusout( function( e ) {
+				o = jQuery( this );
+				if ( o.val() == '' ) {
+					o.val('Search');
+					o.addClass('empty');
+				}
+			});
+			jQuery('#search #settings ul li a').click( function( e ) {
+				e.stopPropagation();
+				e.preventDefault();
+				o = jQuery( this );
+				setting = o.parent().parent().attr('id');
+				option = o.parent().attr('id');
+				jQuery('#search input[name=' + setting + ']').val( option );
+				jQuery( '#search #settings ul#' + setting + ' li' ).removeClass('selected');
+				o.parent().addClass('selected');
+				q = jQuery('#search_term');
+				if ( !q.hasClass('empty') && q.val() != '' ) {
+					jQuery('#search').submit();
+				}
+			} );
+		}
+
+		if ( jQuery('#splashposts').length ) {
+			GawkerClientside.pushWidget('splashpostControl', jQuery('#splashposts').SplashPostWidget( { static_version : true } ).data('SplashPostWidget'));
+			var urlParams = adRobot.getUrlParams();
+			var sponsored_params = {};
+			if (urlParams['sponsor_preview'] !== undefined) {
+				sponsored_params.sponsor_preview = parseInt(urlParams['sponsor_preview'], 10);
+			}
+			adRobot.raiseEvent( 'splashpost.sponsoredpost.show', sponsored_params );
+			
+			//google analytics event tracker support
+		 	jQuery('.gaqtrack').bind('click', function(){ 
+				_gaq.push(['_trackEvent', jQuery(this).data('gaqevent'), jQuery(this).data('gaqid') ]); 
+			});
+		}
+
+		if ( jQuery( '#post_list' ).length ) {
+			GawkerClientside.pushWidget( 'minirightbar', jQuery('#post_list').MiniRightbarWidget({}).data('MiniRightbarWidget'));
+		}
+
+		
+		window.fbAsyncInit = function() {
+			FB.init({ 'appId': '236575159691634', status: true, cookie: true,xfbml: true } );
+			var fbObject = document.getElementById( 'facebook_like' );
+			if( fbObject !== null ) {
+				window.FB.XFBML.parse( fbObject );
+			}
+		};
+		var scr = document.createElement( 'script' );
+		scr.type = 'text/javascript';
+		scr.src = location.protocol + '//connect.facebook.net/en_US/all.js';
+		document.getElementById( 'page' ).appendChild( scr );
+		
+		/*
+		GawkerClientside.pushWidget('chartbeat', jQuery('#activity').ChartbeatWidget( chartbeat_options ).data('ChartbeatWidget'));
+		GawkerClientside.pushWidget('gallery', jQuery('#content').GalleryWidget().data('GalleryWidget'));
+
+		if ( has_hybrid_widget ) { GawkerClientside.pushWidget( 'hybrid', jQuery('#hybrid_widget').HybridWidget().data('HybridWidget') ); }
+		*/
+		checkHashForErrors();
+
+		jQuery( '#switch_blogview' ).click( function( e ) {
+			var parts = location.hostname.match( /([^\.]+\.[^\.]+)$/ );
+			var cookieValue = 'classic';
+			var newUrl = 'http://' + ( location.hostname.indexOf( 'blog.' ) == -1 ? 'blog.' : '' ) + location.hostname + '/';
+			if( window.pageType == 'classic_frontpage' ) {
+				cookieValue = 'top7';
+				newUrl = 'http://' + location.hostname.replace( 'blog.', '' ) + '/';
+			}
+			jQuery.cookie('____GCV', cookieValue, {expires: 365, path: '/', domain: parts[1]});
+			location.href = newUrl;
+
+			e.stopPropagation();
+			e.preventDefault();
+		} );
+
+		// tracker init
+		var tracker_params = {};
+		if (window.postId !== undefined) {
+			tracker_params.post_id = window.postId;
+		} else {
+			tracker_params.post_id = 'SITE:' + siteConfig.id;
+		}
+		trackers.reload(tracker_params);
+	} );
+
+	// page was loaded, increment the welcome box view cookie
+	GawkerClientside.pushWidget('welcomebox', jQuery('#current_view').WelcomeBoxWidget().data('WelcomeBoxWidget'));
+	adRobot.raiseEvent('welcomebox.incrementview', {});

@@ -1,0 +1,29 @@
+/*
+Theme Name: thecaucus
+Theme URI: http://thecaucus.blogs.nytimes.com/
+Version: 3.1
+Author: Jon Chretien, Jaymin Patel, David Seguin, Jeremy Zilar
+Author URI: http://open.blogs.nytimes.com
+
+$Id: style.css 68071 2011-05-23 18:52:04Z christopher.sanders $
+/css/blogs/3.1/screen/themes/thecaucus/style.css
+(c)2006 - 2010 The New York Times Company
+*/
+
+.verticalTabSet .tabs li.selected {
+  border-color: #405594;
+}
+
+.verticalTabSet .tabs li.selected,
+.verticalTabSet .tabs .moreContributors .opposingFloatControl ul li:hover {
+  background-color: #405594;
+}
+
+/* Inline modules */
+.blogCategories .resultsLabel {
+   background: #336baf;
+}
+
+.inlineModule {
+   border-top: 2px solid #336baf;
+}

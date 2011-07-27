@@ -1,0 +1,61 @@
+/*
+$Id: archives.css 38340 2010-05-17 15:16:29Z jon $
+/css/blogs/3.1/screen/themes/universal/archives.css
+(c)2006 - 2010 The New York Times Company
+*/
+
+.blogArchives #content .latestEntry {
+  margin-bottom: 30px;
+}
+.blogArchives #content .subColumn-3 {
+  clear: both;
+}
+.blogArchives #content .categoryColumns {
+  padding-top: 2px;
+}
+.blogArchives #content .tagColumns {
+  padding-top: 5px;
+}
+.blogArchives #content .subColumn-3 .column,
+.blogArchives #content .tagColumns .column .refer li {
+  width: 148px;
+}
+.blogArchives #content .subColumn-3 .column {
+  margin-right: 18px;
+}
+.blogArchives #content .subColumn-3 .column .refer li {
+  margin-bottom: 5px;
+}
+.blogArchives #content .tagColumns .column .refer li {
+  float: left;
+}
+.blogArchives #content .tagColumns .column .refer li a {
+  width: 120px;
+  float: left;
+}
+.blogArchives #content .subColumn-3 .column .refer span.tagCount {
+  float: right;
+  color: #777;
+  text-align: right;
+}
+.blogArchives #content .singleRuleDivider {
+  margin: 12px 0 23px -10px;
+  width: 500px;
+}
+.blogArchives #content h4 {
+  float: left;
+}
+.blogArchives #content .sort {
+  margin-top: 1px;
+  float: right;
+}
+.blogArchives #content .sort label {
+  padding-right: 3px;
+  display: inline;
+}
+.blogArchives #content .sort * {
+  vertical-align: middle;
+}
+.blogArchives #content .sort select {
+  width: 96px;
+}

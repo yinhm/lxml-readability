@@ -1,0 +1,253 @@
+/*
+$Id: navigation.css 43597 2010-08-19 18:40:15Z jon $
+/css/common/screen/navigation.css
+(c)2006 - 2010 The New York Times Company
+*/
+
+.navigation,
+#navigation {
+  display: block;
+  position: relative;
+  clear: both;
+  text-align: center;
+  overflow: visible;
+  _height: 53px;
+  border-bottom: 1px solid #d3d3d3;
+}
+
+.navigation {
+  _height: 1%;
+}
+
+* html #navigation.nochild {
+  border-bottom: none !important;
+}
+
+.navigation a,
+#navigation a {
+  color: #333;
+}
+
+#shell #navigation ul li {
+  text-align: center;
+  background-color: white;
+  font-family: georgia, "times new roman", times, serif;
+  font-size: 11px !important;
+  border-width: 0 0 1px 1px;
+  border-color: #d3d3d3;
+  /*\*/vertical-align: top;/*\*/
+  padding: 7px 0 0 0;
+  min-height: 18px; 
+  _height: 18px; 
+  overflow: visible;
+  background-image: none;
+  border-left-width: expression( this == this.parentNode.firstChild ? "0" : "1px" );
+}
+
+#shell #navigation ul li:first-child {
+  border-left: none;
+}
+
+#shell #navigation ul li.selected {
+  background-color: #f4f4f4;
+  border-bottom: 1px solid #f4f4f4;
+}
+
+#shell #navigation ul #navJobs.selected,
+#shell #navigation ul #navRealestate.selected,
+#shell #navigation ul #navAutos.selected {
+  background-color: #f4f4f4;
+}
+
+#navigation ul.tabs li ul {
+  display: none;
+}
+
+.navigation .subNavigation ul,
+#navigation #subNavigation ul,
+#navigation ul.tabs li.selected ul {
+  border-top: none;
+  position: absolute;
+  width: 940px;
+  display: block;
+  left: 0;
+  top: 26px;
+  min-height: 19px;
+  _height: 20px;
+  padding: 8px 15px 0 15px;
+  _padding-top: 7px;
+  text-align: center;
+  background-color: #f4f4f4;
+  list-style: none;
+  margin: 0;
+  white-space: nowrap;
+  /*\*/vertical-align: top;/*\*/
+  font-weight: normal;
+}
+
+.navigation .subNavigation ul,
+#navigation #subNavigation ul {
+  position: static;
+  clear: both;
+  text-transform: uppercase;
+}
+
+.navigation .subNavigation ul li,
+#navigation #subNavigation ul li,
+#navigation ul.tabs li.selected ul li {
+  border: none;
+  font-family: arial, helvetica, sans-serif;
+  background-color: #f4f4f4;
+  text-align: center;
+  display: inline;
+  padding: 0 4px 0 6px;
+  margin: 0;
+  float: none;
+  font-weight: normal;
+}
+
+/* to accommodate global sports width */
+#navigation #subNavigation #subnavSports li {
+  padding: 0 4px;
+}
+
+#navigation #navWorld { min-width: 58px; _width: 58px; _border-left-width: 0; }
+#navigation #navUS { min-width: 36px; _width: 36px; }
+#navigation #navNYRegion { min-width: 89px; _width: 89px; }
+#navigation #navBusiness { min-width: 71px; _width: 71px; }
+#navigation #navTechnology { min-width: 96px; _width: 96px; }
+#navigation #navScience { min-width: 65px; _width: 65px; }
+#navigation #navHealth { min-width: 63px; _width: 63px; }
+#navigation #navSports { min-width: 60px; _width: 60px; }
+#navigation #navOpinion { min-width: 67px; _width: 67px; }
+#navigation #navArts { min-width: 46px; _width: 46px; }
+#navigation #navStyle { min-width: 52px; _width: 52px; }
+#navigation #navTravel { min-width: 63px; _width: 63px; }
+#navigation #navJobs { min-width: 48px; _width: 48px; }
+#navigation #navRealestate { min-width: 85px; _width: 85px; }
+#navigation #navAutos { min-width: 57px; _width: 57px; }
+
+#shell #navigation #navJobs,
+#shell #navigation #navRealestate,
+#shell #navigation #navAutos {
+  font-family: arial, helvetica, sans-serif;
+  font-weight: bold;
+  background-color: #e6eff8;
+}
+
+#navigation #subNavigation #subnavWorld,
+#navigation #subNavigation #subnavUS,
+#navigation #subNavigation #subnavNYRegion,
+#navigation #subNavigation #subnavBusiness,
+#navigation #subNavigation #subnavTechnology,
+#navigation #navWorld.selected ul,
+#navigation #navUS.selected ul,
+#navigation #navNYRegion.selected ul,
+#navigation #navBusiness.selected ul,
+#navigation #navTechnology.selected ul {
+  text-align: left;
+}
+
+#navigation #navStyle.selected #subnavStyle,
+#navigation #navTravel.selected #subnavTravel,
+#navigation #navJobs.selected #subnavJobs,
+#navigation #navRealestate.selected #subnavRealestate,
+#navigation #navAutos.selected #subnavAutos,
+#navigation #navStyle.selected ul,
+#navigation #navTravel.selected ul,
+#navigation #navJobs.selected ul,
+#navigation #navRealestate.selected ul,
+#navigation #navAutos.selected ul {
+  text-align: right;
+}
+
+#navigation #subnavTravel {
+  text-align: right !important;
+}
+
+#navigation #subNavigation ul li.selected.children,
+#navigation ul.tabs li.selected ul li.selected.children {
+  background: white;
+  border: 1px solid #ccc;
+  padding: 4px 10px 3px 10px;
+  *padding: 0 10px 0 10px;
+  font-weight: bold;
+}
+
+#navigation #subNavigation ul li.selected.children ul,
+#navigation ul.tabs li.selected ul li.selected ul {
+  border-top: none;
+  display: inline;
+  position: static;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  /*\*/vertical-align: top;/*\*/
+  background: none;
+  font-weight: normal;
+}
+
+#navigation #subNavigation ul li.selected.children ul li,
+#navigation ul.tabs li.selected ul li.selected ul li {
+  position: static;
+  margin: 0;
+  background: none;
+  text-transform: none;
+}
+
+#navigation #subNavigation ul li.selected.children ul li a,
+#navigation ul.tabs li.selected ul li.selected.children ul li a {
+  color: #004276;
+}
+
+#navigation #subNavigation ul li.selected.nochildren,
+#navigation ul.tabs li.selected ul li.selected.nochildren {
+  font-weight: bold;
+}
+
+#navigation #subNavigation ul li.selected.children ul li.selected,
+#navigation ul.tabs li.selected ul li.selected.children ul li.selected {
+  font-weight: bold !important;
+  background-color: white;
+  padding: 0 6px 0 6px;
+}
+
+#navigation #subNavigation ul li.selected.nochildren,
+#navigation ul.tabs li.selected ul li.selected.nochildren {
+  font-weight: bold;
+}
+
+#navigation #subNavigation #subnavArts li#subSubNav_specialoffers {
+  background-color: #e6eff8;
+  border-left: 1px solid #e2e2e2;
+  padding-top: 4px;
+  padding-bottom: 3px;
+}
+ 
+#navigation #subNavigation #subnavArts li.selected.children {
+  padding: 4px 0 3px 10px;
+  *padding: 0 0 0 10px;
+}
+
+#navigation #subNavigation #subnavSports #subNav_sportstickets a {
+  font-weight: bold;
+  color: #004276;
+  font-size: .909em;
+}
+
+#navigation #subNavigation #subnavSports #subNav_sportstickets {
+  border: 1px solid #ccc;
+  padding: 4px 6px 2px 6px;
+  *padding: 4px 6px 0 6px;
+  position: relative;
+}
+
+/* BEGIN fixing for noNavChild */
+#navigation.nochild {
+  _height: 25px;
+}
+
+html>body div#abColumns.navNoChild {
+  margin-top: 10px;
+}
+/* END fixing for noNavChild */

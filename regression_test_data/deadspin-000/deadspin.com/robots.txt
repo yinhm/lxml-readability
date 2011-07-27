@@ -1,0 +1,9 @@
+User-Agent: Googlebot
+Disallow: /index.xml$
+Disallow: /excerpts.xml$
+Allow: /sitemap.xml$
+Disallow: /*view=rss$
+Disallow: /*?view=rss$
+Disallow: /*format=rss$
+Disallow: /*?format=rss$
+Sitemap: http://deadspin.com/sitemap.xml

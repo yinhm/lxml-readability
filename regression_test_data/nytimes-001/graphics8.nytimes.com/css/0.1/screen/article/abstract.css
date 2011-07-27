@@ -1,0 +1,171 @@
+/* $Id: abstract.css 53361 2010-12-17 21:36:13Z falkae $
+ * /css/0.1/screen/article/abstract.css 
+ * (c)2006 - 2010 The New York Times Company 
+ */
+
+/* heading */
+.abstractView .heading {
+  font-family: arial, helvetica, sans-serif;
+  padding-bottom: 5px;
+}
+
+.abstractView .abstractHeadline {
+  color: #333;
+  font-size: 2.4em;
+  font-weight: normal;
+  margin: 5px 0 10px 0;
+  padding-top: 15px;
+}
+/* end heading */
+
+/* body */
+.abstractView .abstractSummary {
+    margin: 15px 0;
+}
+
+.abstractView .abstractSummary p.byline {
+    margin-bottom: 5px;
+}
+
+.abstractView .abstractSummary p.summaryText {
+    font-size: 1.5em;
+}
+/* end body */
+
+/* transaction box */
+.abstractView .logInNote {
+  font-family: arial, helvetica, sans-serif;
+  font-size: 1.1em;
+  margin-top: 3px;
+}
+
+.abstractView .abstractAccessNotice {
+  margin-bottom: 10px;
+  font-size: 1.1em;
+  font-family: arial, helvetica, sans-serif;
+  color: #000;
+}
+
+.abstractView .viewFullArticleBox, .abstractView .purchaseArticleBox {
+  padding: 12px;
+  font-family: arial, helvetica, sans-serif;
+}
+
+.abstractView .purchaseArticleBox {
+  padding-bottom: 0;
+}
+
+.abstractView .viewFullArticleBox {
+  height: 22px;
+}
+
+.abstractView .viewFullArticleBox span, .abstractView .viewFullArticleBox span a {
+  line-height: 2.4em;
+  margin-left: 5px;
+  vertical-align: top;
+}
+
+.abstractView .purchaseArticleBox .columnWrapper {
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.abstractView .purchaseArticleBox .column {
+  padding: 5px;
+  position: relative;
+  width: 266px;
+}
+
+.abstractView .purchaseArticleBox .firstColumn {
+  padding-right: 15px;
+}
+
+.abstractView .purchaseArticleBox .lastColumn {
+  background: url(http://graphics8.nytimes.com/images/layout/vertical_rule.gif) repeat-y 0;
+  padding-left: 15px;
+}
+
+.abstractView .purchaseArticleBox .singleRule {
+  margin: 0;
+  padding: 0;
+}
+
+.abstractView .purchaseArticleBox h4 {
+  font-size: 1.2em;
+  margin-bottom: 8px;
+}
+
+.abstractView .purchaseArticleBox #newspaperIcon {
+  height: 63px;
+  float: right;
+  margin-top: -25px;
+  width: 78px;
+}
+
+.abstractView .purchaseArticleBox .sellCopy {
+  margin: 8px 0;
+  width: 180px;
+}
+
+.abstractView .purchaseArticleBox p a.bold {
+  font-weight: bold;
+}
+
+.abstractView .purchaseArticleBox .subscriptionLinks li {
+  font-size: 1.2em;
+}
+
+.abstractView .purchaseArticleBox .learnMore {
+  font-size: 1.1em;
+}
+
+.abstractView .purchaseArticleBox table {
+  border-collapse: collapse;
+  width: 267px;
+}
+
+.abstractView .purchaseArticleBox table td {
+  padding: 10px 0;
+}
+
+.abstractView .purchaseArticleBox table tr.payRowDivider {
+  border-bottom: 1px dotted #ccc;
+}
+
+.abstractView .purchaseArticleBox .payProductName {
+  color: black;
+  font-size: 1.1em;
+}
+
+.abstractView .purchaseArticleBox .price {
+  font-weight: bold;
+  font-size: 1.1em;
+  padding-right: 8px;
+  text-align: right;
+}
+
+.abstractView .purchaseArticleBox .archiveNotice {
+  font-size: 1em;
+  padding: 8px 0;
+  text-align: center;
+}
+
+.articleAccess .button {
+  border-bottom: 1px solid #CCCCCC;
+  padding-bottom: 10px;
+}
+
+.articleAccess .button .pdfIcon {
+  margin-left: 10px;
+  padding-bottom: 2px;
+}
+
+.articleAccess .button span {
+  font-size: 0.84em;
+  margin-left: 5px;
+  vertical-align: top;
+}
+
+.accessForm {
+  display: inline;
+}
+/* end transaction box */

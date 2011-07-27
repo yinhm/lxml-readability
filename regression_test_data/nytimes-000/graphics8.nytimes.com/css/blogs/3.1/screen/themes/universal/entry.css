@@ -1,0 +1,505 @@
+/*
+$Id: entry.css 58287 2011-02-15 20:00:54Z christopher.sanders $
+/css/blogs/3.1/screen/themes/universal/entry.css
+(c)2006 - 2010 The New York Times Company
+*/
+
+.hfeed .entry {
+  border-top: 1px #ccc solid;
+  padding: 15px 10px 0 10px;
+}
+#content .hentry:first-child {
+  border-top: none;
+}
+
+/* headings */
+.blogPage .entry-title,
+.blogPost .entry-title {
+  font-weight: normal;
+  margin: 6px 0 4px 0;
+}
+.entry-content h1,
+.entry-content h2 {
+  display: none;
+}
+
+h3 {
+  margin: .4em 0 .3em 0;
+  color: #333;
+  font-size: 1.7em;
+}
+.entry-content h3 {
+  margin-bottom: 1em;
+  text-align: center;
+  color: #777;
+  font-weight: normal;
+}
+
+h4 {
+  margin: 0 0 5px 0;
+  font-family: arial,helvetica,sans-serif;
+}
+#content h4 { clear: both; }
+.entry-content h4 {
+  margin-bottom: .5em;
+  font-size: 1.6em;
+}
+.module h4 {
+  margin: 12px 5px 3px 5px;
+}
+.module h4 a,
+.module h4 a:visited {
+  color: #000;
+}
+
+.entry-content h6 {
+  font-size: 1em;
+  text-transform: uppercase;
+  font-family: arial,helvetica,sans-serif;
+}
+
+/* paragraphs */
+.entry-content p,
+.entry-summary p {
+  font-size: 1.4em; /* 14px */
+  line-height: 1.5em; /* 21px */
+}
+
+/* lists */
+.entry-content ul {
+  margin-left: 1em;
+}
+.entry-content ol {
+  margin-left: 2.6em;
+}
+.entry-content li {
+  background-position: 0 0.6em;
+  font-size: 1.4em; /* 14px */
+  line-height: 1.5em;
+  margin-bottom: .2em;
+}
+.entry-content .refer li {
+  background-position: left center;
+}
+.entry-content blockquote li {
+  font-size: 1em;
+}
+.entry-content ol li *,
+.entry-content ul li *,
+.entry-content li li,
+.entry-content li * {
+  font-size: 1em; /* 14px */
+}
+ul.inputGroup li {
+  padding: 0;
+  background: none;
+  font-size: 1.1em;
+}
+.lastList { 
+  padding-bottom: 0 !important;
+  border: none !important; 
+}
+
+/* blockquotes */
+.blog blockquote {
+  margin: 0 4em 1em 4em;
+  font-size: 1.4em;
+  line-height: 1.5em;
+}
+.blog blockquote p {
+  font-size: 1em;
+}
+cite {
+  padding: 0 2.6em;
+  display: block;
+  text-align: right;
+}
+blockquote cite { padding: 0 .5em; }
+
+/* pre, code, and misc... */
+pre,
+code {
+  margin: 1.5em 0;
+  background: #E6EFF8;
+  color: #333;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap !important;
+  white-space: -o-pre-wrap; /* Opera */
+  word-wrap: break-word; /* ie */
+}
+pre,
+code,
+tt {
+  line-height: 1.5em;
+  font-size: 1em;
+  font-family: 'lucida console', monospace;
+}
+pre { 
+  padding: 1.5em;
+  font-size: 1.2em;
+}
+
+address{ font-style: normal; }
+.loud { color: #a81817; }
+small { line-height: 1.4em; }
+sup, sub {
+  font-family: arial,helvetica,sans-serif;
+  color:#000;
+  font-size:9px;
+}
+
+.entry .updated { color: red; }
+.entry-content a { text-decoration: underline; }
+.mini .entry-content a.elsewhere { 
+    font-family: arial,verdana,sans-serif;
+    font-size: 0.7143em;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase; 
+}
+.mini .entry-content a.elsewhere:hover { text-decoration: underline; }
+
+/* mini posts */
+.hfeed .mini {
+  margin-bottom:1em;
+  padding-bottom:15px;
+}
+.mini .timestamp{display:block;}
+.mini .entry-title {
+  font-weight: bold;
+  font-size: 1.4em;
+  line-height: 1.5em;
+  float: left;
+  display: inline;
+  color: #333;
+}
+
+.mini .comments-link a { padding-left: 14px; }
+
+/* entry meta */
+.entry-meta {
+  margin: 10px 0 17px 0;
+  clear: both;
+}
+.blogPost .entry-meta {
+  margin-bottom:0;
+}
+
+.entry-meta .entry-tags {
+  font-size: 1.1em; /* 11px */
+  font-family: arial,helvetica,sans-serif;
+  padding: 10px;
+}
+.blogPost .entry-meta .entry-tags {
+  border-top: 1px solid #ccc;
+}
+.blogSearch .entry-meta .entry-tags {
+  padding-top: 0;
+}
+
+/* inline promo */
+.entry-content .module p {
+  font-size: 1.2em;
+}
+.entry-content .module ul {
+  margin-left: 0;
+}
+.entry-content .module li {
+  font-size: 1.1em;
+}
+
+.entry-content .module .entry {
+  margin: 0;
+  padding: 5px 0;
+  width: auto;
+  border: none;
+}
+.entry-content .module h4 {
+  margin: 0;
+  padding: 5px 0;
+}
+.entry-content .entry a { text-decoration: none; }
+.entry-content .entry .byline { font-size: 11px !important; }
+
+.entry-content .module blockquote {
+  margin: 0 .5em;
+  padding: 5px 0;
+  font-size: 1.6em;
+  color: #707070;
+  text-indent: 0;
+}
+
+.entry-content .module blockquote span {
+  text-indent: -7px;
+  float: left;
+  display: block;
+}
+.entry-content .module .entry blockquote {
+  padding: 0;
+}
+.entry-content .module blockquote p {
+  margin-bottom: 0;
+  font-size: 1em;
+}
+.entry-content .module cite {
+  padding: 0;
+}
+
+/* general promos */
+.module .entry, 
+.module .story {
+  padding: .5em .5em .8em .5em;
+}
+.module p, 
+.module div.story p.summary {
+  margin: 0 0 .3em 0;
+  line-height: 1.4em;
+}
+
+.module hr {
+  margin-top:.5em;
+  margin-bottom:.5em;
+}
+
+.module .entry hr {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+.entry-content .module .entry hr {
+  width: auto;  
+}
+
+.module ul li {
+  margin-bottom: 3px;
+  line-height: 1.2em;
+}
+.module ol { margin-left: 1.6em; }
+.module .entry ol {
+  margin-top: .8em; 
+  margin-left: 3.6em;
+}
+
+.module .refer li {
+  margin-bottom: 2px;
+}
+.module cite { font-size: 1.1em; }
+
+.module blockquote {
+  margin: 0 2em .5em 2em;
+  font-size: 1.4em;
+  line-height: 1.4em;
+  text-indent: -10px;
+  clear: left;
+}
+.module blockquote a {
+  color: #333;
+}
+
+/*  entry elements */
+.timestamp { border: none; }
+.entry span.date { 
+  font-size: 1.1em;
+  color: #808080;
+}
+.entry span.date em {
+  font-style: normal;
+  text-transform: uppercase;
+}
+
+.entry .byline { font-size: 1.1em; }
+.entry .byline a { text-transform: uppercase; }
+.entry-location { font-size: .7em; }
+
+/*Live Blogging & Updates*/
+.entry .updated-entry{
+  margin-bottom:1em;
+}
+.entry .updated-marker{
+  border:1px #e2e2e2 solid;
+  height:25px;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+.updated-entry .highlight{
+  background:#f0f4f5;
+}
+.entry .updated-marker .time,
+.entry .updated-marker strong {
+  position:relative;
+  top:5px;
+}
+.entry .updated-marker .time {
+  padding: 7px 12px;
+  font-size:11px;
+  line-height:1.3em;
+  font-weight:normal;
+  color:#888;
+  text-transform: uppercase;
+  background: #fff url(http://graphics8.nytimes.com/images/layout/vertical_rule.gif) repeat-y top right;
+}
+.entry .updated-marker .time a,
+.entry .updated-marker .time a:visited {
+	text-decoration: none;
+	color: #888;
+}
+.entry .updated-marker .time a:hover {
+	text-decoration: underline;
+}
+.entry .updated-marker em{display:none;}
+.entry .updated-marker strong {
+  padding: 0 0 0 6px;
+  color:#333;
+}
+
+/* q&a - current design */
+div.q,
+div.a {
+  margin-top: 6px;
+  text-align: center;
+  font-size: 2.6em; /* 26px */
+  line-height: .9em; /* 23.4px */
+  border-bottom: 1px solid #666;
+}
+div.a {
+  text-indent: 2px;
+}
+
+div.q,
+div.a,
+.question,
+.answer {
+  width: 24px;
+}
+div.q,
+.question {
+  height: 31px;
+}
+div.a,
+.answer {
+  height: 32px;
+}
+
+/* q&a - legacy design */
+.question,
+.answer {
+  margin: 6px 12px 0 0;
+  float: left;
+  clear: left;
+}
+.w35 img.q,
+.w35 img.a {
+  margin-top: 6px;
+}
+
+/* media icons */
+.pdf,
+.map,
+.photo,
+.audio,
+li.video,
+.graphic,
+.comments,
+.document,
+.multimedia,
+.interactive {
+  padding-left: 16px;
+  text-align: left;
+  background-position: left center;
+  background-repeat: no-repeat;
+}
+
+.pdf {
+  background-image: url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/pdf_icon.gif);
+}
+.comments {
+  background-position: 0.1em 0.2em;
+  background-image: url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/comments.gif);
+}
+.multimedia {
+  background-position: 0.1em 0.2em;
+  background-image: url(http://graphics8.nytimes.com/images/multimedia/icons/interactive_icon.gif);
+}
+.facebook {
+  background-image: url(http://graphics8.nytimes.com/images/article/functions/facebook-dark.gif);
+}
+.twitter {
+  background-image: url(http://graphics8.nytimes.com/images/article/functions/twitter.gif);
+}
+.youtube {
+  background-image: url(http://graphics8.nytimes.com/images/blogs/socialmedia/youtube.gif);
+}
+
+li.rssSm {
+  font-size: 1em; /* 10px */
+}
+li.rssXl {
+  padding-top: 6px;
+}
+
+a.rssSm {
+  font-size: 0.834em; /* 10px */
+}
+a.rssMd {
+  padding-top: 1px;
+}
+a.rssMd,
+a.rssLg,
+a.rssXl {
+  font-size: 0.917em; /* 11px */
+}
+a.rssXl {
+  padding: 2px 1px 0 20px;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  li.rssMd { background-position: 0 1px; }
+  li.rssLg { background-position: 0 0; }
+  a.rssXl { padding-bottom: 2px; }
+}
+
+/* author images */
+.auth-img .author_image {
+  margin-top: 2px;
+  float: left;
+}
+.auth-img .timestamp { padding-left: 10px; }
+.auth-img .entry-title, 
+.auth-img address.byline {
+  padding-left: 60px;
+}
+
+/* content expander */
+.toggleContent .showContent {
+  background: #f4f4f4 url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/modules/contentExpander/arrow_supressed.gif) no-repeat 293px 11px;
+  border-bottom: 1px solid #e2e2e2;
+  display: block;
+  font-family: arial, helvetica, sans-serif;
+  font-size: .857em; /* 12px */
+  padding: 2px 0 1px 0;
+  text-align: center;
+  text-decoration: none;
+}
+.toggleContent .showContent:hover {
+  background-color: #e6eff8;
+  border-color: #a3b0c4;
+}
+.toggleContent .showContent:visited,
+.toggleContent .showContent:hover,
+.toggleContent .showContent:active {
+  color: #004276;
+}
+.toggleContent .expanded {
+  background-image: url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/modules/contentExpander/arrow_expanded.gif);
+  background-position: 260px 11px;
+}
+.toggleContent .hiddenContent {
+  margin-bottom: 1em;
+}
+
+/* 404 page */
+.error ul {
+  margin-bottom: 16px;
+}
+.error li {
+  margin-bottom: .6em;
+}

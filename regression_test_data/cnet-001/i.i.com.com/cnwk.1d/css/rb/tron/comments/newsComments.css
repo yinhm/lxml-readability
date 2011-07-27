@@ -1,0 +1,632 @@
+/** Comments **/
+
+.commentwrapper{
+	margin:20px 0;
+	clear:both;
+	padding-top: 14px;
+}
+
+#talkback{
+	margin:20px;
+	width:620px;
+	clear:both;
+}
+
+.commentwrapper .comcount,
+#talkback #tbCount{
+	float:right;
+	margin-top:5px;
+}
+
+#talkback #tbCount{
+	margin-top:0;
+	text-align:right;
+	padding:0 5px;
+}
+
+#talkback h3{
+	padding:3px 0;
+	font:normal 153% Georgia,"Times New Roman",serif;
+	color:#800;
+	border-bottom:#800 solid 2px;
+	margin-bottom:10px;
+}
+
+.commentwrapper .addcommtop{
+	float:left;
+	height:23px;
+	/*background:url(http://i.i.com.com/cnwk.1d/i/tiburon/hh/flexButton.gif) bottom left no-repeat; */
+	margin:0 0 10px;
+	*float:none;
+	_float:left;
+}
+
+.commentwrapper .addcommtop .addcomm{
+	float:left;
+	height:23px;
+	/*background:url(http://i.i.com.com/cnwk.1d/i/tiburon/hh/flexButton.gif) bottom left no-repeat; */
+	background-position:bottom right;
+	font:92% arial,helvetica,sans-serif;
+	text-transform:uppercase;
+	display:inline;
+	*display:block;
+	_display:inline;
+	float:left;
+	*float:none;
+	_float:left;
+	line-height:200%;
+	cursor:pointer;
+	color:#fff;
+	background: #c2080b; /* Old browsers */
+    background: -moz-linear-gradient(top, #c2080b 0%, #8c0408 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom,
+    color-stop(0%,#c2080b), color-stop(100%,#8c0408)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #c2080b 0%,#8c0408 100%); /*
+    Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #c2080b 0%,#8c0408 100%); /* Opera11.10+ */
+    background: -ms-linear-gradient(top, #c2080b 0%,#8c0408 100%); /* IE10+ */
+       filter: progid:DXImageTransform.Microsoft.gradient(
+    startColorstr='#c2080b', endColorstr='#8c0408',GradientType=0 ); /* IE6-9 */
+    background: linear-gradient(top, #c2080b 0%,#8c0408 100%); /* W3C */
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.commentwrapper #topLoginLink{
+	line-height:200%;
+	margin-left:5px;
+}
+
+.commentwrapper dl{
+	margin-top:15px;
+	padding-top:15px;
+	border-top:solid 1px #E6EAED;
+	clear:both;
+}
+
+#talkback .tbEntry{
+	background:url(../../../../i/tron/vader/dottedLine.gif) bottom repeat-x;
+	margin-bottom:10px;
+	padding-bottom:10px;
+}
+
+.commentwrapper .subj,
+#talkback .tbEntry h4{
+	font:bold 108.5% Arial, Helvetica, san-serif;
+	color:#8c0000;
+	padding:5px 0;
+}
+
+#talkback .tbEntry h4{padding:0;}
+
+.commentwrapper .author,
+#talkback .tbEntry .attribute{
+	padding-bottom:5px;
+	font:normal 93.5% Arial, Helvetica, san-serif;
+	color:#999;
+}
+
+.commentwrapper dd{
+	line-height:125.5%
+}
+
+.commentwrapper dd.tool{
+	margin:10px 0;
+}
+
+.commentwrapper dd.tool .reply,
+.commentwrapper dd.tool .like,
+.commentwrapper dd.tool .unlike{
+	float:left;
+	font-weight:bold;
+	line-height:170%;
+    margin-right:12px;
+}
+
+.commentwrapper dd.tool .like,
+.commentwrapper dd.tool .unlike{
+    display:block;
+    /*display:none;*/
+    width:75px;
+}
+
+.commentwrapper dd.tool .liked{
+    display:block;
+    /*display:none;*/
+    font-weight:bold;
+    clear:both;
+    padding-left:20px;
+    background:url(../../../../i/tron/icon/thumbsUp.gif) no-repeat left 50%;
+}
+
+.commentwrapper dd.tool .likethankyou,
+.commentwrapper dd.tool .likethankyou:hover{
+    color:#000 !important;
+    text-decoration:none !important;
+    cursor:default !important;
+}
+
+.voteResponse{
+    background:#E2F1FE;
+    border:#BBBBBB solid 2px;
+    padding:10px;
+    font:normal 75% Arial,Helvetica,san-serif;
+}
+
+#removeProblemMsg.voteResponse,
+#submitProblemMsg.voteResponse{color:#800;}
+
+
+.commentwrapper dd.tool .getReply{
+	float:left;
+	margin:3px 5px;
+	padding-left:5px;
+	border-left:#999 solid 1px;
+}
+
+.commentwrapper .replieswrapper .thread{
+	padding-left:10%;
+}
+
+.commentwrapper dd.tool .toolTipElement2{
+	background:url(../../../../i/tron/icon/postTools.gif) no-repeat;
+	text-indent:-9999px;
+	-moz-outline:none;
+	overflow:hidden;
+	display:block;
+	width:16px;
+	height:16px;
+	margin:0 0 0 15px;
+	float:right;
+}
+
+/* for edit delete buttons */
+.commentwrapper .flexButton {
+        line-height:220%;
+        margin:0 0 0 12px;
+        padding:0 0 0 0;
+        clear:none;
+}
+
+.commentwrapper dd.tool .mail {
+	background-position:0 -33px;
+}
+
+.commentwrapper dd.tool .repo {
+	background-position:0 -70px;
+}
+
+.commentwrapper .poweredBy{
+	margin:10px 0;
+	float:right;
+}
+
+#talkback .readMore{
+	font-weight:bold;
+	text-align:right;
+}
+
+/** comments from mr **/
+
+.commentwrapper dd.toolstretch {
+	font:normal 91% verdana,sans-serif;
+}
+
+.commentwrapper #offensiveArea,
+.commentwrapper #emailAFriendArea,
+.commentwrapper #replyArea {
+	border:1px solid #bbb !important;
+	padding:10px 10px 20px;
+    height:auto !important;
+}
+
+.commentwrapper #offensiveArea {
+	padding:10px 10px 15px !important; /* because moo is conservative */
+}
+
+.commentwrapper #fixedCommentBox{
+	margin:20px 0;
+	background-color: #E6EAED;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	padding:5px;
+}
+
+.commentwrapper #fixedCommentBox dt.hed,
+.commentwrapper span.reply,
+.commentwrapper h6 {
+	font: bold 116.7% helvetica;
+	display:block;
+	padding:4px;
+	color:#990000;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	text-transform: uppercase;
+	background-color:#FFFFFF;
+}
+
+.status .or{
+	background: none;
+	background-color: #424244;
+	color: #FFFFFF;
+	text-indent: 0;
+	font: bold 153% helvetica;
+	padding: 2px 2px 4px;
+	left: 336px;
+	top: 15px;
+}
+
+.commentwrapper span.reply b{font-weight:normal;}
+
+.commentwrapper input.txt {
+	font:100% arial,helvetica,sans-serif;
+	color:#353535;
+	border:1px solid #bbb;
+	background:#f7f7f7;
+}
+
+.commentwrapper #emailAFriendArea input.txt {
+	width:200px;
+}
+
+.commentwrapper #emailAFriendArea textarea {
+	font:100% arial,helvetica,sans-serif;
+	color:#353535;
+	border:1px solid #bbb;
+	background:#f7f7f7;
+	width:580px;
+	height:50px;
+}
+
+.commentwrapper .replieswrapper #emailAFriendArea textarea{
+    width:534px;
+}
+
+.commentwrapper #fixedCommentBox textarea,
+.commentwrapper #replyArea textarea {
+	font:100% arial,helvetica,sans-serif;
+	color:#353535;
+	border:1px solid #bbb;
+	background:#f7f7f7;
+	width:580px;
+	height:100px;
+	margin:10px 0;
+}
+
+.commentwrapper dl.thread #offensiveArea {
+	margin-top:10px;
+}
+
+.commentwrapper dl.thread #offensiveArea textarea {
+	width:520px;
+}
+
+.commentwrapper #replyArea form {
+	margin:0 0 10px;
+}
+
+.commentwrapper .txt-area {
+	width:580px;
+	height:50px;
+}
+
+.commentwrapper p.radio {
+	margin-top:5px !important;
+}
+
+.commentwrapper .validation-advice {
+	color:#c00;
+	display:block;
+	margin:5px 0 10px;
+}
+
+.commentwrapper span.pagin {
+	display:block;
+	margin:20px 0 10px;
+    clear:left;
+}
+
+.commentwrapper #fixedCommentBox dl {
+	padding-top:0;
+	margin-top:0;
+	background:transparent;
+}
+
+.commentwrapper dd.status {
+	background: url("../../../../i/cnettv/mobileLive/CNETredball.png") no-repeat scroll 10px transparent !important;
+	background-color:#424244 !important;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	padding: 15px 0 15px 60px !important;
+	margin:15px 0;
+	font: bold 100% helvetica !important;
+	color: #FFFFFF;
+}
+
+.commentwrapper dd.status.reg{
+
+    padding: 0 0 0 60px !important;
+}
+
+.commentwrapper .status .cnetInvite{
+	width: 275px !important;
+	height: 65px;
+    line-height:65px;
+	border-right:solid 1px #212123;
+}
+
+.commentwrapper dd.status .cnetInvite a{
+	color: #ABC8DA;
+}
+
+.commentwrapper .status .fbConnectInvite {
+    border-left: 1px solid #575759 !important;
+    height: 59px !important;
+    padding: 6px 0 0 !important;
+}
+
+.commentwrapper dd.status p {
+	margin-top:0 !important;
+}
+
+.commentwrapper dd.status.welcome p {
+    padding: 9px 0;
+}
+
+.commentwrapper dd.status.welcome a {
+    color: #B6DDF3;
+}
+
+.commentwrapper  dd.status .connect2fbButton{
+    *display: inline-block;
+}
+
+
+.commentwrapper dd.status p.message{
+    height: 65px;
+    line-height: 65px !important;
+}
+
+.commentwrapper p.thanks {
+	font: 100% helvetica;
+	color: #616163;
+	margin:0 0 10px;
+}
+
+.commentwrapper .thankyou h2{
+    position:relative;
+    border-bottom: none;
+}
+
+.commentwrapper .thankyou h2 .thanks{
+    float:left;
+}
+
+.commentwrapper .thankyou .closeConfirm{
+    background:#fff url(../../../../i/tron/icon/modalClose.gif) top right no-repeat;
+    text-indent:-2000px;
+    display:block;
+    width:30px;
+    height:21px;
+    padding:0;
+    float:left;
+    margin:0 5px 5px 0;
+}
+
+    /** non-markup editing flexbutton for comments **/
+	
+	/* flexButton classic */
+	.commentwrapper span.submit {
+		text-decoration:none;
+		float:left;
+        margin-right: 5px;
+	}
+	
+	.commentwrapper span.submit,
+	.commentwrapper span.submit a {
+		height:23px;
+        background: #c2080b; /* Old browsers */
+        background: -moz-linear-gradient(top, #c2080b 0%, #8c0408 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom,
+        color-stop(0%,#c2080b), color-stop(100%,#8c0408)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top, #c2080b 0%,#8c0408 100%); /*Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top, #c2080b 0%,#8c0408 100%); /* Opera11.10+ */
+        background: -ms-linear-gradient(top, #c2080b 0%,#8c0408 100%); /* IE10+ */
+            filter: progid:DXImageTransform.Microsoft.gradient(
+        startColorstr='#c2080b', endColorstr='#8c0408',GradientType=0 ); /* IE6-9 */
+        background: linear-gradient(top, #c2080b 0%,#8c0408 100%); /* W3C */
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		border-radius: 4px;
+	}
+	
+	.commentwrapper span.submit a {
+		background-position:bottom right;
+		font: bold 92% arial,helvetica,sans-serif;
+		text-transform:uppercase;
+		padding:0 11px 0 7px;
+		margin:0 0 0 5px;
+		display:inline;
+		float:left;
+		line-height:220%;
+		cursor:pointer;
+	}
+
+	.commentwrapper span.submit a,
+	.commentwrapper span.submit a:link,
+	.commentwrapper span.submit a:visited,
+	.commentwrapper span.submit a:hover,
+	.commentwrapper span.submit a:active {
+		color:#fff;
+		font-weight:bold;
+	}
+
+	/** clearfix for c3p0 **/
+	
+	.commentwrapper .thankyou h2:after,
+    .commentwrapper span.pagin:after,
+    .commentwrapper #offensiveArea:after,
+	.commentwrapper #emailAFriendArea:after,
+	.commentwrapper #replyArea:after,
+	.commentwrapper form:after {
+		content: ".";
+		display: block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
+	}
+    .commentwrapper .thankyou h2,
+    .commentwrapper span.pagin,
+    .commentwrapper #offensiveArea,
+	.commentwrapper #emailAFriendArea,
+	.commentwrapper #replyArea,
+	.commentwrapper form {
+		color:#616163;
+		font:bold 100% helvetica;
+		*display:inline-block;
+	}
+
+	
+	/** clearfix for c3p0 **/
+
+/** comments from mr **/
+
+.commentwrapper a.editor {background:url('../../../../i/frm/ico_cnet.gif') no-repeat right;padding-right:14px;}
+
+.commentwrapper #edit-body {
+	width:617px;
+	height:100px;
+}
+.commentwrapper .replieswrapper #edit-body {
+	width:555px;
+}
+
+/*Most discussed list*/
+.commentwrapper dl#mostdisc{
+    margin:10px 0;
+    display:none;
+    color:#666;
+    background:none;
+}
+
+.commentwrapper dl#mostdisc dt.hed,
+.commentwrapper #fixedCommentBox dl#mostdisc dt.hed{
+border-bottom:none;
+background:url(../../../../i/tron/vader/dottedLine.gif) bottom repeat-x;
+color:#880000;
+font:normal 153% Georgia,"Times New Roman",serif;
+padding-bottom:5px;
+}
+
+.commentwrapper dl#mostdisc li{
+    margin:15px 0;
+    font-size:93.5%;
+}
+
+.commentwrapper dl#mostdisc li p{
+    margin-top:0;
+
+}
+
+.commentwrapper dl#mostdisc li a{
+    font-size:109%;
+
+}
+
+/** per bug #394723 - comments on pagetype 3000.jsp. */
+#specialfeatureComments .commentwrapper{
+	margin-left: 20px;
+	width:580px;
+}
+
+#specialfeatureComments .commentwrapper #fixedCommentBox textarea, #specialfeatureComments .commentwrapper #replyArea textarea {
+	width:550px;
+} 
+
+#specialfeatureComments .commentwrapper .status .cnetInvite, specialfeatureComments .userReviewForm .status .cnetInvite {
+	padding-right:10px;
+	width:200px;
+}
+
+#specialfeatureComments .status .or{
+	 left:255px;
+}
+
+.pageType2702  .reply{
+    visibility: hidden;
+}
+
+/* adding for Bug 488114 */
+a.commenterCount{
+	background:url(../../../../i/com/cnet/news/total_user_comment.gif) no-repeat left 2px;
+	margin: 0 2px;
+    padding-left: 15px;
+	display: inline-block;
+}
+
+/** End Comments **/
+
+
+/* CoNvErsaTion */
+    .blogId262 .relatedPosts,
+    .blogId262 #contentAux #mostDis,
+    .blogId262 dd.replieswrapper,
+    .blogId262 .tool .reply {
+        display:none;
+    }
+
+    .blogId262 #contentBody .recentPosts {
+        float:none;
+        width:auto;
+    }
+
+    .blogId262 #overviewHead h1,
+    .blogId262 #overviewHead a.blogName {
+        background:url(../../../../i/ne/blogs/hdrs/2009/blog_hd_conversation_980x71.gif) no-repeat;
+    }
+
+    .blogId262 .commentwrapper span.addcommtop {
+        background:url(../../../../i/ne/blogs/conversation/convoCta.gif) no-repeat;
+        display:block;
+        width:619px;
+        height:78px;
+        overflow:hidden;
+    }
+
+    .blogId262 .commentwrapper span.addcommtop .addcomm {
+        text-indent:-2000px;
+        background:transparent;
+        display:block;
+        width:200px;
+        height:42px;
+        float:right;
+        padding:0;
+        margin:11px 18px 0 0;
+    }
+
+    .blogId262 #topLoginLink {
+        float:left;
+        line-height:100%;
+        position:relative;
+        top:-32px;
+        left:452px;
+    }
+/* Hack for flex button issue */
+.commentwrapper span.submit a.flexButton {
+    background: none;
+    border: none;
+    border-radius:0
+    box-shadow: none;
+   -moz-box-shadow: none;
+   -webkit-box-shadow: none;
+   -o-box-shadow: none;
+    line-height: 13px;
+    margin-left: 0;
+}
+
+
+

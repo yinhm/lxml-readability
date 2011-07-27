@@ -1,2 +1,4 @@
 test_description: espn article
 url: http://sports.espn.go.com/mlb/news/story?id=6760720
+url_map:
+  http://sports.espn.go.com/mlb/news/story?id=6760720: sports.espn.go.com/mlb/news/story?id=6760720.html

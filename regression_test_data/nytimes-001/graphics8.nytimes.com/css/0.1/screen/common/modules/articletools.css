@@ -1,0 +1,116 @@
+/* $Id: articletools.css 25327 2009-10-05 20:25:33Z santep $
+* /css/0.1/screen/common/modules/articletools.css
+* (c)2006 - 2008 The New York Times Company */ 
+
+.articleTools {
+  float: right;
+  margin: 5px 0 5px 5px;
+  width: 132px;
+}
+
+.articleTools .box {
+  border: 1px solid #eae8e9;
+  margin: 0;
+  position: relative;
+}
+
+.articleTools .inset {
+  margin: 0;
+}
+
+.toolsList {
+  margin: 9px 12px 7px 14px;
+}
+
+.toolsList li {
+  margin-bottom: 1px;
+  border-bottom: 1px solid #eae8e9;
+  padding: 5px 0 2px;
+  font-family: arial, helvetica, sans-serif;
+  font-size: 1em;
+  line-height: 1.4em;
+  text-transform: uppercase;
+  background-image: none;
+  
+}
+
+.toolsList li a,
+.toolsList li a:visited,
+.toolsList li a:hover {
+  color: #333;
+  font-size:10px;
+  line-height:13px;
+  display:block;
+}
+
+.toolsList .comments a,
+.toolsList .email a,
+.toolsList .print a,
+.toolsList .singlePage a,
+.toolsList .reprints a,
+.toolsList .savepage a,
+.toolsList .feedback a,
+.toolsList .timespeople_btn_recommend a {
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  padding: 0 0 3px 20px;
+}
+
+.toolsList .comments a {
+  background: url(http://graphics8.nytimes.com/images/article/comments/icons/comment_black.gif) no-repeat 0 -2px;
+}
+
+.toolsList .email a {
+  background: url(http://graphics8.nytimes.com/images/article/functions/tools_email.gif) no-repeat 0 2px;
+}
+
+.toolsList .print a {
+  background-image: url(http://graphics8.nytimes.com/images/article/functions/tools_print.gif);
+}
+
+.toolsList .singlePage a {
+  background-image: url(http://graphics8.nytimes.com/images/article/functions/tools_single.gif);
+}
+
+.toolsList .reprints a {
+  background-image: url(http://graphics8.nytimes.com/images/article/functions/tools_reprints.gif);
+}
+
+.toolsList .savepage a {
+  background-image: url(http://graphics8.nytimes.com/images/article/functions/tools_save.gif);
+}
+
+.toolsList .feedback a {
+  background-image: url(http://graphics8.nytimes.com/images/article/functions/tools_feedback.gif);
+}
+
+.toolsList .timespeople_btn_recommend a {
+  background-image: url(http://graphics8.nytimes.com/images/apps/timespeople/recommend.gif);
+}
+
+.articleToolsSponsor {
+  padding: 5px;
+}
+
+.articleToolsSponsor .label {
+  margin-bottom: 4px;
+  margin-left: 4px;
+}
+
+.toolsList .reprints form {
+  display: inline;
+}
+
+/* Start Share Tools */
+
+#shareMenu.closed {
+  height: 16px !important;
+  width: 104px !important;
+}
+
+#toolsList li.opened {
+  margin-top: -2px;
+  right: -1px;
+}
+
+/* End Share Tools */

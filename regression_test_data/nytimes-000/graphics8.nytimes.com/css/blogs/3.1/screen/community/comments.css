@@ -1,0 +1,98 @@
+/*
+$Id: comments.css 51588 2010-11-30 20:38:53Z jon $
+/css/blogs/3.1/screen/community/comments.css
+(c)2006 - 2010 The New York Times Company
+*/
+
+@import url(http://graphics8.nytimes.com/css/standalone/community/common/comments.css);
+
+div#readerComments {
+  margin: 0 0 5px 0;
+}
+div#readerComments #tabs {
+  bottom: -1px;
+  position: relative;
+}
+div#readerComments .postHeader {
+  width: 115px;
+  display: inline;
+  float: left;
+  overflow: hidden;
+}
+#readerComments .count {
+  margin-top: 0;
+}
+#readerComments .displayName,
+#readerComments .date,
+#readerComments .time,
+#readerComments .location {
+  margin: 0 0 0 34px;
+}
+#commentsWell {
+  padding-bottom: 15px;
+}
+#commentsWell .guideKicker {
+  padding: 8px 0;
+}
+#commentsWell .guideKicker .sortSequence {
+  margin: 7px 0 0;
+}
+div#readerComments .postHeader {
+  font-family: arial, helvetica, sans-serif;
+  font-size: 1.1em;
+  margin: 3px 0 0 0;
+}
+div#readerComments .userReview {
+  display: inline;
+  float: left;
+  font-size: 1.3em;
+  line-height: 1.3;
+  margin: 4px 0 0 15px;
+  width: 350px;
+}
+div#readerComments .header h3.share {
+  font-size: 1.5em;
+}
+div#readerComments .header h3.nocomments {
+  margin-bottom: 10px;
+}
+#readerComments .header .postComment {
+  font-size: 1.23em;
+}
+
+div#shell #readerComments ul.tabs li {
+  border-bottom: 1px solid #ccc;
+  font-size: 1em;
+}
+div#shell #readerComments ul.tabs li.selected {
+  border-bottom: 1px solid #fff;
+}
+div#shell #readerComments ul.tabs li.selected a {
+  position: static;
+}
+
+div#submitComments {
+  margin: 0;
+  font-size: 1.2em;
+}
+#submitComments #displayName input,
+#submitComments #location input {
+  padding: 3px 5px;
+  font-size: 12px;
+  margin: 3px 0 0 0;
+}
+#submitComments #comment #numChar {
+  font-size:0.9em;
+}
+#submitComments #comment textarea {
+  padding: 5px;
+  width: 488px;
+}
+
+#readerComments .feedback a {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+#readerComments .post.editorSelection .editorInfo {
+  font-size:1.1em;
+}

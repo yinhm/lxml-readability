@@ -1,2 +1,5 @@
-test_description: standard article from arstechnica
+test_description: arstechnica article
 url: http://arstechnica.com/web/news/2011/07/june-browser-stats-rapid-release-edition.ars
+url_map:
+  http://arstechnica.com/web: arstechnica.com/web.html
+  http://arstechnica.com/web/news/2011/07/june-browser-stats-rapid-release-edition.ars: arstechnica.com/web/news/2011/07/june-browser-stats-rapid-release-edition.ars.html

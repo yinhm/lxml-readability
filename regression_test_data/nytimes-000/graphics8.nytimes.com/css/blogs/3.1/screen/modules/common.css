@@ -1,0 +1,926 @@
+/*
+$Id: common.css 70599 2011-06-21 18:53:35Z christopher.sanders $
+/css/blogs/3.1/screen/modules/common.css
+(c)2006 - 2011 The New York Times Company
+*/
+
+/* tabbed content */
+.tabs li:first-child {
+  border-left: 1px solid #ccc;
+}
+
+.module .tabs li {
+  margin-bottom: 0;
+}
+
+.tabContent {
+  padding: 5px 9px;
+  background: #fff;
+}
+
+.entry-content .tabContent {
+  margin-bottom: 1em;
+}
+
+.module .tabContent .entry {
+  padding: 6px 0 3px 0;
+}
+
+.tabContent .singleRule:first-child {
+  border-top: none;
+}
+
+.module .tabContent p,
+.module .tabContent h5 {
+  font-size: 1.1em;
+  font-family: arial, helvetica, sans-serif;
+}
+
+.entry-content .tabContent a,
+.entry-content .tabs li a {
+  text-decoration: none;
+}
+
+/* vertical tabset */
+.verticalTabSet .tabs li,
+.verticalTabSet .tabContent {
+  border: none;
+}
+
+.verticalTabSet h4 {
+  margin-bottom: 8px;
+}
+
+.verticalTabSet > .wrap {
+  background: url(http://graphics8.nytimes.com/images/layout/vertical_rule.gif) repeat-y 138px 0;
+}
+
+.verticalTabSet .tabsContainer {
+  float: left;
+  margin-bottom: 8px;
+  width: 131px;
+}
+
+.verticalTabSet .tabContent {
+  clear: none;
+  float: right;
+  padding: 0 0 0 7px;
+  width: 220px;
+}
+
+.verticalTabSet .tabContent .entry:first-child {
+  padding-top: 0;
+}
+
+.verticalTabSet .tabContent .entry {
+  padding-bottom: 4px;
+}
+
+.verticalTabSet img.left {
+  display: inline;
+  margin-right: 6px;
+}
+
+.verticalTabSet .tabContent p,
+.verticalTabSet .tabContent h5 {
+  font-family: georgia, "times new roman", times, serif;
+  font-size: 1.2em; /* 12px */
+}
+
+.verticalTabSet .tabContent .kicker {
+  margin-bottom: 0;
+}
+
+.verticalTabSet .tabContent p.more {
+  font-family: arial, helvetica, sans-serif;
+  font-size: 1.1em; /* 11px */
+  margin-bottom: 0;
+}
+
+.verticalTabSet .byline {
+  border-bottom: none;
+  display: block;
+  margin: 2px 0;
+}
+
+.verticalTabSet .tabs {
+  overflow: visible;
+}
+
+.verticalTabSet .tabs,
+.verticalTabSet .tabs li {
+  white-space: normal;
+}
+
+.verticalTabSet .tabs li {
+  background-color: #f4f4f4;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+  float: none;
+  padding: 7px 0 7px 10px;
+  position: relative;
+  width: 121px;
+}
+
+.verticalTabSet .tabs li:first-child {
+  border-top: 1px solid #ccc;
+}
+
+.verticalTabSet .tabsContainer a:focus {
+  outline: 0;
+}
+
+.verticalTabSet .tabs li a {
+  display: block;
+  float: left;
+  width: 75px;
+}
+
+.verticalTabSet .tabs .moreContributors a {
+  background: transparent url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/modules/verticalTabset/moreContribArrow.gif) no-repeat right 13px;
+  float: none;
+  padding-right: 7px;
+  width: 81px;
+}
+
+.verticalTabSet .tabs li.selected {
+  background-image: none;
+  background-color: #000;
+  border-bottom: 1px solid #000;
+  border-top: 1px solid #000;
+  cursor: auto;
+  margin-top: -1px;
+  width: 132px;
+  z-index: 999;
+}
+
+.verticalTabSet .tabs li.selected:first-child {
+  margin-top: 0;
+}
+
+.verticalTabSet .tabs li.selected a {
+  background: none;
+  color: #fff;
+  font-weight: bold;
+}
+
+.verticalTabSet .tabs li.selected .pointer {
+  background: transparent url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/modules/verticalTabset/pointer.png) no-repeat top left;
+  height: 41px;
+  position: absolute;
+  right: 0;
+  top: -1px;
+  width: 12px;
+}
+
+.verticalTabSet .tabs li .wrap {
+  display: table-cell;
+  height: 25px;
+  padding-right: 10px;
+  vertical-align: middle;
+}
+
+.verticalTabSet .tabs .author {
+  border: none;
+  display: block;
+  float: left;
+  margin: 0;
+  width: 85%;
+}
+
+.verticalTabSet .tabs .allContributors .author {
+  width: 80%;
+}
+
+.verticalTabSet .tabs .moreContributors {
+  padding: 0;
+  width: 131px;
+}
+
+.verticalTabSet .tabs .moreContributors > a:hover {
+  text-decoration: none;
+}
+
+.verticalTabSet .tabs li.tabSetOverlayHover {
+  background: #ddd url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/modules/verticalTabset/more-contrib-border.png) repeat-y top left;
+}
+
+.verticalTabSet .tabOverlayShadow {
+  -moz-box-shadow: 0 1px 2px #999;
+  -webkit-box-shadow: 0 1px 2px #999;
+  box-shadow: 0 1px 2px #999;
+  filter: progid:DXImageTransform.Microsoft.Shadow(Color=#999999, direction=135, strength=3 );
+}
+
+.verticalTabSet .tabs .moreContributors > a {
+  background: transparent url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/modules/verticalTabset/more-contrib-arrow-down.png) no-repeat 112px 17px;
+  padding: 7px 21px 7px 10px;
+  width: 100px;
+}
+
+.verticalTabSet .opposingFloatControl {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  left: 0;
+  position: absolute;
+  width: 300px;
+  z-index: 9999;
+}
+
+.verticalTabSet .tabs .moreContributors .opposingFloatControl ul li {
+  background-color: #fff;
+  border-bottom: none;
+  border-top: 1px solid #e2e2e2;
+  padding-left: 10px;
+  width: 134px;
+}
+
+.verticalTabSet .tabs .moreContributors .opposingFloatControl .lastListItem {
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.verticalTabSet .tabs .moreContributors .opposingFloatControl ul li a {
+  background-image: none;
+  padding-right: 0;
+  width: auto;
+}
+
+.verticalTabSet .tabs .moreContributors .opposingFloatControl ul li:first-child {
+  border-top: none;
+}
+
+.verticalTabSet .tabs .moreContributors .opposingFloatControl ul li:hover {
+  background-color: #000;
+  filter: alpha(opacity=100);
+}
+
+.verticalTabSet .tabs .moreContributors .opposingFloatControl ul li:hover a {
+  color: #fff;
+}
+
+.verticalTabSet .tabContent .post-comment {
+  background-position: 0.5em 0.2em;
+  padding-left: 18px;
+}
+
+/* live updates */
+.liveUpdateTools {
+  font-size: 12px;
+  font-family: arial, helvetica, sans-serif;
+  color: #000;
+  border: 1px solid #e2e2e2;
+  padding: 15px 12px 13px;
+  height: 17px;
+  margin-bottom: 14px;
+}
+
+.liveUpdateNav {
+  display: inline;
+  float: left;
+}
+
+.liveUpdateSubNav {
+  display: inline;
+  float: right;
+  position: relative;
+  top: 3px;
+}
+
+.liveUpdateTools .status {
+  font-size: 14px;
+  font-weight: bold;
+  float: left;
+  margin-right: 5px;
+  padding-right: 5px;
+  border-right: 2px solid black;
+}
+
+.liveUpdateTools a { /* links to turn off and on */
+  color: #004276;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.liveUpdateSubNav span {
+  float: left;
+}
+
+#liveUpdatesRefreshNow {
+  margin-right: 5px;
+  padding-right: 5px;
+  border-right: 1px solid black;
+  font-size: 10px;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+#liveUpdatesLoading {
+  margin-right: 5px;
+  padding-right: 5px;
+}
+
+.liveUpdateSubNav .rss {
+  margin-right: 5px;
+  padding-right: 5px;
+  border-right: 1px solid black;
+}
+
+.liveUpdateSubNav .rss a,
+.liveUpdateSubNav .twitter a {
+  display: block;
+  height: 12px;
+  width: 12px;
+  font-size: 1em;
+  text-indent: -2000px;
+  overflow: hidden;
+  background-repeat: no-repeat;
+}
+
+.liveUpdateSubNav .rss a {
+  background-image: url(http://graphics8.nytimes.com/images/icons/feeds/rss_icon_12x12.gif);
+}
+
+.liveUpdateSubNav .twitter a {
+  background-image: url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/twitter_icon_blue_12x12.gif);
+}
+
+#liveUpdatesLoading { /* preloader */
+  color: #333;
+  font-size: 11px;
+  font-style: italic;
+}
+
+#liveUpdatesLoading img {
+  float: left;
+  height: 15px;
+  margin: 0 4px 0 10px;
+  width: 15px;
+}
+
+/* book promo */
+.book .left {
+  margin-right: 0;
+}
+
+.book h5 {
+  font-size: 1.1em;
+}
+
+.book p.summary {
+  margin-bottom: 0;
+}
+
+.book a.buy-button {
+  display: block;
+}
+
+.book .buy-button img {
+  margin: 6px 7px 5px 0;
+}
+
+.book h5,
+.book .kicker,
+.book .byline,
+.book .author,
+.book .summary,
+.book .refer,
+.book a.buy-button {
+  margin-left: 82px;
+}
+
+/* author promo */
+.module .author {
+  border-bottom: 1px solid #eee;
+  margin: 5px 0 0 0; 
+}
+
+.module .author.first,
+.module .firstAuthor {
+  margin: 0; 
+}
+
+.module .author.last,
+.module .lastAuthor {
+  border-bottom: none;
+}
+
+.module .author p.summary {
+  padding-top: 5px;
+}
+
+.module .author p.summary img {
+  margin-top: 0 !important;
+}
+
+/* archive module */
+#archive .entry {
+  padding: 0;
+}
+
+#archive h4 {
+  float: left;
+}
+
+#archive select {
+  margin: 11px 15px 4px 15px;
+  float: right;
+}
+
+/* tip box */
+#tipbox {
+  margin: 0 0 0 3px; 
+  text-align: right;
+}
+
+#tipbox #message {
+  margin-right: 12px; 
+  width: 350px;
+}
+
+#tipbox #submit {
+  margin: 5px 12px 0 0;
+  padding: 0;
+  border: none;
+}
+
+/* blog index link */
+#blog-index {
+  margin: 5px 0;
+}
+
+#blog-index a {
+  font-size: 1.1em;
+  font-family: arial, helvetica, sans-serif;
+  display: block;
+  text-align: center;
+}
+
+/* comment of the moment */
+#com cite {
+  font-style: normal;
+  text-align: left;
+}
+
+#com .comment-author {
+  margin-left: -13px;
+}
+
+/* categories */
+.module .category ul.odd,
+.module .category ul.even {
+  width: 50%;
+}
+
+.module .category ul.even {
+  margin-left: 0;
+}
+
+.module .category ul li {
+  margin: 0;
+  padding: .5em 0;
+  font-size: 1.1em;
+  font-family: arial, helvetica, sans-serif;
+  border-bottom: 1px #ccc solid;
+  background: none;
+}
+
+.module .category ul li.last { border-bottom: none; }
+
+/* recent posts */
+#recent-posts .date {
+  float: left;
+  width: 100px;
+  font-family: georgia, "times new roman", times, serif;  
+}
+
+#recent-posts h5,
+#recent-posts .summary {
+  margin-left: 105px;
+  width: 244px;
+}
+
+#recent-posts .summary a {
+  font-size: .9em;
+  font-weight: normal;
+  font-family: arial, helvetica, sans-serif;
+}
+
+/* external links - (Blogrunner, Google Reader, del.icio.us, publish2 etc...) */
+#aCol .external-links {
+  padding-top: 5px;
+}
+
+#aCol .external-links div.story {
+  padding: 0;
+}
+
+#cCol .external-links {
+  padding: 5px;
+}
+
+.external-links .entry {
+  padding:.3em 0;
+}
+
+.external-links ul {
+  margin-bottom: 12px;
+}
+
+.external-links ul li { 
+  background: none;
+  margin-bottom: .9em;
+  padding: 0;
+  line-height: 1.1em;
+  font-family: arial, helvetica, sans-serif;
+}
+
+.external-links ul li a {
+  font-size: 0.917em;
+  font-weight: bold;
+}
+
+.external-links h6 {
+  margin-bottom: 1px;
+  font-weight: bold;
+  color: #6cbc31;
+  text-transform: uppercase;
+}
+
+.external-links li h6 {
+  font-size: 0.833em; /* 10px */
+}
+
+.external-links h5, 
+.external-links .meta {
+  font-size:1.1em;
+}
+
+.external-links p.tooltip, 
+.external-links p.more {
+  font-size: 1.1em;
+}
+
+.external-links p.tooltip {
+  margin-bottom: 8px;
+  font-weight: bold;
+  font-family: arial, helvetica, sans-serif;
+}
+
+.external-links .credit {
+  margin-right: 5px;
+  margin-bottom: 0;
+  color: #999;
+  text-align: right;
+  text-transform: none;
+}
+
+.external-links .credit a {
+  color: #004276;
+}
+
+/* tag list */
+#tag-list ul {
+  width: 45%;
+}
+
+#tag-list li {
+  padding: 0;
+  font-size: 1.1em; /* 11px */
+  font-family: arial, helvetica, sans-serif;
+  width: 100%;
+  background: none;
+}
+
+#tag-list li, 
+#tag-list li span {
+  float: right;
+}
+
+#tag-list li a {
+  width: 125px;
+  float: left;
+}
+
+#tag-list li span {
+  color: #777;
+}
+
+#tag-list .even {
+  margin-left: 3em;
+}
+
+/* social media module */
+.socialMediaModule li {
+  display: block;
+  float: left;
+  margin-bottom: 9px;
+  padding: 1px 17px 1px 23px;
+}
+
+.socialMediaModule .kicker {
+  font-size: 10px;
+  padding-top: 1px;
+}
+
+.socialMediaModule .facebook {
+  background-position: 0 -1px;
+}
+
+.socialMediaModule .twitter {
+  background-position: 0 -1px;
+  padding-left: 21px;
+}
+
+.socialMediaModule .rssLg {
+  padding-left: 18px;
+}
+
+.nav + .socialMediaModule,
+#blog-index + .socialMediaModule {
+  background: none;
+  border-top: 1px solid #ccc;
+}
+
+.socialMediaModule .socialSubsBlog li:first-child {
+  background: none;
+  padding: 0 12px 0 7px;
+}
+
+.socialMediaModule h4 {
+  margin-bottom: 13px;
+}
+
+.socialMediaModule .socialSubsNYT {
+  margin-left: 5px;
+}
+
+.socialMediaModule .socialSubsNYT .refer {
+  margin: 13px 0 20px 5px;
+  width: 370px;
+}
+
+.socialMediaModule .socialSubsNYT li {
+  margin-bottom: 8px;
+  padding-right: 5px;
+  overflow: hidden;
+  width: 64px;
+}
+
+/* movies & showtimes */
+.module #showtimeWidget {
+  margin: 1em 0 !important;
+}
+
+.module #showtimeWidget .header {
+  margin: 0 0.5em !important;
+}
+
+.module #showtimeWidget div.container {
+  border: 1px #e2e2e2 solid;
+  background: #fff;
+}
+
+.module #showtimeWidget .header .primary b {
+  font-size: 14px;
+  color: #000;
+}
+
+.module #showtimeWidget .header .secondary label {
+  font-size: 12px;
+}
+
+.module #showtimeWidget .header span.location {
+  font-size: 10px;
+}
+
+.module #showtimeWidget td.showtimeInfo,
+.module #showtimeWidget th.showtimeInfo {
+  font-size: 11px;
+}
+
+.module #showtimeWidget .header input#cityStateZip {
+  margin-top: -3px;
+  width: 80px;
+  font-size: 11px;
+}
+
+.module #showtimeWidget .nainput {
+  display: none;
+}
+
+.module #showtimeWidget #userInput .submit {
+  border: none;
+}
+
+/* ads */
+#Middle1 {
+  float: right;
+  display: inline;
+  text-transform: uppercase;
+  width: 88px;
+  overflow: hidden;
+  font-size: 9px;
+  text-align: center;
+  font-family: arial, helvetica, sans-serif;
+}
+
+#Middle1 img {
+  display: block;
+  margin-bottom: 1px;
+}
+
+.ad { 
+  text-align: center;
+}
+
+.leaderboard {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+
+#cCol .ad {
+  background: none;
+  border-top: 1px solid #ccc;
+  margin-bottom: 15px;
+  padding-top: 15px;
+}
+
+.ad table,
+#cCol .ad div,
+#cCol .ad img,
+#cCol .ad object,
+#cCol .ad iframe { 
+  margin: 0 auto;
+}
+
+#google_ads {
+  text-align: left;
+}
+
+#google_ads_aCol {
+  margin: 15px 30px 30px 30px;
+}
+
+/* misc */
+#blogroll ul,
+.module .singleRule {
+  margin-bottom: 0;
+}
+
+/* BEGIN Twitter Black Bird Pie */
+.tweet {
+	margin: 0 0 12px;
+}
+
+.tweet .bbpBox {
+	padding: 20px;
+	background: url(http://graphics8.nytimes.com/images/blogs_v3/modules/twitter/blackbirdpie/background.png) #c0deed;
+}
+
+.bbpBox p {
+	min-height: 48px;
+	padding: 10px 12px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	background: #fff;
+	font-size: 1.6em; /* 16px */
+	line-height: 1.375em; /* 22px */
+	color: #000;
+}
+
+.bbpBox .timestamp {
+	display: block;
+	font-size: .75em; /* 12px */
+}
+
+.bbpBox .metadata {
+	display: block;
+	height: 40px;
+	padding: 12px 0 0;
+	border-top: 1px solid #e6e6e6;
+	margin: 8px 0 0;
+}
+
+.bbpBox .author {
+	line-height: 1.1875em; /* 19px */
+}
+
+.bbpBox .author img {
+	float: left;
+	width: 38px;
+	height: 38px;
+	margin: 0 7px 0 0;
+}
+/* END Twitter Black Bird Pie */
+/* BEGIN inlineModule code for blogs that don't have their own style sheet */
+
+.blogCategories #artsbeat .resultsLabel {
+	background: #26539b;
+}
+
+#artsbeat .inlineModule {
+	border-top: 2px solid #26539b;
+}
+
+.blogCategories #intransit .resultsLabel {
+	background: #8b979f;
+}
+#intransit .inlineModule {
+	border-top: 2px solid #8b979f;
+}
+
+.blogCategories #publiceditor .resultsLabel {
+	background: #000;
+}
+
+#publiceditor .inlineModule {
+ border-top: 2px solid #000;
+}
+
+.blogCategories #parenting .resultsLabel {
+  background: #d50024;
+}
+
+#parenting .inlineModule {
+  border-top: 2px solid #d50024;
+}
+
+.blogCategories #thelede .resultsLabel {
+  background: #e55317;
+}
+
+#thelede .inlineModule {
+  border-top: 2px solid #e55317;
+}
+
+.blogCategories #thechoice .resultsLabel {
+  background: #c54714;
+}
+
+#thechoice .inlineModule {
+  border-top: 2px solid #c54714;
+}
+
+.blogCategories #scientistatwork .resultsLabel {
+  background: #300357;
+}
+
+#scientistatwork .inlineModule {
+  border-top: 2px solid #300357;
+}
+
+.blogCategories #fivethirtyeight .resultsLabel {
+  background: #2499bc;
+}
+
+#fivethirtyeight .inlineModule {
+  border-top: 2px solid #2499bc;
+}
+
+.blogCategories #atwar .resultsLabel {
+  background: #006121;
+}
+
+.blogCategories #atwar .resultsLabel .kicker,
+.blogCategories #atwar .resultsLabel a,
+.blogCategories #atwar .resultsLabel a:hover {
+	color: #fff;
+}
+
+#atwar .inlineModule {
+  border-top: 2px solid #006121;
+}
+
+.blogCategories #runway .resultsLabel {
+  background: #a0a09e;
+}
+
+#runway .inlineModule {
+  border-top: 2px solid #a0a09e;
+}
+
+.blogCategories #wheels .resultsLabel {
+  background: #299ac3;
+}
+
+#wheels .inlineModule {
+  border-top: 2px solid #299ac3;
+}
+
+.blogCategories #wordplay .resultsLabel {
+  background: #f2a427;
+}
+
+#wordplay .inlineModule {
+  border-top: 2px solid #f2a427;
+}
+
+.blogCategories #dotearth .resultsLabel {
+  background: #000;
+}
+
+#dotearth .inlineModule {
+  border-top: 2px solid #000;
+}
+/* END inlineModule */

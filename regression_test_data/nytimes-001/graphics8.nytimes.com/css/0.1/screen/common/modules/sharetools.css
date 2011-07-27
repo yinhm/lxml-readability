@@ -1,0 +1,125 @@
+/* $Id: sharetools.css 49427 2010-11-08 21:32:12Z joseph.williams $
+/css/0.1/screen/common/modules/sharetools.css
+(c)2006 - 2008 The New York Times Company */ 
+
+#toolsList.shareMenuOpened {
+  padding-bottom: 26px;
+}
+
+#shareMenu a,
+#shareMenu a:visited {
+  color: #333;
+  outline: none; 
+}
+
+#shareMenu.opened {
+  background-color: white;
+  border: 1px solid #EAE8E9;
+  line-height: 1.4em;
+  padding: 5px 10px; 
+  position: absolute;
+}
+
+#shareMenu.noAd { 
+  height: 105px !important;
+}
+
+#shareMenu .shareButton {
+  background: url(http://graphics8.nytimes.com/images/article/functions/toolsicon_anim.gif) no-repeat 0 0;
+  padding: 1px 0 3px 20px;
+}
+
+#shareMenu.closed a.shareButton:hover {
+  background: url(http://graphics8.nytimes.com/images/article/functions/expand.gif) no-repeat 1px 0;
+}
+
+#shareMenu.opened .shareButton {
+  background: url(http://graphics8.nytimes.com/images/article/functions/contract.gif) no-repeat 0 0;
+  float: left;
+  margin-bottom: 7px;
+  margin-top: 2px;
+  padding: 0 0 0 20px;
+}
+
+#shareMenu .closeButton {
+  background: url(http://graphics8.nytimes.com/images/article/comments/buttons/close_window.gif) no-repeat 4.1em 0;
+  float: right;
+  display: inline;
+  margin-bottom: 7px;
+  margin-top: 2px;
+  padding: 0 20px 0 0;
+}
+
+#shareMenu #shareList {
+  border-top: 1px solid #EAE8E9;
+  clear: both;
+  display:inline-block;
+  margin-left: 0;
+  padding: 8px 0 0 0;
+  text-align: left;
+}
+
+#shareMenu #shareList.hidden {
+  display: none;
+}
+
+#shareMenu #shareList li {
+  background: none;
+  border-bottom: 0;
+  border-right: 0;
+  float: left;
+  display: inline;
+  margin-bottom: 0;
+  margin-left: 5px;
+  padding: 5px 0;
+  width: 105px;
+}
+
+#shareMenu #shareList li#shareMenuAd {
+  border-top:  1px solid #EAE8E9; 
+  margin-left: 0;
+  margin-top: 5px;
+  padding-top: 7px;
+  width: auto;
+}
+
+#shareMenu #shareList li a,
+#shareMenu #shareList li a:visited {
+  background-repeat: no-repeat;
+  padding:2px 0 3px 20px;
+  display: inline;
+}
+
+#shareMenu #shareList li#shareMenuAd a {
+  padding-left: 0;
+}
+
+#shareMenu #shareList .shareSponsor {
+  background: url(http://graphics8.nytimes.com/ads/sharetools-sponsor.gif) no-repeat 0 0;
+  clear: both;
+  display: block;
+  width: 115px;
+  height: 13px;
+  margin-bottom: 5px;
+  margin-top: 0;
+}
+
+/* Override Yahoo's own CSS for Buzz badge */
+
+#shareMenu #shareList #yahooBuzzBadge-form a {
+  padding: 0;
+}
+
+#shareMenu #yahooBuzzBadge-form span span {
+  padding-left: 20px;
+  width: 75px !important;
+  top: -3px !important;
+}
+
+#shareMenu #yahooBuzzBadge-form span:hover {
+  text-decoration: underline;
+}
+
+#shareMenu #shareList li.yahoobuzz {
+  height: 14px !important;
+}

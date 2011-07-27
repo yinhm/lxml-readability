@@ -1,0 +1,213 @@
+/*
+$Id: comments.css 49629 2010-11-10 17:50:23Z jon $
+/css/blogs/3.1/screen/themes/universal/comments.css
+(c)2006 - 2010 The New York Times Company
+*/
+
+#comments,
+#respond {
+  padding: 10px 0;
+}
+#comments h4,
+#respond h4,
+#related-content h4 {
+  margin: 5px 0 15px 0;
+}
+#aCol #comments {
+  overflow: hidden;
+}
+#aCol #comments h4 {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.entry-comments h4,
+.entry-response h4 {
+  margin: 10px;
+  font-family: arial, helvetica, sans-serif;
+}
+.pages {
+  border-top: 1px solid #ccc;
+  font-size: 1.1em;
+  font-family: arial, helvetica, sans-serif;
+  padding: 1.2em 0;
+  text-align: right;
+}
+.entry-comments ol {
+  margin-left: 0;
+}
+.entry-comments ol li {
+  list-style-type: none;
+  border-top: 1px solid #ccc;
+  clear: left;
+}
+.entry-comments .comment-number {
+  width: 20px;
+  margin-right: 5px;
+  display: block;
+  float: left;
+}
+.entry-comments .comment-meta {
+  margin: 11px 11px 11px 9px;
+  float: left;
+  width: 130px;
+  line-height: 1.5em;
+  font-size: 0.916em; /* 11px */
+  font-family: arial, helvetica, sans-serif;
+  color: #999;
+}
+.comment-meta abbr span,
+.comment-meta span,
+.comment-meta .comment-edit {
+  display: block;
+}
+.comment-meta .updated {
+  float: left;
+  width: 105px;
+}
+.comment-meta .updated,
+.comment-link {
+  border-bottom: none;
+}
+.comment-meta .comment-link {
+  margin-top: 10px;
+}
+.updated .timestamp {
+  color: #999; 
+  font-size: 1em;
+}
+.moderation {
+  margin: 5px 0;
+}
+.moderation em {
+  color: #a81817;
+  text-transform: uppercase;
+  font-family: arial, helvetica, sans-serif;
+  font-size: .8em;
+  font-style: normal;
+}
+.comment-content {
+  margin: 10px 10px 15px 150px;
+  width: 340px;
+}
+.comment-content p,
+.comment-content cite {
+  font-size: 1.083em; /* 13px */
+  line-height: 1.4em;
+}
+.comment-content p {
+  margin: 0 0 1em 0;
+}
+.comment-content cite {
+  padding: .5em 0;
+}
+.comment-content blockquote{
+  font-size: 1em;
+  clear: none;
+}
+
+/* related posts and external links */
+.entry-related {
+  padding: 10px;
+}
+.entry-related .entry {
+  border-top: none;
+  margin: 0 42px 0 0;
+  padding: 5px 0 0 0;
+}
+.entry-meta .blogrunner .entry,
+.entry-meta .blogrunner .external-links {
+  width: 218px !important;
+  float: left;
+}
+#aCol .entry-meta .module h4 {
+  margin-bottom: 10px; 
+}
+.entry-related h5 {
+  margin-bottom: 4px;
+  font-size: 1.1em;
+  font-weight: bold; 
+  font-family: arial, helvetica, sans-serif;
+  text-transform: uppercase;
+}
+.entry-related .entry h6 {
+  font: bold 1em georgia,"times new roman",times,serif; 
+}
+.entry-meta .module { 
+  float: none;
+}
+.entry-related .entry ul {
+  margin: 3px 0 0 0;
+}
+.entry-related .entry ul li {
+  margin-bottom: 8px;
+  padding: 0;
+  background: none;
+}
+.entry-related .clearfix { 
+  margin-bottom: 5px; 
+}
+.blogrunner .clearfix { 
+  background: transparent url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/blognav.gif) repeat-y -10px 0; 
+}
+
+/* comment response form */
+.entry-response form {
+  display: block;
+  font-family: arial, helvetica, sans-serif;
+  width: 100%;
+}
+.entry-response form p {
+  font-size: 1.1em;
+  line-height: 1.1em;
+  color: #999;
+}
+.entry-response form p label {
+  width: 130px;
+  float: left;
+  color: #000;
+  font-size: 1em; /* 11px */
+}
+.entry-response form p label span { /* comment moderation policy */
+  margin-top: 5px;
+  color: #999;
+  display: block;
+  width: 100px;
+}
+.entry-response #comment-code, 
+.entry-response .loggedin {
+  margin: 10px 0 10px 130px;
+  font-size: 1.3em;
+  width: 350px;
+  color: #a81817 !important;
+}
+#warnings {
+  margin: 10px 0 10px 130px;
+  color: #a81817 !important;
+  width: 350px;
+}
+#comment-code code {
+  margin-top: 3px;
+  display: block;
+  font-size: 1.3em;
+  width: 350px;
+}
+.entry-response form p {
+  margin-bottom:10px;
+}
+.entry-response form p input, 
+.entry-response form p textarea {
+  padding: 3px 2px;
+  color: #555;
+  font-family: arial, helvetica, sans-serif;
+}
+.entry-response form p input {
+  margin-right: 5px;
+}
+.entry-response form p textarea {
+  width: 340px;
+}
+.entry-response #submit-comment {
+  margin: 0 0 0 130px;
+  padding: 0;
+  border: none;
+}

@@ -1,0 +1,213 @@
+/*$Id: modules.css 34195 2010-03-11 22:26:48Z jhutchins $
+/css/0.1/screen/common/modules.css 
+(c)2006 - 2008 The New York Times Company */ 
+
+
+/* BEGIN Generic Tabbed Module*/
+
+.tabsContainer {
+  position:relative;
+  bottom:-1px;
+  _height:1%; /* FIXME move to ie6 css*/
+}
+
+.tabs {
+  display: block;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  text-transform: uppercase;
+  font-family: arial, helvetica, sans-serif;
+  overflow: hidden;
+}
+
+#mainTabs {
+  float: left;  /* without this the memberTools is not accessable as the width of the tabsContainer takes the entire shell width */ 
+}
+    
+.tabs li {
+  float: left;
+  display: block;
+  margin: 0;
+  padding: 4px 7px 3px 7px;
+  background-color: #f0f4f5;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-width: 1px 1px 1px 0;
+  font-size:1em;
+  white-space: nowrap;
+}
+
+.tabs li.first, 
+.tabs li.firstItem {
+  border-left: 1px solid #ccc;
+}
+
+.tabs li.selected {
+  background: white;
+  border-bottom: none;
+  padding: 4px 7px 4px 7px;
+}
+
+.tabs li a,
+.tabs li a:link,
+.tabs li a:visited,
+.tabs li a:hover,
+.tabs li a:active {
+  color: #333;
+}
+
+
+#mainTabs li a,
+#mainTabs li a:link,
+#mainTabs li a:visited,
+#mainTabs li a:hover,
+#mainTabs li a:active {
+    color: #004276;
+}
+
+ 
+.tabContent {
+  clear: both;
+  border: 1px solid #ccc;
+  padding: 7px;
+  display: none;
+}
+    
+.tabContent.active {
+  display: block;
+}
+    
+.tabContent ol {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+    
+.tabContent ol li {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+
+/* END Generic Tabbed Module*/
+
+
+/* BEGIN Tabbed Blog Module */
+
+.tabbedBlogModule h4 {
+    font-size: 1.1em;
+    margin: 10px 0 8px 0;
+    padding: 0;
+    text-transform: uppercase;
+}
+
+.tabbedBlogModule .tabContent ul {
+    padding: 2px 0 0 7px;
+}
+
+.tabbedBlogModule .tabContent ul li {
+    line-height: 1em;
+}
+
+.tabbedBlogModule .tabContent ul li a {
+    line-height: 1.15em;
+}
+
+.tabbedBlogModule .kicker {
+    color: #333;
+    font-size: 0.917em;
+    line-height: 1em;
+}
+
+.tabbedBlogModule p.date {
+    font-size: 0.833em;
+    color: #808285;
+    margin: 2px 0 5px 0;
+}
+
+/* END Tabbed Blog Module */
+
+
+/* BEGIN inline audio player*/
+
+.refer li .inlinePlayer {
+  margin-left:-8px;
+  margin-bottom: 0;
+}
+
+.inlinePlayer {
+  background-color:white;
+  border: 1px solid #e2e2e2;
+  border-width: 1px 0 !important;
+  padding:3px 4px 2px;
+  margin-top: 4px;
+}
+
+/* END inline audio player*/
+
+/* CALENDAR STYLES (Past 7 days) */
+
+.calendarLinks .inset {
+  margin: 8px;
+}
+
+.calendarLinks .sectionHeader,
+.calendarLinks .subColumnA .kicker {
+  margin-left: 5px;
+}
+
+.wideA .aColumn .calendarLinks .subColumns .subColumnB .insetH {
+  margin-left: 20px;
+}
+
+.bColumn .calendarLinks .subColumns {
+	background: none;
+}
+
+table.TwoWeekCalendar {
+  width: 165px;
+  padding: 0;
+  background: url(http://graphics8.nytimes.com/images/global/backgrounds/CalendarBlueWeekbg_156x19.gif) repeat-x 5px 3px;
+  font-family: arial, helvetica, sans-serif;
+}
+
+table.TwoWeekCalendar th {
+  padding: 0 0 2px 5px;
+  font-size: 1.1em;
+  color: #666;
+}
+
+table.TwoWeekCalendar td {
+  font-size: 1.1em;
+  color: #bababa;
+  text-align: center;
+}
+
+table.TwoWeekCalendar td a {
+  display: block;
+  width: 16px;
+  border: 1px solid white;
+  color: #999;
+}
+
+table.TwoWeekCalendar td a:hover {
+  border: 1px solid #004276;
+}
+
+table.TwoWeekCalendar a.currentWeek {
+  color: #004276;
+  font-weight: bold;
+  border: 1px solid #ccc;
+}
+
+table.TwoWeekCalendar a.currentDay {
+  color: #004276;
+  font-weight: bold;
+  border: 1px solid #004276;
+}
+
+.calendarLinks .inlineSearchControl .text {
+  width: 128px;
+}
+
+/* END Calendar Styles */

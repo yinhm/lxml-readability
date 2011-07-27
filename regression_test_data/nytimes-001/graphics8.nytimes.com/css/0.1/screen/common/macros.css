@@ -1,0 +1,114 @@
+/*$Id: macros.css 3350 2008-09-04 19:40:20Z jguinto $
+/css/0.1/screen/common/macros.css 
+(c)2006 - 2008 The New York Times Company */ 
+
+
+/* BEGIN OLD MACRO supported styles
+-------------------------------------------------------*/  
+
+/* BEGIN Calendar Styles */
+
+
+
+
+/* BEGIN adjustments for Most Popular macro */
+
+#mostPopWidget div#tabsContainer {
+	left:0;
+}
+
+#mostPopWidget a.more {
+  	font-family: arial, helvetica, sans-serif;
+  	font-size:1.1em !important;
+}
+
+#mostPopWidget {
+  	border-bottom: 0 !important;
+}
+
+/* END adjustments for Most Popular macro */
+
+/* BEGIN SearchFormWrap2 - utility classes for c-column search box*/
+
+.searchFormWrap2 {
+  	border: 1px solid #cccccc;
+  	margin: 5px 0 15px 0;
+  	padding: 10px 8px 10px 8px;
+  	background: #f0f4f5;
+  	overflow:hidden; /*to solve opera horizontal scrolling problems*/
+  	clear:both;
+}
+
+/* Hides from IE-mac \*/
+* html .searchFormWrap2 {height: 1%;}
+/* End hide from IE-mac */
+
+.searchFormWrap2 .srchHdr {
+ 	margin:0 0 5px 0px;
+ 	padding: 0 0 5px 0;
+ 	clear: left;
+ 	font-family: Arial, Helvetica, Sans Serif;
+ 	font-size:90%;
+ 	font-weight: bold;
+ 	text-transform:uppercase;
+ 	color:black;
+}
+
+.searchFormWrap2 .FindNewsByState {float:left;}
+
+.searchFormWrap2 select {
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	font-family: Arial, Helvetica, Sans Serif;
+	border: 1px solid #ccc;
+}
+
+.searchFormWrap2 form#searchForm2 #searchGoImg2 {
+	margin: 1px 0 0 0;
+}
+
+* html .searchFormWrap2 form#searchForm2 #searchGoImg2 {
+	margin:2px 0 0 0;
+}
+
+/*END Search FormWrap2 */
+
+/* .TopicSearchesBox
+-------------------------------------------------------*/
+
+.TopicSearchesBox-Right {float:right;}
+
+.TopicSearchesBox {
+	float:none;
+	overflow:none;
+	padding-top:55px;
+	font-family:arial, sans-serif;
+}
+
+.TopicSearchesBox p{padding:0;margin:0;line-height:4px;}
+
+/* BEGIN AP REUTERS insert */
+
+#apr h4 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:1em;
+	font-weight:normal;
+	color:black;
+	text-transform:uppercase;
+	margin-bottom:7px;
+}
+
+#apr h4 a {
+	color:black;
+}
+
+#apr h5 {
+	font-weight:normal;
+}
+
+/* END AP REUTERS insert */
+
+/* END OLD MACRO supported styles
+-------------------------------------------------------*/   
+
+                   

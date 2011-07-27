@@ -1,0 +1,745 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US">
+  <head>
+        <title>Running high-performance neural networks on a &quot;gamer&quot; GPU</title>
+
+  <!-- Begin CSS -->
+  <link rel="stylesheet" type="text/css" href="../../../../../../static.arstechnica.net/public/v6/styles/light/light.c.css%3F1311610759.css" media="screen" />
+  <link rel="stylesheet" type="text/css" href="../../../../../../static.arstechnica.net/public/v6/styles/print/print.css%3F1311610759.css" media="print" />
+  <!-- End CSS -->
+
+  <link rel="apple-touch-icon" href="http://static.arstechnica.net/apple-touch-icon.png" />
+  <link rel="canonical" href="2.html" /> 
+    <link rel="shorturl" href="http://arst.ch/qc9" />
+  <link rel="shortlink" href="http://arst.ch/qc9" />
+  <link rev="canonical" href="http://arst.ch/qc9" />
+    
+  <link rel="search" type="application/opensearchdescription+xml" href="http://arstechnica.com/opensearch.xml" title="Ars Technica" /> 
+  <link rel="shortcut icon" href="../../../../../../static.arstechnica.net/favicon.ico" />
+  <link rel="icon" type="image/x-icon" href="../../../../../../static.arstechnica.net/favicon.ico" />
+
+  <!-- Begin Feeds -->
+    <link rel="alternate" type="application/rssxml" title="Nobel Intent" href="http://feeds.arstechnica.com/arstechnica/science/" />
+  
+    <link rel="alternate" type="application/rss+xml" title="All Articles " href="http://feeds.arstechnica.com/arstechnica/everything" />
+    <!-- End Feeds -->
+
+  <!-- C-razy IE9 stuff -->
+  <meta name="application-name" content="Ars Technica"/>
+  <meta name="msapplication-starturl" content="http://arstechnica.com/"/>
+  <meta name="msapplication-tooltip" content="Ars Technica: Serving the technologist for 1.2 decades"/>
+  <meta name="msapplication-task" content="name=News;action-uri=http://arstechnica.com/;icon-uri=http://arstechnica.com/favicon.ico"/>
+  <meta name="msapplication-task" content="name=Features;action-uri=http://arstechnica.com/features/;icon-uri=http://static.arstechnica.net/ie-jump-menu/jump-features.ico"/>
+  <meta name="msapplication-task" content="name=OpenForum;action-uri=http://arstechnica.com/civis/;icon-uri=http://static.arstechnica.net/ie-jump-menu/jump-forum.ico"/>
+  <meta name="msapplication-task" content="name=One Microsoft Way;action-uri=http://arstechnica.com/microsoft/;icon-uri=http://static.arstechnica.net/ie-jump-menu/jump-omw.ico"/>
+  <meta name="msapplication-task" content="name=Subscribe;action-uri=http://arstechnica.com/subscriptions/;icon-uri=http://static.arstechnica.net/ie-jump-menu/jump-subscribe.ico"/>
+
+  
+  <!-- Begin Metadata -->
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=1000" />
+    <meta name="description" content="Artificial neural networks&amp;mdash;how do they work? Find out in this in-depth primer as a team of scientists manages to run a high-performance neural network of their own on a cluster of &quot;gamer&quot; PC hardware." />
+      <meta name="keywords" content="hpu4science, neuralnetworks, parallelcomputing, science" />
+      <meta name="title" content="Running high-performance neural networks on a &quot;gamer&quot; GPU" />
+  <link rel="image_src" href="http://static.arstechnica.net/assets/2011/07/pacmac-brain-game-over-4e29f36-listing-thumb-300x169-23966-f.jpg" />
+  <meta name="medium" content="news" />
+  
+  <meta name="entry_id" content="50988" />
+  <meta property="og:title" content="Running high-performance neural networks on a &quot;gamer&quot; GPU"/>
+  <meta property="og:site_name" content="Ars Technica"/>
+  <meta property="og:image" content="http://static.arstechnica.net/assets/2011/07/pacmac-brain-game-over-4e29f36-listing-thumb-300x169-23966-f.jpg"/>
+  
+    <meta name="advertising" content="ask" />
+  <meta property="fb:admins" content="13703630" />
+  <!-- End Metadata -->
+  <!-- Entry - culture_science -->
+<style type="text/css" id="resource-styles">  </style>
+      <script type="text/javascript" src="../../../../../public/shared/scripts/da-1.5.js"></script>
+    <script type="text/javascript">
+    try {
+			      cnp.ad.dart.setSite("ars.dart");
+			      cnp.ad.dart.setZone('culture_science');
+      //cnp.ad.dart.addParameterString('kw=running-high-performance-neural-networks-on-a-gamer-gpu;kw=07;kw=2011;kw=news;kw=science;');
+      cnp.ad.dart.addParameterString('mtfIFPath=/mt-static/plugins/ArsTheme/ad-campaigns/doubleclick/');
+      cnp.ad.emptyFrameSrc="/public/shared/scripts/empty.html";
+      cnp.ad.loaderFrameSrc="/public/shared/scripts/ad-loader-frame.html";
+    } catch(e) {}
+    </script>
+     
+  <script type="text/javascript" charset="utf-8">
+    // In case someone on a desktop clicks a mobile #! link
+    var l = window.location;
+    if(l.hash.indexOf('#!') !== -1){
+      window.location = l.protocol + '//' + l.host + l.hash.slice(2);
+    }
+  </script>
+  </head>
+  <body class="individual">
+    <div id="page" class="">
+      
+<div id="masthead" class="">
+      <div id="logo"><a href="http://arstechnica.com/"><img src="../../../../../../static.arstechnica.net/public/v6/styles/light/images/masthead/logo.png%3F1311610759" alt="Ars Technica: The Art of Technology" width="110" height="81" /></a></div>      
+    <div id="ebc51ce07629d0e14d2fbc4236e44067" >
+<script type="text/javascript">
+  var pbanner_start = new Date();
+  try {
+    var pbanner = cnp.ad.create(cnp.ad.refreshable, false);
+    //pbanner.addParameter({'dcopt':'ist'});
+    pbanner.addParameterString('kw=running-high-performance-neural-networks-on-a-gamer-gpu;kw=07;kw=2011;kw=news;kw=science;');
+    pbanner.addParameter({'sz': '728x90' });
+  } catch(e) {}
+</script>
+</div>
+  </div>
+      
+<div id="search-navigation">
+  <div id="search">
+    <a id="search-link" href="http://www.google.com/cse?cx=011835048811694782689:7zpko-isndo">Search</a>
+    
+    <div class="form">
+    <span>Search:</span>
+    <form action="http://www.google.com/cse" id="search-form">
+      <div>
+        <input type="hidden" value="011835048811694782689:7zpko-isndo" name="cx"/>
+        <input type="hidden" value="UTF-8" name="ie"/>
+        <input type="text" id="search-form-text" value="" name="q"/>
+      </div>
+    </form>
+    </div>
+  </div>
+  <div id="navigation">
+    <ul id="primary-navigation">
+          <li class=""><a href="http://arstechnica.com/">All</a></li>
+          <li class="apple"><a href="http://arstechnica.com/apple/">Apple</a></li>
+          <li class="ask-ars"><a href="http://arstechnica.com/ask-ars/">Ask Ars</a></li>
+          <li class="business"><a href="http://arstechnica.com/business/">Business</a></li>
+          <li class="gadgets"><a href="http://arstechnica.com/gadgets/">Gadgets</a></li>
+          <li class="gaming"><a href="http://arstechnica.com/gaming/">Gaming</a></li>
+          <li class="microsoft"><a href="http://arstechnica.com/microsoft/">Microsoft</a></li>
+          <li class="open-source"><a href="http://arstechnica.com/open-source/">Open Source</a></li>
+          <li class="science selected"><a href="http://arstechnica.com/science/">Science</a></li>
+          <li class="tech-policy"><a href="http://arstechnica.com/tech-policy/">Tech Policy</a></li>
+          <li id="primary-navigation-more" style="display:none;">
+        More
+        <ul >
+                  <li><a href="http://arstechnica.com/hardware/">Hardware</a></li>
+                  <li><a href="http://arstechnica.com/media/">Media</a></li>
+                  <li><a href="http://arstechnica.com/security/">Security</a></li>
+                  <li><a href="http://arstechnica.com/software/">Software</a></li>
+                  <li><a href="http://arstechnica.com/staff/">Staff</a></li>
+                  <li><a href="http://arstechnica.com/telecom/">Telecom</a></li>
+                  <li><a href="http://arstechnica.com/web/">Web</a></li>
+                  <li style="padding:0;"><span style="display:inline;background-color: #920404; padding: 3px; color:white; -webkit-border-radius: 4px;">New</span> <a style="display:inline;" href="http://arstechnica.com/site/tv.ars" title="Ars Technica TV">Ars.TV</a></li>
+        </ul>
+      </li>
+    </ul>
+   
+    <ul id="secondary-navigation" class="science">
+                            <li class="news selected"><a href="http://arstechnica.com/science/news/">News</a></li>
+                                          <li class="guides"><a href="http://arstechnica.com/science/guides/">Guides</a></li>
+                                          <li class="reviews"><a href="http://arstechnica.com/science/reviews/">Reviews</a></li>
+                      </ul>
+    <ul id="auxiliary-navigation">
+        <li class="subscribe"><a href="http://arstechnica.com/subscriptions/">Upgrade to a Premier Subscription</a>
+         
+    </li>
+    <li class="customize" style="display:none;">
+      <a href="2.html#">Customize ▾</a>
+      <ul>
+        <li>
+          <p>Site Theme:</p>
+          <label><input type="radio" checked="checked" value="light.css" class="site-style" name="site-style" /> White</label>
+          <label><input type="radio" value="dark.css" class="site-style" name="site-style" /> Black</label>
+        </li>
+        <li>
+          <p>Choose body font:</p>
+          <label><input type="radio" checked="checked" value="arial" class="body_font" name="body_font" /> Arial</label>
+          <label><input type="radio" value="helvetica" class="body_font" name="body_font" /> Helvetica</label>
+        </li>
+        <li>
+          <p>Layout (beta):</p>
+          <label><input type="radio" checked="checked" value="normal" class="fp_layout" name="fp_layout" /> Normal</label>
+          <label><input type="radio" value="compact" class="fp_layout" name="fp_layout" /> Compact</label>
+        </li>
+      </ul>
+    </li>
+    
+    <li class="openforum"><a href="http://arstechnica.com/civis/">OpenForum</a></li>
+    
+          <li class="login-join"><a href="http://arstechnica.com/civis/ucp.php?mode=login&amp;return_to=http%3A%2F%2Farstechnica.com%2Fscience%2Fnews%2F2011%2F07%2Frunning-high-performance-neural-networks-on-a-gamer-gpu.ars">Login/Join</a></li>
+          </ul>
+  </div>
+</div>
+      
+                  <div id="main">
+        
+<div id="silo-header" class="">
+  <h1 class="science"><a href="http://arstechnica.com/science/" title="Go to Nobel Intent">Nobel Intent</a></h1>
+</div>
+        
+        <div id="content" class="normal">   <div id="content-inner">
+             <div id="story">
+                        <h2 class="title">Running high-performance neural networks on a "gamer" GPU</h2>
+        <div class="byline"><span class="author">By <a rel="author" href="http://arstechnica.com/author/adam-stevenson/">Adam Stevenson, Yann Le Du, and Mariem El Afrit</a>
+</span> | <span class="posted"><span class="published updated"><span class="name">Published </span> <abbr class="timeago datetime" title="2011-07-25T16:48:00Z">July 25, 2011 11:48 AM</abbr></span><span class="modified" style="display:none;"><span class="name">Last updated </span> <abbr class="timeago datetime" title="2011-07-25T21:29:34Z">July 25, 2011 4:29 PM</abbr></span></span></div>
+        
+      
+        <div id="" class="body" style="">          
+        
+        <!--page 2-->
+<h3>Reservoir computing</h3>
+
+<p>
+In reservoir computing, the hidden synapses (called the "reservoir," and biologically analogous to the brain) in the neural network are randomly assigned by the computer. Strict rules govern the overall connectivity of the network so that it simulates the human brain and provides rational output, but the weight and connectivity of each individual synapse is randomly assigned. 
+</p><p>
+The data flow for this system is identical to the one described above: input data is conditioned for the reservoir by a set of hand-coded input synapses, the data is processed by the randomly assigned synapses in the reservoir, and the result is output through the ouput synapses, which condition the data for the user.</p>
+
+<p>The difference is in the training. The reservoir method trains faster than traditional neural networks because training only the last set of synapses&#8212;the output layer&#8212;is modified during training. This dramatically reduces the computational cost and time involved, and it's also much easier to parallelize. The image below shows a reservoir and the input (convolved spectrum) and output (deconvolved spectrum) signals.&nbsp;</p>
+
+<div style="width: 640px;" class="news-item-figure CenteredImage"><div class="news-item-figure-image" style=""><img src="../../../../../../static.arstechnica.com/06-17-2011/figure1.jpg" /></div></div>
+
+
+
+<p>
+Obviously, the results of a computation using the reservoir method depend on the structure of the reservoir and the random values assigned to its synapses. As you probably suspect, these values do not always generate the best possible solutions to the problem. Because we train only the output layer of synapses, we only find the best possible answer that can be achieved with the reservoir that we generated. 
+</p>
+<p>But it's possible to tweak the system for even better performance. As researcher Yann Le Du explains: "We are faced with a global minimization problem: training a reservoir-based neural network only finds a local minimum in the error function (the difference between the known solution and the solution generated by the algorithm), i.e. the configuration that minimizes the error for that particular reservoir. However, we really want to find a global minimum of the error function which is the best possible solution overall. Therefore, we added a genetic algorithm to the training process that modifies the synapses of the reservoir."</p>
+
+<h3>Genetic and swarm algorithms&nbsp;</h3>
+
+<p>So, we want to have a better reservoir of neural networks. Neural networks are inspired by biological processes, so it seems natural to stay within the artificial life paradigm in order to optimize such networks. We use a model of genetic processes to help us quickly explore the many possible reservoirs and identify optimized versions.
+</p><p>
+The genetic algorithm used by the HPU4Science cluster is a particle swarm approach coupled to a differential evolution algorithm. The "swarm" is a large collection of reservoirs, each with a different set of initial weights. Each reservoir is individually trained in the usual way, by training the output synapses to minimize the error. </p>
+
+<p>The image below illustrates the process: reservoir configurations are randomly generated, "parachuted" into the space of possible solutions. From where they land, each finds the local error minimum by training the output synapses. The error minimum is found using what's called a gradient descent algorithm: the system computes the local derivative of the error function and updates the output synapse matrix in order to follow the error function along the path of maximal descent. This brings each element in the swarm to its local minimum.</p>
+
+
+<div style="width: 454px;" class="news-item-figure CenteredImage"><div class="news-item-figure-image" style=""><img src="../../../../../../static.arstechnica.com/06-17-2011/figure2.jpg" /></div></div>
+
+<p>
+The output synapse training process was set up to run in multiple threads by combining multiple training sets into a single group and computing the error for all of the training sets in a single set. Larger training sets require more parallel processes to compute so, the larger the training set, the greater the gain from using GPUs. This is due to the fact that the GPU has many cores that are ideally suited to processing many simple actions in parallel.&nbsp;</p><p>However, GPUs are limited by the fact that the entire matrix must fit onto the GPU memory so that it does not have to access data from RAM or the hard drive while performing the calculation.&nbsp;The obligation to fit all the computational data in the GPU's memory is extremely difficult to satisfy. Current generation GTX 580 and GTX 590 GPU cards have 1.5GB and 3GB of RAM, respectively. That may seem huge, but the computations necessary for EPR imaging quickly use up all of the RAM.&nbsp;</p><p>With EPR, the number of elements in the reservoir matrix is the number of examples in the training set times the number of data points in the EPR spectrum&#8212;squared! A one thousand example data set (not a lot),  together with a few thousand data points to be reconstructed, gives you a matrix with 10<sup>12</sup> entries. But there are ways to reduce this memory footprint. The transformation matrix in the reservoir is very sparse (it has a lot of zeroes) and we can compute different data points separately, so the HPU4Science team was able to reduce the memory footprint to 24MB, making it perfectly manageable on the GPU.</p><p>
+
+Once each reservoir has found its local minimum (ie. the output synapse matrix is trained), we used those to create a single optimized reservoir through a genetic algorithm. Basically, the individual values of a reservoir matrix (its &#8220;genes&#8221;) are mixed with a different reservoir&#8217;s matrix, producing a new reservoir that is then trained. If the new reservoir produces less error on the test set than any of the original reservoirs, it is kept. 
+</p><p>
+The figure below summarizes the overall process. Data (symbolized by the bird) is fed to a neural reservoir (symbolized by the brain) that is characterized by its matrix values (symbolized by the colored grid). The reservoir is trained to find the local error minimum by optimizing the output synapse matrix, and is then mixed randomly with three other reservoirs. Data is fed into the new reservoir, which is in turn optimized and the process continues until the swarm converges onto the best solution. Hopefully, that solution is the oracle: the reservoir configuration that solves the problem.
+</p>
+
+
+<div style="width: 640px;" class="news-item-figure CenteredImage"><div class="news-item-figure-image" style=""><img src="../../../../../../static.arstechnica.com/06-17-2011/figure4.jpg" /></div></div>
+
+<p>
+The figure below tries to depict the search for the oracle, but this time is seen as the search for the maximum (a straightforward inversion of the goal; just change the sign).</p>
+
+<div style="width: 640px;" class="news-item-figure CenteredImage"><div class="news-item-figure-image" style=""><img src="../../../../../../static.arstechnica.com/06-17-2011/figure3.jpg" /></div></div>
+
+<h3>Parallelization: relying on the GPU</h3>
+
+<p>
+As noted previously, the HPU4Science cluster is a set of independent worker machines connected to a central master machine. During the optimization process, it's important that each worker is computationally independent. The idea is not to pool the power of all workers to solve a single problem because this would require a command and control process that, if down, stops the entire system. Instead, all workers should be able to process the whole problem and arrive at a proposed solution with or without the master available.</p>
+
+<p> 
+Of course, the results need to be stored, and the master makes it easier to store the results and compare them, even if each worker is computationally independent. In reality, then, each HPU is autonomous: we consider our fundamental computational unit to be a CPU and a GPU, or more exactly, a few CPU threads and a GPU.&nbsp;</p><p>The idea is that, on a machine with an i7 and eight threads, we can have up to eight computational units, with each computational unit made up of one thread and one GPU. This is why we aim at using the recently released GTX-590, which we have just installed in worker 5 (it&#8217;s using the latest Linux driver 270.40 released with the latest CUDA 4.0 RC2).</p>
+
+<p>
+Each computational unit can run the whole problem: the swarm, the differential evolution, and the reservoir computing. Therefore, we are able to minimize the interaction between the master and the worker&#8212;the master simply provides the training and test sets and specifies the reservoir connectivity. That means the master only gives a worker a problem to solve and the structural genetic constraints (number of genes and reservoir output cabling).</p>
+
+<p>
+Since the parameter space in which we try to find an error minimum is so unimaginably large that we need to have a swarm of swarms, a super-swarm. In this configuration, the master collects the results from the swarms on each worker and manages its own swarm made up of all the best solutions found by the workers. This makes the problem embarrassingly parallel: each swarm is distributed on as many HPUs as available to reduce the actual processing time.</p>
+
+<p>
+Still, parallelization isn't simple. There are two parts here: developing new reservoirs using differential evolution and the training of an individual reservoir. In both cases, we make use of the basic property of GPU computing: all threads running each on a CUDA core compute the same thing, i.e. compute the same function on a part of data that is indexed by its address.</p>
+
+
+<p>Let's illustrate this with the sum of two vectors. The corresponding kernel, embedded in Python thanks to PyCUDA, looks like this :</p>
+
+<code>
+for i in range(numberOfElements):
+	w[i] = u[i] + v[i]
+
+__global__ void sumVectors(float *u, float *v, float *w)
+{
+   int i = threadIdx.x;
+   w[i] = u[i] + v[i];
+}
+</code>
+
+<p>
+The parallelization we use simply involves separating out the piece of each matrix operation and processing each of them simultaneously on the simple gpu cores. This is done by using our own kernel for the swarm evolution and the neural reservoir training. This simple parallelization is also the basis of the specialized matrix computation library CUBLAS (the BLAS library ported to CUDA) which adds subtle optimization procedures for the NVidia GPUs. Using the CUBLAS functions combined with the simple linear algebra parallelization procedure produces performance up to 1TFLOPS.</p>
+ 
+<p>
+When the entire machine learning/genetic algorithm process is finished, the result is a highly optimized reservoir that accurately reconstructs the spatial distribution of a specific type of electronic defect in samples of similar composition. For each new type of sample (glasses, rocks of vastly different composition, etc.), a new training set and test set must be developed and a new optimized reservoir must be obtained. However, once a reservoir is established, it can be&nbsp;used&nbsp;repeatedly on similar samples.</p>
+
+
+<h3>Computing without understanding</h3>
+
+<p>
+Using machine learning, we break from the scientific dogma of understanding how an algorithm succesfully computes a solution. Humans have mostly used computers as a vehicle to carry their own understanding in new territories, but computers can also be taught to solve problems without the constraint of finding a solution that, in the aftermath, humans can fully appreciate.</p>
+
+<p>Instead of feeding the computer with pre-established rules that apply specifically to the problem at hand, we build an algorithm that configures its own rules by processing known examples (the training set). This  paradigm is closer to how humans actually function: we have a pre-established cognitive structure that works and learns by experimenting with the external world. We may not understand every aspect of how it works, but at the end of the day, it works.</p>
+
+<p>This is the whole idea behind reservoir computing: a pre-established structure, the random network, and examples that modify a few parameters. The pre-existing cognitive structure, the random network, is evolved through a genetic algorithm coupled to a particle swarm algorithm. Using test sets, we can check whether the machine has actually learned its lessons, and thus determine that it should be capable of accurately computing something.</p>
+
+
+<p>It's possible to watch it learn and succeed without necessarily understanding precisely how it tackles the problem. That&#8217;s exactly what the Watson team at IBM was after, and their success is a strong motivation for the HPU4Science team. While the algorithms described here were designed to tackle the problems associated with EPR imaging, they are equally well suited to tackling many other complex issues. In the short term, the HPU4Science team will optimize the system performance for EPR, but they plan to extend the learning algorithms and compute time on the cluster to other scientific problems.</p>
+
+<p><em>Graphic Arts by Diane Robert-Magnenan. The authors work on the HPU4Science project, which relies on several different sources of support: we thank the CNRS, the CNES and especially the ANR ENUSIM-ORIGIN 2009-2012 grant. Many thanks also to Chimie-ParisTech for hosting the cluster, and to the LCMCP lab for letting us... hunt for the oracle! Special thanks to Didier Gourier and Laurent Binet. HPU4Science will be at the Europython 2011 and <a href="http://www.euroscipy.org/conference/euroscipy2011">Euroscipy 2011</a> conferences.</em></p>        
+                    <div class="bottom-image-credit">
+                                      Photo illustration by Aurich Lawson                    </div>
+                  
+        
+        
+                
+        </div>
+        
+        
+        <!-- Article Pager -->
+                            <div class="pager">
+            <div class="label">Page:</div>
+            <ul>
+                                              <li><a href="http://arstechnica.com/science/news/2011/07/running-high-performance-neural-networks-on-a-gamer-gpu.ars/1">1</a></li>
+                                                              <li class="selected">2</li>
+                                          </ul>
+            <div class="next-page">
+                              Next &gt;
+                          </div>
+        </div>
+        
+    
+
+    </div>
+    
+    <noscript>
+<img style="position: absolute; bottom: 0px; right: 0px; width: 1px; height: 1px;" src="../../../../../dragons/brains.gif%3Fid=50988&amp;487992712" alt="" />
+</noscript>
+<script type="text/javascript">
+document.write('<img style="position: absolute; bottom: 0px; right: 0px; width: 1px; height: 1px;" src="http://arstechnica.com/dragons/brains.gif?id=50988&amp;' + (parseInt(Math.random()*99999999, 10)).toString() + '" alt="" />');
+</script>
+    
+          
+<!--googleoff: all-->
+
+<div id="comments-bar" class="with-bubble">
+    <h2>User comments</h2>
+     
+    <div class="comments-link">
+    <a name="comments-bar" rel="nofollow" href="http://arstechnica.com/science/news/2011/07/running-high-performance-neural-networks-on-a-gamer-gpu.ars?comments=1#comments-bar">Click here to view the 37 comments on this story</a>
+    </div>
+      </div>
+
+  <div id="hiddencomment"></div>
+<!--<div id="alert"><p><img src="http://arstechnica.com/civis/images/smilies/flail.gif" /> We're making some updates to the commenting system.  We should have the kinks worked out soon.</p></div>-->
+<!--googleon: all-->
+              <div id="links-bar">
+  <ul>
+    
+    
+        <li class="facebook">
+      <iclint src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Farstechnica.com%2Fscience%2Fnews%2F2011%2F07%2Frunning-high-performance-neural-networks-on-a-gamer-gpu.ars&amp;layout=button_count&amp;show_faces=false&amp;width=85&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:85px; height:21px;" allowTransparency="true"></iclint>
+    </li>
+        
+    <li class="gplus">
+      <g:plusone size="medium"></g:plusone>
+    </li>
+    
+    		<li><a href="http://twitter.com/share" class="twitter-share-button" data-url="http://arst.ch/qc9" data-counturl="http://arstechnica.com/science/news/2011/07/running-high-performance-neural-networks-on-a-gamer-gpu.ars" data-count="horizontal" data-via="arstechnica" >Tweet</a></li>
+        
+    <li class="reddit">
+        <iclint src="http://www.reddit.com/static/button/button1.html?width=120&url=http%3A%2F%2Farstechnica.com%2Fscience%2Fnews%2F2011%2F07%2Frunning-high-performance-neural-networks-on-a-gamer-gpu.ars&amp;title=Running%20high-performance%20neural%20networks%20on%20a%20%22gamer%22%20GPU&amp;bgcolor=fff&amp;bordercolor=eee" width="120" height="20" scrolling="no" frameborder="0"></iclint>
+        </li>
+    
+
+    
+    <li class="share">
+      <a class="a2a_dd" href="http://www.addtoany.com/share_save?linkname=Running%20high-performance%20neural%20networks%20on%20a%20%22gamer%22%20GPU&amp;linkurl=http%3A%2F%2Farstechnica.com%2Fscience%2Fnews%2F2011%2F07%2Frunning-high-performance-neural-networks-on-a-gamer-gpu.ars"><img src="../../../../../../static.addtoany.com/buttons/favicon.png" width="16" height="16" border="0" alt="Share/Bookmark" style="display:inline;vertical-align:middle;"/> Share/Email</a>
+      <script type="text/javascript">
+        var a2a_linkname="Running high-performance neural networks on a \"gamer\" GPU",
+        a2a_linkurl="http://arstechnica.com/science/news/2011/07/running-high-performance-neural-networks-on-a-gamer-gpu.ars",
+        a2a_onclick=1,
+        a2a_show_title=1,
+        a2a_hide_embeds=0,
+        a2a_num_services=8,
+        a2a_color_main="989EA3",
+        a2a_color_border="989EA3",
+        a2a_color_link_text="FF5B00",
+        a2a_color_link_text_hover="ffffff",
+        a2a_track_links='ga',
+        a2a_prioritize= [
+          "digg",
+          "yahoo_buzz",
+          "stumbleupon",
+          "instapaper",
+          "slashdot",
+          "linkedin",
+          "delicious",
+          "google_reader",
+          "tumblr",
+          "posterous"
+          ];
+        var a2a_config = a2a_config || {};
+        a2a_config.no_3p = 1;
+      </script>
+      <style type="text/css">#a2apage_BROWSER { display:none !important; }</style>
+    </li>
+    <li class="copypasta copy-pasta-button">Make a correction</li>
+
+  </ul>
+</div>
+              <!--googleoff: all-->
+    <div id="read-more-stories">
+<h2>Read more stories</h2>
+  <div class="story-navigation">
+      <a href="http://arstechnica.com/gaming/reviews/2011/07/the-loneliest-talk-show-host-ars-tests-out-avatar-kinect-on-the-xbox-360.ars" title="Read the previously published article">&lt; Older Story</a> 
+    
+   |   
+      <a href="http://arstechnica.com/security/news/2011/07/-results-from-fermilab-are.ars" title="Read the next newest article">Newer Story &gt;</a>
+    </div>
+  <!--googleoff: all-->
+  <script language='JavaScript'>
+    var OB_langJS = "http://static.arstechnica.net//public/v6/scripts/outbrain.lang_en_ars.js",OBITm = '1306449288604',OB_raterMode = 'singlethumb',OB_recMode = 'strip',OutbrainPermaLink='http://arstechnica.com/science/news/2011/07/running-high-performance-neural-networks-on-a-gamer-gpu.ars';
+    if (typeof(OB_Script)!='undefined' ){OutbrainStart();}else{var OB_Script = true,str = unescape("%3Cscript src=\'http://widgets.outbrain.com/OutbrainRater.js\' type=\'text/javascript\'%3E%3C/script%3E");document.write(str);}
+  </script>
+  <!--googleon: all-->
+</div>
+    <!--googleon: all-->
+    
+  </div>   
+</div>
+        <!--googleoff: all-->
+<div id="sidebar">
+      
+<div id="article-links" class="with-divider" style="display:none;">
+  
+  <ul>
+    <li class="enlarge-text"><a href="2.html#">Increase text size</a></li>
+    <li class="shrink-text"><a href="2.html#">Reduce text size</a></li>
+        <li class="print"><a href="2.html#">Print this story</a></li>
+        
+    <li class="comment"><a href="http://arstechnica.com/science/news/2011/07/running-high-performance-neural-networks-on-a-gamer-gpu.ars?comments=1#comments-bar#comments-bar">Leave a comment (37)</a></li>
+    <li class="copy-pasta-button edit-suggestion" style="display: none;"><a href="2.html#">Make a correction</a></li>
+        <li class="shorturl"><a rel="nofollow" href="http://arst.ch/qc9">http://arst.ch/qc9</a></li>
+        
+  </ul>
+
+    <div class="premier">Premier features ( <a href="http://arstechnica.com/subscriptions/">learn more</a> ) :</div>
+  <ul>
+                  <li class="single-page"><a href="http://arstechnica.com/subscriptions/" class="nonsub">View on single page</a></li>
+                  <li class="configure"><a href="http://arstechnica.com/subscriptions/">Configure these features</a></li>
+      </ul>
+  </div>
+
+ 
+  <style type="text/css" media="screen">
+  #LFuSU {
+    height: 250px;
+    width: 300px;
+    min-height: 250px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+  }
+  #LFuSU.tall {
+    height: 600px;
+  }
+
+  body.premium-adset #LFuSU {
+      /* height: 600px; */
+  }
+</style>
+
+          <cite></cite>
+    <cite></cite>
+    <kjaskjas></kjaskjas>
+    <kjaskjas></kjaskjas>
+    <abbr></abbr>
+    <abbr></abbr>
+    <sakjasd></sakjasd>
+    <span></span>
+    <blah></blah>
+
+<div id="LFuSU" class="">
+
+<noscript>
+<div id="help-by-subscribing">
+<a href="http://arstechnica.com/science/news/2011/07/through-the-mists-of-time-how-we-discovered-the-age-of-the-earth.ars/2"><img src="../../../../../../static.arstechnica.net/274ea6386720b4f5d44d303aac087806.jpg" alt="Please subscribe" /></a></div>
+</noscript>
+
+<script type="text/javascript">
+try {
+  var ppanel = cnp.ad.create(cnp.ad.refreshable, false);
+  ppanel.addParameter({'sz':'300x250'});
+  ppanel.addParameterString('kw=top;kw=running-high-performance-neural-networks-on-a-gamer-gpu;kw=07;kw=2011;kw=news;kw=science;');
+  ppanel.load();
+} catch(e) {}
+</script>
+</div>
+  <div id="journals-box" class="with-divider">
+  <h2 class="title">Latest Top Stories</h2>
+  <ul class="category">
+        <li class="all selected">
+      <span class="tab-inner">
+        <a href="http://arstechnica.com/" title="All">All</a>
+      </span>
+    </li>
+        <li class="apple">
+      <span class="tab-inner">
+        <a href="http://arstechnica.com/apple/" title="Apple">Apple</a>
+      </span>
+    </li>
+        <li class="gaming">
+      <span class="tab-inner">
+        <a href="http://arstechnica.com/gaming/" title="Gaming">Gaming</a>
+      </span>
+    </li>
+        <li class="microsoft">
+      <span class="tab-inner">
+        <a href="http://arstechnica.com/microsoft/" title="Microsoft">Microsoft</a>
+      </span>
+    </li>
+        <li class="gadgets">
+      <span class="tab-inner">
+        <a href="http://arstechnica.com/gadgets/" title="Gadgets">Gadgets</a>
+      </span>
+    </li>
+        <li class="open-source">
+      <span class="tab-inner">
+        <a href="http://arstechnica.com/open-source/" title="Open Source">Open Source</a>
+      </span>
+    </li>
+        <li class="business">
+      <span class="tab-inner">
+        <a href="http://arstechnica.com/business/" title="Business">Business</a>
+      </span>
+    </li>
+        <li class="science">
+      <span class="tab-inner">
+        <a href="http://arstechnica.com/science/" title="Science">Science</a>
+      </span>
+    </li>
+        <li class="tech-policy">
+      <span class="tab-inner">
+        <a href="http://arstechnica.com/tech-policy/" title="Tech Policy">Tech Policy</a>
+      </span>
+    </li>
+        <li class="staff">
+      <span class="tab-inner">
+        <a href="http://arstechnica.com/staff/" title="Staff">Staff</a>
+      </span>
+    </li>
+      </ul>
+  <ul class="stories">
+    <li id="journal-box-0" class="science">
+    <a href="http://arstechnica.com/science/news/2011/07/through-the-mists-of-time-how-we-discovered-the-age-of-the-earth.ars">Through the mists of time: how we discovered the age of the Earth</a>
+      </li>
+    <li id="journal-box-1" class="web">
+    <a href="http://arstechnica.com/web/news/2011/07/netflix-ceo-fewer-complaints-than-expected-over-price-hike.ars">Lack of similar services means most Netflix customers sticking around</a>
+      </li>
+    <li id="journal-box-2" class="science">
+    <a href="http://arstechnica.com/science/news/2011/07/artificial-neural-network-used-for-memory-created-using-dna-computing.ars">DNA circuits used to make neural network, store memories</a>
+      </li>
+    <li id="journal-box-3" class="gaming">
+    <a href="http://arstechnica.com/gaming/reviews/2011/07/light-strike-wants-to-bring-back-at-home-laser-tag-we-review-the-guns-and-accessories.ars">Lawn warfare: Light Strike brings laser tag back home</a>
+      </li>
+    <li id="journal-box-4" class="science">
+    <a href="http://arstechnica.com/science/news/2011/07/drilling-holes-in-silicon-equals-bizzare-optics.ars">Drilling holes in silicon equals bizarre optics</a>
+      </li>
+    <li id="journal-box-5" class="gaming">
+    <a href="http://arstechnica.com/gaming/news/2011/07/7-fantastical-indie-rpgs-worth-playing.ars">7 fantastical indie RPGs worth playing </a>
+      </li>
+    <li id="journal-box-6" class="gaming">
+    <a href="http://arstechnica.com/gaming/news/2011/07/catherine-turns-infidelity-fear-of-love-into-a-story-driven-puzzle-game.ars"><em>Catherine</em> turns infidelity, fear of love into a story-driven puzzle game</a>
+      </li>
+    <li id="journal-box-7" class="open-source">
+    <a href="http://arstechnica.com/open-source/news/2011/07/mozilla-eyes-mobile-os-landscape-with-new-boot-to-gecko-project.ars">Mozilla eyes mobile OS landscape with new Boot to Gecko project</a>
+      </li>
+    <li id="journal-box-8" class="tech-policy">
+    <a href="http://arstechnica.com/tech-policy/news/2011/07/italian-cyber-crime-police-hacked-by-in-antisec-attack.ars">Italian cyber-crime police hacked in AntiSec attack</a>
+      </li>
+    <li id="journal-box-9" class="science">
+    <a href="http://arstechnica.com/science/news/2011/07/lunar-orbiters-find-most-recent-volcanos-on-dark-side-of-the-moon.ars">Lunar orbiters find most recent volcanos on dark side of the Moon</a>
+      </li>
+    <li id="journal-box-10" class="gadgets">
+    <a href="http://arstechnica.com/gadgets/news/2011/07/the-quicker-we-can-get-info-from-smartphones-the-more-addicted-we-aresetting-avalanche-of-information-creating-smartphone-addicts.ars">Setting, avalanche of information creating smartphone addicts</a>
+      </li>
+    <li id="journal-box-11" class="tech-policy">
+    <a href="http://arstechnica.com/tech-policy/news/2011/07/law-firm-enlists-att-customers-to-fight-merger-with-t-mobile.ars">Law firm enlists AT&T customers to fight merger with T-Mobile</a>
+      </li>
+    <li id="journal-box-12" class="apple">
+    <a href="http://arstechnica.com/apple/news/2011/07/how-charlie-miller-discovered-the-apple-battery-hackhow-a-security-researcher-discovered-the-apple-battery-hack.ars">How a security researcher discovered the Apple battery "hack"</a>
+      </li>
+    <li id="journal-box-13" class="web">
+    <a href="http://arstechnica.com/web/news/2011/07/stop-red-site-copyright-group-proposes-traffic-light-search-ticks.ars">Red site! Copyright group proposes "traffic lights" search results</a>
+      </li>
+    <li id="journal-box-14" class="apple">
+    <a href="http://arstechnica.com/apple/news/2011/07/with-pressure-from-apple-reading-apps-begin-ditching-outside-store-links.ars">iOS reading apps begin ditching outside store links in droves</a>
+      </li>
+    </ul>
+</div>
+    <div class="with-divider" id="fb">
+    <iclint src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Ffacebook.com%2Farstechnica&amp;width=300&amp;colorscheme=light&amp;show_faces=false&amp;stream=false&amp;header=false&amp;height=62&amp;border_color=%23FFFFFF" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:300px; height:62px;" allowTransparency="true"></iclint>
+    <iclint src="http://www.facebook.com/plugins/activity.php?site=arstechnica.com&amp;width=300&amp;height=370&amp;header=false&amp;colorscheme=light&amp;recommendations=false&amp;border_color=%23FFFFFF" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:300px; height:370px;" allowTransparency="true"></iclint>
+
+      <p><a href="2.html#" class="anonymous">Disable Facebook on Ars</a></p>
+      </div>
+  <style type="text/css" media="screen">
+  #VJJajAozjlpFE {
+    height: 250px;
+    width: 300px;
+    min-height: 250px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+  }
+  #VJJajAozjlpFE.tall {
+    height: 600px;
+  }
+
+  body.premium-adset #VJJajAozjlpFE {
+      /* height: 600px; */
+  }
+</style>
+
+          <clint></clint>
+    <clint></clint>
+    <span></span>
+    <kjaskjas></kjaskjas>
+    <cite></cite>
+    <sakjasd></sakjasd>
+    <abbr></abbr>
+    <abbr></abbr>
+    <clint></clint>
+
+<div id="VJJajAozjlpFE" class="">
+
+<noscript>
+<div id="help-by-subscribing">
+<a href="http://arstechnica.com/science/news/2011/07/through-the-mists-of-time-how-we-discovered-the-age-of-the-earth.ars/2"><img src="../../../../../../static.arstechnica.net/274ea6386720b4f5d44d303aac087806.jpg" alt="Please subscribe" /></a></div>
+</noscript>
+
+<script type="text/javascript">
+try {
+  var ppanel = cnp.ad.create(cnp.ad.refreshable, false);
+  ppanel.addParameter({'sz':'300x250'});
+  ppanel.addParameterString('kw=bottom;kw=running-high-performance-neural-networks-on-a-gamer-gpu;kw=07;kw=2011;kw=news;kw=science;');
+  ppanel.load();
+} catch(e) {}
+</script>
+</div>
+  <div id="jobs-ars" class="with-divider">
+    <h2 class="title">
+      <span class="title">Job.Ars</span>:
+      <span class="subtitle">looking for a new job?</span>
+    </h2>
+    <div class="body">
+      <ul>
+      <div id="jobs-ars-content">
+  <ul>
+    
+    <li>
+      <div class="job-title"><a href="http://jobs.arstechnica.com/list/1043/">Web/Drupal Developer</a> at FreshJones Creative</div>
+      <div class="job-location">Greenfield, MA</div>
+    </li>
+    
+    <li>
+      <div class="job-title"><a href="http://jobs.arstechnica.com/list/1042/">Sr. Security Consultant </a> at Cigital, Inc.</div>
+      <div class="job-location">Bay Area (CA), Dulles (VA) or NYC office</div>
+    </li>
+    
+    <li>
+      <div class="job-title"><a href="http://jobs.arstechnica.com/list/1041/">Front End Developer</a> at Go Auto</div>
+      <div class="job-location">Edmonton, AB</div>
+    </li>
+    
+    <li>
+      <div class="job-title"><a href="http://jobs.arstechnica.com/list/1040/">IT Team Lead</a> at iSEC Partners</div>
+      <div class="job-location">San Francisco, CA</div>
+    </li>
+    
+    <li>
+      <div class="job-title"><a href="http://jobs.arstechnica.com/list/1039/">Code for America Fellow</a> at Code for America</div>
+      <div class="job-location">San Francisco, CA</div>
+    </li>
+    
+    <li>
+      <div class="job-title"><a href="http://jobs.arstechnica.com/list/1038/">Technical Project Manager with QA Experience</a> at Jacquette Consulting, Inc.</div>
+      <div class="job-location">Philadelphia Suburbs, PA </div>
+    </li>
+    
+    <li>
+      <div class="job-title"><a href="http://jobs.arstechnica.com/list/1037/">Software Developer with Documentum Experience</a> at Jacquette Consulting, Inc.</div>
+      <div class="job-location">Philadelphia Suburbs, PA </div>
+    </li>
+    
+    <li>
+      <div class="job-title"><a href="http://jobs.arstechnica.com/list/1036/">Product Manager-IEB-Global Marketing</a> at Microsoft</div>
+      <div class="job-location">Redmond, WA</div>
+    </li>
+    
+    <li>
+      <div class="job-title"><a href="http://jobs.arstechnica.com/list/1035/">Front-End Developer/ Back-End Developer/ Systems Engineer</a> at Clipboard Inc. </div>
+      <div class="job-location">Bellevue WA 98004 </div>
+    </li>
+    
+    <li>
+      <div class="job-title"><a href="http://jobs.arstechnica.com/list/1034/">Customer Service Tools  &amp; Technology Architect</a> at BioWare</div>
+      <div class="job-location">Austin, TX</div>
+    </li>
+    
+  </ul>
+  <div id="more-jobs"><a href="http://jobs.arstechnica.com/">More Job Listings</a></div>
+</div>      </ul>
+    </div>
+  </div>
+
+</div>
+<!--googleon: all-->
+      </div>
+      <div id="footer">
+        <div id="slogan">Serving the technologist for <span id="decades">1</span> &#x00d7; 10<sup>-1</sup> centuries</div>
+        <iframe src="../../../../../../static.arstechnica.net/public/v6/footer.html%3F1311610759.html" frameborder="0" scrolling="no" width="1000" height="350"></iframe>
+      </div>
+    </div> 
+    <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31997-1']);
+  _gaq.push(['_trackPageview']);
+  _gaq.push(['_trackPageLoadTime']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+<script type="text/javascript">
+  var page_class = 'individual',
+    site_root = "",
+    site_root_rel = '/',
+        discussion_url = "",
+    entry_author = {
+          "adam stevenson":true,
+      "adam stevenson":true,
+      "ajsteven":true
+        },
+    entry_id = 50988,
+        fp_layout = 'normal',
+    syntaxhighlighter = "http://arstechnica.com/public/full/scripts/syntaxhighlighter.js",
+    new_comments = true,
+    disable_fb = 'false';
+</script>
+   
+
+  <script src="../../../../../../static.arstechnica.net/public/v6/scripts/site.min.js%3F1311610759" type="text/javascript" charset="utf-8"></script>
+
+<noscript>
+<img src="http://b.scorecardresearch.com/b?c1=2&c2=6035094&c3=&c4=&c5=&c6=&c15=&cv=1.3&cj=1" style="position:absolute; bottom: 0px; right:0px;"
+width="1" height="1" alt="" />
+</noscript>
+
+<span style="display: none" id="ArsTechnicaNews" class="hslice">
+  <span style="display: none" class="entry-title">Ars Technica News</span>
+  <a style="display: none" href="http://www.ieaddons.com/en/ie8slice/Content.ashx?id=330" rel="entry-content"></a>
+</span>
+          </body>
+</html>

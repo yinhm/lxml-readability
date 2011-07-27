@@ -1,0 +1,679 @@
+/* $Id: article.css 70063 2011-06-14 23:03:27Z luis.colon $
+/css/0.1/screen/common/article.css
+(c)2006 - 2010 The New York Times Company */ 
+
+/* pull in global edition masthead/pageHeader styles */
+
+@import url(http://graphics8.nytimes.com/css/0.1/screen/globalEdition/common.css);
+@import url(http://graphics8.nytimes.com/css/0.1/screen/thirdparty/logos/bylinelogos.css);
+
+#main { /*TODO move layout.css #main bottom padding to sectionfront.css and remove this rule*/
+  padding: 0 !important;
+}
+
+.articleHeadline {
+  font-weight: normal;
+  margin-bottom: 8px;
+}
+
+.articleSpanImage {
+  margin-bottom: 8px;
+}
+
+.articleBody {
+  margin-top: 1.5em;
+  margin-bottom: 1.7em;
+}
+
+.articleBody p {
+  font-size: 1.5em;
+  line-height: 1.467em; /* 22px */
+  color: #000;
+}
+
+.articleBody .inTextRefer {
+  position: relative;
+  top: -10px;
+}
+
+.image {
+  margin-bottom: 2px;
+}
+
+.image .enlargeThis {
+  display: block;
+  text-align: right;
+  margin-bottom: 2px;
+}
+
+.image .enlargeThis a {
+  font-family: arial, helvetica, sans-serif;
+  font-size: 1.1em;
+  padding-left: 15px;
+  background-image: url(http://graphics8.nytimes.com/images/icons/multimedia/enlarge_icon.gif);
+  background-repeat: no-repeat;
+  background-position: center left;
+  text-decoration: none;
+  display: inline;
+}
+
+.articleBody .currentPage {
+  font-size: 1.3em;
+} 
+
+.articleBody a {
+  text-decoration: underline;
+}
+
+.articleBody p .summary { /* reset to article body p style for data universe */
+  font-size: 1em;
+  line-height: 1.467em; /* 22px */
+  margin-bottom: 0;
+}
+
+/* Begin article span video */
+
+.articleSpanVideoModule {
+  position: relative;
+}
+
+.articleSpanVideoModule .byline {
+  text-align: right;
+}
+
+.articleSpanVideoModule .credit,
+.articleSpanVideoModule .byline {
+  margin-top: 2px !important;
+  margin-bottom: 1px !important;
+}
+
+.articleSpanVideoModule .image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+}
+
+.articleSpanVideoModule .noPhotoCredit {
+  margin-top: 5px;
+}
+
+.articleSpanVideoModule .videoIcon {
+  background-position: 1px 1px !important; 
+  padding: 0 0 0 18px;
+}
+
+.articleSpanVideoModule .articleSpanVideo {
+  position: relative;
+  width: 600px;
+  height: 337px;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.articleSpanVideoModule .playOverlay {
+  position: absolute;
+  background: url(http://graphics8.nytimes.com/images/global/icons/playbutton_closed.png) left bottom no-repeat;
+  width: 55px;
+  height: 50px;
+  z-index: 4;
+  left: 20px;
+  bottom: 20px;
+}
+
+.articleSpanVideoModule .playOverlay:hover {
+  position: absolute;
+  background: url(http://graphics8.nytimes.com/images/global/icons/playbutton_expanded.png) left bottom no-repeat;
+  width: 139px;
+  height: 50px;
+  z-index: 4;
+  left: 20px;
+  bottom: 20px;
+}
+
+/* Begin article inline */
+
+#videoAdContent {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.expandAssetContainer {
+  position: relative;
+  width: auto;
+  height: auto;
+  cursor: pointer;
+  min-height: 126px;
+  z-index: 1;
+  background: transparent;
+}
+
+.expandAssetContainer .video, .videoIcon {
+  background-repeat: no-repeat;
+  background-position: 4px 1px;
+  padding-left: 21px;
+}
+
+.expandAssetContainer .playOverlay {
+  position: relative;
+  background: url(http://graphics8.nytimes.com/images/global/icons/Play_34.png) left bottom no-repeat;
+  display: block;
+  width: 34px;
+  height: 31px;
+  z-index: 10;
+  margin: 5px 0 -37px 10px;
+  top: -45px;
+}
+
+.expandAssetContainer .playOverlay:hover {
+  position: relative;
+  background: url(http://graphics8.nytimes.com/images/global/icons/Button_Play_Highlighted_100.png) left bottom no-repeat;
+  display: block;
+  width: 100px;
+  height: 31px;
+  z-index: 10;
+  margin: 5px 0 -37px 10px;
+  top: -45px;
+}
+   
+.articleInline {
+  margin: 6px 15px 10px 0 !important;
+  width: 190px;
+}
+
+.articleInline + .articleInline {
+  margin-top: 0;
+}
+
+.articleInline.doubleRule {
+  margin-bottom: 8px;
+}
+
+.adClose {
+  text-align: right;
+  margin: 0 4px 0 0;
+}
+  
+.assetCompanionAd .dialogBoxClose {
+  width: 87px;
+  float: right;
+  background: url(http://graphics8.nytimes.com/images/modules/dialogbox/close_dialog_box_icon_dark.gif) right top no-repeat;
+  display: block;
+  height: 13px;
+  padding-right: 18px;
+  cursor: pointer;
+  margin: 10px 10px 12px 0;
+  font-family: arial, helvetica, sans-serif;
+  font-size: 1em;
+  line-height: 1.3em;
+  text-transform: uppercase;
+  color: #a5a5a5 !important;
+}
+
+.adClose a:link {
+  text-decoration: none;
+}
+
+.adClose a:hover {
+  text-decoration: none;
+}
+
+.adContent {
+  margin: 0 auto;
+  padding: 5px;
+}
+
+.assetContainer {
+  background: transparent;
+  z-index: 1;
+  height: 0;
+  width: 190px;
+}
+
+.assetWrapper {
+  margin: 0 auto;
+  text-align: center;
+}
+               
+.articleInlineVideoHolder {
+  margin: 0 auto 10px auto;
+}
+
+.videoHeader {
+  color: #fff;
+  font-size: 15px;
+  margin: 10px 0 10px 10px;
+  text-align: left;
+  float: left;
+}
+
+.assetAdSectionLink {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  text-align: center;
+  margin: 22px auto;
+  position: absolute;
+  bottom: 0;
+  width: 345px;
+}
+
+.assetAdSectionLink .singleRuleDivider {
+  background: none repeat scroll 0 0 #414141;
+  margin: 0 0 22px 5px;
+  width: 336px;
+}
+
+.assetAdSectionLink a {
+  font-family: Helvetica, arial, sans-serif;
+  color: #477688 !important;
+  font-weight: bold;
+}
+
+.articleInline.doubleRule {
+   margin-bottom: 8px;
+}
+
+/*  inline legacy promos - selectors extracted from old article.css */
+
+.articleInline p.nitf { /* nested p relates to feeds */
+  font-size: 1em;
+  line-height: inherit;
+}
+
+.articleInline #inlineReadersOpinion,
+.articleInline #inlineMultimedia,
+.articleInline #sidebarArticles,
+.articleInline #sectionPromo,
+.articleInline .sectionPromo {
+  background: url(http://graphics8.nytimes.com/images/global/borders/doubleRule.gif) repeat-x left top;
+  margin-bottom: 12px;
+  padding-top: 12px;
+  clear: both;
+}
+
+.articleInline #reviewInfo h4 { /*set font families */
+  font-family: arial, helvetica, sans-serif;
+}
+
+.articleInline #reviewInfo h4,
+.articleInline #reviewInfo h5 {
+  margin-bottom: 5px;
+}
+
+/* Begin inline video */
+
+.inlineVideo {
+  width: 318px;
+  margin-top: 32px;
+  margin-right: 15px;
+  padding-top: 4px;
+}
+
+/* Begin pagination */
+
+#pageLinks {
+  margin-bottom: 2.1em;
+  text-align: right;
+  font-size: 11px;
+  font-family: arial, helvetica, sans-serif;
+  font-weight: bold;
+}
+
+#pageLinks a.next,
+#pageLinks a.previous {
+  border: 1px solid #004276;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 2px 4px 2px 5px; 
+  padding-left: 5px !important; /* bug in articletools yahoo markup, span not closing. override for IE */
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+#pageLinks a.next:hover,
+#pageLinks a.previous:hover {
+  border: 1px solid #990000;
+}
+
+#pageNumbers {
+  display: inline;
+  position: relative;
+  margin: 7px 3px 7px 10px;
+}
+
+#pageNumbers li {
+  font-size: 13px;
+  border-right: 1px solid #999;
+  display: inline;
+  background-image: none;
+  padding: 0 8px;
+}
+
+#pageNumbers li:last-child {
+  border: none;
+}
+
+#pageNumbers li a {
+  text-decoration: underline;
+}
+
+/* End pagination */ 
+
+/* Below handles font sizing for the identification,
+   correction and illustration-caption areas, using px to avoid nesting */
+
+.authorIdentification *,
+.articleCorrection *,
+.articleIllustrationCaption * {
+  font-size: 15px !important;
+  line-height: 22px;
+  color: #000;
+}
+
+/* End catch alls */
+
+.articleCorrection strong {
+  font-style: italic;
+}
+
+.authorIdentification,
+.articleCorrection,
+.articleIllustrationCaption {
+  margin-bottom: 2.8em;
+}
+
+.authorIdentification p {
+  font-style: italic;
+}
+
+#articleFooterTools {
+  margin-bottom: 1.5em;
+  text-align: right;
+}
+
+#articleFooterTools .horizontalMenu li {
+  vertical-align: center;
+}
+
+#articleFooterTools .horizontalMenu .timespeople_btn_recommend {
+  background: url(http://graphics8.nytimes.com/images/global/icons/recommend.gif) no-repeat 0 -1px;
+  font-family: arial, helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 1.1em;
+  padding: 0 0 0 20px;
+}
+
+.articleMeta .metaFootnote {
+  width: 350px;
+  font-size: 1.1em;
+  line-height: 1.273em; /* 14px */
+  color: #aaa;
+}
+
+.articleMeta .refer {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+/* Formatted incoming text */
+
+.bold {
+  font-weight: bold;
+}
+
+.italic {
+  font-style: italic;
+}
+
+/* wideAd layout adjustments */
+
+.wideAd .spanAB {
+  background-position: 485px 50%;
+}
+
+.wideAd .spanAB .subColumn-2 .column {
+  width: 242px;
+}
+
+.wideAd .abColumn {
+  width: 485px;
+}
+
+.wideAd .cColumn {
+  width: 484px;
+}
+
+.wideAd .articleSpanImage {
+  width: 468px;
+}
+
+.wideAd .articleSpanVideoModule .articleSpanVideo {
+  position: relative;
+  width: 468px;
+  height: 263px;
+}
+
+/* wideAd ad related adjustments below old rules, no new examples yet */
+
+.wideAd #relatedTopics li span {
+  width: 188px;
+}
+
+.wideAd #relatedTopics li span a {
+   width: 176px;
+}
+
+.wideAd .extrasLeft,
+.wideAd #adxCircBottom,
+.wideAd #adxCircBottom table {
+  width: 318px;
+}
+
+#PushDown {
+  border-bottom: 1px solid #D3D3D3;
+  clear: both;
+  padding: 0 0 5px;
+}
+
+#XXL {
+  margin-bottom: 10px;
+}
+
+#FixedPanel {
+  position: fixed;
+}
+
+.wideAd #wideImage {
+  width: 465px;
+}
+
+.wideAd ul.articleAdTools {
+  width: 463px;
+}
+
+.wideAd .emailAlertModule {
+  width: 325px;
+}
+
+/* Share Ad Tools */
+
+.expiredAd {
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  width: 400px;
+  height: 62px;
+  z-index: 900010;
+  font-family: georgia, 'times new roman', serif;
+  color: #444;
+  padding: 14px;
+  font-size: 91.6%;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.expiredAd p { 
+  margin: 0 0 1em 0;
+}
+
+.expiredAd .close {
+  display: block;
+  width: 53px;
+  height: 25px;
+  background: url(http://graphics8.nytimes.com/images/apps/buttons/close.gif) no-repeat;
+  text-indent: -10000px;
+  overflow: hidden;
+}
+
+ul.articleAdTools {
+  list-style: none;
+  margin: 5px 5px 0 0;
+  padding: 0;
+}
+
+.cColumn ul.articleAdTools {
+  width: 331px;
+}
+
+ul.articleAdTools li {
+  background: none;
+  margin: 0;
+  padding: 0;
+  float: right;
+}
+
+ul.articleAdTools li a { 
+  font-size: 10px;
+  font-family: arial, helvetica, sans-serif;
+  text-transform: uppercase;
+  padding-left: 15px;
+}
+
+ul.articleAdTools li.perma {
+  border-left: 1px solid #e2e2e2;
+  padding-left: 5px;
+  margin-left: 5px;
+}
+
+ul.articleAdTools li.email a { 
+  background: url(http://graphics8.nytimes.com/images/article/tools/emailthis.gif) no-repeat 0 50%;
+}
+
+ul.articleAdTools li.perma a { 
+  background: url(http://graphics8.nytimes.com/images/article/tools/permalink.gif) no-repeat 0 50%; 
+}
+
+/* Bottom of acolumn modules */
+
+.sectionHeaderSm,
+#relatedArticles h3 {
+  font-family: arial, helvetica, sans-serif;
+  font-size: 1.2em;
+  line-height: 1.25em; /* 15px */
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Related Articles */
+
+#relatedArticles {
+  margin-bottom:12px;
+}
+
+#relatedArticles li {
+  color: #000;
+}
+
+/* Related Searches (Legacy Code) */
+
+.relatedSearchesModule {
+  width:400px;
+  float: left;
+}
+
+.relatedSearchesModule li {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  line-height: 1.333em; /* 16px to accommodate for icon */
+}
+
+.relatedSearchesModule .opposingFloatControl .element1 {
+  width: 262px;
+}
+
+.relatedSearchesModule .opposingFloatControl .emailAlert {
+  width: 100px;
+  background-image: url("http://graphics8.nytimes.com/images/apps/mytimes/add_content.gif");
+  padding-left: 20px;
+  font-size: .916em; /* 11px */
+  font-weight: bold;
+}
+
+/* Email Alert Module (New) */
+
+.emailAlertModule {
+  clear: none;  
+}
+
+.emailAlertModule .sectionHeaderSm {
+  margin: 0 0 10px;
+}
+
+.emailAlertModule li {
+  padding: 6px 0 6px 8px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  zoom: 1;
+}
+
+.emailAlertModule li + li {
+  border-top: 0;
+}
+
+.emailAlertModule a.inTextReferEmail {
+ display: inline-block;
+ padding: 3px 0px 2px 26px;
+ zoom: 1;
+}
+
+/* Article Bottom Extra - Outbrain (New) */
+ 
+.articleBottomExtra .column {
+ width: 290px;
+ margin: 15px 20px 10px 0;
+}
+ 
+.articleBottomExtra .lastColumn {
+ float: right;
+}
+
+/* Readjust the column width in case of xxl ad */
+.wideAd .articleBottomExtra .column,
+.wideAd .articleBottomExtra .emailAlertModule  {
+  width: 224px;
+}
+
+/* Google ad - mimic columnGroup  */
+
+#adxSponLink {
+  margin-left: 10px;
+  margin-right: 7px;
+  margin-bottom: 12px;
+  width:468px;
+}
+
+.byline .paid_content {
+  background: url(http://graphics8.nytimes.com/images/article/paid_content_logo.gif) no-repeat;
+  margin: 0 0 5px 5px; 
+  padding: 10px 0 5px 105px;
+}
+
+/* Home Delivery Ad*/
+
+#Bottom1 a {
+  color:#004276;
+  font-family: arial, helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 1em;
+}

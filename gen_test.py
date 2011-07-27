@@ -5,7 +5,6 @@ and construct a new test case.
 """
 from regression_test import (
         TEST_DATA_PATH,
-        ORIGINAL_SUFFIX,
         READABLE_SUFFIX,
         YAML_EXTENSION,
         adjust_url_map,
@@ -16,9 +15,10 @@ import errno
 import os
 import os.path
 import readability
-import readability.urlfetch
+import readability.urlfetch as urlfetch
 import sys
 import urllib2
+import urlparse
 import yaml
 
 OVERWRITE_QUESTION = '%s exists; overwrite and continue (y/n)? '
@@ -29,8 +29,7 @@ def y_or_n(question):
         if len(response) > 0:
             return response[0] in ['y', 'Y']
 
-def write_file(test_name, suffix, data):
-    path = os.path.join(TEST_DATA_PATH, test_name + suffix)
+def write_file(path, data):
     mode = 0644
     try:
         fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, mode)
@@ -46,19 +45,13 @@ def write_file(test_name, suffix, data):
     f.write(data)
     return True
 
-def write_original(test_name, orig):
-    return write_file(test_name, ORIGINAL_SUFFIX, orig)
-
-def write_readable(test_name, orig, options):
+def write_readable(path, orig, options):
     rdbl_doc = readability.Document(orig, **options)
     summary = rdbl_doc.summary()
-    return write_file(test_name, READABLE_SUFFIX, summary.html)
+    return write_file(path, summary.html)
 
 def read_spec(test_name):
-    yaml_path = os.path.join(
-            TEST_DATA_PATH,
-            test_name + YAML_EXTENSION
-            )
+    yaml_path = os.path.join(TEST_DATA_PATH, test_name + YAML_EXTENSION)
     return read_yaml(yaml_path)
 
 def read_orig(test_name, url = None):
@@ -69,28 +62,54 @@ def read_orig(test_name, url = None):
     stored in a local copy).
     """
     if url:
+        # TODO: Fix this.
         orig = urllib2.urlopen(url).read()
-        write_result = write_file(test_name, ORIGINAL_SUFFIX, orig)
+        path = os.path.join(TEST_DATA_PATH, test_name)
+        write_result = write_file(path, orig)
         return orig, write_result
     else:
         orig_path = os.path.join(
                 TEST_DATA_PATH,
-                test_name + ORIGINAL_SUFFIX
+                test_name
                 )
         orig = open(orig_path).read()
         return orig, True
 
+def maybe_mkdir(path):
+    try:
+        os.mkdir(path)
+    except OSError as e:
+        if e.errno != errno.EEXIST:
+            raise e
+
 def create(args):
-    # TODO: Make this work for multi-page articles.
     spec_dict = {'url': args.url, 'test_description': args.test_description}
+
+    # We retrieve the page and all of its prerequisites so that it can be
+    # displayed fully locally.  site_path is the path to the directory that
+    # holds the structure of the site(s) necessary for the prerequisites.
+    site_path = os.path.join(TEST_DATA_PATH, args.test_name)
+    maybe_mkdir(site_path)
+
+    fetcher = readability.urlfetch.LocalCopyUrlFetch(site_path)
+    orig = fetcher.urlread(args.url)
+
+    # We put the readable version of the page next to the original so that all
+    # of the relative links work when we open it in a browser.
+    rel_path = fetcher.urldict[args.url]
+    path = os.path.join(site_path, rel_path)
+    rdbl_path = ''.join([path, READABLE_SUFFIX])
+
+    options = {'url': args.url, 'urlfetch': fetcher}
+    if not write_readable(rdbl_path, orig, options):
+        return False
+
+    spec_dict['url_map'] = fetcher.urldict
     spec = yaml.dump(spec_dict, default_flow_style = False)
-    if not write_file(args.test_name, YAML_EXTENSION, spec):
+    yaml_path = os.path.join(TEST_DATA_PATH, args.test_name + YAML_EXTENSION)
+    if not write_file(yaml_path, spec):
         return False
-    orig = urllib2.urlopen(url).read()
-    if not write_original(args.test_name, orig):
-        return False
-    if not write_readable(args.test_name, orig):
-        return False
+
     return True
 
 def genbench(args):
@@ -99,7 +118,7 @@ def genbench(args):
         url = spec_dict['url']
     else:
         url = None
-    url_map = adjust_url_map(spec_dict.get('url_map', dict()))
+    url_map = adjust_url_map(args.test_name, spec_dict.get('url_map', dict()))
     fetcher = readability.urlfetch.MockUrlFetch(url_map)
     options = {'url': spec_dict['url'], 'urlfetch': fetcher}
     orig, success = read_orig(args.test_name, url)

@@ -1,0 +1,45 @@
+# $Source: /cvs/main/third_party/apache2/configs/dw/dwcomcom/robots.txt,v $
+# $Revision: 1.2 $
+User-agent: *
+Disallow: /Ads/
+Disallow: /redir/
+Disallow: /rubicsclk/
+# Disallow: /i/ is removed per 190723
+Disallow: /av/
+Disallow: /css/
+Disallow: /error/
+Disallow: /clear/
+Disallow: /mac-ad
+Disallow: /adlog/
+# URS
+Disallow: /13
+# normal
+Disallow: /2105
+Disallow: /2130
+# email story; 149414
+Disallow: /2113
+# captcha image and verification pages; 149414
+Disallow: /2114
+Disallow: /2119
+# UO2 (submit)
+Disallow: /3643
+Disallow: /3645
+Disallow: /3646
+Disallow: /3647
+# port registration
+Disallow: /3322
+# upload.com
+Disallow: /390
+Disallow: /3910
+# dlx reports
+Disallow: /333
+# 183605
+Disallow: /4034
+# gdl email this 193828 
+Disallow: /3414
+Disallow: /3415
+# gdl search results
+Disallow: /3120
+# stop Fasterfox prefetching
+User-agent: Fasterfox
+Disallow: /

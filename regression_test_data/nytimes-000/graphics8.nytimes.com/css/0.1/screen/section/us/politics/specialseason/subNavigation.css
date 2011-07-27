@@ -1,0 +1,151 @@
+/*
+$Id: subNavigation.css 43620 2010-08-19 20:32:45Z vishal $
+/css/0.1/screen/section/us/politics/specialseason/subNavigation.css
+(c)2006 - 2010 The New York Times Company */
+
+@import url(../../../../common/subNavigation.css);
+
+.navigation ul li.selected {
+  border-bottom: 1px solid #F4F4F4;
+}
+
+.subNavigation {
+  background: #f3f3f3;
+  padding: 8px 0;
+}
+
+.subNavigation ul li {
+  background: transparent url(../../../../../../../images/section/us/politics/divider55.gif) no-repeat center left;
+  border: none;
+  font-family: georgia,"times new roman",times,serif;
+  font-size: 1em; /*10px*/
+  min-height: 55px;
+  padding: 0 12px 0 14px;
+  text-transform: uppercase;
+}
+
+.subNavigation  ul li a,
+.subNavigation  ul li a:visited {
+  color: #666666;
+  display: block;
+  font-weight: normal;
+}
+
+.subNavigation ul li.firstItem {
+  padding-left: 11px;
+}
+
+.subNavigation ul.primaryList {
+  margin: 0;
+}
+
+.subNavigation .primaryList a { /* Fix for IE6 */
+  _display: inline-block;
+}
+
+/* icons */
+
+.subNavigation .electionCalItem a {
+  background: transparent url(../../../../../../../images/section/us/politics/icons/election_calendar.png) no-repeat left 10px;
+  height: 36px;
+  padding-top: 16px;
+  padding-left: 28px;
+}
+
+.subNavigation .governorsItem a {
+  background: transparent url(../../../../../../../images/section/us/politics/icons/governors.png) no-repeat left 11px;
+  height: 30px;
+  padding-top: 22px;
+  padding-left: 35px;
+}
+
+.subNavigation .houseItem a {
+  background: transparent url(../../../../../../../images/section/us/politics/icons/house.png) no-repeat left 11px;
+  height: 30px;
+  padding-top: 22px;
+  padding-left: 48px;  
+}
+
+.subNavigation .politicsHomeItem a {
+  background: transparent url(../../../../../../../images/section/us/politics/icons/politics_home.png) no-repeat left 1px;
+  height: 35px;
+  padding-top: 16px;
+  padding-left: 54px;
+}
+
+.subNavigation .senateItem a {
+  background: transparent url(../../../../../../../images/section/us/politics/icons/senate.png) no-repeat left 12px;
+  height: 31px;
+  padding-top: 22px;
+  padding-left: 49px;
+}
+
+.subNavigation .videoItem a {
+  background: transparent url(../../../../../../../images/section/us/politics/icons/video.png) no-repeat left 13px;
+  height: 30px;
+  padding-top: 22px;
+  padding-left: 35px;
+}
+
+.subNavigation .theCaucusItem a {
+  background: transparent url(../../../../../../../images/section/us/politics/icons/thecaucus.png) no-repeat left 12px;
+  height: 30px;
+  padding-top: 22px;   
+  padding-left: 43px; 
+}
+
+.subNavigation .primaryList li.lastItem {
+  width: 127px;
+  min-height: 48px;
+  padding: 5px 7px 0;
+  border: 1px solid #CCCCCC;
+  background-color: #EFF4F6;
+}
+
+.subNavigation .fiveThirtyEightItem a {
+  background: transparent url(../../../../../../../images/section/us/politics/icons/fivethirtyeight.png) no-repeat left 10px;
+  height: 36px;
+  padding-top: 16px;
+  padding-left: 52px;
+}
+
+.subNavigation ul li.firstItem,
+.subNavigation ul li.lastItem,
+.subNavigation ul.secondaryList li {
+  background: none;
+}
+
+.subNavigation .primaryList li.fiveThirtyEightItem {
+  background: url("../../../../../../../images/section/us/politics/divider55.gif") no-repeat scroll left center transparent;
+  border: medium none;
+  min-height: 36px;
+  padding: 0 0 0 14px;
+  width: auto;
+}
+
+.subNavigation ul.secondaryList {
+  margin: 0;
+}
+
+.subNavigation ul.secondaryList li {
+  float: none;
+  margin: 0 0 2px;
+  min-height: 0;
+  padding: 0;
+  display: block;
+}
+
+.subNavigation .secondaryList li.lastItem {
+  border: none;
+  padding: 0;
+  min-height: 0;
+}
+
+.subNavigation .secondaryList .moduleHeaderBd {
+  margin: 0;
+  color: #555;
+}
+
+.subNavigation ul.secondaryList li a {
+  display: inline;
+}

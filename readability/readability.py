@@ -453,8 +453,10 @@ def clean_segment_extension(segments, index, segment):
 def clean_segment_ewcms(segments, index, segment):
     """
     EW-CMS specific segment cleaning.  Quoth the original source:
+
         "EW-CMS specific segment replacement. Ugly.
          Example: http://www.ew.com/ew/article/0,,20313460_20369436,00.html"
+
     """
     return segment.replace(',00', '')
 
@@ -768,14 +770,18 @@ def is_suspected_duplicate(doc, page_doc):
         if existing_page_p is not None:
             page_p_content = page_p.xpath('string()')
             existing_page_p_content = existing_page_p.xpath('string()')
-            if page_p.xpath('string()') == existing_page_p.xpath('string()'):
+            if page_p_content == existing_page_p_content:
                 return True
     return False
 
 def append_next_page(parsed_urls, page_index, page_url, doc, options):
     logging.debug('appending next page: %s' % page_url)
     fetcher = options['urlfetch']
-    html = fetcher.urlread(page_url)
+    try:
+        html = fetcher.urlread(page_url)
+    except Exception as e:
+        logging.warning('exception fetching %s' % page_url, exc_info = True)
+        return
     orig_page_doc = parse(html, page_url)
     next_page_url = find_next_page_url(parsed_urls, page_url, orig_page_doc)
     page_article = get_article(orig_page_doc, options)
@@ -793,14 +799,9 @@ def append_next_page(parsed_urls, page_index, page_url, doc, options):
                     )
 
 def parse(input, url):
+    logging.debug('parse url: %s', url)
     raw_doc = build_doc(input)
     doc = html_cleaner.clean_html(raw_doc)
-    logging.debug('parse url: %s', url)
-    if url:
-        logging.debug('making links absolute')
-        doc.make_links_absolute(url, resolve_base_href=True)
-    else:
-        doc.resolve_base_href()
     return doc
 
 class Unparseable(ValueError):

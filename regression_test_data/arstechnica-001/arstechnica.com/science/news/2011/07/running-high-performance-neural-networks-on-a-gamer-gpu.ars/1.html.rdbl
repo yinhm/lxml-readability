@@ -1,0 +1,184 @@
+<div id="article"><div id="page-1" class="article-page"><div id="" class="body">          
+        
+        <p>
+A recent project here at the Laboratoire de Chimie de la Mati&#232;re Condens&#233;e de Paris (LCMCP) wants to make high-performance scientific computing cheaper by finding new ways to squeeze performance from consumer-grade "gamer" hardware. The idea is nothing less than building the equivalent of a $400,000 custom high performance computing setup for only $40,000.</p>
+
+<p>The cluster, known as HPU4Science, is up and running, and the team behind it is tackling difficult scientific problems by developing novel computational methods that make good use of HPUs&#8212;Hybrid Processing Units&#8212;like CPUs and GPUs. The current cluster is a group of six desktop-type computers powered by Intel i7 or Core 2 Quad processors, together with GPUs that range from the GTX 280 to the GTX 590. </p>
+<p>In two previous article, Ars outlined the <a href="http://arstechnica.com/science/news/2011/03/high-performance-computing-on-gamer-pcs-part-1-hardware.ars">hardware</a> and <a href="http://arstechnica.com/science/news/2011/04/high-performance-computing-on-gamer-pcs-part-2-the-software-choices.ars/2">software</a> used in the cluster. For our last look at HPU4Science, we discuss specific applications running on the HPU4Science cluster, execution speed optimization techniques using Python and Cython, and the neural network algorithm used by the system.
+</p>
+<h3>Electron paramagnetic resonance imaging</h3>
+
+<p>
+To understand the algorithms used by HPU4SCience cluster, we first need to understand its primary use. The LCMCP has expertise in electron paramagnetic resonance (EPR), a non-destructive technique that provides information on the organization of electrons in a material.&#160;EPR uses oscillating magnetic fields to probe the electronic structure of a material and obtain details of the local environment of charge carriers (electrons and holes). This provides a view of the intrinsic structure of the material and some types of structural defects. At the LCMCP, EPR imaging is primarily used to examine carbonaceous matter in meteorites and terrestrial rock samples in order to study the origins of life on Earth.</p>
+
+
+<p>Getting an EPR image requires several steps. First, EPR spectra are taken at several different angles and positions through the sample, as researchers look for a specific type of electronic defect. The data obtained in this step is a combination of the density of the electronic defect along each measurement direction and a known background signal (mathematically, it is a merger of the two signals called a&#160;convolution).</p>
+<p>
+Due to the complexities of EPR, this background signal cannot simply be subtracted from the spectrum&#8212;it must be deconvolved by inverting an integral equation (in other words, the math is complex). Normally, scientists use something called Fourier techniques to perform these types of inversions, but those techniques require heavy manual adjustments that make the results highly subjective. The HPU4Science cluster uses machine learning through neural network algorithms to perform a more systematic, less subjective, deconvolution. In other words, the computers help take human judgement of of the equation. (Still with me? Good.) 
+</p>
+<p>
+After deconvolution, the data is a set of one-dimensional density distributions that describe the specific electronic defect in the material. To obtain actual images, the data points are combined to form two- and three-dimensional maps through a process called backprojection that's based on Radon transforms&#8212;the details of which are not important for this article.
+</p>
+<p>
+Bottom line: the HPU4Science cluster is designed to work on data sets and mathematical operations involved at two phases of EPR imaging: deconvolution and backprojection. The cluster uses both neural network algorithms and parallelization to crunch the numbers needed to do this; here's how it works.
+</p>
+
+<h3>Deconvolution and neural network algorithms</h3>
+
+<p>
+As noted above, there's no simple, analytical way to deconvolve the two signals used in EPR imaging. Many different methods offer solutions, but all require manually adjusted parameters that affect the outcome, which leads to highly subjective results.&#160;Scientists are therefore faced with a troubling problem: how do we choose the parameters without simply adjusting parameters to achieve the result we'd like to see?</p>
+<p>
+To solve the deconvolution problem, we need a solution that can take into account the specificities of the samples (meteorites, terrestrial rocks, glass, etc.), the basic physics of EPR and the convolution of the signals, and specific examples with known solutions. Importantly, problems must be solved in a way that does <em>not</em> depend on subjective analysis by the researcher. 
+</p>
+<p>
+To handle all of these various inputs and rules, the HPU4Science team chose a neural network/machine learning model because it can maintain a large set of rules for the current problem and make complex computations after learning (modifying connectivity and corresponding parameters through example data sets). Neural networks are conceptually close to what we find in living organisms and their structure is modelled after biological systems.</p>
+
+<h3>Artificial neural networks</h3>
+
+<p>
+Artificial neural networks (ANNs) are based on our understanding of biological brains. In real organisms, neurons are cells that act as the basic processing unit of the brain. They form a highly interconnected mesh and communicate through junctions called synapses. A single neuron receives signals (input) from many other neurons, and it subsequently decides to generate an electrical impulse (output) based on the incoming signals. The incoming signals can either increase or decrease the likelihood that the neuron fires, and each input is individually weighted, ie. not all input is created equal.&#160;</p>
+
+<p>In the most basic sense, learning occurs when the individual neurons respond to external stimuli by changing the relative weights assigned to their inputs. Thus, the decision-making power of the brain is largely encompassed by the connectivity between various neurons and the ability to adjust neuronal response to stimuli.
+</p>
+<p>
+Computationally, we can mimic this sort of process with linear algebra. Information comes into the system as a vector (a single column of numbers), and each element of this vector is a "neuron." The connections between the neurons (synapses) are represented by a matrix, called the transformation matrix, that modifies the elements of the original vector. The weight of the various connections are the individual elements of the matrix.&#160;When a neural network processes data, it simply takes a large matrix and multiplies it with the input vector. The key to the entire problem is figuring out what the elements of the transformation matrix should be.</p>
+<p>
+There are three types of synapses in a neural network system. Input synapses take the raw data and modify it so it can be computed by the system. They are biologically analogous to the cells in your retinas or ear drums, which translate physical stimuli into electrical impulses.</p>
+
+<p>Hidden synapses take the input and process it. They are analogous to the brain (specifically the cortex) in biological systems.</p>
+
+<p>Finally, output synapses take the processed data from the hidden synapses and modify it so it's useful to the end user&#8212;they are essentially a delivery system to the outside world. In biology, these are like the synapses connected to muscle tissue that create a physical response.
+ </p>
+ 
+ <p>
+To train an artificial neural network, data (called the training set) is input and the output is then compared to the known, correct answer (called the target value). The difference between the output and the target value is used to modify the transformation matrices to achieve an answer closer to the training set. That is repeated with the training set until an optimal response is obtained both there and with an additional set of known data called the test set. </p>
+
+<p>Once the algorithm provides an adequate answer to appropriate test sets, it's ready for use with real data. For the HPU4Science cluster, training and test sets are built from both simulated data and specially made samples with known defect distributions.
+</p>
+
+<p>
+Traditional ANNs use long training sessions with an algorithm that updates the matrices (synapses) iteratively. This process, however, is extraordinarily time consuming, computationally expensive, and difficult to parallellize. Also, the more complex the problem, the greater the number of synapses required to solve it&#8212;the number of operations (and therefore time) required to train the system can quickly become unmanageable.
+</p><p>
+To train their system, the HPU4Science team has designed a novel approach that combines Reservoir Computing, Swarm Computing, and Genetic Algorithms (if none of those words make any sense to you, don&#8217;t worry; we&#8217;ll get to them shortly). 
+</p>
+        
+                    <p class="bottom-image-credit">
+                                      Photo illustration by Aurich Lawson                    </p>
+                  
+        
+        
+                
+        </div>
+        
+        
+        
+                            </div><div id="page-2" class="article-page"><div id="" class="body">          
+        
+        
+<h3>Reservoir computing</h3>
+
+<p>
+In reservoir computing, the hidden synapses (called the "reservoir," and biologically analogous to the brain) in the neural network are randomly assigned by the computer. Strict rules govern the overall connectivity of the network so that it simulates the human brain and provides rational output, but the weight and connectivity of each individual synapse is randomly assigned. 
+</p><p>
+The data flow for this system is identical to the one described above: input data is conditioned for the reservoir by a set of hand-coded input synapses, the data is processed by the randomly assigned synapses in the reservoir, and the result is output through the ouput synapses, which condition the data for the user.</p>
+
+<p>The difference is in the training. The reservoir method trains faster than traditional neural networks because training only the last set of synapses&#8212;the output layer&#8212;is modified during training. This dramatically reduces the computational cost and time involved, and it's also much easier to parallelize. The image below shows a reservoir and the input (convolved spectrum) and output (deconvolved spectrum) signals.&#160;</p>
+
+<div class="news-item-figure CenteredImage"><div class="news-item-figure-image"><img src="../../../../../../static.arstechnica.com/06-17-2011/figure1.jpg"/></div></div>
+
+
+
+<p>
+Obviously, the results of a computation using the reservoir method depend on the structure of the reservoir and the random values assigned to its synapses. As you probably suspect, these values do not always generate the best possible solutions to the problem. Because we train only the output layer of synapses, we only find the best possible answer that can be achieved with the reservoir that we generated. 
+</p>
+<p>But it's possible to tweak the system for even better performance. As researcher Yann Le Du explains: "We are faced with a global minimization problem: training a reservoir-based neural network only finds a local minimum in the error function (the difference between the known solution and the solution generated by the algorithm), i.e. the configuration that minimizes the error for that particular reservoir. However, we really want to find a global minimum of the error function which is the best possible solution overall. Therefore, we added a genetic algorithm to the training process that modifies the synapses of the reservoir."</p>
+
+<h3>Genetic and swarm algorithms&#160;</h3>
+
+<p>So, we want to have a better reservoir of neural networks. Neural networks are inspired by biological processes, so it seems natural to stay within the artificial life paradigm in order to optimize such networks. We use a model of genetic processes to help us quickly explore the many possible reservoirs and identify optimized versions.
+</p><p>
+The genetic algorithm used by the HPU4Science cluster is a particle swarm approach coupled to a differential evolution algorithm. The "swarm" is a large collection of reservoirs, each with a different set of initial weights. Each reservoir is individually trained in the usual way, by training the output synapses to minimize the error. </p>
+
+<p>The image below illustrates the process: reservoir configurations are randomly generated, "parachuted" into the space of possible solutions. From where they land, each finds the local error minimum by training the output synapses. The error minimum is found using what's called a gradient descent algorithm: the system computes the local derivative of the error function and updates the output synapse matrix in order to follow the error function along the path of maximal descent. This brings each element in the swarm to its local minimum.</p>
+
+
+<div class="news-item-figure CenteredImage"><div class="news-item-figure-image"><img src="../../../../../../static.arstechnica.com/06-17-2011/figure2.jpg"/></div></div>
+
+<p>
+The output synapse training process was set up to run in multiple threads by combining multiple training sets into a single group and computing the error for all of the training sets in a single set. Larger training sets require more parallel processes to compute so, the larger the training set, the greater the gain from using GPUs. This is due to the fact that the GPU has many cores that are ideally suited to processing many simple actions in parallel.&#160;</p><p>However, GPUs are limited by the fact that the entire matrix must fit onto the GPU memory so that it does not have to access data from RAM or the hard drive while performing the calculation.&#160;The obligation to fit all the computational data in the GPU's memory is extremely difficult to satisfy. Current generation GTX 580 and GTX 590 GPU cards have 1.5GB and 3GB of RAM, respectively. That may seem huge, but the computations necessary for EPR imaging quickly use up all of the RAM.&#160;</p><p>With EPR, the number of elements in the reservoir matrix is the number of examples in the training set times the number of data points in the EPR spectrum&#8212;squared! A one thousand example data set (not a lot),  together with a few thousand data points to be reconstructed, gives you a matrix with 10<sup>12</sup> entries. But there are ways to reduce this memory footprint. The transformation matrix in the reservoir is very sparse (it has a lot of zeroes) and we can compute different data points separately, so the HPU4Science team was able to reduce the memory footprint to 24MB, making it perfectly manageable on the GPU.</p><p>
+
+Once each reservoir has found its local minimum (ie. the output synapse matrix is trained), we used those to create a single optimized reservoir through a genetic algorithm. Basically, the individual values of a reservoir matrix (its &#8220;genes&#8221;) are mixed with a different reservoir&#8217;s matrix, producing a new reservoir that is then trained. If the new reservoir produces less error on the test set than any of the original reservoirs, it is kept. 
+</p><p>
+The figure below summarizes the overall process. Data (symbolized by the bird) is fed to a neural reservoir (symbolized by the brain) that is characterized by its matrix values (symbolized by the colored grid). The reservoir is trained to find the local error minimum by optimizing the output synapse matrix, and is then mixed randomly with three other reservoirs. Data is fed into the new reservoir, which is in turn optimized and the process continues until the swarm converges onto the best solution. Hopefully, that solution is the oracle: the reservoir configuration that solves the problem.
+</p>
+
+
+<div class="news-item-figure CenteredImage"><div class="news-item-figure-image"><img src="../../../../../../static.arstechnica.com/06-17-2011/figure4.jpg"/></div></div>
+
+<p>
+The figure below tries to depict the search for the oracle, but this time is seen as the search for the maximum (a straightforward inversion of the goal; just change the sign).</p>
+
+<div class="news-item-figure CenteredImage"><div class="news-item-figure-image"><img src="../../../../../../static.arstechnica.com/06-17-2011/figure3.jpg"/></div></div>
+
+<h3>Parallelization: relying on the GPU</h3>
+
+<p>
+As noted previously, the HPU4Science cluster is a set of independent worker machines connected to a central master machine. During the optimization process, it's important that each worker is computationally independent. The idea is not to pool the power of all workers to solve a single problem because this would require a command and control process that, if down, stops the entire system. Instead, all workers should be able to process the whole problem and arrive at a proposed solution with or without the master available.</p>
+
+<p> 
+Of course, the results need to be stored, and the master makes it easier to store the results and compare them, even if each worker is computationally independent. In reality, then, each HPU is autonomous: we consider our fundamental computational unit to be a CPU and a GPU, or more exactly, a few CPU threads and a GPU.&#160;</p><p>The idea is that, on a machine with an i7 and eight threads, we can have up to eight computational units, with each computational unit made up of one thread and one GPU. This is why we aim at using the recently released GTX-590, which we have just installed in worker 5 (it&#8217;s using the latest Linux driver 270.40 released with the latest CUDA 4.0 RC2).</p>
+
+<p>
+Each computational unit can run the whole problem: the swarm, the differential evolution, and the reservoir computing. Therefore, we are able to minimize the interaction between the master and the worker&#8212;the master simply provides the training and test sets and specifies the reservoir connectivity. That means the master only gives a worker a problem to solve and the structural genetic constraints (number of genes and reservoir output cabling).</p>
+
+<p>
+Since the parameter space in which we try to find an error minimum is so unimaginably large that we need to have a swarm of swarms, a super-swarm. In this configuration, the master collects the results from the swarms on each worker and manages its own swarm made up of all the best solutions found by the workers. This makes the problem embarrassingly parallel: each swarm is distributed on as many HPUs as available to reduce the actual processing time.</p>
+
+<p>
+Still, parallelization isn't simple. There are two parts here: developing new reservoirs using differential evolution and the training of an individual reservoir. In both cases, we make use of the basic property of GPU computing: all threads running each on a CUDA core compute the same thing, i.e. compute the same function on a part of data that is indexed by its address.</p>
+
+
+<p>Let's illustrate this with the sum of two vectors. The corresponding kernel, embedded in Python thanks to PyCUDA, looks like this :</p>
+
+<code>
+for i in range(numberOfElements):
+	w[i] = u[i] + v[i]
+
+__global__ void sumVectors(float *u, float *v, float *w)
+{
+   int i = threadIdx.x;
+   w[i] = u[i] + v[i];
+}
+</code>
+
+<p>
+The parallelization we use simply involves separating out the piece of each matrix operation and processing each of them simultaneously on the simple gpu cores. This is done by using our own kernel for the swarm evolution and the neural reservoir training. This simple parallelization is also the basis of the specialized matrix computation library CUBLAS (the BLAS library ported to CUDA) which adds subtle optimization procedures for the NVidia GPUs. Using the CUBLAS functions combined with the simple linear algebra parallelization procedure produces performance up to 1TFLOPS.</p>
+ 
+<p>
+When the entire machine learning/genetic algorithm process is finished, the result is a highly optimized reservoir that accurately reconstructs the spatial distribution of a specific type of electronic defect in samples of similar composition. For each new type of sample (glasses, rocks of vastly different composition, etc.), a new training set and test set must be developed and a new optimized reservoir must be obtained. However, once a reservoir is established, it can be&#160;used&#160;repeatedly on similar samples.</p>
+
+
+<h3>Computing without understanding</h3>
+
+<p>
+Using machine learning, we break from the scientific dogma of understanding how an algorithm succesfully computes a solution. Humans have mostly used computers as a vehicle to carry their own understanding in new territories, but computers can also be taught to solve problems without the constraint of finding a solution that, in the aftermath, humans can fully appreciate.</p>
+
+<p>Instead of feeding the computer with pre-established rules that apply specifically to the problem at hand, we build an algorithm that configures its own rules by processing known examples (the training set). This  paradigm is closer to how humans actually function: we have a pre-established cognitive structure that works and learns by experimenting with the external world. We may not understand every aspect of how it works, but at the end of the day, it works.</p>
+
+<p>This is the whole idea behind reservoir computing: a pre-established structure, the random network, and examples that modify a few parameters. The pre-existing cognitive structure, the random network, is evolved through a genetic algorithm coupled to a particle swarm algorithm. Using test sets, we can check whether the machine has actually learned its lessons, and thus determine that it should be capable of accurately computing something.</p>
+
+
+<p>It's possible to watch it learn and succeed without necessarily understanding precisely how it tackles the problem. That&#8217;s exactly what the Watson team at IBM was after, and their success is a strong motivation for the HPU4Science team. While the algorithms described here were designed to tackle the problems associated with EPR imaging, they are equally well suited to tackling many other complex issues. In the short term, the HPU4Science team will optimize the system performance for EPR, but they plan to extend the learning algorithms and compute time on the cluster to other scientific problems.</p>
+
+<p><em>Graphic Arts by Diane Robert-Magnenan. The authors work on the HPU4Science project, which relies on several different sources of support: we thank the CNRS, the CNES and especially the ANR ENUSIM-ORIGIN 2009-2012 grant. Many thanks also to Chimie-ParisTech for hosting the cluster, and to the LCMCP lab for letting us... hunt for the oracle! Special thanks to Didier Gourier and Laurent Binet. HPU4Science will be at the Europython 2011 and <a href="http://www.euroscipy.org/conference/euroscipy2011">Euroscipy 2011</a> conferences.</em></p>        
+                    <p class="bottom-image-credit">
+                                      Photo illustration by Aurich Lawson                    </p>
+                  
+        
+        
+                
+        </div>
+        
+        
+        
+                            </div></div>

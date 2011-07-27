@@ -1,0 +1,943 @@
+/*
+$Id: layout.css 68507 2011-05-26 18:03:25Z christopher.sanders $
+/css/blogs/3.1/screen/themes/universal/layout.css
+(c)2006 - 2011 The New York Times Company
+*/
+
+.blog {
+  background: #fff;
+  border: 1px #ccc solid;
+  margin: 20px 13px 20px 15px;
+}
+
+/* columns */
+.odd,
+.even,
+#aCol,
+#cCol,
+.subColA,
+.subColB {
+  float: left;
+  display: inline;
+}
+
+#aCol {
+  border-right: 1px #ccc solid;
+  position: relative;
+  width: 562px;
+}
+
+#cCol {
+  border-left: 1px #ccc solid;
+  margin: 0 0 0 -1px;
+  padding: 0 0 30px 5px;
+  width: 367px;
+}
+
+/* two column promos */
+.module .col2 {
+  background: url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/subcolumn.gif) 50% 0 repeat-y;
+}
+
+.col2 .subColA, 
+.col2 .subColB {
+  width: 175px;
+}
+
+.col2 .subColA .entry, 
+.col2 .subColB .entry {
+  padding: 5px 5px 8px 5px; 
+}
+
+.col2 .subColB {
+  margin-left: 15px;
+}
+
+.col2 img {
+  display: block;
+}
+
+.entry a.more {
+  font-size: 1.2em;
+}
+
+/* promos w/o background */
+.noBackground .subColA,
+.noBackground .subColB {
+  width: 170px;
+}
+
+.noBackground .subColA {
+  margin-left: 5px;
+}
+
+.noBackground .subColB {
+  margin-left: 16px;
+}
+
+.noBackground .subColA .entry,
+.noBackground .subColB .entry {
+  padding: 7px 0 5px 0;
+}
+
+/* modules */
+.module {
+  clear: both;
+  padding-top: 5px;
+  background: url(http://graphics8.nytimes.com/images/global/borders/aColumnHorizontalBorder.gif) repeat-x;
+}
+
+/* blog header */
+#header {
+  margin: -20px 0 4px 0;
+  text-align: center;
+}
+
+.blogHome #header {
+  margin-bottom: 26px;
+}
+
+#header.basic {
+  margin: 0; 
+}
+
+#header.old-dog {
+  margin: 4px 0 0 3px; /* legacy graphics */
+}
+
+/* blogs w/o header graphic */
+.headless {
+  height: 37px;
+}
+
+.headless h1 {
+  margin-top: 0 !important;
+  font-size: 2em;
+  left: -4000px;
+  position: relative;
+}
+
+.headless h2 { height: 1px; }
+
+/* entry */
+.hfeed {
+  margin-top: -7px;
+  padding: 0 30px;
+}
+
+.blogHome .hfeed {
+  margin-top: -1.5em;
+}
+
+.entry-content {
+  margin-top: 15px;
+}
+
+/* category header */
+.category-header {
+  margin: 15px 40px;
+}
+
+.category-header .entry {
+  margin: 0;
+  padding: 0;
+  border: none;
+  width: auto;
+}
+
+.category-header .entry li {
+  font-size: 1.1em;
+} 
+
+.category-header h4 {
+  margin-top: .3em;
+  font-weight: normal;
+  font-size: 1.6em;
+}
+
+.category-description {
+  margin-bottom: 2em;
+}
+.category-description p {
+  font-size: 1.3em;
+  line-height: 1.4em;
+}
+
+/* results label: global */
+.resultsLabel {
+  border-top: 1px solid #e2e2e2;
+  margin: 0 0 6px 0;
+  padding: 5px 10px 0 10px;
+  position: relative;
+  z-index: 50;
+}
+
+.blogCategories .latestEntry {
+	border: none;
+}
+
+.blogCategories .inlineModule {
+	display: none;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  .resultsLabel { margin-top: 4px; } /* webkit */
+}
+
+.resultsLabel p.meta {
+  font-family: georgia, "times new roman", times, serif;
+}
+
+.resultsLabel p.more {
+  font-size: 1.1em; /* 11px */
+}
+
+.resultsLabel p {
+  margin-bottom: 0;
+}
+
+.resultsLabel .element1,
+.resultsLabel .element2 {
+  width: 220px;
+}
+
+.resultsLabel .element2 {
+  text-align: right;
+}
+
+.resultsLabel .element2 p {
+  margin-top: 20px;
+}
+
+.resultsLabel h2 {
+  margin-top: 2px;
+  color: #333;
+  font-weight: normal;
+  font-size: 1.7em; /* 17px */
+}
+
+/* results label: tags */
+.blogTags .resultsLabel h2,
+.blogTags .resultsLabel .element1 p {
+  font-size: 1.3em; /* 13px */
+}
+
+/* results label: categories */
+.blogCategories .resultsLabel {
+  left: -36px;
+  width: 544px;
+  padding: 14px 10px 14px 15px;
+  border: none;
+  margin: 18px 0 0;
+  background: #64676d;
+}
+
+.blogCategories .resultsLabel .thumb {
+    float: right;
+    width: 50px;
+    height: 50px;
+}
+
+.blogCategories .resultsLabel h2 {
+  margin-top: 0;
+  font-size: 1.1em; /* 11px */
+  line-height: 1.6363em; /* 18px */
+  letter-spacing: .04em; /* .48px */
+  font-weight: bold;
+  color: #fff;
+}
+
+.blogCategories .resultsLabel p {
+  margin-top: 1px;
+  font-size: 1.2em; /* 12px */
+  line-height: 1.5em; /* 18px */
+  color: #fff;
+}
+
+/* results label: search */
+.blogSearch .resultsLabel {
+  padding: 6px 10px 1px 10px;
+}
+
+.blogSearch .resultsLabel,
+.blogSearch .resultsLabel p.meta {
+  font-family: arial,helvetica,sans-serif;
+}
+
+.blogSearch .resultsLabel p.meta {
+  font-weight: bold;
+}
+
+.blogSearch .resultsLabel h2 {
+  font-size: 1.4em; /* 14px */
+}
+
+.blogSearch .resultsLabel .element2 p {
+  margin-top: 18px;
+}
+
+.blogSearch #aCol .topNav {
+  margin-top: 0;
+}
+
+/* blogs w/o header graphic */
+#news .hfeed,
+#topics .hfeed,
+#sports .hfeed,
+#questions .hfeed,
+#nyregion .hfeed,
+#affordableeurope .hfeed {
+  margin-top: 22px;
+}
+
+#news .resultsLabel,
+#topics .resultsLabel,
+#sports .resultsLabel,
+#questions .resultsLabel,
+#nyregion .resultsLabel,
+#cityroom .resultsLabel,
+#affordableeurope .resultsLabel {
+  border-top: none;
+}
+
+/* results description */
+.resultsLabel .resultsDescription p {
+  font-size: 1.2em; /* 12px */
+  line-height: 1.4166em; /* 17px */
+}
+
+/* blog post navigation */
+.nav {
+  font-size: 1.1em; /* 11px */
+}
+
+.nav ul {
+  background: url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/blognav.gif) repeat-y 50% 0;
+  margin: 0;
+}
+
+.nav ul li {
+  background: none;
+  font-size: 1em; /* 11px */
+  line-height: 1.3em; /* 14px */
+  margin: 0;
+  padding: 0;
+  width: 49%;
+}
+
+.nav .element2 {
+  text-align: right;
+}
+
+.nav li .next,
+.nav li .previous,
+.nav li .byline,
+.nav li .timestamp {
+  color: #999;
+  margin-bottom: 2px;
+  padding: 0 25px;
+  display: block;
+  font-weight: normal;
+  font-family: arial,helvetica,sans-serif;
+}
+
+.nav li a {
+  display: block;
+  font-family: georgia, "times new roman", times, serif;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.nav .element1 a,
+.nav .clearfix li.alignleft a {
+  padding: 0 14px 0 25px; 
+  background: url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/arrow-left.gif) no-repeat left 0;
+}
+
+.nav .element2 a,
+.nav .clearfix li.alignright a {
+  padding: 0 25px 0 14px; 
+  background: url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/arrow-right.gif) no-repeat right 0;
+}
+
+#aCol .nav {
+  border-top: 1px #ccc solid;
+  margin: 30px 0 0 0;
+  padding: 14px 0 15px 0;
+}
+
+#aCol .bottomNav {
+  margin: 0 0 15px 0;
+  padding: 19px 0 15px 0;
+  border-top: none;
+  border-bottom: 1px #ccc solid;
+  background: transparent url(http://graphics8.nytimes.com/images/global/borders/aColumnHorizontalBorder.gif) repeat-x top left;
+}
+
+.blogPost #aCol .nav {
+  margin-top: 0;
+}
+
+#cCol .nav {
+  padding-top: 8px;
+  background: none;
+  border: none;
+}
+
+/* standard widths: images, tables, and videos */
+.w35 { width: 35px; }
+.w50 { width: 50px; }
+
+.w75,
+.thumbnail {
+  margin-top: 5px;
+  margin-right: 8px;
+  float: left;
+  width: 75px;
+}
+
+#cCol img.w75 { 
+  margin-top: 4px; 
+  margin-bottom:5px; 
+}
+
+#cCol img.w100 { 
+  margin-top: 4px; 
+  margin-bottom: 10px; 
+} 
+
+.w121 { width: 121px; }
+
+.w151,
+.standard151{
+  margin-top: 5px;
+  width: 151px;
+}
+
+.w165 { width: 165px; }
+#cCol img.w165 { margin: 4px 0 5px 0; } 
+
+.w190,
+.standard190,
+.right190,
+.left190 {
+  width: 190px;
+  margin-top: 5px;
+}
+
+.w350 {
+  margin-left: 65px;
+  width: 350px; 
+}
+
+.w367 { width: 367px; }
+
+.w400 { 
+  margin-left: 40px;
+  width: 400px;
+}
+
+.w480 { width: 480px; }
+.w500 {
+  margin-left: -10px;
+  width: 500px;
+}
+
+.w531 {
+  margin-left: -23px;
+  width: 531px;
+}
+
+.w533, 
+.full-width {
+  margin-left:-25px;
+  width: 533px;
+}
+
+/* all images*/
+.w35,
+.w50,
+.w75,
+.w121,
+.w151,
+.w165,
+.w190,
+.w350,
+.w367,
+.w400,
+.w480,
+.w500,
+.w533,
+.standard190,
+.standard151,
+.right190,
+.left190,
+.full-width {
+  overflow: hidden;
+}
+
+/* a col images*/
+.w151,
+.w190,
+.w350,
+.w400,
+.w480,
+.w500,
+.w533,
+.standard190,
+.standard151,
+.right190,
+.left190, 
+.full-width {
+  margin-bottom: 1em;
+}
+
+.caption {
+  display: block;
+  margin: 3px 2px;
+}
+
+.caption img {
+  margin:0;
+}
+
+.credit {
+  display: block;
+  margin: 2px 0 2px 0;
+  font-size: 1em;
+}
+
+/* left & right images */
+.right, 
+.rightphoto,
+.right190 {
+  float: right;
+  clear: right;
+  margin-left: 12px;
+  margin-right: 0;
+}
+
+.left, 
+.leftphoto,
+.left190 {
+  float: left;
+  clear: left;
+  margin-right: 12px;
+  margin-left: 0;
+}
+
+/* legacy */
+img.callout {
+  float: right;
+  margin: 0 0 12px 24px;
+}
+
+/* video */
+.video embed,
+.video object,
+.videobox embed,
+.videobox object,
+.embedVideo object,
+.embedVideo embed {
+  margin: 0 auto;
+  display: block;
+}
+
+.videobox {
+  margin: 21px 0;
+  width: 480px;
+}
+
+.nytvideo {
+  width: 336px;
+}
+
+.inlineVideo h3 {
+  font-size: 1.4em;
+}
+
+.video,
+.embedVideo {
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+/* inline audio player */
+#aCol .inlinePlayer {
+  width: 190px;
+  margin-right: 12px;
+  float: left;
+  border-top: 1px solid #e2e2e2 !important;
+}
+
+.inlinePlayer {
+  font-size: 1.2em;
+}
+
+.inlinePlayer img {
+  margin: 4px 7px 5px 5px;
+  float: left;
+}
+
+/* standard tables */
+table.data, 
+.entry-content table {
+  margin-top: 6px; 
+  margin-bottom: 12px;
+  border-collapse: collapse;
+  border-top: 2px solid #555;
+}
+
+.entry-content table {
+  border-bottom: 1px solid #d5d7d6;
+}
+
+.entry-content div.blog-table table {
+  width: 480px !important;
+}
+
+#cCol table.data {
+  margin: 3px 0 0 0;
+}
+
+table.data th, 
+table.data td, 
+.entry-content table th,
+.entry-content table td {
+  padding: 5px 3px;
+  border-top: 1px solid #d5d7d6;
+  font-size: 1.1em;
+  font-family: arial,helvetica,sans-serif;
+  vertical-align: top;
+  text-align: left;
+}
+
+/* custom data tables */
+table.data th.header,
+.blog-table th.header {
+  background: #ccc;
+}
+
+table.data h4 {
+  margin-top: -4px;
+  padding: 0;
+}
+
+table.data th.noborder,
+table.data td.noborder {
+  border-top: none;
+}
+
+table.data th.total,
+table.data td.total {
+  vertical-align: top;
+  border-top: 1px solid #999;
+  font-weight: bold;
+}
+
+table.data .integer,
+.blog-table .integer {
+  text-align: right;
+}
+
+table.data .highlight,
+.blog-table .highlight {
+  background: #fcfc95;
+}
+
+table.data table tr td p {
+  margin: 0;
+  padding: 6px 0 12px 0;
+  vertical-align: top;
+  font-size: 91.6%;
+  font-family: arial,helvetica,sans-serif;
+}
+
+/* legacy tables */
+.blog-table.left-190 table {
+  margin-right: 12px;
+  width: 190px;
+  float: left;
+}
+
+.blog-table.right-190 table {
+  margin-left: 12px;
+  width: 190px;
+  float: right;
+}
+
+/* twitter module */
+.blog .twitterModule {
+  margin-left: 5px;
+  margin-right: 5px;
+  padding-top: 5px;
+}
+
+#aCol .twitterModule {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+#aCol .twitterModule .scrollBox,
+#aCol .twitterModule .scrollBox2 {
+  height: 340px;
+}
+
+#aCol .tweet a {
+  text-decoration: none;
+}
+
+#aCol .tweet a:hover {
+  text-decoration: underline;
+}
+
+#aCol .twitterModule .bugHeader h5 {
+  margin-right: 5px;
+}
+
+#aCol .twitterModule .branding {
+  margin: 0 5px;
+}
+
+#aCol .twitterModule .noavatar .tweet {
+  width: 116%;
+}
+
+/* forms */
+.blog input { padding: 4px 3px; }
+.blog input, 
+.blog select, 
+.blog textarea {
+  border-top: 1px #ccc solid;
+  border-left: 1px #ccc solid;
+  border-right: 1px #efefef solid;
+  border-bottom: 1px #efefef solid;
+}
+
+/* masthead search */
+.inlineSearchControl .text {
+  margin-right: 5px;
+}
+
+/* search form */
+#cCol #blog-search {
+  background: #f4f4f4 url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/search_box_shadow.png) no-repeat top left;
+  border-bottom: 1px solid #ccc;
+  margin: -1px -6px 1px -5px;
+  padding: 15px 0;
+}
+
+#blog-search h4,
+#blog-search #s,
+#blog-search form,
+#blog-search div {
+  display: inline;
+}
+
+#side_searchAd {
+  float: right !important;
+  margin: 12px 1px 0 0 !important;
+}
+
+#blog-search h4 {
+  margin: 5px 0 5px 13px;
+  padding-top: 4px;
+  vertical-align: middle;
+  font-size: 1.2em;
+}
+
+#blog-search form {
+  width: 240px;
+}
+
+#blog-search input {
+  vertical-align: middle;
+}
+
+#blog-search #s {
+  margin: 4px 0 0 12px;
+  width: 175px;
+}
+
+#blogSearchSubmit {
+  background: transparent url(http://graphics8.nytimes.com/images/global/global_search/search_button40x19.gif) no-repeat top left;
+  border: none;
+  cursor: pointer;
+  height: 19px;
+  margin: 2px 0 0 5px;
+  padding: 0;
+  text-indent: -9999px;
+  vertical-align: middle;
+  width: 40px;
+}
+
+/* BEGIN utility/misc. */
+.show {
+  display: block;
+}
+
+.centeredText {
+  text-align: center;
+}
+
+.centeredElement {
+  margin: 0 auto;
+}
+
+/* rules and dividers */
+hr {
+  display: none;
+}
+
+.entry hr,
+.module hr,
+.module .entry hr {
+  margin-top: 3em;
+  margin-bottom: 3em;
+  display: block;
+  text-align: center;
+  width: 60%;
+  border: none;
+  border-top: 1px #ccc solid;
+  height: 1px;
+}
+
+.module hr,
+.module .entry hr {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+hr,
+.singleRuleDivider,
+.doubleRuleDivider {
+  clear: both;
+}
+
+.singleRuleDivider {
+  margin: 12px 0 8px 0;
+  height: 1px;
+  padding: 0;
+  background: #ccc;
+  border: none;
+  line-height: 0;   
+  overflow: hidden;
+}
+
+.doubleRule,
+.doubleRuleDivider {
+  border-width: 0 !important;
+  background: transparent url(http://graphics8.nytimes.com/images/global/borders/doubleRule.gif) repeat-x left top;  
+}
+
+.doubleRule {
+  margin: 0;
+  height: auto;
+}
+
+.module .doubleRule {
+  padding-top: 5px;
+}
+
+.doubleRuleDivider {
+  margin: 12px 0;
+  height: 4px;
+  line-height: 0;   
+  overflow: hidden;
+}
+
+/* self-clear floats */
+.col2:after,
+.entry:after,
+ul.tabs:after,
+.entry-tools:after {
+  content: ".";
+  display: block; 
+  height: 0; 
+  clear: both; 
+  visibility: hidden;
+}
+
+/* items that need to be split left/right */
+.odd, 
+.even {
+  width: 47%;
+}
+
+.entry-content .even {
+  margin-left: 10px;
+}
+
+.module .even {
+  margin-left: 6px;
+}
+
+/* inlineModule */
+.inlineModule {
+  width: 190px;
+  padding: 10px 0 0;
+  border-top: 2px #ccc solid;
+  margin: 5px 0  10px 12px;
+}
+
+.inlineModule,
+.inlineModule .thumb {
+  clear: right;
+  float: right;
+  margin-left: 12px;
+}
+
+.inlineModule .entry {
+  padding: 0;
+  border: none;
+}
+
+.inlineModule .thumb {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+}
+
+.inlineModule h6 {
+  font-family: georgia, "times new roman", times, serif;
+  font-weight: bold;
+  font-size: 1.1em; /* 11px */
+}
+
+.inlineModule h6 a {
+  letter-spacing: .04em; /* .0433px */
+  color:#004276;
+}
+
+.inlineModule p {
+  margin: 0;
+  font-size: 1.2em; /* 12px */
+  line-height: 1.4166em; /* 17px */
+  color: #666;
+}
+
+/* overwrites */
+#page {
+  background: #f4f4f4;
+  clear: both;
+  position: relative;
+}
+
+#footer,
+#masthead {
+  background: #fff;
+}
+
+#navigation,
+.subNavigation.tabContent {
+  border-bottom: none;
+}
+
+#navigation #subNavigation {
+  margin-top: 1px;
+}
+
+.box {
+  border: none;
+  margin: 0 0 7px 0;
+}

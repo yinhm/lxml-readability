@@ -16,16 +16,17 @@ import os
 import os.path
 import re
 import readability
+import shutil
 import sys
-import unittest
-import readability.urlfetch
+import urllib
+import urlparse
+import readability.urlfetch as urlfetch
 import yaml
 
 YAML_EXTENSION = '.yaml'
-ORIGINAL_SUFFIX = '-orig.html'
-READABLE_SUFFIX = '-rdbl.html'
-RESULT_SUFFIX = '-result.html'
-DIFF_SUFFIX = '-diff.html'
+READABLE_SUFFIX = '.rdbl'
+RESULT_SUFFIX = '.result'
+DIFF_SUFFIX = '.diff'
 
 TEST_DATA_PATH = 'regression_test_data'
 TEST_OUTPUT_PATH = 'regression_test_output'
@@ -105,9 +106,7 @@ class ReadabilityTest:
             url,
             desc,
             notes,
-            url_map,
-            orig_path,
-            rdbl_path
+            url_map
             ):
         self.dir_path = dir_path
         self.enabled = enabled
@@ -116,8 +115,6 @@ class ReadabilityTest:
         self.desc = desc
         self.notes = notes
         self.url_map = url_map
-        self.orig_path = orig_path
-        self.rdbl_path = rdbl_path
 
 class ReadabilityTestData:
 
@@ -137,19 +134,16 @@ def read_yaml(path):
     with open(path, 'r') as f:
         return yaml.load(f)
 
-def make_path(dir_path, name, suffix):
-    return os.path.join(dir_path, ''.join([name, suffix]))
-
-def adjust_url_map(url_map):
+def adjust_url_map(test_name, url_map):
     adjusted = dict()
     for k, v in url_map.items():
-        adjusted[k] = os.path.join(TEST_DATA_PATH, v)
+        adjusted[k] = os.path.join(TEST_DATA_PATH, test_name, v)
     return adjusted
 
 def make_readability_test(dir_path, name, spec_dict):
     enabled = spec_dict.get('enabled', True)
     notes = spec_dict.get('notes', '')
-    url_map = adjust_url_map(spec_dict.get('url_map', dict()))
+    url_map = spec_dict.get('url_map', dict())
     return ReadabilityTest(
             dir_path,
             enabled,
@@ -157,15 +151,18 @@ def make_readability_test(dir_path, name, spec_dict):
             spec_dict['url'],
             spec_dict['test_description'],
             notes,
-            url_map,
-            make_path(dir_path, name, ORIGINAL_SUFFIX),
-            make_path(dir_path, name, READABLE_SUFFIX)
+            url_map
             )
 
 def load_test_data(test):
+    def read_data(suffix):
+        rel_path = test.url_map[test.url] + suffix
+        path = os.path.join(TEST_DATA_PATH, test.name, rel_path)
+        return open(path, 'r').read()
+
     if test.enabled:
-        orig = open(test.orig_path, 'r').read()
-        rdbl = open(test.rdbl_path, 'r').read()
+        orig = read_data('')
+        rdbl = read_data(READABLE_SUFFIX)
         return ReadabilityTestData(test, orig, rdbl)
     else:
         return None
@@ -185,7 +182,8 @@ def execute_test(test_data):
         return None
     else:
         url = test_data.test.url
-        fetcher = readability.urlfetch.MockUrlFetch(test_data.test.url_map)
+        url_map = adjust_url_map(test_data.test.name, test_data.test.url_map)
+        fetcher = urlfetch.MockUrlFetch(url_map)
         doc = readability.Document(
                 test_data.orig_html,
                 url = url,
@@ -216,10 +214,10 @@ class ResultSummary():
         pass
 
 def make_summary_row(test, result):
-    def data(suffix):
-        return os.path.join('..', TEST_DATA_PATH, test.name + suffix)
     def output(suffix):
-        return test.name + suffix
+        rel_path = test.url_map[test.url]
+        return urllib.quote(os.path.join(test.name, rel_path) + suffix)
+
     if test.enabled:
         s = ResultSummary(result)
         return B.TR(
@@ -227,7 +225,7 @@ def make_summary_row(test, result):
                 B.TD('%d (%d)' % (s.insertions, s.insertion_blocks)),
                 B.TD('%d (%d)' % (s.deletions, s.deletion_blocks)),
                 B.TD(
-                    B.A('original', href = data(ORIGINAL_SUFFIX)),
+                    B.A('original', href = output('')),
                     ' ',
                     B.A('benchmark', href = output(READABLE_SUFFIX)),
                     ' ',
@@ -282,24 +280,37 @@ def add_css(doc):
     head = B.HEAD(style, content = 'text/html; charset=utf-8')
     doc.insert(0, head)
 
-def write_output_fragment(fragment, output_dir_path, test_name, suffix):
+def write_output_fragment(fragment, path):
     doc = lxml.html.document_fromstring(fragment)
     add_css(doc)
     html = lxml.html.tostring(doc)
-    file_name = ''.join([test_name, suffix])
-    path = os.path.join(output_dir_path, file_name)
     with open(path, 'w') as f:
         f.write(html)
 
 def write_result(output_dir_path, result):
     test_name = result.test_data.test.name
+
+    # Copy the site_path to output_site_path so that the result has access to
+    # any images it needs to display properly.  This will also copy the
+    # original page and benchmark readability result.
+    site_path = os.path.join(TEST_DATA_PATH, test_name)
+    output_site_path = os.path.join(TEST_OUTPUT_PATH, test_name)
+    shutil.rmtree(output_site_path, ignore_errors = True)
+    shutil.copytree(site_path, output_site_path)
+
+    # Write pretty versions of the benchmark, result, and diffs into the
+    # output.  Note that this will overwrite the benchmark that we copied over.
     specs = [
             (result.test_data.rdbl_html, READABLE_SUFFIX),
-            (result.diff_html, DIFF_SUFFIX),
-            (result.result_html, RESULT_SUFFIX)
+            (result.result_html, RESULT_SUFFIX),
+            (result.diff_html, DIFF_SUFFIX)
             ]
     for (html, suffix) in specs:
-        write_output_fragment(html, output_dir_path, test_name, suffix)
+        url = result.test_data.test.url
+        url_map = result.test_data.test.url_map
+        url_path = url_map[url]
+        path = os.path.join(output_dir_path, test_name, url_path) + suffix
+        write_output_fragment(html, path)
 
 def print_test_info(test):
     name_string = '%s' % test.name
@@ -321,10 +332,10 @@ def run_readability_tests():
     write_summary(TEST_SUMMARY_PATH, zip(tests, results))
 
 def main():
-    logging.basicConfig(level = logging.DEBUG)
-    if len(sys.argv) > 1 and sys.argv[1] == 'unittest':
-        del sys.argv[1]
-        return unittest.main()
+    if len(sys.argv) > 1 and sys.argv[1] == '--debug':
+        logging.basicConfig(level = logging.DEBUG)
+    else:
+        logging.basicConfig(level = logging.INFO)
     run_readability_tests()
 
 if __name__ == '__main__':

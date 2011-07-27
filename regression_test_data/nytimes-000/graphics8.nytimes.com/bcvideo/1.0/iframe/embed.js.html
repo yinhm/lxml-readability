@@ -1,0 +1,178 @@
+/*$Id: embed.js 40538 2010-06-25 20:56:33Z jsonmez $ */
+
+var NYTD = NYTD || {} ;
+NYTD.Hosts = NYTD.Hosts || {};
+// Do not change the default value graphics8
+NYTD.Hosts.jsHost = NYTD.Hosts.jsHost || 'http://graphics8.nytimes.com';
+
+var hostBase   = NYTD.Hosts.jsHost + "/bcvideo/";
+var versionNum = "1.0";
+//TODO increase this version below for each update to avoid caching
+var urlVersionNum = "1.08";
+var NYT_DEBUG  = false;
+
+// 2. Adjust the following page type-specific params as needed; channelId and videoId are optional defaults
+var pageSpecific = {
+    "homepage" : {
+        "width"      : 337,
+        "height"     : 393,
+        "iframeFile" : "bcHomeIframe.html"
+    },
+    "article"  : {
+        "width"      : 318,
+        "height"     : 375,
+        "iframeFile" : "bcArtIframe.html"
+    },
+    "section"  : {
+        "width"      : 395,
+        "height"     : 312,
+        "iframeFile" : "bcSecIframe.html"
+    },
+    "trailer"  : {
+        "width"      : 746,
+        "height"     : 375,
+        "iframeFile" : "bcSPIframe.html"
+    },
+    "blog"  : {
+        "width"      : 480,
+        "height"     : 452,
+        "iframeFile" : "bcBlogIframe.html"
+    }
+};
+
+var NYT_Logger = function( msg ) {
+    return;
+    if( NYT_DEBUG ) {
+        if( typeof console!='undefined' && typeof console.log!='undefined' ) {
+            console.log( msg );
+        } else {
+            alert( msg );
+        }
+    }
+}, logger=NYT_Logger;
+
+
+var NYT_VideoPlayerStart = function( params ) {
+    // 2. Check the player type, make sure it's available
+    if (!params.playerType) {
+        throw new Error( "Couldn't find required param: 'playerType'" );
+    }
+
+    var errMsg, playerType = params.playerType;
+    if (!pageSpecific.playerType) {
+        errMsg = "Couldn't find player named '"+playerType+"'.  Check your parameters to NYTVideoPlayerStart() and try again.";
+        NYT_Logger( errMsg );
+    }
+
+    // 2.5 Check for required options
+    if ((playerType=='article' || playerType=='blog') && !params.videoId) {
+        errMsg = "Required parameter missing: 'videoId' is a required option when playerType=='article'";
+        NYT_Logger(errMsg);
+    }
+
+
+    // 3. Looks like the playerType is valid, get local ref to the static params
+    var pageDefs = pageSpecific[playerType];
+
+    // 4. If there is an 'options' param, see about using it
+    for(var optName in params) {
+        pageDefs[optName] = params[optName];
+        NYT_Logger( "Writing params["+optName+"] to pageDefs["+optName+"] ("+params[optName]+")" );
+    }
+
+    // 4. Set some more params
+    var vidParam      = typeof pageDefs.videoId     !='undefined' ? '&videoId='    + pageDefs.videoId    : '';
+    var playlistParam = typeof pageDefs.playlistId  !='undefined' ? '&playlistId=' + pageDefs.playlistId : '';
+    var properName    = typeof pageDefs.properName  !='undefined' ? pageDefs.properName  : '';
+    var iframeFile    = typeof pageDefs.iframeFile  !='undefined' ? pageDefs.iframeFile  : '';
+    var pageSection   = typeof window.getShareSection=='function' ? '&pageSection='+getShareSection() : '';
+    var adxPagename   = typeof pageDefs.adxPagename !='undefined' ? '&adxPagename=' + pageDefs.adxPagename : '';
+    var feedroomTrans = typeof pageDefs.feedroomTrans!='undefined'? '&feedroomTrans='+pageDefs.feedroomTrans : '';
+    var inlineStyle   = '';
+
+    if (playerType == "homepage" && navigator.userAgent.indexOf('AppleWebKit') >= 0 && ('createTouch' in document)) {
+        iframeFile = "nativeVideo.html";
+    }
+
+    var iframeTag = '<iframe\n' +
+        '\tsrc="' +
+        hostBase +
+        versionNum +
+        '/iframe/' +
+        iframeFile +
+        '?z=0' +
+        vidParam +
+        playlistParam +
+        pageSection +
+        '&v=' + urlVersionNum +
+        adxPagename +
+        feedroomTrans +
+        '&playerType=' + playerType +
+        ((navigator && navigator.userAgent.indexOf("Firefox")!=-1) ? ('&time=' + (new Date).getTime()) : '') +
+        '"\n' +
+        '\ttitle="New York Times Video - ' +
+        playerType +
+        ' player"\n' +
+        '\tname="nyt_video_player"\n' +
+        '\tid="nyt_video_player"\n' +
+        '\twidth="'  + pageDefs.width  + '"\n' +
+        '\theight="' + pageDefs.height + '"\n' +
+        '\tframeborder="0" '  +
+        '\tmarginwidth="0" '  +
+        '\tmarginheight="0" ' +
+        '\tscrolling="no" '   +
+        inlineStyle +
+        '></iframe>\n' ;
+
+    // Now, write the iframe out to the currently loading/rendering document object
+    if( "parentDomId" in params ) {
+        NYT_Logger( "innerHTML" );
+        var targetEl = document.getElementById( params.targetDomId );
+        targetEl.innerHTML = iframeTag;
+    } else {
+        NYT_Logger( "document.writeln" );
+        document.writeln( iframeTag );
+    }
+    NYT_Logger( iframeTag );
+
+};
+
+
+/***************************************/
+/*** Handler for legacy video embeds ***/
+/***************************************/
+(function() {
+    if( (typeof window['NYTD'] =='undefined') ||
+        (typeof window.NYTD['Video'] =='undefined') ||
+        (typeof window.NYTD.Video['Legacy'] == 'undefined') )
+    {
+        NYT_Logger( "Legacy undefined..." );
+        return;
+    } else {
+        NYT_Logger( "Starting legacy player..." );
+    };
+
+    // Should only be at this point if this *is* a legacy player load //
+
+    // Check for legacy parameters //
+    if( typeof window.NYTD.Video.Legacy.bcPlayerSkin == 'undefined' ||
+        typeof window.NYTD.Video.Legacy.bcPlayerOptions == 'undefined' ) {
+        throw new Error( "Could not find legacy video player options hash." );
+    };
+    var legacy = window.NYTD.Video.Legacy;
+    if( typeof legacy.bcPlayerOptions.videoId != 'undefined' ) {
+        NYT_VideoPlayerStart( {
+            playerType    : NYTD.Video.Legacy.bcPlayerSkin,
+            videoId       : legacy.bcPlayerOptions.videoId,
+            feedroomTrans : 'video'
+        } );
+    } else if( typeof legacy.bcPlayerOptions.playlistId != 'undefined' ) {
+        NYT_VideoPlayerStart( {
+            playerType    : NYTD.Video.Legacy.bcPlayerSkin,
+            playlistId    : legacy.bcPlayerOptions.playlistId,
+            feedroomTrans : 'playlist'
+        } );
+    } else {
+        throw new Error( "Could not find either NYTD.Video.Legacy.bcPlayerOptions.videoId OR NYTD.Video.Legacy.bcPlayerOptions.playlistId" );
+    }
+})();

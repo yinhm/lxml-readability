@@ -1,0 +1,34 @@
+User-agent: *
+Disallow: /jt/jobs/widget_click.php
+Disallow: /jt/jobs/apply_click.php
+Disallow: /jt/jobs/view_click.php
+Disallow: /js/t.js
+Disallow: /t/
+Disallow: /job/*&source=
+Disallow: /job/*&amp;source=
+
+User-agent: OmniExplorer_Bot
+Disallow: /
+
+User-agent: MSIECrawler
+Disallow: /
+
+User-agent: ScoutJet
+Disallow: /
+
+User-agent: YahooSeeker/CafeKelsa
+Disallow: /
+
+User-agent: daumoa
+Disallow: /
+
+User-agent: Daumoa
+Disallow: /
+
+User-agent: Slurp
+Crawl-delay: 1
+
+User-agent: msnbot
+Crawl-delay: 10
+
+Sitemap: http://jobs.businessinsider.com/sitemap.xml
