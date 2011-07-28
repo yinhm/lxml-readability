@@ -134,12 +134,6 @@ def read_yaml(path):
     with open(path, 'r') as f:
         return yaml.load(f)
 
-def adjust_url_map(test_name, url_map):
-    adjusted = dict()
-    for k, v in url_map.items():
-        adjusted[k] = os.path.join(TEST_DATA_PATH, test_name, v)
-    return adjusted
-
 def make_readability_test(dir_path, name, spec_dict):
     enabled = spec_dict.get('enabled', True)
     notes = spec_dict.get('notes', '')
@@ -181,12 +175,11 @@ def execute_test(test_data):
     if test_data is None:
         return None
     else:
-        url = test_data.test.url
-        url_map = adjust_url_map(test_data.test.name, test_data.test.url_map)
-        fetcher = urlfetch.MockUrlFetch(url_map)
+        base_path = os.path.join(TEST_DATA_PATH, test_data.test.name)
+        fetcher = urlfetch.MockUrlFetch(base_path, test_data.test.url_map)
         doc = readability.Document(
                 test_data.orig_html,
-                url = url,
+                url = test_data.test.url,
                 urlfetch = fetcher
                 )
         summary = doc.summary()
@@ -290,13 +283,13 @@ def write_output_fragment(fragment, path):
 def write_result(output_dir_path, result):
     test_name = result.test_data.test.name
 
-    # Copy the site_path to output_site_path so that the result has access to
+    # Copy the base_path to output_base_path so that the result has access to
     # any images it needs to display properly.  This will also copy the
     # original page and benchmark readability result.
-    site_path = os.path.join(TEST_DATA_PATH, test_name)
-    output_site_path = os.path.join(TEST_OUTPUT_PATH, test_name)
-    shutil.rmtree(output_site_path, ignore_errors = True)
-    shutil.copytree(site_path, output_site_path)
+    base_path = os.path.join(TEST_DATA_PATH, test_name)
+    output_base_path = os.path.join(TEST_OUTPUT_PATH, test_name)
+    shutil.rmtree(output_base_path, ignore_errors = True)
+    shutil.copytree(base_path, output_base_path)
 
     # Write pretty versions of the benchmark, result, and diffs into the
     # output.  Note that this will overwrite the benchmark that we copied over.

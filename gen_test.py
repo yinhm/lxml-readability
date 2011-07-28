@@ -7,7 +7,6 @@ from regression_test import (
         TEST_DATA_PATH,
         READABLE_SUFFIX,
         YAML_EXTENSION,
-        adjust_url_map,
         read_yaml
         )
 import argparse
@@ -45,35 +44,31 @@ def write_file(path, data):
     f.write(data)
     return True
 
-def write_readable(path, orig, options):
+def make_readable_path(base_path, url_map, url):
+    # We put the readable version of the page next to the original so that all
+    # of the relative links work when we open it in a browser.
+    rel_path = url_map[url]
+    path = os.path.join(base_path, rel_path)
+    return ''.join([path, READABLE_SUFFIX])
+
+def write_readable(base_path, fetcher, url_map, url):
+    orig = fetcher.urlread(url)
+
+    options = {'url': url, 'urlfetch': fetcher}
     rdbl_doc = readability.Document(orig, **options)
     summary = rdbl_doc.summary()
+
+    path = make_readable_path(base_path, url_map, url)
     return write_file(path, summary.html)
 
 def read_spec(test_name):
     yaml_path = os.path.join(TEST_DATA_PATH, test_name + YAML_EXTENSION)
     return read_yaml(yaml_path)
 
-def read_orig(test_name, url = None):
-    """
-    Reads the original HTML for a given test.  If a url is provided, the HTML
-    is fetched from it.  Otherwise, we look for an existing local copy.  This
-    returns a pair: (HTML string, True iff the HTML has been or is already
-    stored in a local copy).
-    """
-    if url:
-        # TODO: Fix this.
-        orig = urllib2.urlopen(url).read()
-        path = os.path.join(TEST_DATA_PATH, test_name)
-        write_result = write_file(path, orig)
-        return orig, write_result
-    else:
-        orig_path = os.path.join(
-                TEST_DATA_PATH,
-                test_name
-                )
-        orig = open(orig_path).read()
-        return orig, True
+def write_spec(base_path, spec):
+    spec_yaml = yaml.dump(spec, default_flow_style = False)
+    path = base_path + YAML_EXTENSION
+    return write_file(path, spec)
 
 def maybe_mkdir(path):
     try:
@@ -83,61 +78,48 @@ def maybe_mkdir(path):
             raise e
 
 def create(args):
-    spec_dict = {'url': args.url, 'test_description': args.test_description}
+    spec = {'url': args.url, 'test_description': args.test_description}
 
     # We retrieve the page and all of its prerequisites so that it can be
-    # displayed fully locally.  site_path is the path to the directory that
+    # displayed fully locally.  base_path is the path to the directory that
     # holds the structure of the site(s) necessary for the prerequisites.
-    site_path = os.path.join(TEST_DATA_PATH, args.test_name)
-    maybe_mkdir(site_path)
+    base_path = os.path.join(TEST_DATA_PATH, args.test_name)
+    maybe_mkdir(base_path)
 
-    fetcher = readability.urlfetch.LocalCopyUrlFetch(site_path)
-    orig = fetcher.urlread(args.url)
+    url_map = dict()
+    fetcher = readability.urlfetch.LocalCopyUrlFetch(base_path, url_map)
 
-    # We put the readable version of the page next to the original so that all
-    # of the relative links work when we open it in a browser.
-    rel_path = fetcher.urldict[args.url]
-    path = os.path.join(site_path, rel_path)
-    rdbl_path = ''.join([path, READABLE_SUFFIX])
-
-    options = {'url': args.url, 'urlfetch': fetcher}
-    if not write_readable(rdbl_path, orig, options):
+    if not write_readable(base_path, fetcher, url_map, args.url):
         return False
 
-    spec_dict['url_map'] = fetcher.urldict
-    spec = yaml.dump(spec_dict, default_flow_style = False)
-    yaml_path = os.path.join(TEST_DATA_PATH, args.test_name + YAML_EXTENSION)
-    if not write_file(yaml_path, spec):
+    spec['url_map'] = url_map
+    if not write_spec(base_path, spec):
         return False
 
     return True
 
 def genbench(args):
-    spec_dict = read_spec(args.test_name)
-    url = spec_dict['url']
+    spec = read_spec(args.test_name)
+    url = spec['url']
 
-    # TODO: Make this less ugly.
-    if args.refetch:
-        site_path = os.path.join(TEST_DATA_PATH, args.test_name)
-        fetcher = readability.urlfetch.LocalCopyUrlFetch(site_path)
-    else:
-        rel_url_map = spec_dict.get('url_map', dict())
-        url_map = adjust_url_map(args.test_name, rel_url_map)
-        fetcher = readability.urlfetch.MockUrlFetch(url_map)
-
-    orig = fetcher.urlread(spec_dict['url'])
+    base_path = os.path.join(TEST_DATA_PATH, args.test_name)
 
     if args.refetch:
-        rel_path = fetcher.urldict[url]
-        site_path = os.path.join(TEST_DATA_PATH, args.test_name)
-        path = os.path.join(site_path, rel_path)
+        url_map = dict()
+        fetcher = readability.urlfetch.LocalCopyUrlFetch(base_path, url_map)
     else:
-        path = fetcher.urldict[url]
+        url_map = spec['url_map']
+        fetcher = readability.urlfetch.MockUrlFetch(base_path, url_map)
 
-    rdbl_path = ''.join([path, READABLE_SUFFIX])
-    options = {'url': spec_dict['url'], 'urlfetch': fetcher}
-    if not write_readable(rdbl_path, orig, options):
+    if not write_readable(base_path, fetcher, url_map, url):
         return False
+
+    if args.refetch:
+        # We potentially refetched different pages than the existing test, so
+        # we have to update the spec accordingly.
+        spec['url_map'] = url_map
+        if not write_spec(base_path, spec):
+            return False
 
     return True
 
