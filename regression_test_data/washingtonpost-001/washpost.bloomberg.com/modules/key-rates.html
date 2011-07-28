@@ -1,0 +1,11 @@
+WSODParams = {BaseURL:"http://washpost.bloomberg.com/"};(function($) {
+	$.ajax({
+		url: WSODParams.BaseURL + '/modules/keyratesjsonp',
+		success: function (sHTML)
+		{
+			$('#bb-key-rates .body').html(sHTML);
+		},
+		dataType: 'jsonp'
+	});
+})(jQuery);
+

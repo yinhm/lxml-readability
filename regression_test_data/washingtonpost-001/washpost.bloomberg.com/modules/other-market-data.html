@@ -1,0 +1,11 @@
+WSODParams = {BaseURL:"http://washpost.bloomberg.com/"};(function($) {
+	$.ajax({
+		url: WSODParams.BaseURL + '/modules/othermarketdatajsonp',
+		success: function (sHTML)
+		{
+			$('#bb-other-market-data .body').html(sHTML);
+		},
+		dataType: 'jsonp'
+	});
+})(jQuery);
+

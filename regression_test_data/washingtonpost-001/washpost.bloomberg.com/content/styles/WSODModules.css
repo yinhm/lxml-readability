@@ -1,0 +1,911 @@
+﻿.wsod div, .wsod span, .wsod applet, .wsod object, .wsod iframe,
+.wsod h1, .wsod h2, .wsod h3, .wsod h4, .wsod h5, .wsod h6, .wsod p, .wsod blockquote, .wsod pre,
+.wsod a, .wsod abbr, .wsod acronym, .wsod address, .wsod big, .wsod cite, .wsod code,
+.wsod del, .wsod dfn, .wsod em, .wsod font, .wsod img, .wsod ins, .wsod kbd, .wsod q, .wsod s, .wsod samp,
+.wsod small, .wsod strike, .wsod strong, .wsod sub, .wsod sup, .wsod tt, .wsod var,
+.wsod dl, .wsod dt, .wsod dd, .wsod ol, .wsod ul, .wsod li,
+.wsod fieldset, .wsod form, .wsod label, .wsod legend,
+.wsod table, .wsod caption, .wsod tbody, .wsod tfoot, .wsod thead, .wsod tr, .wsod th, .wsod td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+
+.wsod {
+    font-family: Arial;
+}
+.wsod :focus {
+	outline: 0;
+}
+.wsod a {
+    color:#5088A9;
+    font-weight:bold;
+    text-decoration:none;
+}
+.wsod ol, .wsod ul {
+	list-style: none;
+}
+.wsod table {
+	border-collapse: separate;
+	border-spacing: 0;
+	width: 100%;
+    margin-top: 5px;
+}
+.wsod caption, .wsod th, .wsod td {
+	text-align: left;
+	font-weight: normal;
+}
+.wsod strong {
+    font-weight: bold;
+}
+.wsod .clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.wsod .clearfix {display: inline-block;} /* ie/mac */
+.wsod .clearfix {
+    zoom: 1;     
+    display: block;     /* resets display for IE/Win */
+} 
+.wsod .inline-block {
+   display:-moz-inline-stack;
+   display:inline-block;
+   zoom:1;
+   vertical-align:text-bottom;
+   _display:inline;
+}
+.wsod .bold { font-weight:bold; }
+.wsod .clear { clear: both; } 
+.wsod .fltLeft { float:left; }
+.wsod .normal { font-weight:normal ! important; }
+.wsod .textRight { text-align:right; }
+.wsod .textLeft { text-align:left; }
+.wsod .center { text-align:center; }
+.wsod .fr { float:right; }
+.wsod .fl { float:left; }
+.wsod .neg { color: Red; }
+.wsod .pos { color: Green; }
+.wsod .hidden { visibility: hidden; }
+.wsod .none { display: none; }
+.wsod #ajax-loader { display:none; position:absolute; }
+.wsod .lightText { color: #999999; font-size:11px; }
+.wsod .capitalize { text-transform:capitalize; }
+
+
+/***************************
+ *
+ * Symbol Search
+ *
+ ****************************************************************************/
+.wsod .companySearchPopup {width: 240px; border: 1px solid #DDD; border-top: none; background:#fff; display:none;z-index:20;position:absolute;}
+.wsod .companySearchPopup div.title {font-weight:bold; font-size:10px; border-bottom:1px solid #ccc;margin-bottom:5px; padding-bottom:2px;}
+.wsod .companySearchPopup div.searchResult {color:#666; padding-bottom:5px;}
+.wsod .companySearchPopup div.searchResult:hover {background:#EAF1FB;}
+.wsod .companySearchPopup div.eventName {padding:3px 0 0 5px;float:left;}
+.wsod .companySearchPopup div.icon {float:left;}
+.wsod .companySearchPopup div.viewAll {padding:5px 0;border-top:1px solid #ccc;}
+.wsod .companySearchPopup div.noResults {color:#666; font-size:11px; }
+.wsod .companySearchPopup div.searchResultCompany {color:#666; padding:5px 2px; font-size:11px; }
+.wsod .companySearchPopup div.searchResultCompany div a { font-weight:normal ! important; cursor:pointer; _cursor:hand; }
+.wsod .companySearchPopup div.searchResultCompany:hover {background:#EAF1FB;}
+.wsod .companySearchPopup div.searchResultCompanyHover {background:#EAF1FB;}
+.wsod .companySearchPopup table { margin-top: 0px; }
+.wsod .companySearchPopup td { font-size: 10px; border: none; padding:2px 5px;}
+.wsod .companySearchPopup tr.highlight { background-color: #B1D0E2 !important; }
+.wsod .companySearchPopup tr.alt { background-color: #F8F8F8; }
+.wsod .search input {
+    background-color:#F9F9F9;
+    border:1px solid #DDDDDD;
+    color:#a2a2a2;
+    height:21px;
+    margin:0 5px;
+    padding-top:0;
+    width:240px;
+    border-top: 2px solid #DDD;
+    /* inside their page this is necessary, not sure why */
+    /* style for IE by default, then override for Firefox below.  Had to do it this way, IE wasn't listening otherwise - not sure why. */
+    position: relative;
+    bottom: 1px;
+    _bottom: 0;
+    /*****************************************************/
+}
+/* inside their page this is necessary, not sure why */
+.wsod .search.searchFirefox input {
+	top: 2px;
+	bottom: 0px;
+}
+.wsod .search.searchAppleMAC-Safari input {
+	top: 1px;
+	bottom: 0px;
+}
+/*****************************************************/
+
+.onTop {
+	z-index: 1000;
+}
+
+/***************************
+ *
+ * SPRITE
+ *
+ ****************************************************************************/
+div.bloomberg_small {
+	width: 57px;
+	height: 13px;
+	background: url(../images/sprite.png) no-repeat 0px -32px;
+}
+
+div.bloomberg_medium {
+	width: 102px;
+	height: 23px;
+	background: url(../images/sprite.png) no-repeat;
+}
+
+/***************************
+ *
+ * BUTTONS
+ *
+ ****************************************************************************/
+.wsod .btn {
+    background-image:url("../images/slidingDoors.png");
+    background-repeat:no-repeat;
+    color:#000;
+    display:inline-block;
+    font-weight:bold;
+    height:20px;
+    text-decoration:none;
+}
+
+.wsod .btn .inner {
+    display:inline-block;
+    height:100%;
+}
+
+.wsod .btn .inner span {
+    background-repeat:repeat-x;
+    display:inline-block;
+    height:100%;
+    line-height:19px;
+}
+
+.wsod .btn.greyBtn{
+    background-position: right -106px;
+}
+
+.wsod .btn.greyBtn .inner {
+    background-position: 0 -147px;
+    margin-right: 6px;
+}
+
+.wsod .btn.greyBtn .inner span {
+    background-position: left -126px;
+    margin-left: 6px;
+}
+
+.wsod .btn.blackNav{
+    background-position:right -333px;
+    height:29px;
+}
+
+.wsod .btn.blackNav .inner {
+    background-position: 0 -393px;
+    margin-right: 6px;
+}
+
+.wsod .btn.blackNav .inner span {
+    background-image: none;
+    background-color: #000;
+    margin-left: 6px;
+    margin-bottom: 2px;
+}
+
+.wsod .btn.blueSbmt{
+    background-position:right -171px;
+    height:23px;
+    padding-bottom:2px;
+    text-transform:capitalize;
+    cursor: hand;
+    _overflow: hidden;
+}
+
+.wsod .btn.blueSbmt .inner {
+    background-position:0 -221px;
+    margin-right:6px;
+    padding-bottom:2px;
+}
+
+.wsod .btn.blueSbmt .inner span {
+    background-position:left -196px;
+    color:#FFFFFF;
+    padding-right:13px;
+    padding-left:13px;
+    font-family: arial, helvetica;
+    font-size: 12px;
+    margin-left:6px;
+    padding-top:2px;
+}
+
+.wsod .btn.blackGloss{
+    background-position: right -363px;
+    height:27px;
+}
+
+.wsod .btn.blackGloss .inner {
+    background-position: 0 -363px;
+    margin-right: 6px;
+}
+
+.wsod .btn.blackGloss .inner span {
+    background-position: left -363px;
+    margin-left: 6px;
+}
+
+.wsod .btn.lrgGrey{
+    background-position: right -247px;
+    height:27px;
+}
+
+.wsod .btn.lrgGrey .inner {
+    background-position: 0 -303px;
+    margin-right: 6px;
+}
+
+.wsod .btn.lrgGrey .inner span {
+    background-position: left -275px;
+    margin-left: 6px;
+}
+
+.wsod .btn.lrgBlackGloss{
+    background-position:right -534px;
+    height:31px;
+}
+
+.wsod .btn.lrgBlackGloss .inner {
+    background-position: 0 -600px;
+    margin-right: 6px;
+}
+
+.wsod .btn.lrgBlackGloss .inner span {
+    background-position: left -567px;
+    margin-left: 6px;
+}
+
+
+/*****************************
+ *
+ * ICONS
+ *
+ ************************************************************************/
+ .wsod .spr {
+    background: transparent url("../images/iconSprite.png") no-repeat;   
+    display: block;
+}
+.wsod .spr-inline {
+    background: transparent url("../images/iconSprite.png") no-repeat;   
+}
+
+.wsod .commodites  { 
+	vertical-align: middle;
+	margin: 0 10px 0 0 ; 
+} 
+
+.wsod .facebook {
+    background-position:-9px -3px;
+    height:16px;
+    width:16px;
+}
+
+.wsod .lrgPosArrow {
+    background-position:-11px -23px;
+    height:16px;
+    width:11px;  
+}
+
+.wsod .lrgNegArrow {
+    background-position:-11px -23px;
+    height:16px;
+    width:11px;   
+}
+
+.wsod .smlPosArrow {
+    background-position:-12px -55px;
+    height:11px;
+    font-size:8px;
+    width:10px;  
+    margin-right: 11px;
+    margin-top: 3px; 
+}
+
+.wsod .smlNegArrow {
+    background-position:-12px -70px;
+    height:12px;
+    width:10px; 
+    margin-right:7px; 
+}
+.wsod .smlNoArrow {
+	background: transparent none ;
+    height:12px;
+    width:25px; 
+    margin-right:7px; 
+}
+
+.wsod .srchBtn {
+    background-position:0 -86px;
+    height:22px;
+    width:36px;  
+}
+
+.wsod .rCircArrow {
+    background-position:-7px -112px;
+    height:19px;
+    width:19px;  
+}
+
+.wsod .lCircArrow {
+    background-position:-7px -136px;
+    height:19px;
+    width:19px;  
+}
+
+.wsod .water {
+    background-position:-14px -162px;
+    height:11px;
+    width:6px;  
+}
+
+.wsod .oil {
+    background-position:-14px -162px;
+    height:11px;
+    width:6px;  
+}
+
+.wsod .gas {
+    background-position:-14px -182px;
+    height:11px;
+    width:6px;  
+}
+
+.wsod .gold {
+    background-position:-11px -202px;
+    height:7px;
+    width:11px;
+    margin-right: 5px;
+}
+
+.wsod .corn {
+    background-position:-12px -215px;
+    height:16px;
+    width:14px; 
+    margin-right: 3px;
+}
+
+.wsod .close {
+    background-position:-9px -238px;
+    height:16px;
+    width:14px; 
+}
+
+.wsod .tsControl a {
+	float: left;
+}
+
+.wsod .tsControl div {
+	background-position: -15px -263px;
+	float: left;
+	height: 5px;
+	width: 5px;
+	margin-top: 5px;
+	margin-left: 3px;
+}
+
+.wsod .headerSortUp div {
+	background-position: -15px -303px;
+}
+
+.wsod .headerSortDown div {
+	background-position: -15px -288px;
+}
+
+
+
+.wsod .spark {
+    background: transparent url("../images/spark-plcHolder.png") no-repeat scroll 0 0;   
+    width: 60px;
+    height: 16px;
+}
+.wsod .paging {
+    height: 22px;
+    background-color: #f5f5f5;
+    margin-top: 5px;
+    padding-top: 3px;
+}
+
+.wsod .paging .pageNum {
+    color:#000000;
+    font-size:12px;
+    font-weight:bold;
+    padding-top:3px;
+    width:290px;
+}
+
+.wsod table thead tr th {
+    color:#999;
+    font-size: 11px;
+    padding: 2px 5px 5px 5px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.wsod table tbody tr td {
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 12px;
+    color: #000;
+    padding: 2px 5px 5px 5px;
+    vertical-align: middle;
+}
+
+.wsod table tfoot tr td.left {
+    border: none;
+    font-size: 10px;
+    color: #666;
+}
+
+.wsod table tfoot tr td {
+    padding-top: 5px;
+    padding-left: 5px;
+    *padding-left: 7px;
+    font-size: 11px;
+    color: #777777;
+    border-bottom: none;
+}
+
+.wsod table tfoot tr td.right {
+    border: none;
+    font-size: 11px;
+    font-weight: bold;
+    color: #000;
+}
+
+.wsod table tfoot tr td.right b {
+    display:inline-block;
+    margin:2px 4px 0 0;
+}
+
+.wsod .disclaimer {
+    margin-top: 10px;
+    margin-left: 5px;
+    *margin-left: 8px;
+    font-size: 11px;
+    color: #777777;
+}
+
+.wsod table thead td {
+	color: #777777;
+	border-bottom: 1px solid #f0f0f0;
+	font-size: 10px;
+	padding: 2px 5px 5px 5px;
+}
+
+.wsod ul.blackGrayNav {
+	background-image:url("../images/slidingDoors.png");
+    background-repeat: repeat-x;
+    background-position: 0px -426px;
+    height: 25px;
+    font-size: 12px;
+}
+
+.wsod ul.blackGrayNav li {
+	background-image:url("../images/slidingDoors.png");
+    background-repeat: repeat-x;
+    background-position: 0px -426px;
+	float: left;
+	border-right: 1px solid #ccc;
+	height: 25px;
+}
+
+.wsod ul.blackGrayNav li a {
+	display: block;
+	color: White;
+	padding: 5px 9px;
+}
+
+.wsod ul.blackGrayNav li.selected {
+	background-image:url("../images/slidingDoors.png");
+    background-repeat: repeat-x;
+	background-position: 0px -364px
+}
+
+
+/**********************************
+ *
+ * BLUE DIALOG BOX
+ *
+ ********************************************************************************/
+ .wsod div.dialogBox,
+ div.wsodDialogBoxAlt {
+    background-color: #84BCDE;
+    padding: 15px;
+    z-index: 1000;
+    font-size: 15px;
+    position: absolute;
+    width: 260px;
+    float: left;
+    color: Black;
+ }
+
+
+/******************************
+ *
+ * WATCHLIST
+ *
+ ********************************************************************/
+#bb-watchlist p {
+    margin-top: 10px;
+}
+
+#bb-watchlist .wsod_watchlist {
+    width: 336px;
+    padding-top: 5px;
+}
+
+#bb-watchlist th a {
+	color: #999999;
+	font-size: 11px;
+	font-weight: normal;
+}
+
+#bb-watchlist td a {
+	color: #000;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+#bb-watchlist th.textRight a {
+	float: right;
+}
+
+#bb-watchlist th.textRight div {
+	float: right;
+}
+
+#bb-watchlist a.noUser {
+	margin-left: 130px;
+}
+
+#bb-watchlist div.noWatchlist {
+	margin-top: 10px;
+	margin-bottom: 15px;
+}
+#bb-watchlist div.noWatchlist div {
+	font-size: 12px;
+	margin: 0 10px 10px;
+	line-height: 16px;
+}
+
+/******************************
+ *
+ * WORLD MARKETS
+ *
+ ********************************************************************/
+#bb-world-markets .wsod {
+    width: 336px;
+    position: relative;
+}
+
+#bb-world-markets td.status {
+	color: #666;
+}
+
+#bb-world-markets th.country {
+	width: 115px;
+}
+
+#bb-world-markets td .neg {
+	white-space: nowrap;
+}
+#bb-world-markets td .pos {
+	white-space: nowrap;
+}
+
+/******************************
+ *
+ * KEY RATES
+ *
+ ********************************************************************/
+#bb-key-rates .wsod {
+    width: 336px;
+    position: relative;
+    overflow: hidden;
+}
+
+#bb-key-rates .wsod .bankrateRightRail{
+	padding: 10px 0 0 0;
+}
+
+#bb-key-rates .wsod .bankrateAnchor{
+	vertical-align: top;
+}
+
+/******************************
+ *
+ * Other Market Data
+ *
+ ********************************************************************/
+#bb-other-market-data .wsod {
+    width: 336px;
+    position: relative;
+}
+
+#bb-other-market-data .wsod th {
+    white-space: nowrap;
+}
+
+#bb-other-market-data .wsod .change,
+#bb-other-market-data .wsod .unit {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+#bb-other-market-data th.futureExpiration {
+	width: 152px;
+}
+
+
+/******************************
+ *
+ * MORE NEWS
+ *
+ ********************************************************************/
+#bb-more-news .wsod {
+    width: 300px;
+}
+
+#bb-more-news h2 {
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 20px;
+    margin: 0 0 4px;
+    font-family: Georgia;
+}
+
+#bb-more-news ul {
+	list-style-type: none;
+}
+
+#bb-more-news ul li {
+	margin-bottom: 6px;
+	line-height: 15px;
+}
+
+#bb-more-news li a {
+	color: Black;
+	font-size: 12px;
+}
+
+
+/******************************
+ *
+ * COLUMNISTS
+ *
+ ********************************************************************/
+#bb-columnists .wsod {
+    width: 300px;
+}
+
+#bb-columnists div.bloomberg_medium {
+    margin-bottom: 10px;
+}
+
+#bb-columnists h4 {
+	font-weight: bold;
+	font-size: 12px;
+}
+
+#bb-columnists div.authorAndHeadline {
+	margin-bottom: 6px;
+	line-height: 15px;
+	border-bottom: 1px solid #CCC;
+	padding-bottom: 6px;
+}
+
+#bb-columnists div.last {
+	border-bottom: none;
+}
+
+#bb-columnists a {
+	color: Black;
+	font-size: 12px;
+}
+
+#bb-columnists .rCircArrow {
+	margin-left: 3px;
+}
+
+
+/******************************
+ *
+ * Business at a Glance
+ *
+ ********************************************************************/
+#bb-at-a-glance-market h3, 
+#bb-at-a-glance-world h3,
+#bb-at-a-glance-industries h3 {
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    font-family: "Georgia";
+    border-bottom: 1px solid #DEDEDE;
+}
+
+#bb-at-a-glance-market h3 a, 
+#bb-at-a-glance-world h3 a,
+#bb-at-a-glance-industries h3 a {
+	color: Black;
+}
+
+#bb-at-a-glance-market ul,
+#bb-at-a-glance-world ul,
+#bb-at-a-glance-industries ul {
+	list-style-type: none;
+}
+
+#bb-at-a-glance-market ul li,
+#bb-at-a-glance-world ul li,
+#bb-at-a-glance-industries ul li {
+	margin-bottom: 6px;
+	line-height: 15px;
+}
+
+#bb-at-a-glance-market li a,
+#bb-at-a-glance-world li a,
+#bb-at-a-glance-industries li a {
+	color: Black;
+	font-size: 12px;
+}
+
+#bb-at-a-glance-market .pictureWrapper,
+#bb-at-a-glance-world .pictureWrapper,
+#bb-at-a-glance-industries .pictureWrapper {
+	float: left;
+	width: 86px;
+	border: 1px solid #E1E1E1;
+	padding: 1px;
+}
+
+#bb-at-a-glance-market .listWrapper,
+#bb-at-a-glance-world .listWrapper,
+#bb-at-a-glance-industries .listWrapper {
+	float: left;
+	margin-left: 10px;
+}
+
+
+/******************************
+ *
+ * MOVERS
+ *
+ ********************************************************************/
+#bb-market-pulse {
+	font-size: 11px;
+}
+
+#bb-market-pulse .chartWrapper {
+	padding: 0 5px;
+	width: 116px;
+	border-right: solid 1px #E1E1E1;
+}
+
+#bb-market-pulse .smlPosArrow,
+#bb-market-pulse .smlNegArrow {
+	margin-right: 2px;
+	margin-top: 3px;
+}
+
+#bb-market-pulse .chartInfo {
+	margin-bottom: 3px;
+}
+
+#bb-market-pulse table {
+	margin-top: 0;
+	*width: 105px;
+}
+
+#bb-market-pulse table tbody tr td {
+	font-size: 11px;
+	white-space: nowrap;
+}
+
+#bb-market-pulse tr.last td {
+	border-bottom: none;
+}
+
+#bb-market-pulse div.header {
+	margin-bottom: 10px;
+}
+
+#bb-market-pulse h4 {
+	font-weight: bold;
+	font-size: 12px;
+	float: left;
+}
+
+#bb-market-pulse h4 span {
+	font-weight: normal;
+	color: #777;
+}
+
+#bb-market-pulse div.footer {
+	margin-top: 10px;
+	color: #666;
+}
+
+#bb-market-pulse div.timestamp {
+	float: left;
+	text-indent: 0 !important; /* WP has same class */
+}
+
+#bb-market-pulse div.bloomberg_small {
+	float: right;
+}
+
+#bb-market-pulse div.search {
+	float: right;
+}
+
+#bb-market-pulse a {
+	color: Black;
+}
+
+#bb-market-pulse .chartWrapper .timestampLeft {
+	color: #666;
+	font-size: 9px;
+	float: left;
+}
+#bb-market-pulse .chartWrapper .timestampRight {
+	color: #666;
+	font-size: 9px;
+	float: right;
+}
+
+#bb-market-pulse .moversWrapper {
+	padding: 0 0 0 5px;
+	width: 35%;
+}
+
+#bb-market-pulse .moversWrapper table.tableL{
+	width: 49%;
+}
+
+#bb-market-pulse .moversWrapper table.tableR{
+	width: 49%;
+}
+
+#bb-market-pulse .moversWrapper table tbody tr td{
+	padding:0 7px;
+	width: 100%; 
+}
+
+#bb-market-pulse .moversWrapper table tbody tr td.index{
+	padding:0 7px 0 0;
+}
+
+
+
+/******************************
+ *
+ * ECONOMIC CALENDAR
+ *
+ ********************************************************************/
+#bb-economic-calendar span {
+	color: #999;
+}

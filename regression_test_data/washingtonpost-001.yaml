@@ -1,0 +1,11 @@
+test_description: washingtonpost multi-page article
+url: http://www.washingtonpost.com/business/the-back-office-powerbrokers-of-commercial-real-estate/2011/06/26/AGtmeftH_story.html
+url_map:
+  ? http://www.washingtonpost.com/business/the-back-office-powerbrokers-of-commercial-real-estate/2011/06/26/AGtmeftH_story.html
+  : www.washingtonpost.com/business/the-back-office-powerbrokers-of-commercial-real-estate/2011/06/26/AGtmeftH_story.html
+  ? http://www.washingtonpost.com/business/the-back-office-powerbrokers-of-commercial-real-estate/2011/06/26/AGtmeftH_story_1.html
+  : www.washingtonpost.com/business/the-back-office-powerbrokers-of-commercial-real-estate/2011/06/26/AGtmeftH_story_1.html
+  ? http://www.washingtonpost.com/business/the-back-office-powerbrokers-of-commercial-real-estate/2011/06/26/AGtmeftH_story_2.html
+  : www.washingtonpost.com/business/the-back-office-powerbrokers-of-commercial-real-estate/2011/06/26/AGtmeftH_story_2.html
+  ? http://www.washingtonpost.com/business/the-back-office-powerbrokers-of-commercial-real-estate/2011/06/26/AGtmeftH_story_3.html
+  : www.washingtonpost.com/business/the-back-office-powerbrokers-of-commercial-real-estate/2011/06/26/AGtmeftH_story_3.html
