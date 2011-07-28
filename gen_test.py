@@ -68,7 +68,7 @@ def read_spec(test_name):
 def write_spec(base_path, spec):
     spec_yaml = yaml.dump(spec, default_flow_style = False)
     path = base_path + YAML_EXTENSION
-    return write_file(path, spec)
+    return write_file(path, spec_yaml)
 
 def maybe_mkdir(path):
     try:
