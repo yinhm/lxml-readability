@@ -754,7 +754,6 @@ def make_page_elem(page_index, elem):
 
 def first_paragraph(elem):
     paragraphs = elem.xpath('.//p')
-    logging.debug('len(paragraphs) is %d' % len(paragraphs))
     if len(paragraphs) > 0:
         return paragraphs[0]
     else:
