@@ -147,7 +147,7 @@ $Id: comments.css 49629 2010-11-10 17:50:23Z jon $
   margin-bottom: 5px; 
 }
 .blogrunner .clearfix { 
-  background: transparent url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/blognav.gif) repeat-y -10px 0; 
+  background: transparent url(/images/blogs_v3/nyt_universal/blognav.gif) repeat-y -10px 0; 
 }
 
 /* comment response form */

@@ -801,6 +801,11 @@ def parse(input, url):
     logging.debug('parse url: %s', url)
     raw_doc = build_doc(input)
     doc = html_cleaner.clean_html(raw_doc)
+    if url:
+        doc.make_links_absolute(url, resolve_base_href=True)
+    else:
+        doc.resolve_base_href()
+    
     return doc
 
 class Unparseable(ValueError):

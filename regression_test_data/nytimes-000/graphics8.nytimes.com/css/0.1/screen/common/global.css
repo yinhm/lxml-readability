@@ -75,7 +75,7 @@ ol {
 }
 
 ul li {
-  background: url(http://graphics8.nytimes.com/images/misc/bullet4x4.gif) no-repeat left 0.45em;
+  background: url(/images/misc/bullet4x4.gif) no-repeat left 0.45em;
   padding: 0 0 0 8px;
 }
 
@@ -457,107 +457,107 @@ a.inTextRefer:active {
 /* mediaOverlay and .icon icons */
 
 .audio {
-  background-image:url(http://graphics8.nytimes.com/images/icons/multimedia/audio_icon.gif);
+  background-image:url(/images/icons/multimedia/audio_icon.gif);
 }
 
 .graphic {
-  background-image:url(http://graphics8.nytimes.com/images/icons/multimedia/graphic_icon.gif);
+  background-image:url(/images/icons/multimedia/graphic_icon.gif);
 }
 
 .interactive {
-  background-image:url(http://graphics8.nytimes.com/images/icons/multimedia/interactive_icon.gif);
+  background-image:url(/images/icons/multimedia/interactive_icon.gif);
 }
 
 .photo {
-  background-image:url(http://graphics8.nytimes.com/images/icons/multimedia/photo_icon.gif);
+  background-image:url(/images/icons/multimedia/photo_icon.gif);
 }
 
 .trailer {
-  background-image:url(http://graphics8.nytimes.com/images/icons/multimedia/trailer_icon.gif);
+  background-image:url(/images/icons/multimedia/trailer_icon.gif);
 }
 
 .slideshow {
-  background-image:url(http://graphics8.nytimes.com/images/icons/multimedia/photo_icon.gif);   
+  background-image:url(/images/icons/multimedia/photo_icon.gif);   
 }
 
 .map {
-  background-image:url(http://graphics8.nytimes.com/images/icons/multimedia/map_icon.gif);
+  background-image:url(/images/icons/multimedia/map_icon.gif);
 }
 
 .video {
-  background-image:url(http://graphics8.nytimes.com/images/icons/multimedia/video_icon.gif);
+  background-image:url(/images/icons/multimedia/video_icon.gif);
 }
 
 .document {
-  background-image:url(http://graphics8.nytimes.com/images/multimedia/icons/document_icon.gif);
+  background-image:url(/images/multimedia/icons/document_icon.gif);
 }
 
 .op-art {
-  background-image:url(http://graphics8.nytimes.com/images/multimedia/icons/op_art_icon.gif);
+  background-image:url(/images/multimedia/icons/op_art_icon.gif);
 }
 
 .rssSm {
   padding-left: 12px;
-  background-image: url(http://graphics8.nytimes.com/images/icons/feeds/rss_icon_8x8.gif);
+  background-image: url(/images/icons/feeds/rss_icon_8x8.gif);
 }
 
 .rssMd {
-  background-image: url(http://graphics8.nytimes.com/images/icons/feeds/rss_icon_10x10.gif);
+  background-image: url(/images/icons/feeds/rss_icon_10x10.gif);
 }
 
 .rssLg {
-  background-image: url(http://graphics8.nytimes.com/images/icons/feeds/rss_icon_12x12.gif);
+  background-image: url(/images/icons/feeds/rss_icon_12x12.gif);
 }
 
 .rssXl {
   padding-left: 20px;
-  background-image: url(http://graphics8.nytimes.com/images/icons/feeds/rss_icon_16x16.gif);
+  background-image: url(/images/icons/feeds/rss_icon_16x16.gif);
 }
 
 .lock {
-  background-image: url(http://graphics8.nytimes.com/images/icons/lock_icon.gif);
+  background-image: url(/images/icons/lock_icon.gif);
 } 
 
 /* inTextRefer icons */
 
 .inTextReferArticle {
-  background: url(http://graphics8.nytimes.com/images/multimedia/icons/intext/article.png) no-repeat left center;
+  background: url(/images/multimedia/icons/intext/article.png) no-repeat left center;
 }
 
 .inTextReferAudio {
-  background: url(http://graphics8.nytimes.com/images/multimedia/icons/intext/audio.png) no-repeat left center;
+  background: url(/images/multimedia/icons/intext/audio.png) no-repeat left center;
 }
 
 .inTextReferGraphic {
-  background: url(http://graphics8.nytimes.com/images/multimedia/icons/intext/graphic.png) no-repeat left center;
+  background: url(/images/multimedia/icons/intext/graphic.png) no-repeat left center;
 }
 
 .inTextReferInteractive {
-  background: url(http://graphics8.nytimes.com/images/multimedia/icons/intext/interactive.png) no-repeat left center;
+  background: url(/images/multimedia/icons/intext/interactive.png) no-repeat left center;
 }
 
 .inTextReferMap {
-  background: url(http://graphics8.nytimes.com/images/multimedia/icons/intext/map.png) no-repeat left center;
+  background: url(/images/multimedia/icons/intext/map.png) no-repeat left center;
 }
 
 .inTextReferSlideshow {
-  background: url(http://graphics8.nytimes.com/images/multimedia/icons/intext/photo.png) no-repeat left center;
+  background: url(/images/multimedia/icons/intext/photo.png) no-repeat left center;
 }
 
 .inTextReferVideo {
-  background: url(http://graphics8.nytimes.com/images/multimedia/icons/intext/video.png) no-repeat left center;
+  background: url(/images/multimedia/icons/intext/video.png) no-repeat left center;
 }
 
 .inTextReferEmail {
-  background: url(http://graphics8.nytimes.com/images/multimedia/icons/intext/email.png) no-repeat left center;
+  background: url(/images/multimedia/icons/intext/email.png) no-repeat left center;
 }
 
 .inTextReferComment {
-  background: url(http://graphics8.nytimes.com/images/multimedia/icons/intext/comments.png) no-repeat left center;
+  background: url(/images/multimedia/icons/intext/comments.png) no-repeat left center;
 }
 
 .inTextReferDocument {
-  background: url(http://graphics8.nytimes.com/images/multimedia/icons/intext/document.png) no-repeat left center;
+  background: url(/images/multimedia/icons/intext/document.png) no-repeat left center;
 }
 
 /* END mediaOverlay */

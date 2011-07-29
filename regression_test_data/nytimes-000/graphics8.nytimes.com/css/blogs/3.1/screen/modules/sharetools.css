@@ -42,23 +42,23 @@ ul.entry-tools li.closed {
 }
 
 li.comment-link a {
-  background:url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/comments.gif) 0 3px no-repeat;
+  background:url(/images/blogs_v3/nyt_universal/comments.gif) 0 3px no-repeat;
 }
 li.email-this a {
-  background:url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/emailthis.gif) 0 3px no-repeat;
+  background:url(/images/blogs_v3/nyt_universal/emailthis.gif) 0 3px no-repeat;
 }
 li.print a {
   padding-left:18px;
-  background:url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/print_icon.gif) 0 1px no-repeat;
+  background:url(/images/blogs_v3/nyt_universal/print_icon.gif) 0 1px no-repeat;
 }
 li.mobile a {
   padding-left:11px;
-  background:url(http://graphics8.nytimes.com/images/multimedia/icons/mobile_icon.gif) 2px 3px no-repeat;
+  background:url(/images/multimedia/icons/mobile_icon.gif) 2px 3px no-repeat;
 }
 
 li.share a {
   padding-left:18px;
-  background: transparent url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/plus.gif) no-repeat scroll 2px 3px;
+  background: transparent url(/images/blogs_v3/nyt_universal/plus.gif) no-repeat scroll 2px 3px;
   cursor: pointer;
   display: block;
   margin-left: 0;
@@ -70,24 +70,24 @@ li #twitter_button {
 }
 
 #twitter_item #twitter_form_title {
-  background-image: url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/twitter.gif);
+  background-image: url(/images/blogs_v3/nyt_universal/twitter.gif);
 }
 
 li.timespeople_btn_recommend a {
-  background: transparent url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/recommend.gif) no-repeat scroll 1px 2px;
+  background: transparent url(/images/blogs_v3/nyt_universal/recommend.gif) no-repeat scroll 1px 2px;
   padding-left:20px;
   display:block;
 }
 
-li.opened li.delicious a { background:transparent url(http://graphics8.nytimes.com/images/article/functions/delicious.gif) no-repeat scroll 0 1px;}
-li.opened li.digg a { background:transparent url(http://graphics8.nytimes.com/images/article/functions/digg.gif) no-repeat scroll 0 1px; }
-li.opened li.facebook a { background:transparent url(http://graphics8.nytimes.com/images/article/functions/facebook.gif) no-repeat scroll 0 1px; }
-li.opened li.newsvine a { background:transparent url(http://graphics8.nytimes.com/images/article/functions/newsvine.gif) no-repeat scroll 0 1px; }
-li.opened li.mixx a { background:transparent url(http://graphics8.nytimes.com/images/article/functions/mixx.gif) no-repeat scroll 0 1px; }
-li.opened li.linkedin a { background:transparent url(http://graphics8.nytimes.com/images/article/functions/linkedin.gif) no-repeat scroll 0 1px; }
-li.opened li.permalink a { background:transparent url(http://graphics8.nytimes.com/images/article/functions/permalink.gif) no-repeat scroll 0 1px; }
-li.opened li.myspace a { background:transparent url(http://graphics8.nytimes.com/images/article/functions/myspace.gif) no-repeat scroll 0 1px; }
-li.opened a { background:transparent url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/minus.gif) no-repeat scroll 2px 3px; }
+li.opened li.delicious a { background:transparent url(/images/article/functions/delicious.gif) no-repeat scroll 0 1px;}
+li.opened li.digg a { background:transparent url(/images/article/functions/digg.gif) no-repeat scroll 0 1px; }
+li.opened li.facebook a { background:transparent url(/images/article/functions/facebook.gif) no-repeat scroll 0 1px; }
+li.opened li.newsvine a { background:transparent url(/images/article/functions/newsvine.gif) no-repeat scroll 0 1px; }
+li.opened li.mixx a { background:transparent url(/images/article/functions/mixx.gif) no-repeat scroll 0 1px; }
+li.opened li.linkedin a { background:transparent url(/images/article/functions/linkedin.gif) no-repeat scroll 0 1px; }
+li.opened li.permalink a { background:transparent url(/images/article/functions/permalink.gif) no-repeat scroll 0 1px; }
+li.opened li.myspace a { background:transparent url(/images/article/functions/myspace.gif) no-repeat scroll 0 1px; }
+li.opened a { background:transparent url(/images/blogs_v3/nyt_universal/minus.gif) no-repeat scroll 2px 3px; }
 
 ul.entry-tools li.timespeople_btn_recommend{ padding-right: 0; }
 
@@ -152,7 +152,7 @@ li.ad a {
   padding-top: 8px;
   padding-bottom: 5px;
   padding-right: 21px;
-  background: url(http://graphics8.nytimes.com/images/article/comments/buttons/close_window.gif) no-repeat 54px 8px;
+  background: url(/images/article/comments/buttons/close_window.gif) no-repeat 54px 8px;
 }
 li.closed a.hidden {
   display: none;
@@ -162,7 +162,7 @@ li.closed #yahooBuzzBadge-form a {
   display: none;
 }
 .shareSponsor {
-  background: url(http://graphics8.nytimes.com/ads/sharetools-sponsor.gif) no-repeat 0 0;
+  background: url(/ads/sharetools-sponsor.gif) no-repeat 0 0;
   display: block;
   clear: both;
   width: 330px;

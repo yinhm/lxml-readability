@@ -1,11 +1,56 @@
 test_description: washingtonpost multi-page article
 url: http://www.washingtonpost.com/business/the-back-office-powerbrokers-of-commercial-real-estate/2011/06/26/AGtmeftH_story.html
 url_map:
+  http://b.scorecardresearch.com/robots.txt: b.scorecardresearch.com/robots.txt
+  http://media.fastclick.net/robots.txt: media.fastclick.net/robots.txt
+  http://media.fastclick.net/w/tre?ad_id=23607;evt=16882;cat1=20787;cat2=20788;rand='+TWP.StaticMethods.getUniqueToken()+': media.fastclick.net/w/tre?ad_id=23607;evt=16882;cat1=20787;cat2=20788;rand='+TWP.StaticMethods.getUniqueToken()+'
+  http://media.washingtonpost.com/robots.txt: media.washingtonpost.com/robots.txt
+  http://media.washingtonpost.com/wp-srv/ad/textlinks/js/utilsTextLinksXML.js: media.washingtonpost.com/wp-srv/ad/textlinks/js/utilsTextLinksXML.js
+  http://media.washingtonpost.com/wp-srv/ad/textlinks/style/textlinks.css: media.washingtonpost.com/wp-srv/ad/textlinks/style/textlinks.css
+  http://media.washingtonpost.com/wp-srv/images/bullet_3x3_999999.gif: media.washingtonpost.com/wp-srv/images/bullet_3x3_999999.gif
+  http://pixel.quantserve.com/robots.txt: pixel.quantserve.com/robots.txt
+  http://washpost.bloomberg.com/content/images/iconSprite.png: washpost.bloomberg.com/content/images/iconSprite.png
+  http://washpost.bloomberg.com/content/images/slidingDoors.png: washpost.bloomberg.com/content/images/slidingDoors.png
+  http://washpost.bloomberg.com/content/images/spark-plcHolder.png: washpost.bloomberg.com/content/images/spark-plcHolder.png
+  http://washpost.bloomberg.com/content/images/sprite.png: washpost.bloomberg.com/content/images/sprite.png
+  http://washpost.bloomberg.com/content/styles/WSODModules.css: washpost.bloomberg.com/content/styles/WSODModules.css
+  http://washpost.bloomberg.com/modules/key-rates: washpost.bloomberg.com/modules/key-rates.html
+  http://washpost.bloomberg.com/modules/other-market-data: washpost.bloomberg.com/modules/other-market-data.html
+  http://washpost.bloomberg.com/modules/world-markets: washpost.bloomberg.com/modules/world-markets.html
   ? http://www.washingtonpost.com/business/the-back-office-powerbrokers-of-commercial-real-estate/2011/06/26/AGtmeftH_story.html
   : www.washingtonpost.com/business/the-back-office-powerbrokers-of-commercial-real-estate/2011/06/26/AGtmeftH_story.html
   ? http://www.washingtonpost.com/business/the-back-office-powerbrokers-of-commercial-real-estate/2011/06/26/AGtmeftH_story_1.html
   : www.washingtonpost.com/business/the-back-office-powerbrokers-of-commercial-real-estate/2011/06/26/AGtmeftH_story_1.html
-  ? http://www.washingtonpost.com/business/the-back-office-powerbrokers-of-commercial-real-estate/2011/06/26/AGtmeftH_story_2.html
-  : www.washingtonpost.com/business/the-back-office-powerbrokers-of-commercial-real-estate/2011/06/26/AGtmeftH_story_2.html
-  ? http://www.washingtonpost.com/business/the-back-office-powerbrokers-of-commercial-real-estate/2011/06/26/AGtmeftH_story_3.html
-  : www.washingtonpost.com/business/the-back-office-powerbrokers-of-commercial-real-estate/2011/06/26/AGtmeftH_story_3.html
+  http://www.washingtonpost.com/favicon.ico: www.washingtonpost.com/favicon.ico
+  ? http://www.washingtonpost.com/rf/image_296w/2010-2019/WashingtonPost/2011/06/30/Business/Videos/06302011-17v/06302011-17v.jpg
+  : www.washingtonpost.com/rf/image_296w/2010-2019/WashingtonPost/2011/06/30/Business/Videos/06302011-17v/06302011-17v.jpg
+  ? http://www.washingtonpost.com/rf/image_296w/2010-2019/WashingtonPost/2011/07/02/Web-Resampled/2011-07-01/w-debtservicersPROMO--296x195.jpg
+  : www.washingtonpost.com/rf/image_296w/2010-2019/WashingtonPost/2011/07/02/Web-Resampled/2011-07-01/w-debtservicersPROMO--296x195.jpg
+  http://www.washingtonpost.com/robots.txt: www.washingtonpost.com/robots.txt
+  ? http://www.washingtonpost.com/rw/2010-2019/WashingtonPost/2011/05/04/National-Economy/Images/11-257%20PromoBox_BOTH_335x100.jpg
+  : www.washingtonpost.com/rw/2010-2019/WashingtonPost/2011/05/04/National-Economy/Images/11-257
+    PromoBox_BOTH_335x100.jpg
+  ? http://www.washingtonpost.com/rw/WashingtonPost/Production/Digital/Pages-Web/homepage/_module-content/trove-right-rail-business.png
+  : www.washingtonpost.com/rw/WashingtonPost/Production/Digital/Pages-Web/homepage/_module-content/trove-right-rail-business.png
+  ? http://www.washingtonpost.com/rw/WashingtonPost/Production/Digital/Pages-Web/politics/_module-content/Promo%20graphics/gov-showdown-promo-updated-333x100.jpg
+  : www.washingtonpost.com/rw/WashingtonPost/Production/Digital/Pages-Web/politics/_module-content/Promo
+    graphics/gov-showdown-promo-updated-333x100.jpg
+  http://www.washingtonpost.com/rw/sites/twpweb/img/bkgds/overlay-for-296-graphics.png: www.washingtonpost.com/rw/sites/twpweb/img/bkgds/overlay-for-296-graphics.png
+  http://www.washingtonpost.com/rw/sites/twpweb/img/icons/icon-minus.png: www.washingtonpost.com/rw/sites/twpweb/img/icons/icon-minus.png
+  http://www.washingtonpost.com/rw/sites/twpweb/img/icons/icon-plus.png: www.washingtonpost.com/rw/sites/twpweb/img/icons/icon-plus.png
+  http://www.washingtonpost.com/rw/sites/twpweb/js/conf.js: www.washingtonpost.com/rw/sites/twpweb/js/conf.js
+  http://www.washingtonpost.com/rw/sites/twpweb/js/site_traffic/comscore.js: www.washingtonpost.com/rw/sites/twpweb/js/site_traffic/comscore.js
+  http://www.washingtonpost.com/rw/sites/twpweb/js/wp_omniture.js: www.washingtonpost.com/rw/sites/twpweb/js/wp_omniture.js
+  http://www.washingtonpost.com/wp-srv/ad/textlinks/images/dash.gif: www.washingtonpost.com/wp-srv/ad/textlinks/images/dash.gif
+  http://www.washingtonpost.com/wp-srv/ad/textlinks/images/dot.gif: www.washingtonpost.com/wp-srv/ad/textlinks/images/dot.gif
+  ? http://www.washingtonpost.com/wpost/css/combo?token=20110728006008&context=eidos&c=true&m=true&r=/2.0.0/reset.css&r=/2.0.0/structure.css&r=/2.0.0/header.css&r=/2.0.0/footer.css&r=/2.0.0/right-rail.css&r=/2.0.0/rules.css&r=/2.0.0/forms.css&r=/2.0.0/base.css&r=/2.0.0/modal.css&r=/2.0.0/accordion.css&r=/2.0.0/storyflipper.css&r=/2.0.0/flipper.css&r=/2.0.0/modules.css&r=/2.0.0/epaper.css&r=/2.0.0/calendar-widget.css&r=/2.0.0/widgets.css&r=/2.0.0/article_carousel.css&r=/2.0.0/wsodEWA.css&r=/2.0.0/ads.css&r=/2.0.0/network-news.css&r=/2.0.0/candidate.css&r=/echo2/twp_comments_echo2.css
+  : www.washingtonpost.com/rw/sites/twpweb/js/conf.js
+  ? http://www.washingtonpost.com/wpost/js/combo?token=20110925000089&c=true&m=false&context=eidos&r=/yui-base/global/eidos-global-modules.js&r=/jquery-1.4.js&r=/core-1.0.0.js&r=/constants-1.0.0.js&r=/static-methods-1.0.0.js&r=/util/util.header-detection-1.0.0.js&r=/site_traffic/engagement.js
+  : www.washingtonpost.com/rw/sites/twpweb/js/conf.js
+  http://www.washingtonpost.com/wpost/js/combo?token=20110925000089&c=true&m=false&context=wp-static&r=/ad/audsci.js: www.washingtonpost.com/wpost/js/combo?token=20110925000089&c=true&m=false&context=wp-static&r=%2Fad%2Faudsci.js
+  ? http://www.washingtonpost.com/wpost/js/combo?token=20110925000089&c=true&m=false&context=wp-static&r=/ad/wpni_generic_ad.js&r=/ad/wp_ad.js
+  : www.washingtonpost.com/wpost/js/combo?token=20110925000089&c=true&m=false&context=wp-static&r=%2Fad%2Fwpni_generic_ad.js&r=%2Fad%2Fwp_ad.js
+  ? http://www.washingtonpost.com/wpost/js/combo?token=20110925000089&c=true&m=false&context=wpost&r=/yui-base/3.3.0/build/yui/yui-min.js&r=/yui-base/3.3.0/build/loader/loader-min.js&r=/yui-base/3.3.0/build/oop/oop-min.js&r=/yui-base/3.3.0/build/dom/dom-base-min.js&r=/yui-base/3.3.0/build/dom/selector-native-min.js&r=/yui-base/3.3.0/build/dom/selector-css2-min.js&r=/yui-base/3.3.0/build/event-custom/event-custom-min.js&r=/yui-base/3.3.0/build/event/event-min.js&r=/yui-base/3.3.0/build/node/node-base-min.js&r=/yui-base/twp-yui/twp-yui.js&r=/yui-base/global/global-modules.js
+  : www.washingtonpost.com/rw/sites/twpweb/js/conf.js
+  https://apis.google.com/js/plusone.js: washpost.bloomberg.com/content/images/sprite.png
+  https://apis.google.com/robots.txt: www.washingtonpost.com/favicon.ico

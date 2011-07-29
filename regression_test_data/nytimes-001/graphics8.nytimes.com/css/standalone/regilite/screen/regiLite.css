@@ -18,7 +18,7 @@ body {
 }
 
 .regiliteDecorator .sectionHeader{
-  background: transparent url(http://graphics8.nytimes.com/images/membercenter/graphic_saveupto.png) no-repeat left top;
+  background: transparent url(/images/membercenter/graphic_saveupto.png) no-repeat left top;
   min-height: 32px;
   height: auto !important;
   height: 32px;

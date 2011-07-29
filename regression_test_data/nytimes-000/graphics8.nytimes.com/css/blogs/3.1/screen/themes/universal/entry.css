@@ -336,7 +336,7 @@ sup, sub {
   font-weight:normal;
   color:#888;
   text-transform: uppercase;
-  background: #fff url(http://graphics8.nytimes.com/images/layout/vertical_rule.gif) repeat-y top right;
+  background: #fff url(/images/layout/vertical_rule.gif) repeat-y top right;
 }
 .entry .updated-marker .time a,
 .entry .updated-marker .time a:visited {
@@ -410,24 +410,24 @@ li.video,
 }
 
 .pdf {
-  background-image: url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/pdf_icon.gif);
+  background-image: url(/images/blogs_v3/nyt_universal/pdf_icon.gif);
 }
 .comments {
   background-position: 0.1em 0.2em;
-  background-image: url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/comments.gif);
+  background-image: url(/images/blogs_v3/nyt_universal/comments.gif);
 }
 .multimedia {
   background-position: 0.1em 0.2em;
-  background-image: url(http://graphics8.nytimes.com/images/multimedia/icons/interactive_icon.gif);
+  background-image: url(/images/multimedia/icons/interactive_icon.gif);
 }
 .facebook {
-  background-image: url(http://graphics8.nytimes.com/images/article/functions/facebook-dark.gif);
+  background-image: url(/images/article/functions/facebook-dark.gif);
 }
 .twitter {
-  background-image: url(http://graphics8.nytimes.com/images/article/functions/twitter.gif);
+  background-image: url(/images/article/functions/twitter.gif);
 }
 .youtube {
-  background-image: url(http://graphics8.nytimes.com/images/blogs/socialmedia/youtube.gif);
+  background-image: url(/images/blogs/socialmedia/youtube.gif);
 }
 
 li.rssSm {
@@ -470,7 +470,7 @@ a.rssXl {
 
 /* content expander */
 .toggleContent .showContent {
-  background: #f4f4f4 url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/modules/contentExpander/arrow_supressed.gif) no-repeat 293px 11px;
+  background: #f4f4f4 url(/images/blogs_v3/nyt_universal/modules/contentExpander/arrow_supressed.gif) no-repeat 293px 11px;
   border-bottom: 1px solid #e2e2e2;
   display: block;
   font-family: arial, helvetica, sans-serif;
@@ -489,7 +489,7 @@ a.rssXl {
   color: #004276;
 }
 .toggleContent .expanded {
-  background-image: url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/modules/contentExpander/arrow_expanded.gif);
+  background-image: url(/images/blogs_v3/nyt_universal/modules/contentExpander/arrow_expanded.gif);
   background-position: 260px 11px;
 }
 .toggleContent .hiddenContent {

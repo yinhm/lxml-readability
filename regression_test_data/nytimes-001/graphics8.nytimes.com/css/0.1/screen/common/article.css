@@ -4,8 +4,8 @@
 
 /* pull in global edition masthead/pageHeader styles */
 
-@import url(http://graphics8.nytimes.com/css/0.1/screen/globalEdition/common.css);
-@import url(http://graphics8.nytimes.com/css/0.1/screen/thirdparty/logos/bylinelogos.css);
+@import url(/css/0.1/screen/globalEdition/common.css);
+@import url(/css/0.1/screen/thirdparty/logos/bylinelogos.css);
 
 #main { /*TODO move layout.css #main bottom padding to sectionfront.css and remove this rule*/
   padding: 0 !important;
@@ -50,7 +50,7 @@
   font-family: arial, helvetica, sans-serif;
   font-size: 1.1em;
   padding-left: 15px;
-  background-image: url(http://graphics8.nytimes.com/images/icons/multimedia/enlarge_icon.gif);
+  background-image: url(/images/icons/multimedia/enlarge_icon.gif);
   background-repeat: no-repeat;
   background-position: center left;
   text-decoration: none;
@@ -114,7 +114,7 @@
 
 .articleSpanVideoModule .playOverlay {
   position: absolute;
-  background: url(http://graphics8.nytimes.com/images/global/icons/playbutton_closed.png) left bottom no-repeat;
+  background: url(/images/global/icons/playbutton_closed.png) left bottom no-repeat;
   width: 55px;
   height: 50px;
   z-index: 4;
@@ -124,7 +124,7 @@
 
 .articleSpanVideoModule .playOverlay:hover {
   position: absolute;
-  background: url(http://graphics8.nytimes.com/images/global/icons/playbutton_expanded.png) left bottom no-repeat;
+  background: url(/images/global/icons/playbutton_expanded.png) left bottom no-repeat;
   width: 139px;
   height: 50px;
   z-index: 4;
@@ -157,7 +157,7 @@
 
 .expandAssetContainer .playOverlay {
   position: relative;
-  background: url(http://graphics8.nytimes.com/images/global/icons/Play_34.png) left bottom no-repeat;
+  background: url(/images/global/icons/Play_34.png) left bottom no-repeat;
   display: block;
   width: 34px;
   height: 31px;
@@ -168,7 +168,7 @@
 
 .expandAssetContainer .playOverlay:hover {
   position: relative;
-  background: url(http://graphics8.nytimes.com/images/global/icons/Button_Play_Highlighted_100.png) left bottom no-repeat;
+  background: url(/images/global/icons/Button_Play_Highlighted_100.png) left bottom no-repeat;
   display: block;
   width: 100px;
   height: 31px;
@@ -198,7 +198,7 @@
 .assetCompanionAd .dialogBoxClose {
   width: 87px;
   float: right;
-  background: url(http://graphics8.nytimes.com/images/modules/dialogbox/close_dialog_box_icon_dark.gif) right top no-repeat;
+  background: url(/images/modules/dialogbox/close_dialog_box_icon_dark.gif) right top no-repeat;
   display: block;
   height: 13px;
   padding-right: 18px;
@@ -286,7 +286,7 @@
 .articleInline #sidebarArticles,
 .articleInline #sectionPromo,
 .articleInline .sectionPromo {
-  background: url(http://graphics8.nytimes.com/images/global/borders/doubleRule.gif) repeat-x left top;
+  background: url(/images/global/borders/doubleRule.gif) repeat-x left top;
   margin-bottom: 12px;
   padding-top: 12px;
   clear: both;
@@ -397,7 +397,7 @@
 }
 
 #articleFooterTools .horizontalMenu .timespeople_btn_recommend {
-  background: url(http://graphics8.nytimes.com/images/global/icons/recommend.gif) no-repeat 0 -1px;
+  background: url(/images/global/icons/recommend.gif) no-repeat 0 -1px;
   font-family: arial, helvetica, sans-serif;
   font-weight: bold;
   font-size: 1.1em;
@@ -521,7 +521,7 @@
   display: block;
   width: 53px;
   height: 25px;
-  background: url(http://graphics8.nytimes.com/images/apps/buttons/close.gif) no-repeat;
+  background: url(/images/apps/buttons/close.gif) no-repeat;
   text-indent: -10000px;
   overflow: hidden;
 }
@@ -557,11 +557,11 @@ ul.articleAdTools li.perma {
 }
 
 ul.articleAdTools li.email a { 
-  background: url(http://graphics8.nytimes.com/images/article/tools/emailthis.gif) no-repeat 0 50%;
+  background: url(/images/article/tools/emailthis.gif) no-repeat 0 50%;
 }
 
 ul.articleAdTools li.perma a { 
-  background: url(http://graphics8.nytimes.com/images/article/tools/permalink.gif) no-repeat 0 50%; 
+  background: url(/images/article/tools/permalink.gif) no-repeat 0 50%; 
 }
 
 /* Bottom of acolumn modules */
@@ -604,7 +604,7 @@ ul.articleAdTools li.perma a {
 
 .relatedSearchesModule .opposingFloatControl .emailAlert {
   width: 100px;
-  background-image: url("http://graphics8.nytimes.com/images/apps/mytimes/add_content.gif");
+  background-image: url("/images/apps/mytimes/add_content.gif");
   padding-left: 20px;
   font-size: .916em; /* 11px */
   font-weight: bold;
@@ -664,7 +664,7 @@ ul.articleAdTools li.perma a {
 }
 
 .byline .paid_content {
-  background: url(http://graphics8.nytimes.com/images/article/paid_content_logo.gif) no-repeat;
+  background: url(/images/article/paid_content_logo.gif) no-repeat;
   margin: 0 0 5px 5px; 
   padding: 10px 0 5px 105px;
 }

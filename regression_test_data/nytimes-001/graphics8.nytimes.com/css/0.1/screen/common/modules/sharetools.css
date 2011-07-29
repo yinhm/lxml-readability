@@ -25,16 +25,16 @@
 }
 
 #shareMenu .shareButton {
-  background: url(http://graphics8.nytimes.com/images/article/functions/toolsicon_anim.gif) no-repeat 0 0;
+  background: url(/images/article/functions/toolsicon_anim.gif) no-repeat 0 0;
   padding: 1px 0 3px 20px;
 }
 
 #shareMenu.closed a.shareButton:hover {
-  background: url(http://graphics8.nytimes.com/images/article/functions/expand.gif) no-repeat 1px 0;
+  background: url(/images/article/functions/expand.gif) no-repeat 1px 0;
 }
 
 #shareMenu.opened .shareButton {
-  background: url(http://graphics8.nytimes.com/images/article/functions/contract.gif) no-repeat 0 0;
+  background: url(/images/article/functions/contract.gif) no-repeat 0 0;
   float: left;
   margin-bottom: 7px;
   margin-top: 2px;
@@ -42,7 +42,7 @@
 }
 
 #shareMenu .closeButton {
-  background: url(http://graphics8.nytimes.com/images/article/comments/buttons/close_window.gif) no-repeat 4.1em 0;
+  background: url(/images/article/comments/buttons/close_window.gif) no-repeat 4.1em 0;
   float: right;
   display: inline;
   margin-bottom: 7px;
@@ -95,7 +95,7 @@
 }
 
 #shareMenu #shareList .shareSponsor {
-  background: url(http://graphics8.nytimes.com/ads/sharetools-sponsor.gif) no-repeat 0 0;
+  background: url(/ads/sharetools-sponsor.gif) no-repeat 0 0;
   clear: both;
   display: block;
   width: 115px;

@@ -273,9 +273,25 @@ def add_css(doc):
     head = B.HEAD(style, content = 'text/html; charset=utf-8')
     doc.insert(0, head)
 
-def write_output_fragment(fragment, path):
+def convert_links(url_map, url, doc):
+    url_path = url_map[url]
+    url_dir = os.path.dirname(url_path)
+    logging.debug('converting links: url_dir: %s' % url_dir)
+    def link_repl_func(link):
+        if link in url_map:
+            link_path = url_map[link]
+            logging.debug('converting links: link_path: %s' % link_path)
+            new_link = os.path.relpath(link_path, url_dir)
+            logging.debug('converting links: new_link: %s' % new_link)
+            return new_link
+        else:
+            return link
+    doc.rewrite_links(link_repl_func)
+
+def write_output_fragment(url_map, url, fragment, path):
     doc = lxml.html.document_fromstring(fragment)
     add_css(doc)
+    convert_links(url_map, url, doc)
     html = lxml.html.tostring(doc)
     with open(path, 'w') as f:
         f.write(html)
@@ -303,7 +319,7 @@ def write_result(output_dir_path, result):
         url_map = result.test_data.test.url_map
         url_path = url_map[url]
         path = os.path.join(output_dir_path, test_name, url_path) + suffix
-        write_output_fragment(html, path)
+        write_output_fragment(url_map, url, html, path)
 
 def print_test_info(test):
     name_string = '%s' % test.name

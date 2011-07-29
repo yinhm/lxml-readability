@@ -1,9 +1,11 @@
+import logging
 import os.path
 import re
 import subprocess
 import sys
 import urllib2
 import urlparse
+import wget_parser
 
 HTML_RE = re.compile(r'\.[Hh][Tt][Mm][Ll]?$')
 
@@ -41,8 +43,6 @@ class LocalCopyUrlFetch(UrlFetch):
                 'wget',
                 '--adjust-extension',
                 '--span-hosts',
-                '--convert-links',
-                '--backup-converted',
                 '--page-requisites',
                 url
                 ]
@@ -57,24 +57,15 @@ class LocalCopyUrlFetch(UrlFetch):
             output = e.output
             print('wget exited with non-zero code: %d' % e.returncode)
 
-        rel_path = wget_saved_to(output)
-        if rel_path is None:
-            raise Exception('could not figure out where wget saved to')
-        self._url_map[url] = rel_path
-        # TODO: Log.
-        print('%s: %s' % (url, rel_path))
-        path = os.path.join(self._base_path, rel_path)
+        parser = wget_parser.WgetParser(self._url_map)
+        parser.parse(output)
+
+        if url not in self._url_map:
+            raise Exception('%s was not successfully fetched' % url)
+        
+        path = os.path.join(self._base_path, self._url_map[url])
         with open(path, 'r') as f:
             return f.read()
-
-def wget_saved_to(wget_output):
-    save_re = re.compile(r'Saving to: \xe2\x80\x9c(.*)\xe2\x80\x9d')
-    lines = wget_output.splitlines()
-    for line in lines:
-        m = save_re.match(line)
-        if m:
-            return m.group(1)
-    return None
 
 def adjust_extension(path):
     if not HTML_RE.search(path):
@@ -83,10 +74,12 @@ def adjust_extension(path):
         return path
 
 def main():
+    logging.basicConfig(level = logging.DEBUG)
     if len(sys.argv) == 3:
         print 'fetching local copy'
-        fetcher = LocalCopyUrlFetch(TEST_DATA_PATH, sys.argv[1])
-        contents = fetcher.urlread(sys.argv[2])
+        url_map = dict()
+        fetcher = LocalCopyUrlFetch(sys.argv[2], url_map)
+        contents = fetcher.urlread(sys.argv[1])
     else:
         pass
 

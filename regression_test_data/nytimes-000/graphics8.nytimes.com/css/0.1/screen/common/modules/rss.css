@@ -6,7 +6,7 @@ ul.rssCcolumn li {
   font-size: 1.1em;
   font-weight: bold;
   font-family: Arial,sans-serif;
-  background: transparent url(http://graphics8.nytimes.com/images/global/icons/feed_icon_12x12.gif) no-repeat 0 0;
+  background: transparent url(/images/global/icons/feed_icon_12x12.gif) no-repeat 0 0;
   padding: 0 0 2px 16px;
   line-height: 1.2em;
 }
@@ -16,7 +16,7 @@ ul.rssCcolumn .rssSubsection li {
   font-weight: normal;
   float: left;
   width: 55px;
-  background: transparent url(http://graphics8.nytimes.com/images/global/icons/feed_icon_8x8.gif) no-repeat 0 2px;
+  background: transparent url(/images/global/icons/feed_icon_8x8.gif) no-repeat 0 2px;
   padding: 0 0 0 12px;
   margin-top: 3px;
 }

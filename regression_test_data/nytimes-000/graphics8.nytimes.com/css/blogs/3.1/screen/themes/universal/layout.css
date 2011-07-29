@@ -36,7 +36,7 @@ $Id: layout.css 68507 2011-05-26 18:03:25Z christopher.sanders $
 
 /* two column promos */
 .module .col2 {
-  background: url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/subcolumn.gif) 50% 0 repeat-y;
+  background: url(/images/blogs_v3/nyt_universal/subcolumn.gif) 50% 0 repeat-y;
 }
 
 .col2 .subColA, 
@@ -84,7 +84,7 @@ $Id: layout.css 68507 2011-05-26 18:03:25Z christopher.sanders $
 .module {
   clear: both;
   padding-top: 5px;
-  background: url(http://graphics8.nytimes.com/images/global/borders/aColumnHorizontalBorder.gif) repeat-x;
+  background: url(/images/global/borders/aColumnHorizontalBorder.gif) repeat-x;
 }
 
 /* blog header */
@@ -312,7 +312,7 @@ $Id: layout.css 68507 2011-05-26 18:03:25Z christopher.sanders $
 }
 
 .nav ul {
-  background: url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/blognav.gif) repeat-y 50% 0;
+  background: url(/images/blogs_v3/nyt_universal/blognav.gif) repeat-y 50% 0;
   margin: 0;
 }
 
@@ -351,13 +351,13 @@ $Id: layout.css 68507 2011-05-26 18:03:25Z christopher.sanders $
 .nav .element1 a,
 .nav .clearfix li.alignleft a {
   padding: 0 14px 0 25px; 
-  background: url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/arrow-left.gif) no-repeat left 0;
+  background: url(/images/blogs_v3/nyt_universal/arrow-left.gif) no-repeat left 0;
 }
 
 .nav .element2 a,
 .nav .clearfix li.alignright a {
   padding: 0 25px 0 14px; 
-  background: url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/arrow-right.gif) no-repeat right 0;
+  background: url(/images/blogs_v3/nyt_universal/arrow-right.gif) no-repeat right 0;
 }
 
 #aCol .nav {
@@ -371,7 +371,7 @@ $Id: layout.css 68507 2011-05-26 18:03:25Z christopher.sanders $
   padding: 19px 0 15px 0;
   border-top: none;
   border-bottom: 1px #ccc solid;
-  background: transparent url(http://graphics8.nytimes.com/images/global/borders/aColumnHorizontalBorder.gif) repeat-x top left;
+  background: transparent url(/images/global/borders/aColumnHorizontalBorder.gif) repeat-x top left;
 }
 
 .blogPost #aCol .nav {
@@ -721,7 +721,7 @@ table.data table tr td p {
 
 /* search form */
 #cCol #blog-search {
-  background: #f4f4f4 url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/search_box_shadow.png) no-repeat top left;
+  background: #f4f4f4 url(/images/blogs_v3/nyt_universal/search_box_shadow.png) no-repeat top left;
   border-bottom: 1px solid #ccc;
   margin: -1px -6px 1px -5px;
   padding: 15px 0;
@@ -760,7 +760,7 @@ table.data table tr td p {
 }
 
 #blogSearchSubmit {
-  background: transparent url(http://graphics8.nytimes.com/images/global/global_search/search_button40x19.gif) no-repeat top left;
+  background: transparent url(/images/global/global_search/search_button40x19.gif) no-repeat top left;
   border: none;
   cursor: pointer;
   height: 19px;
@@ -827,7 +827,7 @@ hr,
 .doubleRule,
 .doubleRuleDivider {
   border-width: 0 !important;
-  background: transparent url(http://graphics8.nytimes.com/images/global/borders/doubleRule.gif) repeat-x left top;  
+  background: transparent url(/images/global/borders/doubleRule.gif) repeat-x left top;  
 }
 
 .doubleRule {

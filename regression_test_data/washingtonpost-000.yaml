@@ -1,4 +1,50 @@
 test_description: washingtonpost op-ed
 url: http://www.washingtonpost.com/opinions/dont-blame-both-sides-for-debt-impasse/2011/07/11/gIQA0XDg9H_story.html?hpid=z1
 url_map:
+  http://b.scorecardresearch.com/robots.txt: b.scorecardresearch.com/robots.txt
+  http://media.fastclick.net/robots.txt: media.fastclick.net/robots.txt
+  http://media.fastclick.net/w/tre?ad_id=23607;evt=16882;cat1=20787;cat2=20788;rand='+TWP.StaticMethods.getUniqueToken()+': media.fastclick.net/w/tre?ad_id=23607;evt=16882;cat1=20787;cat2=20788;rand='+TWP.StaticMethods.getUniqueToken()+'
+  http://media.washingtonpost.com/robots.txt: media.washingtonpost.com/robots.txt
+  http://media.washingtonpost.com/wp-srv/ad/textlinks/js/utilsTextLinksXML.js: media.washingtonpost.com/wp-srv/ad/textlinks/js/utilsTextLinksXML.js
+  http://media.washingtonpost.com/wp-srv/ad/textlinks/style/textlinks.css: media.washingtonpost.com/wp-srv/ad/textlinks/style/textlinks.css
+  http://media.washingtonpost.com/wp-srv/images/bullet_3x3_999999.gif: media.washingtonpost.com/wp-srv/images/bullet_3x3_999999.gif
+  http://pixel.quantserve.com/robots.txt: pixel.quantserve.com/robots.txt
+  http://www.washingtonpost.com/favicon.ico: www.washingtonpost.com/favicon.ico
   http://www.washingtonpost.com/opinions/dont-blame-both-sides-for-debt-impasse/2011/07/11/gIQA0XDg9H_story.html?hpid=z1: www.washingtonpost.com/opinions/dont-blame-both-sides-for-debt-impasse/2011/07/11/gIQA0XDg9H_story.html?hpid=z1.html
+  ? http://www.washingtonpost.com/rf/image_296w/2010-2019/WashingtonPost/2011/06/21/Editorial-Opinion/Graphics/toles06222011forweb.jpg
+  : www.washingtonpost.com/rf/image_296w/2010-2019/WashingtonPost/2011/06/21/Editorial-Opinion/Graphics/toles06222011forweb.jpg
+  ? http://www.washingtonpost.com/rf/image_296w/2010-2019/WashingtonPost/2011/07/11/National-Politics/Videos/07112011-43v/07112011-43v.jpg
+  : www.washingtonpost.com/rf/image_296w/2010-2019/WashingtonPost/2011/07/11/National-Politics/Videos/07112011-43v/07112011-43v.jpg
+  ? http://www.washingtonpost.com/rf/image_90x60/2010-2019/WashingtonPost/2011/03/10/Interactivity/Advance/Images/Standing%20Art/eugene_robinson_silo.jpg
+  : www.washingtonpost.com/rf/image_90x60/2010-2019/WashingtonPost/2011/03/10/Interactivity/Advance/Images/Standing
+    Art/eugene_robinson_silo.jpg
+  http://www.washingtonpost.com/robots.txt: www.washingtonpost.com/robots.txt
+  http://www.washingtonpost.com/rw/WashingtonPost/Content/Staff-Bio/Images/eugene-robinson-114x80.png: www.washingtonpost.com/rw/WashingtonPost/Content/Staff-Bio/Images/eugene-robinson-114x80.png
+  ? http://www.washingtonpost.com/rw/WashingtonPost/Production/Digital/Pages-Web/homepage/_module-content/trove-right-rail-promo-any-device-devices-R.png
+  : www.washingtonpost.com/rw/WashingtonPost/Production/Digital/Pages-Web/homepage/_module-content/trove-right-rail-promo-any-device-devices-R.png
+  http://www.washingtonpost.com/rw/sites/twpweb/img/blogs/spacer.gif: www.washingtonpost.com/rw/sites/twpweb/img/blogs/spacer.gif
+  http://www.washingtonpost.com/rw/sites/twpweb/img/icons/icon-apple-lrg.gif: www.washingtonpost.com/rw/sites/twpweb/img/icons/icon-apple-lrg.gif
+  http://www.washingtonpost.com/rw/sites/twpweb/img/icons/icon-excpoint-lrg.gif: www.washingtonpost.com/rw/sites/twpweb/img/icons/icon-excpoint-lrg.gif
+  http://www.washingtonpost.com/rw/sites/twpweb/img/icons/icon-facebook-lrg.gif: www.washingtonpost.com/rw/sites/twpweb/img/icons/icon-facebook-lrg.gif
+  http://www.washingtonpost.com/rw/sites/twpweb/img/icons/icon-minus.png: www.washingtonpost.com/rw/sites/twpweb/img/icons/icon-minus.png
+  http://www.washingtonpost.com/rw/sites/twpweb/img/icons/icon-mobile-lrg.gif: www.washingtonpost.com/rw/sites/twpweb/img/icons/icon-mobile-lrg.gif
+  http://www.washingtonpost.com/rw/sites/twpweb/img/icons/icon-plus.png: www.washingtonpost.com/rw/sites/twpweb/img/icons/icon-plus.png
+  http://www.washingtonpost.com/rw/sites/twpweb/img/icons/icon-rss-lrg.gif: www.washingtonpost.com/rw/sites/twpweb/img/icons/icon-rss-lrg.gif
+  http://www.washingtonpost.com/rw/sites/twpweb/img/icons/icon-shadow.gif: www.washingtonpost.com/rw/sites/twpweb/img/icons/icon-shadow.gif
+  http://www.washingtonpost.com/rw/sites/twpweb/img/icons/icon-twitter-lrg.gif: www.washingtonpost.com/rw/sites/twpweb/img/icons/icon-twitter-lrg.gif
+  http://www.washingtonpost.com/rw/sites/twpweb/js/conf.js: www.washingtonpost.com/rw/sites/twpweb/js/conf.js
+  http://www.washingtonpost.com/rw/sites/twpweb/js/site_traffic/comscore.js: www.washingtonpost.com/rw/sites/twpweb/js/site_traffic/comscore.js
+  http://www.washingtonpost.com/rw/sites/twpweb/js/wp_omniture.js: www.washingtonpost.com/rw/sites/twpweb/js/wp_omniture.js
+  http://www.washingtonpost.com/wp-srv/ad/textlinks/images/dash.gif: www.washingtonpost.com/wp-srv/ad/textlinks/images/dash.gif
+  http://www.washingtonpost.com/wp-srv/ad/textlinks/images/dot.gif: www.washingtonpost.com/wp-srv/ad/textlinks/images/dot.gif
+  ? http://www.washingtonpost.com/wpost/css/combo?token=20110728006008&context=eidos&c=true&m=true&r=/2.0.0/reset.css&r=/2.0.0/structure.css&r=/2.0.0/header.css&r=/2.0.0/footer.css&r=/2.0.0/right-rail.css&r=/2.0.0/rules.css&r=/2.0.0/forms.css&r=/2.0.0/base.css&r=/2.0.0/modal.css&r=/2.0.0/accordion.css&r=/2.0.0/storyflipper.css&r=/2.0.0/flipper.css&r=/2.0.0/modules.css&r=/2.0.0/epaper.css&r=/2.0.0/calendar-widget.css&r=/2.0.0/widgets.css&r=/2.0.0/article_carousel.css&r=/2.0.0/wsodEWA.css&r=/2.0.0/ads.css&r=/2.0.0/network-news.css&r=/2.0.0/candidate.css&r=/echo2/twp_comments_echo2.css
+  : www.washingtonpost.com/rw/sites/twpweb/js/conf.js
+  ? http://www.washingtonpost.com/wpost/js/combo?token=20110925000089&c=true&m=false&context=eidos&r=/yui-base/global/eidos-global-modules.js&r=/jquery-1.4.js&r=/core-1.0.0.js&r=/constants-1.0.0.js&r=/static-methods-1.0.0.js&r=/util/util.header-detection-1.0.0.js&r=/site_traffic/engagement.js
+  : www.washingtonpost.com/rw/sites/twpweb/js/conf.js
+  http://www.washingtonpost.com/wpost/js/combo?token=20110925000089&c=true&m=false&context=wp-static&r=/ad/audsci.js: www.washingtonpost.com/wpost/js/combo?token=20110925000089&c=true&m=false&context=wp-static&r=%2Fad%2Faudsci.js
+  ? http://www.washingtonpost.com/wpost/js/combo?token=20110925000089&c=true&m=false&context=wp-static&r=/ad/wpni_generic_ad.js&r=/ad/wp_ad.js
+  : www.washingtonpost.com/wpost/js/combo?token=20110925000089&c=true&m=false&context=wp-static&r=%2Fad%2Fwpni_generic_ad.js&r=%2Fad%2Fwp_ad.js
+  ? http://www.washingtonpost.com/wpost/js/combo?token=20110925000089&c=true&m=false&context=wpost&r=/yui-base/3.3.0/build/yui/yui-min.js&r=/yui-base/3.3.0/build/loader/loader-min.js&r=/yui-base/3.3.0/build/oop/oop-min.js&r=/yui-base/3.3.0/build/dom/dom-base-min.js&r=/yui-base/3.3.0/build/dom/selector-native-min.js&r=/yui-base/3.3.0/build/dom/selector-css2-min.js&r=/yui-base/3.3.0/build/event-custom/event-custom-min.js&r=/yui-base/3.3.0/build/event/event-min.js&r=/yui-base/3.3.0/build/node/node-base-min.js&r=/yui-base/twp-yui/twp-yui.js&r=/yui-base/global/global-modules.js
+  : www.washingtonpost.com/rw/sites/twpweb/js/conf.js
+  https://apis.google.com/js/plusone.js: www.washingtonpost.com/wp-srv/ad/textlinks/images/dash.gif
+  https://apis.google.com/robots.txt: www.washingtonpost.com/favicon.ico

@@ -52,7 +52,7 @@ $Id: common.css 70599 2011-06-21 18:53:35Z christopher.sanders $
 }
 
 .verticalTabSet > .wrap {
-  background: url(http://graphics8.nytimes.com/images/layout/vertical_rule.gif) repeat-y 138px 0;
+  background: url(/images/layout/vertical_rule.gif) repeat-y 138px 0;
 }
 
 .verticalTabSet .tabsContainer {
@@ -137,7 +137,7 @@ $Id: common.css 70599 2011-06-21 18:53:35Z christopher.sanders $
 }
 
 .verticalTabSet .tabs .moreContributors a {
-  background: transparent url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/modules/verticalTabset/moreContribArrow.gif) no-repeat right 13px;
+  background: transparent url(/images/blogs_v3/nyt_universal/modules/verticalTabset/moreContribArrow.gif) no-repeat right 13px;
   float: none;
   padding-right: 7px;
   width: 81px;
@@ -165,7 +165,7 @@ $Id: common.css 70599 2011-06-21 18:53:35Z christopher.sanders $
 }
 
 .verticalTabSet .tabs li.selected .pointer {
-  background: transparent url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/modules/verticalTabset/pointer.png) no-repeat top left;
+  background: transparent url(/images/blogs_v3/nyt_universal/modules/verticalTabset/pointer.png) no-repeat top left;
   height: 41px;
   position: absolute;
   right: 0;
@@ -202,7 +202,7 @@ $Id: common.css 70599 2011-06-21 18:53:35Z christopher.sanders $
 }
 
 .verticalTabSet .tabs li.tabSetOverlayHover {
-  background: #ddd url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/modules/verticalTabset/more-contrib-border.png) repeat-y top left;
+  background: #ddd url(/images/blogs_v3/nyt_universal/modules/verticalTabset/more-contrib-border.png) repeat-y top left;
 }
 
 .verticalTabSet .tabOverlayShadow {
@@ -213,7 +213,7 @@ $Id: common.css 70599 2011-06-21 18:53:35Z christopher.sanders $
 }
 
 .verticalTabSet .tabs .moreContributors > a {
-  background: transparent url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/modules/verticalTabset/more-contrib-arrow-down.png) no-repeat 112px 17px;
+  background: transparent url(/images/blogs_v3/nyt_universal/modules/verticalTabset/more-contrib-arrow-down.png) no-repeat 112px 17px;
   padding: 7px 21px 7px 10px;
   width: 100px;
 }
@@ -337,11 +337,11 @@ $Id: common.css 70599 2011-06-21 18:53:35Z christopher.sanders $
 }
 
 .liveUpdateSubNav .rss a {
-  background-image: url(http://graphics8.nytimes.com/images/icons/feeds/rss_icon_12x12.gif);
+  background-image: url(/images/icons/feeds/rss_icon_12x12.gif);
 }
 
 .liveUpdateSubNav .twitter a {
-  background-image: url(http://graphics8.nytimes.com/images/blogs_v3/nyt_universal/twitter_icon_blue_12x12.gif);
+  background-image: url(/images/blogs_v3/nyt_universal/twitter_icon_blue_12x12.gif);
 }
 
 #liveUpdatesLoading { /* preloader */
@@ -774,7 +774,7 @@ $Id: common.css 70599 2011-06-21 18:53:35Z christopher.sanders $
 
 .tweet .bbpBox {
 	padding: 20px;
-	background: url(http://graphics8.nytimes.com/images/blogs_v3/modules/twitter/blackbirdpie/background.png) #c0deed;
+	background: url(/images/blogs_v3/modules/twitter/blackbirdpie/background.png) #c0deed;
 }
 
 .bbpBox p {

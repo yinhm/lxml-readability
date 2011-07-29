@@ -80,7 +80,7 @@
 }
 
 .abstractView .purchaseArticleBox .lastColumn {
-  background: url(http://graphics8.nytimes.com/images/layout/vertical_rule.gif) repeat-y 0;
+  background: url(/images/layout/vertical_rule.gif) repeat-y 0;
   padding-left: 15px;
 }
 

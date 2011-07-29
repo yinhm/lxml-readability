@@ -1,0 +1,709 @@
+--2011-07-29 10:01:26--  http://www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html
+Resolving www.nytimes.com (www.nytimes.com)... 170.149.173.130
+Connecting to www.nytimes.com (www.nytimes.com)|170.149.173.130|:80... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: http://www.nytimes.com/glogin?URI=http://www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html&OQ=_rQ3D1&OP=6d0756d4Q2FQ20vEkQ20,(Q7BqQ3E((sQ2BQ20Q2B@Q3BQ3BQ20@jQ20Q3B@Q20a_c_-hQ24EQ20sQ23EY,_Q3EwY_Q3EsY(dYkQ3EE_whQ24cYk_,Q22Q23saQ7E [following]
+--2011-07-29 10:01:26--  http://www.nytimes.com/glogin?URI=http://www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html&OQ=_rQ3D1&OP=6d0756d4Q2FQ20vEkQ20,(Q7BqQ3E((sQ2BQ20Q2B@Q3BQ3BQ20@jQ20Q3B@Q20a_c_-hQ24EQ20sQ23EY,_Q3EwY_Q3EsY(dYkQ3EE_whQ24cYk_,Q22Q23saQ7E
+Reusing existing connection to www.nytimes.com:80.
+HTTP request sent, awaiting response... 302 Found
+Location: http://www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html?_r=1 [following]
+--2011-07-29 10:01:26--  http://www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html?_r=1
+Reusing existing connection to www.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: “www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html?_r=1.html”
+
+     0K .......... .......... .......... .......... ..........  371K
+    50K ......                                                  760K=0.1s
+
+2011-07-29 10:01:26 (395 KB/s) - “www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html?_r=1.html” saved [58106]
+
+Loading robots.txt; please ignore errors.
+--2011-07-29 10:01:26--  http://www.nytimes.com/robots.txt
+Connecting to www.nytimes.com (www.nytimes.com)|170.149.173.130|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 637 [text/plain]
+Saving to: “www.nytimes.com/robots.txt”
+
+     0K                                                       100% 46.7M=0s
+
+2011-07-29 10:01:26 (46.7 MB/s) - “www.nytimes.com/robots.txt” saved [637/637]
+
+Loading robots.txt; please ignore errors.
+--2011-07-29 10:01:26--  http://graphics8.nytimes.com/robots.txt
+Resolving graphics8.nytimes.com (graphics8.nytimes.com)... 63.80.138.75, 63.80.138.64
+Connecting to graphics8.nytimes.com (graphics8.nytimes.com)|63.80.138.75|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 512 [text/html]
+Saving to: “graphics8.nytimes.com/robots.txt.html”
+
+     0K                                                       100% 61.0M=0s
+
+2011-07-29 10:01:27 (61.0 MB/s) - “graphics8.nytimes.com/robots.txt.html” saved [512/512]
+
+Loading robots.txt; please ignore errors.
+--2011-07-29 10:01:27--  http://ad.doubleclick.net/robots.txt
+Resolving ad.doubleclick.net (ad.doubleclick.net)... 74.125.224.123
+Connecting to ad.doubleclick.net (ad.doubleclick.net)|74.125.224.123|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 101 [text/plain]
+Saving to: “ad.doubleclick.net/robots.txt”
+
+     0K                                                       100% 12.0M=0s
+
+2011-07-29 10:01:27 (12.0 MB/s) - “ad.doubleclick.net/robots.txt” saved [101/101]
+
+Loading robots.txt; please ignore errors.
+--2011-07-29 10:01:27--  http://ads.pointroll.com/robots.txt
+Resolving ads.pointroll.com (ads.pointroll.com)... 72.32.153.176
+Connecting to ads.pointroll.com (ads.pointroll.com)|72.32.153.176|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 26 [text/plain]
+Saving to: “ads.pointroll.com/robots.txt”
+
+     0K                                                       100% 3.54M=0s
+
+2011-07-29 10:01:27 (3.54 MB/s) - “ads.pointroll.com/robots.txt” saved [26/26]
+
+Loading robots.txt; please ignore errors.
+--2011-07-29 10:01:27--  http://js.nyt.com/robots.txt
+Resolving js.nyt.com (js.nyt.com)... 207.114.197.72, 207.114.197.88
+Connecting to js.nyt.com (js.nyt.com)|207.114.197.72|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 512 [text/html]
+Saving to: “js.nyt.com/robots.txt.html”
+
+     0K                                                       100% 61.0M=0s
+
+2011-07-29 10:01:28 (61.0 MB/s) - “js.nyt.com/robots.txt.html” saved [512/512]
+
+Loading robots.txt; please ignore errors.
+--2011-07-29 10:01:28--  http://i1.nyt.com/robots.txt
+Resolving i1.nyt.com (i1.nyt.com)... 63.80.138.40, 63.80.138.50
+Connecting to i1.nyt.com (i1.nyt.com)|63.80.138.40|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 512 [text/html]
+Saving to: “i1.nyt.com/robots.txt.html”
+
+     0K                                                       100% 69.8M=0s
+
+2011-07-29 10:01:28 (69.8 MB/s) - “i1.nyt.com/robots.txt.html” saved [512/512]
+
+Loading robots.txt; please ignore errors.
+--2011-07-29 10:01:28--  http://up.nytimes.com/robots.txt
+Resolving up.nytimes.com (up.nytimes.com)... 50.16.226.6
+Connecting to up.nytimes.com (up.nytimes.com)|50.16.226.6|:80... connected.
+HTTP request sent, awaiting response... 404 Not Found
+2011-07-29 10:01:28 ERROR 404: Not Found.
+
+Loading robots.txt; please ignore errors.
+--2011-07-29 10:01:28--  http://wt.o.nytimes.com/robots.txt
+Resolving wt.o.nytimes.com (wt.o.nytimes.com)... 208.92.238.24
+Connecting to wt.o.nytimes.com (wt.o.nytimes.com)|208.92.238.24|:80... connected.
+HTTP request sent, awaiting response... 404 Not Found
+2011-07-29 10:01:28 ERROR 404: Not Found.
+
+--2011-07-29 10:01:28--  http://graphics8.nytimes.com/css/0.1/screen/build/article/2.0/styles.css
+Connecting to graphics8.nytimes.com (graphics8.nytimes.com)|63.80.138.75|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1103 (1.1K) [text/css]
+Saving to: “graphics8.nytimes.com/css/0.1/screen/build/article/2.0/styles.css”
+
+     0K .                                                     100%  131M=0s
+
+2011-07-29 10:01:28 (131 MB/s) - “graphics8.nytimes.com/css/0.1/screen/build/article/2.0/styles.css” saved [1103/1103]
+
+--2011-07-29 10:01:28--  http://graphics8.nytimes.com/js/common.js
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 13844 (14K) [application/x-javascript]
+Saving to: “graphics8.nytimes.com/js/common.js”
+
+     0K .......... ...                                        100%  558K=0.02s
+
+2011-07-29 10:01:28 (558 KB/s) - “graphics8.nytimes.com/js/common.js” saved [13844/13844]
+
+--2011-07-29 10:01:28--  http://graphics8.nytimes.com/js/common/screen/DropDown.js
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 1473 (1.4K) [application/x-javascript]
+Saving to: “graphics8.nytimes.com/js/common/screen/DropDown.js”
+
+     0K .                                                     100%  176M=0s
+
+2011-07-29 10:01:28 (176 MB/s) - “graphics8.nytimes.com/js/common/screen/DropDown.js” saved [1473/1473]
+
+--2011-07-29 10:01:28--  http://graphics8.nytimes.com/js/util/tooltip.js
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2099 (2.0K) [application/x-javascript]
+Saving to: “graphics8.nytimes.com/js/util/tooltip.js”
+
+     0K ..                                                    100% 1.72M=0.001s
+
+2011-07-29 10:01:29 (1.72 MB/s) - “graphics8.nytimes.com/js/util/tooltip.js” saved [2099/2099]
+
+--2011-07-29 10:01:29--  http://graphics8.nytimes.com/js/common/screen/altClickToSearch.js
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 13618 (13K) [application/x-javascript]
+Saving to: “graphics8.nytimes.com/js/common/screen/altClickToSearch.js”
+
+     0K .......... ...                                        100%  696K=0.02s
+
+2011-07-29 10:01:29 (696 KB/s) - “graphics8.nytimes.com/js/common/screen/altClickToSearch.js” saved [13618/13618]
+
+--2011-07-29 10:01:29--  http://graphics8.nytimes.com/js/app/article/upNext.js
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 201 [application/x-javascript]
+Saving to: “graphics8.nytimes.com/js/app/article/upNext.js”
+
+     0K                                                       100% 27.4M=0s
+
+2011-07-29 10:01:29 (27.4 MB/s) - “graphics8.nytimes.com/js/app/article/upNext.js” saved [201/201]
+
+--2011-07-29 10:01:29--  http://graphics8.nytimes.com/js/article/articleShare.js
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 226 [application/x-javascript]
+Saving to: “graphics8.nytimes.com/js/article/articleShare.js”
+
+     0K                                                       100% 30.8M=0s
+
+2011-07-29 10:01:29 (30.8 MB/s) - “graphics8.nytimes.com/js/article/articleShare.js” saved [226/226]
+
+--2011-07-29 10:01:29--  http://graphics8.nytimes.com/js/article/comments/crnrXHR.js
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 1503 (1.5K) [application/x-javascript]
+Saving to: “graphics8.nytimes.com/js/article/comments/crnrXHR.js”
+
+     0K .                                                     100%  179M=0s
+
+2011-07-29 10:01:29 (179 MB/s) - “graphics8.nytimes.com/js/article/comments/crnrXHR.js” saved [1503/1503]
+
+--2011-07-29 10:01:29--  http://graphics8.nytimes.com/js/app/article/articleCommentCount.js
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 5784 (5.6K) [application/x-javascript]
+Saving to: “graphics8.nytimes.com/js/app/article/articleCommentCount.js”
+
+     0K .....                                                 100%  860K=0.007s
+
+2011-07-29 10:01:29 (860 KB/s) - “graphics8.nytimes.com/js/app/article/articleCommentCount.js” saved [5784/5784]
+
+--2011-07-29 10:01:29--  http://graphics8.nytimes.com/images/global/buttons/go.gif
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 186 [image/gif]
+Saving to: “graphics8.nytimes.com/images/global/buttons/go.gif”
+
+     0K                                                       100% 22.2M=0s
+
+2011-07-29 10:01:29 (22.2 MB/s) - “graphics8.nytimes.com/images/global/buttons/go.gif” saved [186/186]
+
+--2011-07-29 10:01:29--  http://graphics8.nytimes.com/images/misc/nytlogo152x23.gif
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 1110 (1.1K) [image/gif]
+Saving to: “graphics8.nytimes.com/images/misc/nytlogo152x23.gif”
+
+     0K .                                                     100% 88.2M=0s
+
+2011-07-29 10:01:29 (88.2 MB/s) - “graphics8.nytimes.com/images/misc/nytlogo152x23.gif” saved [1110/1110]
+
+--2011-07-29 10:01:29--  http://graphics8.nytimes.com/images/2011/07/10/magazine/10bad_span/10bad_span-articleLarge.jpg
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 68698 (67K) [image/jpeg]
+Saving to: “graphics8.nytimes.com/images/2011/07/10/magazine/10bad_span/10bad_span-articleLarge.jpg”
+
+     0K .......... .......... .......... .......... .......... 74%  636K 0s
+    50K .......... .......                                    100%  636K=0.1s
+
+2011-07-29 10:01:29 (636 KB/s) - “graphics8.nytimes.com/images/2011/07/10/magazine/10bad_span/10bad_span-articleLarge.jpg” saved [68698/68698]
+
+--2011-07-29 10:01:29--  http://graphics8.nytimes.com/adx/images/ADS/26/68/ad.266879/120x60_10k.gif
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 9801 (9.6K) [image/gif]
+Saving to: “graphics8.nytimes.com/adx/images/ADS/26/68/ad.266879/120x60_10k.gif”
+
+     0K .........                                             100%  716K=0.01s
+
+2011-07-29 10:01:29 (716 KB/s) - “graphics8.nytimes.com/adx/images/ADS/26/68/ad.266879/120x60_10k.gif” saved [9801/9801]
+
+--2011-07-29 10:01:29--  http://graphics8.nytimes.com/images/2011/07/10/magazine/10bad2/10bad2-thumbWide.jpg
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 13418 (13K) [image/jpeg]
+Saving to: “graphics8.nytimes.com/images/2011/07/10/magazine/10bad2/10bad2-thumbWide.jpg”
+
+     0K .......... ...                                        100%  698K=0.02s
+
+2011-07-29 10:01:29 (698 KB/s) - “graphics8.nytimes.com/images/2011/07/10/magazine/10bad2/10bad2-thumbWide.jpg” saved [13418/13418]
+
+--2011-07-29 10:01:29--  http://graphics8.nytimes.com/images/2011/07/10/magazine/10bad1/mag-10Bad-t_CA1-articleInline.jpg
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 26210 (26K) [image/jpeg]
+Saving to: “graphics8.nytimes.com/images/2011/07/10/magazine/10bad1/mag-10Bad-t_CA1-articleInline.jpg”
+
+     0K .......... .......... .....                           100%  654K=0.04s
+
+2011-07-29 10:01:29 (654 KB/s) - “graphics8.nytimes.com/images/2011/07/10/magazine/10bad1/mag-10Bad-t_CA1-articleInline.jpg” saved [26210/26210]
+
+--2011-07-29 10:01:29--  http://graphics8.nytimes.com/adx/images/ADS/24/26/ad.242614/90x79_newspaper.gif
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2017 (2.0K) [image/gif]
+Saving to: “graphics8.nytimes.com/adx/images/ADS/24/26/ad.242614/90x79_newspaper.gif”
+
+     0K .                                                     100% 2.32M=0.001s
+
+2011-07-29 10:01:29 (2.32 MB/s) - “graphics8.nytimes.com/adx/images/ADS/24/26/ad.242614/90x79_newspaper.gif” saved [2017/2017]
+
+--2011-07-29 10:01:29--  http://graphics8.nytimes.com/js/app/article/outbrain.js
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 460 [application/x-javascript]
+Saving to: “graphics8.nytimes.com/js/app/article/outbrain.js”
+
+     0K                                                       100% 62.7M=0s
+
+2011-07-29 10:01:29 (62.7 MB/s) - “graphics8.nytimes.com/js/app/article/outbrain.js” saved [460/460]
+
+--2011-07-29 10:01:29--  http://www.nytimes.com/gst/litesub_insert.html?product=LT&size=336X90
+Connecting to www.nytimes.com (www.nytimes.com)|170.149.173.130|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: “www.nytimes.com/gst/litesub_insert.html?product=LT&size=336X90.html”
+
+     0K .                                                       197M=0s
+
+2011-07-29 10:01:29 (197 MB/s) - “www.nytimes.com/gst/litesub_insert.html?product=LT&size=336X90.html” saved [1656]
+
+--2011-07-29 10:01:29--  http://graphics8.nytimes.com/js/app/recommendations/recommendationsModule.js
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 23177 (23K) [application/x-javascript]
+Saving to: “graphics8.nytimes.com/js/app/recommendations/recommendationsModule.js”
+
+     0K .......... .......... ..                              100%  651K=0.03s
+
+2011-07-29 10:01:29 (651 KB/s) - “graphics8.nytimes.com/js/app/recommendations/recommendationsModule.js” saved [23177/23177]
+
+--2011-07-29 10:01:29--  http://graphics8.nytimes.com/ads/marketing/mm11/movies_072911.jpg
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 16113 (16K) [image/jpeg]
+Saving to: “graphics8.nytimes.com/ads/marketing/mm11/movies_072911.jpg”
+
+     0K .......... .....                                      100%  681K=0.02s
+
+2011-07-29 10:01:29 (681 KB/s) - “graphics8.nytimes.com/ads/marketing/mm11/movies_072911.jpg” saved [16113/16113]
+
+--2011-07-29 10:01:29--  http://graphics8.nytimes.com/ads/marketing/mm09/verticalst/nytimes.gif
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 572 [image/gif]
+Saving to: “graphics8.nytimes.com/ads/marketing/mm09/verticalst/nytimes.gif”
+
+     0K                                                       100% 68.2M=0s
+
+2011-07-29 10:01:29 (68.2 MB/s) - “graphics8.nytimes.com/ads/marketing/mm09/verticalst/nytimes.gif” saved [572/572]
+
+--2011-07-29 10:01:29--  http://graphics8.nytimes.com/ads/marketing/mm09/verticalst/verticals_movies.gif
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 430 [image/gif]
+Saving to: “graphics8.nytimes.com/ads/marketing/mm09/verticalst/verticals_movies.gif”
+
+     0K                                                       100% 51.3M=0s
+
+2011-07-29 10:01:29 (51.3 MB/s) - “graphics8.nytimes.com/ads/marketing/mm09/verticalst/verticals_movies.gif” saved [430/430]
+
+--2011-07-29 10:01:29--  http://graphics8.nytimes.com/adx/images/ADS/27/14/ad.271444/11-0220_AudienceDev_86x60_farm.jpg
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3326 (3.2K) [image/jpeg]
+Saving to: “graphics8.nytimes.com/adx/images/ADS/27/14/ad.271444/11-0220_AudienceDev_86x60_farm.jpg”
+
+     0K ...                                                   100% 1.16M=0.003s
+
+2011-07-29 10:01:29 (1.16 MB/s) - “graphics8.nytimes.com/adx/images/ADS/27/14/ad.271444/11-0220_AudienceDev_86x60_farm.jpg” saved [3326/3326]
+
+--2011-07-29 10:01:29--  http://graphics8.nytimes.com/adx/images/ADS/27/09/ad.270928/11-0922_HDGenericD2_336x79.jpg
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 15082 (15K) [image/jpeg]
+Saving to: “graphics8.nytimes.com/adx/images/ADS/27/09/ad.270928/11-0922_HDGenericD2_336x79.jpg”
+
+     0K .......... ....                                       100%  683K=0.02s
+
+2011-07-29 10:01:29 (683 KB/s) - “graphics8.nytimes.com/adx/images/ADS/27/09/ad.270928/11-0922_HDGenericD2_336x79.jpg” saved [15082/15082]
+
+--2011-07-29 10:01:29--  http://js.nyt.com/js/app/moth/moth.js
+Connecting to js.nyt.com (js.nyt.com)|207.114.197.72|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 210 [application/x-javascript]
+Saving to: “js.nyt.com/js/app/moth/moth.js”
+
+     0K                                                       100% 28.6M=0s
+
+2011-07-29 10:01:29 (28.6 MB/s) - “js.nyt.com/js/app/moth/moth.js” saved [210/210]
+
+--2011-07-29 10:01:29--  http://i1.nyt.com/images/global/buttons/moth_reverse.gif
+Connecting to i1.nyt.com (i1.nyt.com)|63.80.138.40|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 132 [image/gif]
+Saving to: “i1.nyt.com/images/global/buttons/moth_reverse.gif”
+
+     0K                                                       100% 18.0M=0s
+
+2011-07-29 10:01:29 (18.0 MB/s) - “i1.nyt.com/images/global/buttons/moth_reverse.gif” saved [132/132]
+
+--2011-07-29 10:01:29--  http://i1.nyt.com/images/global/buttons/moth_forward.gif
+Reusing existing connection to i1.nyt.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 130 [image/gif]
+Saving to: “i1.nyt.com/images/global/buttons/moth_forward.gif”
+
+     0K                                                       100% 15.5M=0s
+
+2011-07-29 10:01:29 (15.5 MB/s) - “i1.nyt.com/images/global/buttons/moth_forward.gif” saved [130/130]
+
+--2011-07-29 10:01:29--  http://i1.nyt.com/images/2011/07/29/world/29moth_baghdad/29moth_baghdad-moth.jpg
+Reusing existing connection to i1.nyt.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 9408 (9.2K) [image/jpeg]
+Saving to: “i1.nyt.com/images/2011/07/29/world/29moth_baghdad/29moth_baghdad-moth.jpg”
+
+     0K .........                                             100%  496K=0.02s
+
+2011-07-29 10:01:29 (496 KB/s) - “i1.nyt.com/images/2011/07/29/world/29moth_baghdad/29moth_baghdad-moth.jpg” saved [9408/9408]
+
+--2011-07-29 10:01:29--  http://i1.nyt.com/images/2011/07/29/movies/29MOTH_COWBOY/29MOTH_COWBOY-moth.jpg
+Reusing existing connection to i1.nyt.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 12998 (13K) [image/jpeg]
+Saving to: “i1.nyt.com/images/2011/07/29/movies/29MOTH_COWBOY/29MOTH_COWBOY-moth.jpg”
+
+     0K .......... ..                                         100%  686K=0.02s
+
+2011-07-29 10:01:29 (686 KB/s) - “i1.nyt.com/images/2011/07/29/movies/29MOTH_COWBOY/29MOTH_COWBOY-moth.jpg” saved [12998/12998]
+
+--2011-07-29 10:01:29--  http://i1.nyt.com/images/2011/07/29/sports/29moth_basketball/29moth_basketball-moth.jpg
+Reusing existing connection to i1.nyt.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 10332 (10K) [image/jpeg]
+Saving to: “i1.nyt.com/images/2011/07/29/sports/29moth_basketball/29moth_basketball-moth.jpg”
+
+     0K ..........                                            100%  728K=0.01s
+
+2011-07-29 10:01:30 (728 KB/s) - “i1.nyt.com/images/2011/07/29/sports/29moth_basketball/29moth_basketball-moth.jpg” saved [10332/10332]
+
+--2011-07-29 10:01:30--  http://i1.nyt.com/images/2011/07/29/arts/29MOTH_HALS/29MOTH_HALS-moth.jpg
+Reusing existing connection to i1.nyt.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 12413 (12K) [image/jpeg]
+Saving to: “i1.nyt.com/images/2011/07/29/arts/29MOTH_HALS/29MOTH_HALS-moth.jpg”
+
+     0K .......... ..                                         100%  695K=0.02s
+
+2011-07-29 10:01:30 (695 KB/s) - “i1.nyt.com/images/2011/07/29/arts/29MOTH_HALS/29MOTH_HALS-moth.jpg” saved [12413/12413]
+
+--2011-07-29 10:01:30--  http://i1.nyt.com/images/2011/07/29/opinion/29moth_opchart/29moth_opchart-moth.jpg
+Reusing existing connection to i1.nyt.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 9485 (9.3K) [image/jpeg]
+Saving to: “i1.nyt.com/images/2011/07/29/opinion/29moth_opchart/29moth_opchart-moth.jpg”
+
+     0K .........                                             100%  720K=0.01s
+
+2011-07-29 10:01:30 (720 KB/s) - “i1.nyt.com/images/2011/07/29/opinion/29moth_opchart/29moth_opchart-moth.jpg” saved [9485/9485]
+
+--2011-07-29 10:01:30--  http://up.nytimes.com/?d=0/15/&t=2&s=0&ui=0&r=&u=www%2enytimes%2ecom%2f2011%2f07%2f10%2fmagazine%2fthe%2ddark%2dart%2dof%2dbreaking%2dbad%2ehtml%3f%5fr%3d1
+Connecting to up.nytimes.com (up.nytimes.com)|50.16.226.6|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 43 [image/gif]
+Saving to: “up.nytimes.com/index.html?d=0%2F15%2F&t=2&s=0&ui=0&r=&u=www.nytimes.com%2F2011%2F07%2F10%2Fmagazine%2Fthe-dark-art-of-breaking-bad.html?_r=1”
+
+     0K                                                       100% 2.28M=0s
+
+2011-07-29 10:01:30 (2.28 MB/s) - “up.nytimes.com/index.html?d=0%2F15%2F&t=2&s=0&ui=0&r=&u=www.nytimes.com%2F2011%2F07%2F10%2Fmagazine%2Fthe-dark-art-of-breaking-bad.html?_r=1” saved [43/43]
+
+--2011-07-29 10:01:30--  http://graphics8.nytimes.com/js/app/analytics/trackingTags_v1.1.js
+Connecting to graphics8.nytimes.com (graphics8.nytimes.com)|63.80.138.75|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 9343 (9.1K) [application/x-javascript]
+Saving to: “graphics8.nytimes.com/js/app/analytics/trackingTags_v1.1.js”
+
+     0K .........                                             100%  458K=0.02s
+
+2011-07-29 10:01:30 (458 KB/s) - “graphics8.nytimes.com/js/app/analytics/trackingTags_v1.1.js” saved [9343/9343]
+
+--2011-07-29 10:01:30--  http://wt.o.nytimes.com/dcsym57yw10000s1s8g0boozt_9t1x/njs.gif?dcsuri=/nojavascript&WT.js=No&WT.tv=1.0.7
+Connecting to wt.o.nytimes.com (wt.o.nytimes.com)|208.92.238.24|:80... connected.
+HTTP request sent, awaiting response... 303 Object Moved
+Location: /dcsym57yw10000s1s8g0boozt_9t1x/njs.gif?dcsredirect=126&dcstlh=0&dcstlv=0&dcsuri=/nojavascript&WT.js=No&WT.tv=1.0.7 [following]
+--2011-07-29 10:01:30--  http://wt.o.nytimes.com/dcsym57yw10000s1s8g0boozt_9t1x/njs.gif?dcsredirect=126&dcstlh=0&dcstlv=0&dcsuri=/nojavascript&WT.js=No&WT.tv=1.0.7
+Connecting to wt.o.nytimes.com (wt.o.nytimes.com)|208.92.238.24|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 67 [image/gif]
+Saving to: “wt.o.nytimes.com/dcsym57yw10000s1s8g0boozt_9t1x/njs.gif?dcsredirect=126&dcstlh=0&dcstlv=0&dcsuri=%2Fnojavascript&WT.js=No&WT.tv=1.0.7”
+
+     0K                                                       100% 7.99M=0s
+
+2011-07-29 10:01:30 (7.99 MB/s) - “wt.o.nytimes.com/dcsym57yw10000s1s8g0boozt_9t1x/njs.gif?dcsredirect=126&dcstlh=0&dcstlv=0&dcsuri=%2Fnojavascript&WT.js=No&WT.tv=1.0.7” saved [67/67]
+
+--2011-07-29 10:01:30--  http://graphics8.nytimes.com/css/0.1/screen/common/global.css
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 8802 (8.6K) [text/css]
+Saving to: “graphics8.nytimes.com/css/0.1/screen/common/global.css”
+
+     0K ........                                              100%  749K=0.01s
+
+2011-07-29 10:01:30 (749 KB/s) - “graphics8.nytimes.com/css/0.1/screen/common/global.css” saved [8802/8802]
+
+--2011-07-29 10:01:30--  http://graphics8.nytimes.com/css/0.1/screen/common/shell.css
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2850 (2.8K) [text/css]
+Saving to: “graphics8.nytimes.com/css/0.1/screen/common/shell.css”
+
+     0K ..                                                    100% 1.57M=0.002s
+
+2011-07-29 10:01:30 (1.57 MB/s) - “graphics8.nytimes.com/css/0.1/screen/common/shell.css” saved [2850/2850]
+
+--2011-07-29 10:01:30--  http://graphics8.nytimes.com/css/0.1/screen/common/masthead.css
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 1250 (1.2K) [text/css]
+Saving to: “graphics8.nytimes.com/css/0.1/screen/common/masthead.css”
+
+     0K .                                                     100%  149M=0s
+
+2011-07-29 10:01:30 (149 MB/s) - “graphics8.nytimes.com/css/0.1/screen/common/masthead.css” saved [1250/1250]
+
+--2011-07-29 10:01:30--  http://graphics8.nytimes.com/css/0.1/screen/common/navigation.css
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4270 (4.2K) [text/css]
+Saving to: “graphics8.nytimes.com/css/0.1/screen/common/navigation.css”
+
+     0K ....                                                  100% 7.63M=0.001s
+
+2011-07-29 10:01:30 (7.63 MB/s) - “graphics8.nytimes.com/css/0.1/screen/common/navigation.css” saved [4270/4270]
+
+--2011-07-29 10:01:30--  http://graphics8.nytimes.com/css/0.1/screen/common/modules.css
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3570 (3.5K) [text/css]
+Saving to: “graphics8.nytimes.com/css/0.1/screen/common/modules.css”
+
+     0K ...                                                   100%  988K=0.004s
+
+2011-07-29 10:01:30 (988 KB/s) - “graphics8.nytimes.com/css/0.1/screen/common/modules.css” saved [3570/3570]
+
+--2011-07-29 10:01:30--  http://graphics8.nytimes.com/css/0.1/screen/common/mostpopular.css
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 1500 (1.5K) [text/css]
+Saving to: “graphics8.nytimes.com/css/0.1/screen/common/mostpopular.css”
+
+     0K .                                                     100%  179M=0s
+
+2011-07-29 10:01:30 (179 MB/s) - “graphics8.nytimes.com/css/0.1/screen/common/mostpopular.css” saved [1500/1500]
+
+--2011-07-29 10:01:30--  http://graphics8.nytimes.com/css/0.1/screen/common/layout.css
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 7592 (7.4K) [text/css]
+Saving to: “graphics8.nytimes.com/css/0.1/screen/common/layout.css”
+
+     0K .......                                               100%  784K=0.009s
+
+2011-07-29 10:01:30 (784 KB/s) - “graphics8.nytimes.com/css/0.1/screen/common/layout.css” saved [7592/7592]
+
+--2011-07-29 10:01:30--  http://graphics8.nytimes.com/css/0.1/screen/common/insideNYTimes.css
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3651 (3.6K) [text/css]
+Saving to: “graphics8.nytimes.com/css/0.1/screen/common/insideNYTimes.css”
+
+     0K ...                                                   100%  139M=0s
+
+2011-07-29 10:01:30 (139 MB/s) - “graphics8.nytimes.com/css/0.1/screen/common/insideNYTimes.css” saved [3651/3651]
+
+--2011-07-29 10:01:30--  http://graphics8.nytimes.com/css/0.1/screen/common/ads.css
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 8376 (8.2K) [text/css]
+Saving to: “graphics8.nytimes.com/css/0.1/screen/common/ads.css”
+
+     0K ........                                              100%  732K=0.01s
+
+2011-07-29 10:01:30 (732 KB/s) - “graphics8.nytimes.com/css/0.1/screen/common/ads.css” saved [8376/8376]
+
+--2011-07-29 10:01:30--  http://graphics8.nytimes.com/css/0.1/screen/common/macros.css
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2193 (2.1K) [text/css]
+Saving to: “graphics8.nytimes.com/css/0.1/screen/common/macros.css”
+
+     0K ..                                                    100% 1.58M=0.001s
+
+2011-07-29 10:01:30 (1.58 MB/s) - “graphics8.nytimes.com/css/0.1/screen/common/macros.css” saved [2193/2193]
+
+--2011-07-29 10:01:30--  http://graphics8.nytimes.com/css/0.1/screen/common/article.css
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 12131 (12K) [text/css]
+Saving to: “graphics8.nytimes.com/css/0.1/screen/common/article.css”
+
+     0K .......... .                                          100%  611K=0.02s
+
+2011-07-29 10:01:30 (611 KB/s) - “graphics8.nytimes.com/css/0.1/screen/common/article.css” saved [12131/12131]
+
+--2011-07-29 10:01:30--  http://graphics8.nytimes.com/css/0.1/screen/common/googleads.css
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2241 (2.2K) [text/css]
+Saving to: “graphics8.nytimes.com/css/0.1/screen/common/googleads.css”
+
+     0K ..                                                    100%  927K=0.002s
+
+2011-07-29 10:01:30 (927 KB/s) - “graphics8.nytimes.com/css/0.1/screen/common/googleads.css” saved [2241/2241]
+
+--2011-07-29 10:01:30--  http://graphics8.nytimes.com/css/0.1/screen/common/modules/articletools.css
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2247 (2.2K) [text/css]
+Saving to: “graphics8.nytimes.com/css/0.1/screen/common/modules/articletools.css”
+
+     0K ..                                                    100%  465K=0.005s
+
+2011-07-29 10:01:30 (465 KB/s) - “graphics8.nytimes.com/css/0.1/screen/common/modules/articletools.css” saved [2247/2247]
+
+--2011-07-29 10:01:30--  http://graphics8.nytimes.com/css/0.1/screen/common/modules/sharetools.css
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2484 (2.4K) [text/css]
+Saving to: “graphics8.nytimes.com/css/0.1/screen/common/modules/sharetools.css”
+
+     0K ..                                                    100% 1.18M=0.002s
+
+2011-07-29 10:01:30 (1.18 MB/s) - “graphics8.nytimes.com/css/0.1/screen/common/modules/sharetools.css” saved [2484/2484]
+
+--2011-07-29 10:01:30--  http://graphics8.nytimes.com/css/0.1/screen/common/modules/readercomments.css
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 1210 (1.2K) [text/css]
+Saving to: “graphics8.nytimes.com/css/0.1/screen/common/modules/readercomments.css”
+
+     0K .                                                     100%  165M=0s
+
+2011-07-29 10:01:30 (165 MB/s) - “graphics8.nytimes.com/css/0.1/screen/common/modules/readercomments.css” saved [1210/1210]
+
+--2011-07-29 10:01:30--  http://graphics8.nytimes.com/css/0.1/screen/section/travel/modules/expedia.css
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 6685 (6.5K) [text/css]
+Saving to: “graphics8.nytimes.com/css/0.1/screen/section/travel/modules/expedia.css”
+
+     0K ......                                                100%  786K=0.008s
+
+2011-07-29 10:01:30 (786 KB/s) - “graphics8.nytimes.com/css/0.1/screen/section/travel/modules/expedia.css” saved [6685/6685]
+
+--2011-07-29 10:01:30--  http://graphics8.nytimes.com/css/0.1/screen/article/upnext.css
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 1299 (1.3K) [text/css]
+Saving to: “graphics8.nytimes.com/css/0.1/screen/article/upnext.css”
+
+     0K .                                                     100%  138M=0s
+
+2011-07-29 10:01:30 (138 MB/s) - “graphics8.nytimes.com/css/0.1/screen/article/upnext.css” saved [1299/1299]
+
+--2011-07-29 10:01:30--  http://graphics8.nytimes.com/css/0.1/screen/article/abstract.css
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3224 (3.1K) [text/css]
+Saving to: “graphics8.nytimes.com/css/0.1/screen/article/abstract.css”
+
+     0K ...                                                   100% 1.11M=0.003s
+
+2011-07-29 10:01:30 (1.11 MB/s) - “graphics8.nytimes.com/css/0.1/screen/article/abstract.css” saved [3224/3224]
+
+--2011-07-29 10:01:30--  http://graphics8.nytimes.com/css/common/global.css
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 841 [text/css]
+Saving to: “graphics8.nytimes.com/css/common/global.css”
+
+     0K                                                       100%  115M=0s
+
+2011-07-29 10:01:30 (115 MB/s) - “graphics8.nytimes.com/css/common/global.css” saved [841/841]
+
+--2011-07-29 10:01:30--  http://graphics8.nytimes.com/css/standalone/regilite/screen/regiLite.css
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2872 (2.8K) [text/css]
+Saving to: “graphics8.nytimes.com/css/standalone/regilite/screen/regiLite.css”
+
+     0K ..                                                    100% 1.47M=0.002s
+
+2011-07-29 10:01:30 (1.47 MB/s) - “graphics8.nytimes.com/css/standalone/regilite/screen/regiLite.css” saved [2872/2872]
+
+--2011-07-29 10:01:30--  http://graphics8.nytimes.com/images/membercenter/icon_delivers.png
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3273 (3.2K) [image/png]
+Saving to: “graphics8.nytimes.com/images/membercenter/icon_delivers.png”
+
+     0K ...                                                   100% 1.13M=0.003s
+
+2011-07-29 10:01:30 (1.13 MB/s) - “graphics8.nytimes.com/images/membercenter/icon_delivers.png” saved [3273/3273]
+
+--2011-07-29 10:01:30--  http://graphics8.nytimes.com/images/membercenter/signup.png
+Reusing existing connection to graphics8.nytimes.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 1406 (1.4K) [image/png]
+Saving to: “graphics8.nytimes.com/images/membercenter/signup.png”
+
+     0K .                                                     100%  168M=0s
+
+2011-07-29 10:01:31 (168 MB/s) - “graphics8.nytimes.com/images/membercenter/signup.png” saved [1406/1406]
+
+FINISHED --2011-07-29 10:01:31--
+Downloaded: 64 files, 421K in 0.6s (659 KB/s)
+Converting js.nyt.com/robots.txt.html... nothing to do.
+Converting graphics8.nytimes.com/robots.txt.html... nothing to do.
+Converting www.nytimes.com/gst/litesub_insert.html?product=LT&size=336X90.html... 4-0
+Converting www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html?_r=1.html... 37-11
+Converting i1.nyt.com/robots.txt.html... nothing to do.
+Converting graphics8.nytimes.com/css/0.1/screen/common/shell.css... 0-1
+Converting graphics8.nytimes.com/css/0.1/screen/common/article.css... 0-15
+Converting graphics8.nytimes.com/css/0.1/screen/common/googleads.css... nothing to do.
+Converting graphics8.nytimes.com/css/standalone/regilite/screen/regiLite.css... 0-1
+Converting graphics8.nytimes.com/css/0.1/screen/common/layout.css... 0-6
+Converting graphics8.nytimes.com/css/0.1/screen/common/global.css... 0-26
+Converting graphics8.nytimes.com/css/0.1/screen/common/mostpopular.css... 0-1
+Converting graphics8.nytimes.com/css/0.1/screen/common/modules.css... 0-1
+Converting graphics8.nytimes.com/css/0.1/screen/common/insideNYTimes.css... nothing to do.
+Converting graphics8.nytimes.com/css/0.1/screen/common/masthead.css... nothing to do.
+Converting graphics8.nytimes.com/css/0.1/screen/common/navigation.css... nothing to do.
+Converting graphics8.nytimes.com/css/common/global.css... nothing to do.
+Converting graphics8.nytimes.com/css/0.1/screen/article/abstract.css... 0-1
+Converting graphics8.nytimes.com/css/0.1/screen/common/modules/sharetools.css... 0-5
+Converting graphics8.nytimes.com/css/0.1/screen/section/travel/modules/expedia.css... 0-1
+Converting graphics8.nytimes.com/css/0.1/screen/build/article/2.0/styles.css... 18-0
+Converting graphics8.nytimes.com/css/0.1/screen/common/ads.css... nothing to do.
+Converting graphics8.nytimes.com/css/0.1/screen/article/upnext.css... 0-1
+Converting graphics8.nytimes.com/css/0.1/screen/common/modules/articletools.css... 0-8
+Converting graphics8.nytimes.com/css/0.1/screen/common/modules/readercomments.css... 0-3
+Converting graphics8.nytimes.com/css/0.1/screen/common/macros.css... nothing to do.
+Converted 26 files in 0.01 seconds.

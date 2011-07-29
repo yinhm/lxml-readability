@@ -45,7 +45,7 @@
   right: 5px;
   width: 13px;
   height: 13px;
-  background: #fff url(http://graphics8.nytimes.com/images/article/comments/buttons/close_window.gif) no-repeat 0 0;
+  background: #fff url(/images/article/comments/buttons/close_window.gif) no-repeat 0 0;
   text-indent: -999em;
   overflow: hidden;
   cursor: pointer;

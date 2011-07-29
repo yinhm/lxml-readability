@@ -3,7 +3,7 @@ $Id: subNavigation.css 43620 2010-08-19 20:32:45Z vishal $
 /css/0.1/screen/section/us/politics/specialseason/subNavigation.css
 (c)2006 - 2010 The New York Times Company */
 
-@import url(../../../../common/subNavigation.css);
+@import url(/css/0.1/screen/common/subNavigation.css);
 
 .navigation ul li.selected {
   border-bottom: 1px solid #F4F4F4;
@@ -15,7 +15,7 @@ $Id: subNavigation.css 43620 2010-08-19 20:32:45Z vishal $
 }
 
 .subNavigation ul li {
-  background: transparent url(../../../../../../../images/section/us/politics/divider55.gif) no-repeat center left;
+  background: transparent url(/images/section/us/politics/divider55.gif) no-repeat center left;
   border: none;
   font-family: georgia,"times new roman",times,serif;
   font-size: 1em; /*10px*/
@@ -46,49 +46,49 @@ $Id: subNavigation.css 43620 2010-08-19 20:32:45Z vishal $
 /* icons */
 
 .subNavigation .electionCalItem a {
-  background: transparent url(../../../../../../../images/section/us/politics/icons/election_calendar.png) no-repeat left 10px;
+  background: transparent url(/images/section/us/politics/icons/election_calendar.png) no-repeat left 10px;
   height: 36px;
   padding-top: 16px;
   padding-left: 28px;
 }
 
 .subNavigation .governorsItem a {
-  background: transparent url(../../../../../../../images/section/us/politics/icons/governors.png) no-repeat left 11px;
+  background: transparent url(/images/section/us/politics/icons/governors.png) no-repeat left 11px;
   height: 30px;
   padding-top: 22px;
   padding-left: 35px;
 }
 
 .subNavigation .houseItem a {
-  background: transparent url(../../../../../../../images/section/us/politics/icons/house.png) no-repeat left 11px;
+  background: transparent url(/images/section/us/politics/icons/house.png) no-repeat left 11px;
   height: 30px;
   padding-top: 22px;
   padding-left: 48px;  
 }
 
 .subNavigation .politicsHomeItem a {
-  background: transparent url(../../../../../../../images/section/us/politics/icons/politics_home.png) no-repeat left 1px;
+  background: transparent url(/images/section/us/politics/icons/politics_home.png) no-repeat left 1px;
   height: 35px;
   padding-top: 16px;
   padding-left: 54px;
 }
 
 .subNavigation .senateItem a {
-  background: transparent url(../../../../../../../images/section/us/politics/icons/senate.png) no-repeat left 12px;
+  background: transparent url(/images/section/us/politics/icons/senate.png) no-repeat left 12px;
   height: 31px;
   padding-top: 22px;
   padding-left: 49px;
 }
 
 .subNavigation .videoItem a {
-  background: transparent url(../../../../../../../images/section/us/politics/icons/video.png) no-repeat left 13px;
+  background: transparent url(/images/section/us/politics/icons/video.png) no-repeat left 13px;
   height: 30px;
   padding-top: 22px;
   padding-left: 35px;
 }
 
 .subNavigation .theCaucusItem a {
-  background: transparent url(../../../../../../../images/section/us/politics/icons/thecaucus.png) no-repeat left 12px;
+  background: transparent url(/images/section/us/politics/icons/thecaucus.png) no-repeat left 12px;
   height: 30px;
   padding-top: 22px;   
   padding-left: 43px; 
@@ -103,7 +103,7 @@ $Id: subNavigation.css 43620 2010-08-19 20:32:45Z vishal $
 }
 
 .subNavigation .fiveThirtyEightItem a {
-  background: transparent url(../../../../../../../images/section/us/politics/icons/fivethirtyeight.png) no-repeat left 10px;
+  background: transparent url(/images/section/us/politics/icons/fivethirtyeight.png) no-repeat left 10px;
   height: 36px;
   padding-top: 16px;
   padding-left: 52px;
@@ -116,7 +116,7 @@ $Id: subNavigation.css 43620 2010-08-19 20:32:45Z vishal $
 }
 
 .subNavigation .primaryList li.fiveThirtyEightItem {
-  background: url("../../../../../../../images/section/us/politics/divider55.gif") no-repeat scroll left center transparent;
+  background: url("/images/section/us/politics/divider55.gif") no-repeat scroll left center transparent;
   border: medium none;
   min-height: 36px;
   padding: 0 0 0 14px;

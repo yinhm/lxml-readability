@@ -1,5 +1,50 @@
-test_description: mit news article
 notes: links are broken out into paragraph divs
+test_description: mit news article
 url: http://web.mit.edu/newsoffice/2011/compare-recommendation-systems-0708.html
 url_map:
+  http://img.mit.edu/newsoffice/images/article_images/tn/20110728162532-3.jpg: img.mit.edu/newsoffice/images/article_images/tn/20110728162532-3.jpg
+  http://mitnewsoffice.122.2o7.net/b/ss/mitnews/1/H.23.3--NS/0: mitnewsoffice.122.2o7.net/b/ss/mitnews/1/H.23.3--NS/0?AQB=1&pccr=true&AQE=1
+  http://mitnewsoffice.122.2o7.net/b/ss/mitnews/1/H.23.3--NS/0?AQB=1&pccr=true&AQE=1: mitnewsoffice.122.2o7.net/b/ss/mitnews/1/H.23.3--NS/0?AQB=1&pccr=true&AQE=1
+  http://mitnewsoffice.122.2o7.net/robots.txt: mitnewsoffice.122.2o7.net/robots.txt
+  http://s7.addthis.com/js/250/addthis_widget.js: s7.addthis.com/js/250/addthis_widget.js
+  http://s7.addthis.com/robots.txt: s7.addthis.com/robots.txt
+  http://web.mit.edu/newsoffice//images/article_images/20110707114444-1.jpg: web.mit.edu/newsoffice/images/article_images/20110707114444-1.jpg
   http://web.mit.edu/newsoffice/2011/compare-recommendation-systems-0708.html: web.mit.edu/newsoffice/2011/compare-recommendation-systems-0708.html
+  http://web.mit.edu/newsoffice/components/com_comment/joscomment/templates/SSlide-emotop/images/dot.gif: web.mit.edu/newsoffice/components/com_comment/joscomment/templates/SSlide-emotop/images/dot.gif
+  http://web.mit.edu/newsoffice/components/com_comment/joscomment/templates/SSlide-emotop/images/dotv.gif: web.mit.edu/newsoffice/components/com_comment/joscomment/templates/SSlide-emotop/images/dotv.gif
+  http://web.mit.edu/newsoffice/components/com_comment/joscomment/templates/SSlide-emotop/images/html.png: web.mit.edu/newsoffice/components/com_comment/joscomment/templates/SSlide-emotop/images/html.png
+  http://web.mit.edu/newsoffice/components/com_comment/joscomment/templates/SSlide-emotop/images/mailgreen.jpg: web.mit.edu/newsoffice/components/com_comment/joscomment/templates/SSlide-emotop/images/mailgreen.jpg
+  http://web.mit.edu/newsoffice/components/com_comment/joscomment/templates/SSlide-emotop/images/mailred.jpg: web.mit.edu/newsoffice/components/com_comment/joscomment/templates/SSlide-emotop/images/mailred.jpg
+  http://web.mit.edu/newsoffice/components/com_comment/joscomment/templates/SSlide-emotop/images/user.png: web.mit.edu/newsoffice/components/com_comment/joscomment/templates/SSlide-emotop/images/user.png
+  http://web.mit.edu/newsoffice/components/com_comment/joscomment/templates/SSlide-emotop/images/voting_no.png: web.mit.edu/newsoffice/components/com_comment/joscomment/templates/SSlide-emotop/images/voting_no.png
+  http://web.mit.edu/newsoffice/components/com_comment/joscomment/templates/SSlide-emotop/images/voting_yes.png: web.mit.edu/newsoffice/components/com_comment/joscomment/templates/SSlide-emotop/images/voting_yes.png
+  http://web.mit.edu/newsoffice/images/M_images/searchButton.gif: web.mit.edu/newsoffice/images/M_images/searchButton.gif
+  http://web.mit.edu/newsoffice/plugins/system/compress/css.php?css=c02feab0fb9955599676411caef15f7d.css: web.mit.edu/newsoffice/plugins/system/compress/css.php?css=c02feab0fb9955599676411caef15f7d.css
+  http://web.mit.edu/newsoffice/plugins/system/compress/js.php?js=9e9ae0680c37e64c1e6523aab2eac8d3.js: web.mit.edu/newsoffice/plugins/system/compress/js.php?js=9e9ae0680c37e64c1e6523aab2eac8d3.js
+  http://web.mit.edu/newsoffice/templates/mit/favicon.ico: web.mit.edu/newsoffice/templates/mit/favicon.ico
+  http://web.mit.edu/newsoffice/templates/mit/images/GiveButton.png: web.mit.edu/newsoffice/templates/mit/images/GiveButton.png
+  http://web.mit.edu/newsoffice/templates/mit/images/footer-logo.gif: web.mit.edu/newsoffice/templates/mit/images/footer-logo.gif
+  http://web.mit.edu/newsoffice/templates/mit/images/loader.gif: web.mit.edu/newsoffice/templates/mit/images/loader.gif
+  http://web.mit.edu/newsoffice/templates/mit/images/newslogo.gif: web.mit.edu/newsoffice/templates/mit/images/newslogo.gif
+  http://web.mit.edu/newsoffice/templates/mit/images/prettyPhoto/dark_rounded/btnNext.png: web.mit.edu/newsoffice/templates/mit/images/prettyPhoto/dark_rounded/btnNext.png
+  http://web.mit.edu/newsoffice/templates/mit/images/prettyPhoto/dark_rounded/btnPrevious.png: web.mit.edu/newsoffice/templates/mit/images/prettyPhoto/dark_rounded/btnPrevious.png
+  http://web.mit.edu/newsoffice/templates/mit/images/prettyPhoto/dark_rounded/contentPattern.png: web.mit.edu/newsoffice/templates/mit/images/prettyPhoto/dark_rounded/contentPattern.png
+  http://web.mit.edu/newsoffice/templates/mit/images/prettyPhoto/dark_rounded/loader.gif: web.mit.edu/newsoffice/templates/mit/images/prettyPhoto/dark_rounded/loader.gif
+  http://web.mit.edu/newsoffice/templates/mit/images/prettyPhoto/dark_rounded/sprite.png: web.mit.edu/newsoffice/templates/mit/images/prettyPhoto/dark_rounded/sprite.png
+  http://web.mit.edu/newsoffice/templates/mit/images/prettyPhoto/dark_square/btnNext.png: web.mit.edu/newsoffice/templates/mit/images/prettyPhoto/dark_square/btnNext.png
+  http://web.mit.edu/newsoffice/templates/mit/images/prettyPhoto/dark_square/btnPrevious.png: web.mit.edu/newsoffice/templates/mit/images/prettyPhoto/dark_square/btnPrevious.png
+  http://web.mit.edu/newsoffice/templates/mit/images/prettyPhoto/dark_square/sprite.png: web.mit.edu/newsoffice/templates/mit/images/prettyPhoto/dark_square/sprite.png
+  http://web.mit.edu/newsoffice/templates/mit/images/prettyPhoto/light_rounded/btnNext.png: web.mit.edu/newsoffice/templates/mit/images/prettyPhoto/light_rounded/btnNext.png
+  http://web.mit.edu/newsoffice/templates/mit/images/prettyPhoto/light_rounded/btnPrevious.png: web.mit.edu/newsoffice/templates/mit/images/prettyPhoto/light_rounded/btnPrevious.png
+  http://web.mit.edu/newsoffice/templates/mit/images/prettyPhoto/light_rounded/loader.gif: web.mit.edu/newsoffice/templates/mit/images/prettyPhoto/light_rounded/loader.gif
+  http://web.mit.edu/newsoffice/templates/mit/images/prettyPhoto/light_rounded/sprite.png: web.mit.edu/newsoffice/templates/mit/images/prettyPhoto/light_rounded/sprite.png
+  http://web.mit.edu/newsoffice/templates/mit/images/prettyPhoto/light_square/btnNext.png: web.mit.edu/newsoffice/templates/mit/images/prettyPhoto/light_square/btnNext.png
+  http://web.mit.edu/newsoffice/templates/mit/images/prettyPhoto/light_square/btnPrevious.png: web.mit.edu/newsoffice/templates/mit/images/prettyPhoto/light_square/btnPrevious.png
+  http://web.mit.edu/newsoffice/templates/mit/images/prettyPhoto/light_square/sprite.png: web.mit.edu/newsoffice/templates/mit/images/prettyPhoto/light_square/sprite.png
+  http://web.mit.edu/newsoffice/templates/mit/images/story_comment.gif: web.mit.edu/newsoffice/templates/mit/images/story_comment.gif
+  http://web.mit.edu/newsoffice/templates/mit/images/story_email.gif: web.mit.edu/newsoffice/templates/mit/images/story_email.gif
+  http://web.mit.edu/newsoffice/templates/mit/images/story_print.gif: web.mit.edu/newsoffice/templates/mit/images/story_print.gif
+  http://web.mit.edu/newsoffice/templates/mit/images/story_share.gif: web.mit.edu/newsoffice/templates/mit/images/story_share.gif
+  http://web.mit.edu/newsoffice/templates/mit/images/topbar.gif: web.mit.edu/newsoffice/templates/mit/images/topbar.gif
+  http://web.mit.edu/newsoffice/templates/mit/js/s_code.js: web.mit.edu/newsoffice/templates/mit/js/s_code.js
+  http://web.mit.edu/robots.txt: web.mit.edu/robots.txt

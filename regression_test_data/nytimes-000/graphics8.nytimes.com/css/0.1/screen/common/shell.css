@@ -175,7 +175,7 @@ div#main:after {
 #footer a.rssButton,
 #footer a.rssButton:visited {
   padding: 1px 0 5px 20px;
-  background: transparent url(http://graphics8.nytimes.com/images/global/icons/feed_icon_16x16.gif) no-repeat top left;
+  background: transparent url(/images/global/icons/feed_icon_16x16.gif) no-repeat top left;
 }
 
 /* END Footer */

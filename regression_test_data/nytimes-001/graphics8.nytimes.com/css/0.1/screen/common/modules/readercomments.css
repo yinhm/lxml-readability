@@ -7,7 +7,7 @@ $Id: readercomments.css 33123 2010-02-19 16:50:16Z santep $
   float: left;
   clear: left;
   width: 190px;
-  background: #EBF1F5 url(http://graphics8.nytimes.com/images/global/borders/aColumnHorizontalBorder.gif) repeat-x scroll left top;
+  background: #EBF1F5 url(/images/global/borders/aColumnHorizontalBorder.gif) repeat-x scroll left top;
   margin: 0 15px 20px 0; 
 }
 
@@ -17,13 +17,13 @@ $Id: readercomments.css 33123 2010-02-19 16:50:16Z santep $
   font-size: 13px;
   margin: 7px 10px 2px 10px;
   padding: 5px 15px;
-  background: url(http://graphics8.nytimes.com/images/article/comments/icons/comment_black.gif) no-repeat center left;
+  background: url(/images/article/comments/icons/comment_black.gif) no-repeat center left;
 }
 
 #readerscomment .RCcontent,
 #readerscomment .content {
   padding: 9px 10px 13px 10px;
-  background: #EBF1F5 url(http://graphics8.nytimes.com/images/global/borders/aColumnHorizontalBorder.gif) repeat-x scroll left bottom;
+  background: #EBF1F5 url(/images/global/borders/aColumnHorizontalBorder.gif) repeat-x scroll left bottom;
   border-top: 1px solid white;
 }
 

@@ -167,7 +167,7 @@
 table.TwoWeekCalendar {
   width: 165px;
   padding: 0;
-  background: url(http://graphics8.nytimes.com/images/global/backgrounds/CalendarBlueWeekbg_156x19.gif) repeat-x 5px 3px;
+  background: url(/images/global/backgrounds/CalendarBlueWeekbg_156x19.gif) repeat-x 5px 3px;
   font-family: arial, helvetica, sans-serif;
 }
 

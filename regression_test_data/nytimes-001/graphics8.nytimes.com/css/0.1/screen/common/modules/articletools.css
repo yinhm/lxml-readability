@@ -57,35 +57,35 @@
 }
 
 .toolsList .comments a {
-  background: url(http://graphics8.nytimes.com/images/article/comments/icons/comment_black.gif) no-repeat 0 -2px;
+  background: url(/images/article/comments/icons/comment_black.gif) no-repeat 0 -2px;
 }
 
 .toolsList .email a {
-  background: url(http://graphics8.nytimes.com/images/article/functions/tools_email.gif) no-repeat 0 2px;
+  background: url(/images/article/functions/tools_email.gif) no-repeat 0 2px;
 }
 
 .toolsList .print a {
-  background-image: url(http://graphics8.nytimes.com/images/article/functions/tools_print.gif);
+  background-image: url(/images/article/functions/tools_print.gif);
 }
 
 .toolsList .singlePage a {
-  background-image: url(http://graphics8.nytimes.com/images/article/functions/tools_single.gif);
+  background-image: url(/images/article/functions/tools_single.gif);
 }
 
 .toolsList .reprints a {
-  background-image: url(http://graphics8.nytimes.com/images/article/functions/tools_reprints.gif);
+  background-image: url(/images/article/functions/tools_reprints.gif);
 }
 
 .toolsList .savepage a {
-  background-image: url(http://graphics8.nytimes.com/images/article/functions/tools_save.gif);
+  background-image: url(/images/article/functions/tools_save.gif);
 }
 
 .toolsList .feedback a {
-  background-image: url(http://graphics8.nytimes.com/images/article/functions/tools_feedback.gif);
+  background-image: url(/images/article/functions/tools_feedback.gif);
 }
 
 .toolsList .timespeople_btn_recommend a {
-  background-image: url(http://graphics8.nytimes.com/images/apps/timespeople/recommend.gif);
+  background-image: url(/images/apps/timespeople/recommend.gif);
 }
 
 .articleToolsSponsor {

@@ -1,9 +1,107 @@
-test_description: nytimes multi-page article
 notes: wrongly includes author identification from each page
+test_description: nytimes multi-page article
 url: http://www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html
 url_map:
+  http://ad.doubleclick.net/robots.txt: ad.doubleclick.net/robots.txt
+  http://graphics8.nytimes.com/ads/marketing/mm09/verticalst/nytimes.gif: graphics8.nytimes.com/ads/marketing/mm09/verticalst/nytimes.gif
+  http://graphics8.nytimes.com/ads/marketing/mm09/verticalst/verticals_dealbook.gif: graphics8.nytimes.com/ads/marketing/mm09/verticalst/verticals_dealbook.gif
+  http://graphics8.nytimes.com/ads/marketing/mm09/verticalst/verticals_movies.gif: graphics8.nytimes.com/ads/marketing/mm09/verticalst/verticals_movies.gif
+  http://graphics8.nytimes.com/ads/marketing/mm11/dealbook_072911.jpg: graphics8.nytimes.com/ads/marketing/mm11/dealbook_072911.jpg
+  http://graphics8.nytimes.com/ads/marketing/mm11/movies_072911.jpg: graphics8.nytimes.com/ads/marketing/mm11/movies_072911.jpg
+  http://graphics8.nytimes.com/adx/images/ADS/24/26/ad.242614/90x79_newspaper.gif: graphics8.nytimes.com/adx/images/ADS/24/26/ad.242614/90x79_newspaper.gif
+  http://graphics8.nytimes.com/adx/images/ADS/24/31/ad.243137/KN_Briefcase_336x79.gif: graphics8.nytimes.com/adx/images/ADS/24/31/ad.243137/KN_Briefcase_336x79.gif
+  http://graphics8.nytimes.com/adx/images/ADS/25/86/ad.258614/Times_Limited_86x60.gif: graphics8.nytimes.com/adx/images/ADS/25/86/ad.258614/Times_Limited_86x60.gif
+  http://graphics8.nytimes.com/adx/images/ADS/26/58/ad.265876/101452_SomePromiseHD_336x79_sf.jpg: graphics8.nytimes.com/adx/images/ADS/26/58/ad.265876/101452_SomePromiseHD_336x79_sf.jpg
+  http://graphics8.nytimes.com/adx/images/ADS/26/68/ad.266879/120x60_10k.gif: graphics8.nytimes.com/adx/images/ADS/26/68/ad.266879/120x60_10k.gif
+  http://graphics8.nytimes.com/adx/images/ADS/27/11/ad.271168/NYTStore_Red_336x79.gif: graphics8.nytimes.com/adx/images/ADS/27/11/ad.271168/NYTStore_Red_336x79.gif
+  http://graphics8.nytimes.com/adx/images/ADS/27/14/ad.271400/11-0220_AudienceDev_336x79_pingpong_revised.jpg: graphics8.nytimes.com/adx/images/ADS/27/14/ad.271400/11-0220_AudienceDev_336x79_pingpong_revised.jpg
+  http://graphics8.nytimes.com/adx/images/ADS/27/14/ad.271440/11-0220_AudienceDev_86x60_bonnaroo.jpg: graphics8.nytimes.com/adx/images/ADS/27/14/ad.271440/11-0220_AudienceDev_86x60_bonnaroo.jpg
+  http://graphics8.nytimes.com/adx/images/ADS/27/14/ad.271444/11-0220_AudienceDev_86x60_farm.jpg: graphics8.nytimes.com/adx/images/ADS/27/14/ad.271444/11-0220_AudienceDev_86x60_farm.jpg
+  http://graphics8.nytimes.com/adx/images/ADS/27/15/ad.271582/120x60_NP_IG002.gif: graphics8.nytimes.com/adx/images/ADS/27/15/ad.271582/120x60_NP_IG002.gif
+  http://graphics8.nytimes.com/css/0.1/screen/article/abstract.css: graphics8.nytimes.com/css/0.1/screen/article/abstract.css
+  http://graphics8.nytimes.com/css/0.1/screen/article/upnext.css: graphics8.nytimes.com/css/0.1/screen/article/upnext.css
+  http://graphics8.nytimes.com/css/0.1/screen/build/article/2.0/styles.css: graphics8.nytimes.com/css/0.1/screen/build/article/2.0/styles.css
+  http://graphics8.nytimes.com/css/0.1/screen/common/ads.css: graphics8.nytimes.com/css/0.1/screen/common/ads.css
+  http://graphics8.nytimes.com/css/0.1/screen/common/article.css: graphics8.nytimes.com/css/0.1/screen/common/article.css
+  http://graphics8.nytimes.com/css/0.1/screen/common/global.css: graphics8.nytimes.com/css/0.1/screen/common/global.css
+  http://graphics8.nytimes.com/css/0.1/screen/common/googleads.css: graphics8.nytimes.com/css/0.1/screen/common/googleads.css
+  http://graphics8.nytimes.com/css/0.1/screen/common/insideNYTimes.css: graphics8.nytimes.com/css/0.1/screen/common/insideNYTimes.css
+  http://graphics8.nytimes.com/css/0.1/screen/common/layout.css: graphics8.nytimes.com/css/0.1/screen/common/layout.css
+  http://graphics8.nytimes.com/css/0.1/screen/common/macros.css: graphics8.nytimes.com/css/0.1/screen/common/macros.css
+  http://graphics8.nytimes.com/css/0.1/screen/common/masthead.css: graphics8.nytimes.com/css/0.1/screen/common/masthead.css
+  http://graphics8.nytimes.com/css/0.1/screen/common/modules.css: graphics8.nytimes.com/css/0.1/screen/common/modules.css
+  http://graphics8.nytimes.com/css/0.1/screen/common/modules/articletools.css: graphics8.nytimes.com/css/0.1/screen/common/modules/articletools.css
+  http://graphics8.nytimes.com/css/0.1/screen/common/modules/readercomments.css: graphics8.nytimes.com/css/0.1/screen/common/modules/readercomments.css
+  http://graphics8.nytimes.com/css/0.1/screen/common/modules/sharetools.css: graphics8.nytimes.com/css/0.1/screen/common/modules/sharetools.css
+  http://graphics8.nytimes.com/css/0.1/screen/common/mostpopular.css: graphics8.nytimes.com/css/0.1/screen/common/mostpopular.css
+  http://graphics8.nytimes.com/css/0.1/screen/common/navigation.css: graphics8.nytimes.com/css/0.1/screen/common/navigation.css
+  http://graphics8.nytimes.com/css/0.1/screen/common/shell.css: graphics8.nytimes.com/css/0.1/screen/common/shell.css
+  http://graphics8.nytimes.com/css/0.1/screen/section/travel/modules/expedia.css: graphics8.nytimes.com/css/0.1/screen/section/travel/modules/expedia.css
+  http://graphics8.nytimes.com/css/common/global.css: graphics8.nytimes.com/css/common/global.css
+  http://graphics8.nytimes.com/css/standalone/regilite/screen/regiLite.css: graphics8.nytimes.com/css/standalone/regilite/screen/regiLite.css
+  http://graphics8.nytimes.com/images/2011/07/10/magazine/10bad1/mag-10Bad-t_CA1-articleInline.jpg: graphics8.nytimes.com/images/2011/07/10/magazine/10bad1/mag-10Bad-t_CA1-articleInline.jpg
+  http://graphics8.nytimes.com/images/2011/07/10/magazine/10bad2/10bad2-thumbWide.jpg: graphics8.nytimes.com/images/2011/07/10/magazine/10bad2/10bad2-thumbWide.jpg
+  http://graphics8.nytimes.com/images/2011/07/10/magazine/10bad_span/10bad_span-articleLarge.jpg: graphics8.nytimes.com/images/2011/07/10/magazine/10bad_span/10bad_span-articleLarge.jpg
+  http://graphics8.nytimes.com/images/global/buttons/go.gif: graphics8.nytimes.com/images/global/buttons/go.gif
+  http://graphics8.nytimes.com/images/membercenter/icon_delivers.png: graphics8.nytimes.com/images/membercenter/icon_delivers.png
+  http://graphics8.nytimes.com/images/membercenter/signup.png: graphics8.nytimes.com/images/membercenter/signup.png
+  http://graphics8.nytimes.com/images/misc/nytlogo152x23.gif: graphics8.nytimes.com/images/misc/nytlogo152x23.gif
+  http://graphics8.nytimes.com/js/app/analytics/trackingTags_v1.1.js: graphics8.nytimes.com/js/app/analytics/trackingTags_v1.1.js
+  http://graphics8.nytimes.com/js/app/article/articleCommentCount.js: graphics8.nytimes.com/js/app/article/articleCommentCount.js
+  http://graphics8.nytimes.com/js/app/article/outbrain.js: graphics8.nytimes.com/js/app/article/outbrain.js
+  http://graphics8.nytimes.com/js/app/article/upNext.js: graphics8.nytimes.com/js/app/article/upNext.js
+  http://graphics8.nytimes.com/js/app/recommendations/recommendationsModule.js: graphics8.nytimes.com/js/app/recommendations/recommendationsModule.js
+  http://graphics8.nytimes.com/js/article/articleShare.js: graphics8.nytimes.com/js/article/articleShare.js
+  http://graphics8.nytimes.com/js/article/comments/crnrXHR.js: graphics8.nytimes.com/js/article/comments/crnrXHR.js
+  http://graphics8.nytimes.com/js/common.js: graphics8.nytimes.com/js/common.js
+  http://graphics8.nytimes.com/js/common/screen/DropDown.js: graphics8.nytimes.com/js/common/screen/DropDown.js
+  http://graphics8.nytimes.com/js/common/screen/altClickToSearch.js: graphics8.nytimes.com/js/common/screen/altClickToSearch.js
+  http://graphics8.nytimes.com/js/util/tooltip.js: graphics8.nytimes.com/js/util/tooltip.js
+  http://graphics8.nytimes.com/robots.txt: graphics8.nytimes.com/robots.txt.html
+  http://i1.nyt.com/images/2011/07/29/arts/television/29MOTH_FLEISS/29MOTH_FLEISS-moth.jpg: i1.nyt.com/images/2011/07/29/arts/television/29MOTH_FLEISS/29MOTH_FLEISS-moth.jpg
+  http://i1.nyt.com/images/2011/07/29/movies/29MOTH_INTERRUPT/29MOTH_INTERRUPT-moth.jpg: i1.nyt.com/images/2011/07/29/movies/29MOTH_INTERRUPT/29MOTH_INTERRUPT-moth.jpg
+  http://i1.nyt.com/images/2011/07/29/nyregion/29moth_cross/29moth_cross-moth.jpg: i1.nyt.com/images/2011/07/29/nyregion/29moth_cross/29moth_cross-moth.jpg
+  http://i1.nyt.com/images/2011/07/29/opinion/29moth_rfd/29moth_rfd-moth.jpg: i1.nyt.com/images/2011/07/29/opinion/29moth_rfd/29moth_rfd-moth.jpg
+  http://i1.nyt.com/images/2011/07/29/realestate/29moth-tour/29moth-tour-moth.jpg: i1.nyt.com/images/2011/07/29/realestate/29moth-tour/29moth-tour-moth.jpg
+  http://i1.nyt.com/images/global/buttons/moth_forward.gif: i1.nyt.com/images/global/buttons/moth_forward.gif
+  http://i1.nyt.com/images/global/buttons/moth_reverse.gif: i1.nyt.com/images/global/buttons/moth_reverse.gif
+  http://i1.nyt.com/robots.txt: i1.nyt.com/robots.txt.html
+  http://js.nyt.com/js/app/moth/moth.js: js.nyt.com/js/app/moth/moth.js
+  http://js.nyt.com/robots.txt: js.nyt.com/robots.txt.html
+  http://pagead2.googlesyndication.com/robots.txt: pagead2.googlesyndication.com/robots.txt
+  ? http://up.nytimes.com/?d=0/15/&t=2&s=0&ui=0&r=&u=www%2enytimes%2ecom%2f2011%2f07%2f10%2fmagazine%2fthe%2ddark%2dart%2dof%2dbreaking%2dbad%2ehtml%3f%5fr%3d1
+  : up.nytimes.com/index.html?d=0%2F15%2F&t=2&s=0&ui=0&r=&u=www.nytimes.com%2F2011%2F07%2F10%2Fmagazine%2Fthe-dark-art-of-breaking-bad.html?_r=1
+  ? http://up.nytimes.com/?d=0/15/&t=2&s=0&ui=0&r=&u=www%2enytimes%2ecom%2f2011%2f07%2f10%2fmagazine%2fthe%2ddark%2dart%2dof%2dbreaking%2dbad%2ehtml%3f%5fr%3d2%26pagewanted%3d2
+  : up.nytimes.com/index.html?d=0%2F15%2F&t=2&s=0&ui=0&r=&u=www.nytimes.com%2F2011%2F07%2F10%2Fmagazine%2Fthe-dark-art-of-breaking-bad.html?_r=2&pagewanted=2
+  ? http://up.nytimes.com/?d=0/15/&t=2&s=0&ui=0&r=&u=www%2enytimes%2ecom%2f2011%2f07%2f10%2fmagazine%2fthe%2ddark%2dart%2dof%2dbreaking%2dbad%2ehtml%3f%5fr%3d3%26pagewanted%3d3
+  : up.nytimes.com/index.html?d=0%2F15%2F&t=2&s=0&ui=0&r=&u=www.nytimes.com%2F2011%2F07%2F10%2Fmagazine%2Fthe-dark-art-of-breaking-bad.html?_r=3&pagewanted=3
+  ? http://up.nytimes.com/?d=0/15/&t=2&s=0&ui=0&r=&u=www%2enytimes%2ecom%2f2011%2f07%2f10%2fmagazine%2fthe%2ddark%2dart%2dof%2dbreaking%2dbad%2ehtml%3f%5fr%3d4%26pagewanted%3d4
+  : up.nytimes.com/index.html?d=0%2F15%2F&t=2&s=0&ui=0&r=&u=www.nytimes.com%2F2011%2F07%2F10%2Fmagazine%2Fthe-dark-art-of-breaking-bad.html?_r=4&pagewanted=4
+  ? http://wt.o.nytimes.com/dcsym57yw10000s1s8g0boozt_9t1x/njs.gif?dcsredirect=126&dcstlh=0&dcstlv=0&dcsuri=/nojavascript&WT.js=No&WT.tv=1.0.7
+  : wt.o.nytimes.com/dcsym57yw10000s1s8g0boozt_9t1x/njs.gif?dcsredirect=126&dcstlh=0&dcstlv=0&dcsuri=%2Fnojavascript&WT.js=No&WT.tv=1.0.7
+  http://wt.o.nytimes.com/dcsym57yw10000s1s8g0boozt_9t1x/njs.gif?dcsuri=/nojavascript&WT.js=No&WT.tv=1.0.7: wt.o.nytimes.com/dcsym57yw10000s1s8g0boozt_9t1x/njs.gif?dcsredirect=126&dcstlh=0&dcstlv=0&dcsuri=%2Fnojavascript&WT.js=No&WT.tv=1.0.7
   http://www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html: www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html?_r=1.html
+  http://www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html?_r=1: www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html?_r=1.html
+  http://www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html?_r=2&pagewanted=2: www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html?_r=2&pagewanted=2.html
+  http://www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html?_r=3&pagewanted=3: www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html?_r=3&pagewanted=3.html
+  http://www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html?_r=4&pagewanted=4: www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html?_r=4&pagewanted=4.html
   http://www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html?pagewanted=2&_r=1: www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html?_r=2&pagewanted=2.html
+  http://www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html?pagewanted=2&_r=5: www10.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html?_r=6&pagewanted=2.html
   http://www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html?pagewanted=3&_r=2: www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html?_r=3&pagewanted=3.html
   http://www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html?pagewanted=4&_r=3: www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html?_r=4&pagewanted=4.html
   http://www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html?pagewanted=5&_r=4: www10.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html?_r=5&pagewanted=5.html
+  ? http://www.nytimes.com/glogin?URI=http://www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html&OQ=_rQ3D1&OP=14d16f1cQ2F.z(Q5C._Q3CUoeQ3CQ3CQ5EE.EiQ24Q24.i4.Q24i.gxYxHpQ25(.Q5EQ5D(G_xeQ22GxeQ5EGQ3CQ7DGQ5Ce(xQ22pQ25YGQ5Cx_Q2BQ5DQ5Egw
+  : www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html?_r=1.html
+  ? http://www.nytimes.com/glogin?URI=http://www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html&OQ=_rQ3D2Q26pagewantedQ3D2&OP=5f33436cQ2FAr9EATsSQ23MssHgAgtGGAt(AGtAkQ3CQ25Q3CpQ5CV9AH,9uTQ3CMouQ3CMHusQ2AuEM9Q3CoQ5CVQ25uEQ3CTQ3B,HkB
+  : www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html?_r=2&pagewanted=2.html
+  ? http://www.nytimes.com/glogin?URI=http://www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html&OQ=_rQ3D3Q26pagewantedQ3D3&OP=2850a541Q2FQ27NqXQ27Q51iUK2ii!Q23Q27Q23Q3CQ3AQ3AQ27Q3CQ2BQ27Q3AQ3CQ27duYuB_AqQ27!tqzQ51u2kzu2!zipzX2quk_AYzXuQ514t!dQ3F
+  : www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html?_r=3&pagewanted=3.html
+  ? http://www.nytimes.com/glogin?URI=http://www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html&OQ=_rQ3D4Q26pagewantedQ3D4&OP=237f003Q2FhT0fhN8FqZ88Q3FBhBQ23Q20Q20hQ23Q2FhQ20Q23hQ60aHaUQ5BQ7C0hQ3FQ3C0MNaZAMaZQ3FM8Q3AMfZ0aAQ5BQ7CHMfaNVQ3CQ3FQ60p
+  : www.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html?_r=4&pagewanted=4.html
+  http://www.nytimes.com/gst/litesub_insert.html?product=LT&size=336X90: www.nytimes.com/gst/litesub_insert.html?product=LT&size=336X90.html
+  http://www.nytimes.com/robots.txt: www.nytimes.com/robots.txt
+  http://www10.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html?_r=5&pagewanted=5: www10.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html?_r=5&pagewanted=5.html
+  http://www10.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html?_r=6&pagewanted=2: www10.nytimes.com/2011/07/10/magazine/the-dark-art-of-breaking-bad.html?_r=6&pagewanted=2.html
+  http://www10.nytimes.com/robots.txt: www10.nytimes.com/robots.txt
+  https://myaccount.nytimes.com/regilite?product=TR: graphics8.nytimes.com/js/app/recommendations/recommendationsModule.js
+  https://myaccount.nytimes.com/robots.txt: js.nyt.com/robots.txt.html

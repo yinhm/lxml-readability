@@ -4,7 +4,7 @@ $Id: comments.css 51588 2010-11-30 20:38:53Z jon $
 (c)2006 - 2010 The New York Times Company
 */
 
-@import url(http://graphics8.nytimes.com/css/standalone/community/common/comments.css);
+@import url(/css/standalone/community/common/comments.css);
 
 div#readerComments {
   margin: 0 0 5px 0;

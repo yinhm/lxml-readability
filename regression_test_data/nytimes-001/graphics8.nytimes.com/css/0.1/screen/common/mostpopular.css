@@ -77,7 +77,7 @@
 
 #mostPopWidget .withCustomHL .customHeadlines h6.kicker {
   color: #333;
-  background: url(http://graphics8.nytimes.com/images/timeswidgets/homepage/headlines_customize.gif) no-repeat 0 50%;
+  background: url(/images/timeswidgets/homepage/headlines_customize.gif) no-repeat 0 50%;
   margin: 0 0 2px;
   padding-left: 18px;
 }

@@ -86,7 +86,7 @@
 }
 
 #talkback .tbEntry{
-	background:url(../../../../i/tron/vader/dottedLine.gif) bottom repeat-x;
+	background:url(http://i.i.com.com/cnwk.1d/i/tron/vader/dottedLine.gif) bottom repeat-x;
 	margin-bottom:10px;
 	padding-bottom:10px;
 }
@@ -137,7 +137,7 @@
     font-weight:bold;
     clear:both;
     padding-left:20px;
-    background:url(../../../../i/tron/icon/thumbsUp.gif) no-repeat left 50%;
+    background:url(http://i.i.com.com/cnwk.1d/i/tron/icon/thumbsUp.gif) no-repeat left 50%;
 }
 
 .commentwrapper dd.tool .likethankyou,
@@ -170,7 +170,7 @@
 }
 
 .commentwrapper dd.tool .toolTipElement2{
-	background:url(../../../../i/tron/icon/postTools.gif) no-repeat;
+	background:url(http://i.i.com.com/cnwk.1d/i/tron/icon/postTools.gif) no-repeat;
 	text-indent:-9999px;
 	-moz-outline:none;
 	overflow:hidden;
@@ -336,7 +336,7 @@
 }
 
 .commentwrapper dd.status {
-	background: url("../../../../i/cnettv/mobileLive/CNETredball.png") no-repeat scroll 10px transparent !important;
+	background: url("http://i.i.com.com/cnwk.1d/i/cnettv/mobileLive/CNETredball.png") no-repeat scroll 10px transparent !important;
 	background-color:#424244 !important;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
@@ -407,7 +407,7 @@
 }
 
 .commentwrapper .thankyou .closeConfirm{
-    background:#fff url(../../../../i/tron/icon/modalClose.gif) top right no-repeat;
+    background:#fff url(http://i.i.com.com/cnwk.1d/i/tron/icon/modalClose.gif) top right no-repeat;
     text-indent:-2000px;
     display:block;
     width:30px;
@@ -495,7 +495,7 @@
 
 /** comments from mr **/
 
-.commentwrapper a.editor {background:url('../../../../i/frm/ico_cnet.gif') no-repeat right;padding-right:14px;}
+.commentwrapper a.editor {background:url('http://i.i.com.com/cnwk.1d/i/frm/ico_cnet.gif') no-repeat right;padding-right:14px;}
 
 .commentwrapper #edit-body {
 	width:617px;
@@ -516,7 +516,7 @@
 .commentwrapper dl#mostdisc dt.hed,
 .commentwrapper #fixedCommentBox dl#mostdisc dt.hed{
 border-bottom:none;
-background:url(../../../../i/tron/vader/dottedLine.gif) bottom repeat-x;
+background:url(http://i.i.com.com/cnwk.1d/i/tron/vader/dottedLine.gif) bottom repeat-x;
 color:#880000;
 font:normal 153% Georgia,"Times New Roman",serif;
 padding-bottom:5px;
@@ -562,7 +562,7 @@ padding-bottom:5px;
 
 /* adding for Bug 488114 */
 a.commenterCount{
-	background:url(../../../../i/com/cnet/news/total_user_comment.gif) no-repeat left 2px;
+	background:url(http://i.i.com.com/cnwk.1d/i/com/cnet/news/total_user_comment.gif) no-repeat left 2px;
 	margin: 0 2px;
     padding-left: 15px;
 	display: inline-block;
@@ -586,11 +586,11 @@ a.commenterCount{
 
     .blogId262 #overviewHead h1,
     .blogId262 #overviewHead a.blogName {
-        background:url(../../../../i/ne/blogs/hdrs/2009/blog_hd_conversation_980x71.gif) no-repeat;
+        background:url(http://i.i.com.com/cnwk.1d/i/ne/blogs/hdrs/2009/blog_hd_conversation_980x71.gif) no-repeat;
     }
 
     .blogId262 .commentwrapper span.addcommtop {
-        background:url(../../../../i/ne/blogs/conversation/convoCta.gif) no-repeat;
+        background:url(http://i.i.com.com/cnwk.1d/i/ne/blogs/conversation/convoCta.gif) no-repeat;
         display:block;
         width:619px;
         height:78px;

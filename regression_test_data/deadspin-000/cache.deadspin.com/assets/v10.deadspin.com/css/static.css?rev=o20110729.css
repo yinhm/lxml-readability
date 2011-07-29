@@ -1,0 +1,40 @@
+/* site specific stuff -- deadspin */
+.site-forecolor,
+a { color: #0F4561; }
+
+#frontpage {
+	background: url("../img/logo-deadspin.png") no-repeat scroll left top transparent;
+	height: 50px;
+	left: 8px;
+	top: -7px;
+	width: 338px;
+}
+
+/* OPEN DESIGN PER SITE STYLES */
+.marked-head { background-color: #0F456E; }
+
+.ui-shade { background-color: #f0f0f0 !important; }
+
+.ui-border { border-color: #2CD5C7; }
+.threadbullet { background-color: #4f778b; }
+
+.ui-border-light { border-color: #f0f0f0 !important; }
+.ui-light, .ui-light a { color: #c0c0c8 !important; }
+	.ui-shade .ui-light, .ui-shade .ui-light a,
+	.ui-shade.ui-light, .ui-shade.ui-light a { color: #52576E !important; }
+
+.marked-head a, .marked-head, .marked a { color: #fff; }
+
+
+.site-bg-color,
+li.selected a,
+.classic_frontpage .post.sponsored .taglink,
+#thread_navigation a.selected {
+	ackground-color: #499292;
+	border-color: #0F456E;
+	color: #fff;
+}
+
+#thumbList .thumb.current { border-color: #0F4561; }
+
+.post-body li, ul.related li {  list-style-image: url('../img/bullet.png'); }

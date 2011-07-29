@@ -12,19 +12,19 @@
 /* BEGIN LAYOUTS */
 
 .wideA {
-  background: url(http://graphics8.nytimes.com/images/layout/vertical_rule.gif) repeat-y 412px;  
+  background: url(/images/layout/vertical_rule.gif) repeat-y 412px;  
 }
 
 .wideB {
-  background: url(http://graphics8.nytimes.com/images/layout/vertical_rule.gif) repeat-y 207px;
+  background: url(/images/layout/vertical_rule.gif) repeat-y 207px;
 }
 
 .spanAB {
-  background: url(http://graphics8.nytimes.com/images/layout/vertical_rule.gif) repeat-y 617px; 
+  background: url(/images/layout/vertical_rule.gif) repeat-y 617px; 
 }
 
 .splitAB {
-  background:url("http://graphics8.nytimes.com/images/layout/vertical_rule.gif") repeat-y 310px;
+  background:url("/images/layout/vertical_rule.gif") repeat-y 310px;
 }
 
 .spanBC {
@@ -32,7 +32,7 @@
 }
 
 .subColumns {
-  background: url(http://graphics8.nytimes.com/images/layout/vertical_rule.gif) repeat-y 50%;
+  background: url(/images/layout/vertical_rule.gif) repeat-y 50%;
 }
 
 /* END LAYOUTS */
@@ -342,7 +342,7 @@ hr,
 .doubleRule,
 .doubleRuleDivider {
   border-width: 0 !important;
-  background: transparent url(http://graphics8.nytimes.com/images/global/borders/doubleRule.gif) repeat-x left top;
+  background: transparent url(/images/global/borders/doubleRule.gif) repeat-x left top;
 }
 
 .doubleRuleDivider {

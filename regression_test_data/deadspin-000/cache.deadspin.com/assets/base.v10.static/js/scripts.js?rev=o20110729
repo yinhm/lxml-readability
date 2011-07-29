@@ -1,0 +1,193 @@
+	if( location.hash != '' && location.hash.indexOf( '#!' ) == 0 ) {
+		var newHref = location.hash.substr( 2 );
+		if( newHref.indexOf( '/' ) != 0 ) {
+			newHref = '/' + newHref;
+		}
+		location.href = newHref;
+	}
+
+	try { Typekit.load(); } catch(e) {}
+
+
+
+	(function(){
+		var setupWidgets = function() {
+			jQuery( '#presence_external_templates' ).load( '/static/items/' + siteConfig['canonicalHost'] + '/presence_external_templates_static.html', function() {
+				presence_options = { isReloading : false };
+				GawkerClientside.pushWidget('presence', jQuery('#auth').PresenceWidget(presence_options).data('PresenceWidget'));
+				GawkerClientside.pushWidget('notificationControl', jQuery('#notifications').NotificationWidget().data('NotificationWidget'));
+				GawkerClientside.pushWidget('commenter', jQuery('.gawkerwidget.commenter_area').CommenterWidget({}).data('CommenterWidget'));
+				var comments = jQuery('#comments');
+				if ( comments.length ) {
+					GawkerClientside.pushWidget('thread', comments.ThreadWidget( {} ).data('ThreadWidget'));
+					GawkerClientside.pushWidget('threadadmin', jQuery('.gawkerwidget.threadadmin_area').ThreadAdminWidget({}).data('ThreadAdminWidget'));
+					GawkerClientside.pushWidget('commenteradmin', jQuery('.gawkerwidget.commenteradmin_area').CommenterAdminWidget({}).data('CommenterAdminWidget'));
+					GawkerClientside.pushWidget('commentform', jQuery('.commentform_container #postform_widget').CommentFormWidget().data('CommentFormWidget'));
+				}
+				var shareEmail = jQuery('.share_email');
+				if ( shareEmail.length > 0 ) {
+					GawkerClientside.widgets.simpleform_mail2 = [ shareEmail.SimpleFormWidget(settings.widgets.simpleform.byselector['#share_email'].options).data('SimpleFormWidget') ];
+				}
+				GawkerClientside.pushWidget('editorcontrols', jQuery('.gawkerwidget.editorcontrols_area').EditorControlsWidget().data('EditorControlsWidget'));
+				GawkerClientside.pushWidget('republishtool', jQuery('.gawkerwidget.republish_area').RepublishToolWidget( republishOptions ).data('EditorControlsWidget'));
+
+				/** HACK WARNING
+				 *
+				 * widgets in static view are loaded in a funky way. if the forumloaded event is raised BEFORE
+				 * the subscribing widgets are initialized, registerEventHandler will not work, meh.
+				 */
+				if (typeof forum_load_options !== 'undefined' && forum_load_options !== undefined) {
+					adRobot.raiseEvent('maincontent.forumloaded', forum_load_options);
+				}
+			} );
+
+		};
+
+		var setupMainContent = function() {
+			if ( window.pageType == 'post' ) {
+				adRobot.raiseEvent( 'maincontent.postloaded', { data: { id: window.postId, action: 'post' } } );
+			}
+
+			if ( window.pageType == 'search' )
+			{
+				jQuery('#search_term').focus( function( e ) {
+					o = jQuery( this );
+					if ( o.hasClass('empty') ) {
+						o.val('');
+						o.removeClass('empty');
+					}
+				});
+				jQuery('#search_term').focusout( function( e ) {
+					o = jQuery( this );
+					if ( o.val() == '' ) {
+						o.val('Search');
+						o.addClass('empty');
+					}
+				});
+				jQuery('#search #settings ul li a').click( function( e ) {
+					e.stopPropagation();
+					e.preventDefault();
+					o = jQuery( this );
+					setting = o.parent().parent().attr('id');
+					option = o.parent().attr('id');
+					jQuery('#search input[name=' + setting + ']').val( option );
+					jQuery( '#search #settings ul#' + setting + ' li' ).removeClass('selected');
+					o.parent().addClass('selected');
+					q = jQuery('#search_term');
+					if ( !q.hasClass('empty') && q.val() != '' ) {
+						jQuery('#search').submit();
+					}
+				} );
+			}
+
+			if ( jQuery('.splashposts').length ) {
+				GawkerClientside.pushWidget('splashpostControl', jQuery('.splashposts').eq(0).SplashPostWidget( { static_version : true } ).data('SplashPostWidget'));
+				var urlParams = adRobot.getUrlParams();
+				var sponsored_params = {};
+				if (urlParams['sponsor_preview'] !== undefined) {
+					sponsored_params.sponsor_preview = parseInt(urlParams['sponsor_preview'], 10);
+				}
+				adRobot.raiseEvent( 'splashpost.sponsoredpost.show', sponsored_params );
+
+				//google analytics event tracker support, disabled for now
+				// jQuery('.gaqtrack').bind('click', function(){
+				// _gaq.push(['_trackEvent', jQuery(this).data('gaqevent'), jQuery(this).data('gaqid') ]);
+				// });
+			}
+
+			if ( jQuery( '#post_list' ).length ) {
+				GawkerClientside.pushWidget( 'minirightbar', jQuery('#post_list').MiniRightbarWidget({}).data('MiniRightbarWidget'));
+			}
+
+		};
+
+		var setupFacebook = function() {
+			window.fbAsyncInit = function() {
+				FB.init({ 'appId': '236575159691634', status: true, cookie: true,xfbml: true } );
+				var fbObject = document.getElementById( 'facebook_like' );
+				if( fbObject !== null ) {
+					window.FB.XFBML.parse( fbObject );
+				}
+			};
+			var scr = document.createElement( 'script' );
+			scr.type = 'text/javascript';
+			scr.src = location.protocol + '//connect.facebook.net/en_US/all.js';
+			document.getElementById( 'page' ).appendChild( scr );
+		};
+
+		var addBlogviewHandler = function() {
+			jQuery( '#switch_blogview' ).click( function( e ) {
+				var parts = location.hostname.match( /([^\.]+\.[^\.]+)$/ );
+				var cookieValue = 'classic';
+				var newUrl = 'http://' + ( location.hostname.indexOf( 'blog.' ) == -1 ? 'blog.' : '' ) + location.hostname + '/';
+				if( window.pageType == 'classic_frontpage' ) {
+					cookieValue = 'top7';
+					newUrl = 'http://' + location.hostname.replace( 'blog.', '' ) + '/';
+				}
+				jQuery.cookie('____GCV', cookieValue, {expires: 365, path: '/', domain: parts[1]});
+				location.href = newUrl;
+				e.stopPropagation();
+				e.preventDefault();
+			} );
+			jQuery( '#switch_blogview' ).attr('title', 'Switch to top stories view' );
+		};
+
+		var initTrackers = function() {
+			var tracker_params = {};
+			if (window.postId !== undefined) {
+				tracker_params.post_id = window.postId;
+			} else {
+				tracker_params.post_id = 'SITE:' + siteConfig.id;
+			}
+			trackers.reload(tracker_params);
+		};
+
+		var setupShareMenus = function() {
+			if ( jQuery('.share').length ) {
+				jQuery('.share_button').click( function( e ) {
+					e.stopPropagation();
+					e.preventDefault();
+					var shareMenu = jQuery( e.target ).next( '.share_menu' );
+					shareMenu.show();
+					shareMenu.bind( "clickoutside", function() { shareMenu.hide(); } );
+				});
+				jQuery('.share_menu .heading span').click( function( e ) {
+					e.stopPropagation();
+					e.preventDefault();
+					jQuery( e.target ).parents( '.share_menu' ).hide();
+				});
+			}
+		};
+
+		var setupRightMargin = function() {
+			var imgs = jQuery('.v10_medium, .video_300');
+			var adp = jQuery('.post-supp');
+
+			if (imgs.length > 0 && adp.length > 0) {
+				var lowerp = adp.offset().top + adp.height(); // the bottom edge of the meta/adunit
+
+				imgs.each(function () {
+					var currentimage = jQuery(this);
+					if (currentimage.offset().top > lowerp) {
+						/* if the image is NOT next to the ad unit, give it back its margin */
+						if (!currentimage.hasClass('right')) {
+							currentimage.css('margin-right', '40px');
+						}
+					}
+				});
+			}
+		};
+
+		jQuery( document ).ready( function() {
+			setupWidgets();
+			setupMainContent();
+			setupFacebook();
+			setupShareMenus();
+			if( window.checkHashForErrors !== undefined ) {
+				window.checkHashForErrors();
+			}
+			addBlogviewHandler();
+			initTrackers();
+			//setupRightMargin();
+		} );
+	})();

@@ -263,6 +263,8 @@ Allow: /ads/preferences/plugin
 Disallow: /phone/compare/?
 Allow: /alerts/manage
 Disallow: /travel/clk
+Disallow: /shihui?
+Disallow: /shihui/
 Sitemap: http://www.gstatic.com/s2/sitemaps/profiles-sitemap.xml
 Sitemap: http://www.google.com/hostednews/sitemap_index.xml
 Sitemap: http://www.google.com/ventures/sitemap_ventures.xml

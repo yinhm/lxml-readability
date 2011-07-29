@@ -78,13 +78,13 @@ To train their system, the HPU4Science team has designed a novel approach that c
 <h3>Reservoir computing</h3>
 
 <p>
-In reservoir computing, the hidden synapses (called the "reservoir," and biologically analogous to the brain) in the neural network are randomly assigned by the computer. Strict rules govern the overall connectivity of the network so that it simulates the human brain and provides rational output, but the weight and connectivity of each individual synapse is randomly assigned. 
+In reservoir computing, the hidden synapses (called the "reservoir," and biologically analogous to the brain) in the neural network are randomly assigned by the computer. Strict rules govern the overall connectivity of the network so that the neural connections in the reservoir are structurally similar to the human brain and provide rational output, but the weight and connectivity of each individual synapse is randomly assigned. 
 </p><p>
 The data flow for this system is identical to the one described above: input data is conditioned for the reservoir by a set of hand-coded input synapses, the data is processed by the randomly assigned synapses in the reservoir, and the result is output through the ouput synapses, which condition the data for the user.</p>
 
 <p>The difference is in the training. The reservoir method trains faster than traditional neural networks because training only the last set of synapses&#8212;the output layer&#8212;is modified during training. This dramatically reduces the computational cost and time involved, and it's also much easier to parallelize. The image below shows a reservoir and the input (convolved spectrum) and output (deconvolved spectrum) signals.&#160;</p>
 
-<div class="news-item-figure CenteredImage"><div class="news-item-figure-image"><img src="../../../../../../static.arstechnica.com/06-17-2011/figure1.jpg"/></div></div>
+<div class="news-item-figure CenteredImage"><div class="news-item-figure-image"><img src="http://static.arstechnica.com/06-17-2011/figure1.jpg"/></div></div>
 
 
 
@@ -102,7 +102,7 @@ The genetic algorithm used by the HPU4Science cluster is a particle swarm approa
 <p>The image below illustrates the process: reservoir configurations are randomly generated, "parachuted" into the space of possible solutions. From where they land, each finds the local error minimum by training the output synapses. The error minimum is found using what's called a gradient descent algorithm: the system computes the local derivative of the error function and updates the output synapse matrix in order to follow the error function along the path of maximal descent. This brings each element in the swarm to its local minimum.</p>
 
 
-<div class="news-item-figure CenteredImage"><div class="news-item-figure-image"><img src="../../../../../../static.arstechnica.com/06-17-2011/figure2.jpg"/></div></div>
+<div class="news-item-figure CenteredImage"><div class="news-item-figure-image"><img src="http://static.arstechnica.com/06-17-2011/figure2.jpg"/></div></div>
 
 <p>
 The output synapse training process was set up to run in multiple threads by combining multiple training sets into a single group and computing the error for all of the training sets in a single set. Larger training sets require more parallel processes to compute so, the larger the training set, the greater the gain from using GPUs. This is due to the fact that the GPU has many cores that are ideally suited to processing many simple actions in parallel.&#160;</p><p>However, GPUs are limited by the fact that the entire matrix must fit onto the GPU memory so that it does not have to access data from RAM or the hard drive while performing the calculation.&#160;The obligation to fit all the computational data in the GPU's memory is extremely difficult to satisfy. Current generation GTX 580 and GTX 590 GPU cards have 1.5GB and 3GB of RAM, respectively. That may seem huge, but the computations necessary for EPR imaging quickly use up all of the RAM.&#160;</p><p>With EPR, the number of elements in the reservoir matrix is the number of examples in the training set times the number of data points in the EPR spectrum&#8212;squared! A one thousand example data set (not a lot),  together with a few thousand data points to be reconstructed, gives you a matrix with 10<sup>12</sup> entries. But there are ways to reduce this memory footprint. The transformation matrix in the reservoir is very sparse (it has a lot of zeroes) and we can compute different data points separately, so the HPU4Science team was able to reduce the memory footprint to 24MB, making it perfectly manageable on the GPU.</p><p>
@@ -113,12 +113,12 @@ The figure below summarizes the overall process. Data (symbolized by the bird) i
 </p>
 
 
-<div class="news-item-figure CenteredImage"><div class="news-item-figure-image"><img src="../../../../../../static.arstechnica.com/06-17-2011/figure4.jpg"/></div></div>
+<div class="news-item-figure CenteredImage"><div class="news-item-figure-image"><img src="http://static.arstechnica.com/06-17-2011/figure4.jpg"/></div></div>
 
 <p>
 The figure below tries to depict the search for the oracle, but this time is seen as the search for the maximum (a straightforward inversion of the goal; just change the sign).</p>
 
-<div class="news-item-figure CenteredImage"><div class="news-item-figure-image"><img src="../../../../../../static.arstechnica.com/06-17-2011/figure3.jpg"/></div></div>
+<div class="news-item-figure CenteredImage"><div class="news-item-figure-image"><img src="http://static.arstechnica.com/06-17-2011/figure3.jpg"/></div></div>
 
 <h3>Parallelization: relying on the GPU</h3>
 
