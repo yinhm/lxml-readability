@@ -237,28 +237,6 @@ def transform_misused_divs_into_paragraphs(doc):
             elem.tag = "p"
             #print "Fixed element "+describe(elem)
             
-    # for elem in tags(doc, 'div'):
-    #     if elem.text and elem.text.strip():
-    #         p = fragment_fromstring('<p/>')
-    #         p.text = elem.text
-    #         elem.text = None
-    #         elem.insert(0, p)
-    #         logging.debug("Appended %s to %s" % (tounicode(p), describe(elem)))
-    #         #print "Appended "+tounicode(p)+" to "+describe(elem)
-    #     
-    #     for pos, child in reversed(list(enumerate(elem))):
-    #         logging.debug('div child: %s' % describe(child))
-    #         if child.tail and child.tail.strip():
-    #             p = fragment_fromstring('<p/>')
-    #             p.text = child.tail
-    #             child.tail = None
-    #             elem.insert(pos + 1, p)
-    #             logging.debug("Inserted %s to %s" % (tounicode(p), describe(elem)))
-    #             #print "Inserted "+tounicode(p)+" to "+describe(elem)
-    #         if child.tag == 'br':
-    #             #print 'Dropped <br> at '+describe(elem) 
-    #             child.drop_tree()
-
 def remove_unlikely_candidates(doc):
     for elem in doc.iter():
         s = "%s %s" % (elem.get('class', ''), elem.get('id', ''))
