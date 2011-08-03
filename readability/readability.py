@@ -6,6 +6,7 @@ from lxml.etree import tostring, tounicode
 from lxml.html import fragment_fromstring, document_fromstring
 from lxml.html import builder as B
 from lxml.html.diff import htmldiff
+import difflib
 import logging
 import re
 import sys
@@ -104,34 +105,159 @@ def score_node(elem):
         'elem': elem
     }
 
+def transform_double_breaks_into_paragraphs_elem(elem):
+    START, BR = range(2)
+    state = START
+
+    def make_p(parts):
+        # print('make_p')
+
+        # Makes a paragraph element containing the element/strings, which are
+        # given in reverse order since they are accumulated in reverse order
+        # below.
+        p = B.P()
+        last_element = None
+        for part in parts:
+            if part is None:
+                pass
+            elif isinstance(part, basestring):
+                # print('string part: %s' % part)
+                if last_element is None:
+                    if p.text is None:
+                        p.text = part
+                    else:
+                        p.text += part
+                else:
+                    if last_element.tail is None:
+                        last_element.tail = part
+                    else:
+                        last_element.tail += part
+            else:
+                # print('elem part:   %s' % tostring(part))
+                p.append(part)
+        
+        # print('make_p done')
+        del parts[:]
+        if (p.text is None or p.text.strip() == '') and len(p) == 0:
+            return None
+        else:
+            logging.debug('P: %s' % tostring(p))
+            return p
+        
+    def insert_p(parent, at_elem, parts):
+        p = make_p(parts)
+        if p is not None:
+            index = parent.index(at_elem)
+            parent.insert(index, p)
+            logging.debug(
+                    'INSERTING AT %d IN PARENT: %s' %
+                    (index, tostring(parent))
+                    )
+
+    def append_p(parent, parts):
+        p = make_p(parts)
+        if p is not None:
+            parent.append(p)
+
+    # We use this to accumulate elements/strings that we will put into a
+    # paragraph where we see fit.
+    acc = []
+    first_br = None
+
+    if elem.text and elem.text.strip() != '':
+        acc.append(elem.text)
+        elem.text = None
+
+    block_tags = (
+            ['h%d' % i for i in range(1, 7)] +
+            ['blockquote', 'pre', 'table', 'img', 'div', 'p']
+            )
+
+    for child in list(elem):
+        if state == START:
+            if child.tag == 'br':
+                if child.tail and child.tail.strip() != '':
+                    logging.debug('START:br:empty: %s' % tostring(child))
+                    # The break is followed by text, so it's not a double
+                    # break.  We just include this into whatever paragraph we
+                    # are building like most other elements.
+                    acc.append(child)
+                else:
+                    logging.debug('START:br: %s' % tostring(child))
+                    # We save off this break, so that if we see a double break,
+                    # we can manipulate it.
+                    first_br = child
+                    state = BR
+            elif child.tag in block_tags:
+                logging.debug('START:block: %s' % child.tail)
+                insert_p(elem, child, acc)
+                acc.append(child.tail)
+                child.tail = None
+            else:
+                logging.debug('START:*:  %s' % tostring(child))
+                acc.append(child)
+        elif state == BR:
+            if child.tag == 'br':
+                logging.debug('BR:br: %s' % child.tail)
+                first_br.tail = None
+                first_br.drop_tree()
+                first_br = None
+                insert_p(elem, child, acc)
+                acc.append(child.tail)
+                child.tail = None
+                child.drop_tree()
+                state = START
+            elif child.tag in block_tags:
+                logging.debug('BR:block: %s' % child.tail)
+                first_br.tail = None
+                first_br.drop_tree()
+                first_br = None
+                insert_p(elem, child, acc)
+                acc.append(child.tail)
+                child.tail = None
+                state = START
+            else:
+                logging.debug('BR:*:  %s' % tostring(child))
+                acc.append(child)
+                state = START
+
+    append_p(elem, acc)
+
+def transform_double_breaks_into_paragraphs(doc):
+    for div in tags(doc, 'div'):
+        transform_double_breaks_into_paragraphs_elem(div)
+
 def transform_misused_divs_into_paragraphs(doc):
     for elem in tags(doc, 'div'):
         # transform <div>s that do not contain other block elements into <p>s
+        logging.debug("Examining %s to see if misused" % (describe(elem)))
+        logging.debug("  searching: %s" % unicode(''.join(map(tostring, list(elem)))))
         if not REGEXES['divToPElementsRe'].search(unicode(''.join(map(tostring, list(elem))))):
             logging.debug("Altering %s to p" % (describe(elem)))
             elem.tag = "p"
             #print "Fixed element "+describe(elem)
             
-    for elem in tags(doc, 'div'):
-        if elem.text and elem.text.strip():
-            p = fragment_fromstring('<p/>')
-            p.text = elem.text
-            elem.text = None
-            elem.insert(0, p)
-            logging.debug("Appended %s to %s" % (tounicode(p), describe(elem)))
-            #print "Appended "+tounicode(p)+" to "+describe(elem)
-        
-        for pos, child in reversed(list(enumerate(elem))):
-            if child.tail and child.tail.strip():
-                p = fragment_fromstring('<p/>')
-                p.text = child.tail
-                child.tail = None
-                elem.insert(pos + 1, p)
-                logging.debug("Inserted %s to %s" % (tounicode(p), describe(elem)))
-                #print "Inserted "+tounicode(p)+" to "+describe(elem)
-            if child.tag == 'br':
-                #print 'Dropped <br> at '+describe(elem) 
-                child.drop_tree()
+    # for elem in tags(doc, 'div'):
+    #     if elem.text and elem.text.strip():
+    #         p = fragment_fromstring('<p/>')
+    #         p.text = elem.text
+    #         elem.text = None
+    #         elem.insert(0, p)
+    #         logging.debug("Appended %s to %s" % (tounicode(p), describe(elem)))
+    #         #print "Appended "+tounicode(p)+" to "+describe(elem)
+    #     
+    #     for pos, child in reversed(list(enumerate(elem))):
+    #         logging.debug('div child: %s' % describe(child))
+    #         if child.tail and child.tail.strip():
+    #             p = fragment_fromstring('<p/>')
+    #             p.text = child.tail
+    #             child.tail = None
+    #             elem.insert(pos + 1, p)
+    #             logging.debug("Inserted %s to %s" % (tounicode(p), describe(elem)))
+    #             #print "Inserted "+tounicode(p)+" to "+describe(elem)
+    #         if child.tag == 'br':
+    #             #print 'Dropped <br> at '+describe(elem) 
+    #             child.drop_tree()
 
 def remove_unlikely_candidates(doc):
     for elem in doc.iter():
@@ -405,6 +531,7 @@ def get_article(doc, options):
                 i.set('id', 'readabilityBody')
             if ruthless: 
                 remove_unlikely_candidates(doc)
+            transform_double_breaks_into_paragraphs(doc)
             transform_misused_divs_into_paragraphs(doc)
             candidates = score_paragraphs(doc, options)
             
@@ -1064,17 +1191,17 @@ class TestMultiPage(unittest.TestCase):
     of the algorithm.
     '''
 
-    def _make_basic_urldict(self):
+    def _make_basic_url_map(self):
         url_fmt = 'http://basic.com/article.html?pagewanted=%s'
-        file_fmt = 'test_data/basic-multi-page-%s.html'
+        file_fmt = 'basic-multi-page-%s.html'
         pairs = [(url_fmt % i, file_fmt % i) for i in ['2', '3']]
         return dict(pairs)
 
     def test_basic(self):
         with open('test_data/basic-multi-page.html', 'r') as f:
             html = f.read()
-        urldict = self._make_basic_urldict()
-        fetcher = urlfetch.MockUrlFetch(urldict)
+        url_map = self._make_basic_url_map()
+        fetcher = urlfetch.MockUrlFetch('test_data', url_map)
         options = {
                 'url': 'http://basic.com/article.html',
                 'urlfetch': fetcher
@@ -1084,7 +1211,7 @@ class TestMultiPage(unittest.TestCase):
         with open('test_data/basic-multi-page-expected.html', 'r') as f:
             expected_html = f.read()
         diff_html = htmldiff(expected_html, summary.html)
-        diff_doc = document_fromstring(diff_html)
+        diff_doc = fragment_fromstring(diff_html)
         insertions = diff_doc.xpath('//ins')
         deletions = diff_doc.xpath('//del')
         if len(insertions) != 0:
@@ -1115,6 +1242,50 @@ class TestIsSuspectedDuplicate(unittest.TestCase):
             html = f.read()
             page = fragment_fromstring(html)
         self.assertTrue(is_suspected_duplicate(self._article, page))
+
+class TestTransformDoubleBreaksIntoParagraphs(unittest.TestCase):
+
+    def _read_test_doc(self, file_id):
+        path = 'test_data/double-breaks-%s.html' % file_id
+        with open(path, 'r') as f:
+            html = f.read()
+            return document_fromstring(html)
+
+    def _test_one(self, test_id):
+        original = test_id + '-original'
+        expected = test_id + '-expected'
+        doc = self._read_test_doc(original)
+        transform_double_breaks_into_paragraphs(doc)
+        expected_doc = self._read_test_doc(expected)
+        doc_string = tostring(doc)
+        expected_doc_string = tostring(expected_doc)
+        print doc_string
+        if doc_string != expected_doc_string:
+            diff = difflib.unified_diff(
+                    expected_doc_string.splitlines(True),
+                    doc_string.splitlines(True),
+                    fromfile = 'expected',
+                    tofile = 'actual'
+                    )
+            for line in diff:
+                sys.stdout.write(line)
+            self.fail('did not get expected result')
+
+    def test_basic(self):
+        self._test_one('basic')
+
+    def test_some_headers(self):
+        self._test_one('some-headers')
+
+    def test_proper_paragraphs(self):
+        self._test_one('proper-paragraphs')
+
+    def test_mit(self):
+        self._test_one('mit')
+
+def pretty_print(html):
+    doc = document_fromstring(html, remove_blank_text = True)
+    print(tostring(doc, pretty_print = True))
 
 def readability_main():
     from optparse import OptionParser

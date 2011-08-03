@@ -193,7 +193,8 @@ class ResultSummary():
 
     def __init__(self, result):
         # logging.debug('diff: %s' % result.diff_html)
-        doc = lxml.html.fragment_fromstring(result.diff_html)
+        doc = lxml.html.document_fromstring(
+                '<html><body>' + result.diff_html + '</body></html>')
 
         insertions = doc.xpath('//ins')
         insertion_lengths = element_string_lengths(insertions)
@@ -204,7 +205,12 @@ class ResultSummary():
         deletion_lengths = element_string_lengths(deletions)
         self.deletions = sum(deletion_lengths)
         self.deletion_blocks = len(deletions)
-        pass
+
+        # doc = lxml.html.fragment_fromstring('<div></div>')
+        # self.insertions = 0
+        # self.insertion_blocks = 0
+        # self.deletions = 0
+        # self.deletion_blocks = 0
 
 def make_summary_row(test, result):
     def output(suffix):
