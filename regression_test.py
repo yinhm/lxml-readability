@@ -9,6 +9,7 @@ This allows you to tweak and change the readability algorithm and see how it
 changes existing results, hopefully for the better.
 """
 from lxml.html import builder as B
+from regression_test_css import SUMMARY_CSS, READABILITY_CSS
 import logging
 import lxml.html
 import lxml.html.diff
@@ -31,70 +32,6 @@ DIFF_SUFFIX = '.diff'
 TEST_DATA_PATH = 'regression_test_data'
 TEST_OUTPUT_PATH = 'regression_test_output'
 TEST_SUMMARY_PATH = os.path.join(TEST_OUTPUT_PATH, 'index.html')
-
-SUMMARY_CSS = '''
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    font-family: Georgia, 'Times New Roman', serif;
-}
-table {
-    margin: auto;
-}
-.skipped {
-    color: gray;
-}
-td, th {
-    font-size: 1.2em;
-    border: 1px solid black;
-    padding: 3px 7px 2px 7px;
-}
-th {
-    font-size: 16px;
-    text-align: left;
-    padding-top: 5px;
-    padding-bottom: 4px;
-}
-'''
-
-READABILITY_CSS = '''
-#article {
-    margin: 0 auto;
-    max-width: 705px;
-    min-width: 225px;
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 19px;
-    line-height: 29px;
-}
-
-#article p {
-    font-size: 19px;
-    line-height: 29px;
-    margin: 19px 0px 19px 0px;
-}
-
-ins {
-    background-color: #C6F7C3;
-    text-decoration: none;
-}
-
-ins img {
-    border-width: 3px;
-    border-style: dotted;
-    border-color: #51B548;
-}
-
-del {
-    background-color: #F7C3C3;
-    text-decoration: none;
-}
-
-del img {
-    border-width: 3px;
-    border-style: dotted;
-    border-color: #D12626;
-}
-'''
 
 class ReadabilityTest:
 
