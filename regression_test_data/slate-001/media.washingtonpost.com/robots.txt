@@ -1,0 +1,53 @@
+User-agent: ia_archiver
+Disallow: /
+
+User-agent: *
+Crawl-delay: 1
+
+# Disallow facets
+Disallow: /*_print.html
+Disallow: /*_email.html
+Disallow: /*_singlePage.html
+Disallow: /*_allComments.html
+Disallow: /*_jsn.json
+Disallow: /*_jsonpStatic.js
+Disallow: /*_nitf.xml
+Disallow: /*_newsml.html
+Disallow: /*_qa.html
+Disallow: /*_meta.xml
+Disallow: /*_jsnp.js
+Disallow: /*_json.json
+Disallow: /*_search.html
+Disallow: /*_jsonp.js
+Disallow: /*_jsnpStatic.js
+Disallow: /*_rss.xml
+Disallow: /*_mobile.mobile
+Disallow: /*_mobile.xml
+Disallow: /*_allCommentsClassicBlog.html
+Disallow: /*_seo.html
+Disallow: /*_nimbusJson.json
+Disallow: /*_nimbusJsonp.js
+Disallow: /*_nimbusJsonpStatic.js
+Disallow: /*_modal.html
+
+# Disallow epaper pages
+Disallow: /todays_paper/
+Disallow: /rw/WashingtonPost/Content/Epaper/
+
+# Exclude extensions
+Disallow: /*.jpg$
+Disallow: /*.jpeg$
+Disallow: /*.gif$
+Disallow: /*.png$
+Disallow: /*.js$
+Disallow: /*.css$
+Disallow: /*.mp3$
+Disallow: /*.swf$
+Disallow: /*.flv$
+Disallow: /*.mp4$
+Disallow: /*.avi$
+Disallow: /*.txt$
+Disallow: /*.ics$
+
+# Disallow Module QA
+Disallow /utils
