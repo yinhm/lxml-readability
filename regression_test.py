@@ -228,7 +228,20 @@ def convert_links(url_map, url, doc):
             logging.debug('converting links: new_link: %s' % new_link)
             return urllib.quote(new_link)
         else:
-            return link
+            split_link = urlparse.urlsplit(link)
+            if split_link.scheme == '':
+                if split_link.path == '':
+                    return link
+                elif split_link.path[0] == '/':
+                    root_path = urlparse.urlsplit(url).netloc
+                    link_path = os.path.join(root_path, split_link.path[1:])
+                    new_link = os.path.relpath(link_path, url_dir)
+                    return urllib.quote(new_link)
+                else:
+                    new_link = os.path.join(url_dir, split_link.path)
+                    return urllib.quote(new_link)
+            else:
+                return link
     doc.rewrite_links(link_repl_func)
 
 def write_output_html(url_map, url, html, path):
