@@ -1,4 +1,5 @@
 test_description: washingtonpost multi-page article
+notes: this is horribly broken; picks up wrong elements; no pagination
 url: http://www.washingtonpost.com/business/the-back-office-powerbrokers-of-commercial-real-estate/2011/06/26/AGtmeftH_story.html
 url_map:
   http://b.scorecardresearch.com/robots.txt: b.scorecardresearch.com/robots.txt
