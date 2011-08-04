@@ -115,7 +115,7 @@ def split_into_parts(elem):
 
     <div>Hello <b>World</b>!  <i>- Jerry</i> C.</div>
 
-    Is represented (loosely) as:
+    is represented (loosely) as:
 
     div element {
         text: 'Hello',
@@ -171,8 +171,8 @@ def append_or_set(base, value):
 
 def make_paragraph_from_parts(parts):
     '''
-    Makes a paragraph element containing the element/strings, which are given
-    in reverse order since they are accumulated in reverse order below.
+    Makes a paragraph element from the list of parts.  If the paragraph would
+    be empty, None is returned.
     '''
     p = B.P()
     last_element = None
@@ -194,6 +194,11 @@ def make_paragraph_from_parts(parts):
         return p
 
 def mark_if_whitespace(parts, left, right):
+    '''
+    Returns the set of indices between (exclusive) left and right in parts if
+    the parts all represent whitespace.  If there is any non-whitespace, an
+    empty set is returned.
+    '''
     is_only_whitespace = True
     for i in range(left + 1, right):
         part = parts[i]
@@ -205,14 +210,21 @@ def mark_if_whitespace(parts, left, right):
             is_only_whitespace = False
             break
 
-    marked = set()
     if is_only_whitespace:
+        marked = set()
         for i in range(left + 1, right):
             marked.add(i)
-
-    return marked
+        return marked
+    else:
+        return set()
 
 def squeeze_breaks(parts):
+    '''
+    This is a preprocessing step for turning double-breaks into paragraphs
+    where appropriate.  If two break tags are separated only by whitespace,
+    that whitespace is filtered out and not included in the parts list that is
+    returned.
+    '''
     # Find the indices of the breaks.
     breaks = []
     for i, part in enumerate(parts):
@@ -241,6 +253,11 @@ def squeeze_breaks(parts):
     return new_parts
 
 def insert_p(parent, at_elem, parts):
+    '''
+    Inserts a paragraph element generated from a list of parts into the given
+    parent, before the child element at_elem.  The parts may contain elements
+    that are currently children of the parent.
+    '''
     p = make_paragraph_from_parts(parts)
     if p is not None:
         index = parent.index(at_elem)
@@ -252,12 +269,27 @@ def insert_p(parent, at_elem, parts):
     del parts[:]
 
 def append_p(parent, parts):
+    '''
+    Appends a paragraph element generated from a list of parts to the given
+    parent.  The parts may contain elements that are currently children of the
+    parent.
+    '''
     p = make_paragraph_from_parts(parts)
     if p is not None:
         parent.append(p)
     del parts[:]
 
 def transform_double_breaks_into_paragraphs_elem(elem):
+    '''
+    Transforms double-breaks that delineate paragraphs into proper paragraph
+    elements.  See transform_double_breaks_into_paragraphs.
+    '''
+    # The algorithm walks the parts of the element looking for double-breaks,
+    # accumulating parts with which to construct a paragraphs when they are
+    # encountered.
+
+    # We enter the BR state once we have seen a break and are looking to see if
+    # there is another break immediately following it.
     START, BR = range(2)
     BLOCK_TAGS = (
             ['h%d' % i for i in range(1, 7)] +
@@ -265,6 +297,9 @@ def transform_double_breaks_into_paragraphs_elem(elem):
             )
 
     state = START
+
+    # We hang on to the first break we encounter, since we need to look ahead
+    # one part before deciding what to do with it.
     first_br = None
 
     # We use this to accumulate parts that we will put into a paragraph where
@@ -273,11 +308,6 @@ def transform_double_breaks_into_paragraphs_elem(elem):
     parts = squeeze_breaks(split_into_parts(elem))
     
     for part in parts:
-        if isinstance(part, basestring):
-            logging.debug('examining part: %s' % part)
-        else:
-            logging.debug('examining part: %s' % tostring(part))
-
         if state == START:
             if isinstance(part, basestring):
                 acc.append(part)
@@ -310,6 +340,53 @@ def transform_double_breaks_into_paragraphs_elem(elem):
     append_p(elem, acc)
 
 def transform_double_breaks_into_paragraphs(doc):
+    '''
+    Modifies doc so that double-breaks (<br><br>) in content delineate
+    paragraphs.  Some pages use double-breaks when they really should be using
+    paragraphs:
+
+        <div>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+            in justo sapien, a consectetur est. Aliquam iaculis, augue eu
+            euismod gravida, nisl nisl posuere odio, at euismod metus enim quis
+            nibh.
+
+            <br><br>
+
+            Praesent posuere tortor at nunc iaculis eget suscipit tellus
+            tempus.  Nulla facilisi. Quisque rutrum, ante eu sollicitudin
+            congue, dui sapien egestas arcu, in consequat nisl metus eu sem.
+
+            <br><br>
+
+            Nam mi sem, lobortis eget adipiscing vitae, ultricies sit amet
+            justo.  Nullam rutrum sodales magna vel vestibulum. Curabitur sit
+            amet urna purus, ac aliquet sem.
+        </div>
+
+    This routine would transform this into:
+
+        <div>
+            <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+            in justo sapien, a consectetur est. Aliquam iaculis, augue eu
+            euismod gravida, nisl nisl posuere odio, at euismod metus enim quis
+            nibh.
+            </p>
+
+            <p>
+            Praesent posuere tortor at nunc iaculis eget suscipit tellus
+            tempus.  Nulla facilisi. Quisque rutrum, ante eu sollicitudin
+            congue, dui sapien egestas arcu, in consequat nisl metus eu sem.
+            </p>
+
+            <p>
+            Nam mi sem, lobortis eget adipiscing vitae, ultricies sit amet
+            justo.  Nullam rutrum sodales magna vel vestibulum. Curabitur sit
+            amet urna purus, ac aliquet sem.
+            </p>
+        </div>
+    '''
     for div in tags(doc, 'div'):
         transform_double_breaks_into_paragraphs_elem(div)
 
