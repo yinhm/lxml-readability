@@ -105,121 +105,207 @@ def score_node(elem):
         'elem': elem
     }
 
-def transform_double_breaks_into_paragraphs_elem(elem):
-    START, BR = range(2)
-    state = START
+def split_into_parts(elem):
+    '''
+    Takes the text and children of an element and returns a list of parts.
 
-    def make_p(parts):
-        # print('make_p')
+    lxml represents an element's content by its .text property and its child
+    elements.  Each child element has a .tail property to represent
+    interspersed text.  For example, a div element that looks like this:
 
-        # Makes a paragraph element containing the element/strings, which are
-        # given in reverse order since they are accumulated in reverse order
-        # below.
-        p = B.P()
-        last_element = None
-        for part in parts:
-            if part is None:
-                pass
-            elif isinstance(part, basestring):
-                # print('string part: %s' % part)
-                if last_element is None:
-                    if p.text is None:
-                        p.text = part
-                    else:
-                        p.text += part
-                else:
-                    if last_element.tail is None:
-                        last_element.tail = part
-                    else:
-                        last_element.tail += part
-            else:
-                # print('elem part:   %s' % tostring(part))
-                p.append(part)
-        
-        # print('make_p done')
-        del parts[:]
-        if (p.text is None or p.text.strip() == '') and len(p) == 0:
-            return None
-        else:
-            logging.debug('P: %s' % tostring(p))
-            return p
-        
-    def insert_p(parent, at_elem, parts):
-        p = make_p(parts)
-        if p is not None:
-            index = parent.index(at_elem)
-            parent.insert(index, p)
-            logging.debug(
-                    'INSERTING AT %d IN PARENT: %s' %
-                    (index, tostring(parent))
-                    )
+    <div>Hello <b>World</b>!  <i>- Jerry</i> C.</div>
 
-    def append_p(parent, parts):
-        p = make_p(parts)
-        if p is not None:
-            parent.append(p)
+    Is represented (loosely) as:
 
-    # We use this to accumulate elements/strings that we will put into a
-    # paragraph where we see fit.
-    acc = []
-    first_br = None
+    div element {
+        text: 'Hello',
+        children: [
+                b element { text: 'World', tail: '!  ' },
+                i element { text: '- Jerry', tail: 'C.' }
+                ]
+    }
 
-    if elem.text and elem.text.strip() != '':
-        acc.append(elem.text)
+    When breaking up divs into paragraphs (see
+    transform_double_breaks_into_paragraphs_elem), this is an inconvenient
+    representation, as we often need to break tail text away from its element.
+    For example, if we have:
+
+    ...end of a paragraph.<br><br>Start of a new paragraph...
+
+    the start of the new paragraph will be the tail of the second br, which we
+    will be replacing with a paragraph element that contains the second
+    paragraph.
+
+    To that end, this function gives us a representation that is easier to use.
+    Instead of elements and tails, we just have a list of "parts".  A "part" is
+    one of two things: an lxml element or a string.  Instead of interspersed
+    text as part of the preceding element, we just break it out on its own.  So
+    our "Hello World" above is represented as.
+    [
+        'Hello',
+        b element { text: 'World' },
+        '!  ',
+        i element { text: '- Jerry' },
+        'C.'
+    ]
+    '''
+    parts = []
+
+    if elem.text is not None:
+        parts.append(elem.text)
         elem.text = None
 
-    block_tags = (
+    for child in elem:
+        parts.append(child)
+        if child.tail is not None:
+            parts.append(child.tail)
+        child.tail = None
+
+    return parts
+
+def append_or_set(base, value):
+    if base is None:
+        return value
+    else:
+        return base + value
+
+def make_paragraph_from_parts(parts):
+    '''
+    Makes a paragraph element containing the element/strings, which are given
+    in reverse order since they are accumulated in reverse order below.
+    '''
+    p = B.P()
+    last_element = None
+    for part in parts:
+        if isinstance(part, basestring):
+            if last_element is None:
+                p.text = append_or_set(p.text, part)
+            else:
+                last_element.tail = append_or_set(last_element.tail, part)
+        else:
+            p.append(part)
+            last_element = part
+    
+    if (p.text is None or p.text.strip() == '') and len(p) == 0:
+        # No text or children.
+        return None
+    else:
+        logging.debug('P: %s' % tostring(p))
+        return p
+
+def mark_if_whitespace(parts, left, right):
+    is_only_whitespace = True
+    for i in range(left + 1, right):
+        part = parts[i]
+        if isinstance(part, basestring):
+            if part.strip() != '':
+                is_only_whitespace = False
+                break
+        else:
+            is_only_whitespace = False
+            break
+
+    marked = set()
+    if is_only_whitespace:
+        for i in range(left + 1, right):
+            marked.add(i)
+
+    return marked
+
+def squeeze_breaks(parts):
+    # Find the indices of the breaks.
+    breaks = []
+    for i, part in enumerate(parts):
+        if not isinstance(part, basestring) and part.tag == 'br':
+            breaks.append(i)
+
+    # Look between breaks to see if there are only whitespace parts.  If so,
+    # mark them for filtering.
+    left_break = None
+    marked = set()
+
+    for b in breaks:
+        if left_break is None:
+            left_break = b
+        else:
+            right_break = b
+            marked.update(mark_if_whitespace(parts, left_break, right_break))
+            left_break = right_break
+
+    # Filter parts and return.
+    new_parts = []
+    for i, part in enumerate(parts):
+        if i not in marked:
+            new_parts.append(part)
+
+    return new_parts
+
+def insert_p(parent, at_elem, parts):
+    p = make_paragraph_from_parts(parts)
+    if p is not None:
+        index = parent.index(at_elem)
+        parent.insert(index, p)
+        logging.debug(
+                'INSERTING AT %d IN PARENT: %s' %
+                (index, tostring(parent))
+                )
+    del parts[:]
+
+def append_p(parent, parts):
+    p = make_paragraph_from_parts(parts)
+    if p is not None:
+        parent.append(p)
+    del parts[:]
+
+def transform_double_breaks_into_paragraphs_elem(elem):
+    START, BR = range(2)
+    BLOCK_TAGS = (
             ['h%d' % i for i in range(1, 7)] +
-            ['blockquote', 'pre', 'table', 'img', 'div', 'p']
+            ['blockquote', 'div', 'img', 'p', 'pre', 'table']
             )
 
-    for child in list(elem):
+    state = START
+    first_br = None
+
+    # We use this to accumulate parts that we will put into a paragraph where
+    # we see fit.
+    acc = []
+    parts = squeeze_breaks(split_into_parts(elem))
+    
+    for part in parts:
+        if isinstance(part, basestring):
+            logging.debug('examining part: %s' % part)
+        else:
+            logging.debug('examining part: %s' % tostring(part))
+
         if state == START:
-            if child.tag == 'br':
-                if child.tail and child.tail.strip() != '':
-                    logging.debug('START:br:empty: %s' % tostring(child))
-                    # The break is followed by text, so it's not a double
-                    # break.  We just include this into whatever paragraph we
-                    # are building like most other elements.
-                    acc.append(child)
-                else:
-                    logging.debug('START:br: %s' % tostring(child))
-                    # We save off this break, so that if we see a double break,
-                    # we can manipulate it.
-                    first_br = child
+            if isinstance(part, basestring):
+                acc.append(part)
+            else:
+                if part.tag == 'br':
+                    first_br = part
                     state = BR
-            elif child.tag in block_tags:
-                logging.debug('START:block: %s' % child.tail)
-                insert_p(elem, child, acc)
-                acc.append(child.tail)
-                child.tail = None
-            else:
-                logging.debug('START:*:  %s' % tostring(child))
-                acc.append(child)
+                elif part.tag in BLOCK_TAGS:
+                    insert_p(elem, part, acc)
+                else:
+                    acc.append(part)
         elif state == BR:
-            if child.tag == 'br':
-                logging.debug('BR:br: %s' % child.tail)
-                first_br.tail = None
-                first_br.drop_tree()
-                first_br = None
-                insert_p(elem, child, acc)
-                acc.append(child.tail)
-                child.tail = None
-                child.drop_tree()
-                state = START
-            elif child.tag in block_tags:
-                logging.debug('BR:block: %s' % child.tail)
-                first_br.tail = None
-                first_br.drop_tree()
-                first_br = None
-                insert_p(elem, child, acc)
-                acc.append(child.tail)
-                child.tail = None
-                state = START
+            if isinstance(part, basestring):
+                acc.append(first_br)
+                acc.append(part)
             else:
-                logging.debug('BR:*:  %s' % tostring(child))
-                acc.append(child)
-                state = START
+                if part.tag == 'br':
+                    first_br.drop_tree()
+                    insert_p(elem, part, acc)
+                    part.drop_tree()
+                elif part.tag in BLOCK_TAGS:
+                    acc.append(first_br)
+                    insert_p(elem, part, acc)
+                else:
+                    acc.append(first_br)
+                    acc.append(part)
+            state = START
+            first_br = None
 
     append_p(elem, acc)
 
@@ -1221,6 +1307,65 @@ class TestIsSuspectedDuplicate(unittest.TestCase):
             page = fragment_fromstring(html)
         self.assertTrue(is_suspected_duplicate(self._article, page))
 
+class TestSplitIntoParts(unittest.TestCase):
+
+    def test_empty(self):
+        elem = B.DIV()
+        self.assertEquals(split_into_parts(elem), [])
+
+    def test_initial_text(self):
+        a_elem = B.A('world')
+        elem = B.DIV('hello', a_elem)
+        self.assertEquals(split_into_parts(elem), ['hello', a_elem])
+
+    def test_interspersed(self):
+        a_elem = B.A('world')
+        h1_elem = B.H1('header')
+        elem = B.DIV('hello', a_elem, '!- Jerry', h1_elem)
+        expected = ['hello', a_elem, '!- Jerry', h1_elem]
+        self.assertEquals(split_into_parts(elem), expected)
+
+class TestMarkIfWhitespace(unittest.TestCase):
+
+    def test_no_parts(self):
+        parts = [B.BR(), B.BR()]
+        self.assertEquals(mark_if_whitespace(parts, 0, 1), set())
+
+    def test_some_text(self):
+        parts = ['Hello', B.BR(), 'World', '', B.BR()]
+        self.assertEquals(mark_if_whitespace(parts, 1, 3), set())
+
+    def test_whitespace(self):
+        parts = ['Hello', B.BR(), '\n', '', B.BR()]
+        self.assertEquals(mark_if_whitespace(parts, 1, 4), {2, 3})
+
+    def test_element(self):
+        parts = ['Hello', B.BR(), '', B.A('World'), '', B.BR()]
+        self.assertEquals(mark_if_whitespace(parts, 1, 5), set())
+
+class TestSqueezeBreaks(unittest.TestCase):
+
+    def _filter(self, parts, *args):
+        return [p for i, p in enumerate(parts) if i not in args]
+
+    def test_nothing_to_squeeze(self):
+        parts = ['Hello', B.BR(), 'World', B.BR(), B.A(), B.BR()]
+        self.assertEquals(squeeze_breaks(parts), parts)
+
+    def test_one_whitespace_span(self):
+        parts = ['Hello', B.BR(), '', '\t', B.BR(), B.A(), B.BR()]
+        expected = self._filter(parts, 2, 3)
+        self.assertEquals(squeeze_breaks(parts), expected)
+
+    def test_two_whitespace_spans(self):
+        parts = ['Hello', B.BR(), '', '\t', B.BR(), ' ', B.BR()]
+        expected = self._filter(parts, 2, 3, 5)
+        self.assertEquals(squeeze_breaks(parts), expected)
+
+    def test_leading_whitespace(self):
+        parts = [' ', B.BR()]
+        self.assertEquals(squeeze_breaks(parts), parts)
+
 class TestTransformDoubleBreaksIntoParagraphs(unittest.TestCase):
 
     def _read_test_doc(self, file_id):
@@ -1237,7 +1382,6 @@ class TestTransformDoubleBreaksIntoParagraphs(unittest.TestCase):
         expected_doc = self._read_test_doc(expected)
         doc_string = tostring(doc)
         expected_doc_string = tostring(expected_doc)
-        print doc_string
         if doc_string != expected_doc_string:
             diff = difflib.unified_diff(
                     expected_doc_string.splitlines(True),
