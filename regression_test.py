@@ -226,13 +226,13 @@ def convert_links(url_map, url, doc):
             logging.debug('converting links: link_path: %s' % link_path)
             new_link = os.path.relpath(link_path, url_dir)
             logging.debug('converting links: new_link: %s' % new_link)
-            return new_link
+            return urllib.quote(new_link)
         else:
             return link
     doc.rewrite_links(link_repl_func)
 
-def write_output_fragment(url_map, url, fragment, path):
-    doc = lxml.html.document_fromstring(fragment)
+def write_output_html(url_map, url, html, path):
+    doc = lxml.html.document_fromstring(html)
     add_css(doc)
     convert_links(url_map, url, doc)
     html = lxml.html.tostring(doc)
@@ -251,8 +251,10 @@ def write_result(output_dir_path, result):
     shutil.copytree(base_path, output_base_path)
 
     # Write pretty versions of the benchmark, result, and diffs into the
-    # output.  Note that this will overwrite the benchmark that we copied over.
+    # output.  Note that this will overwrite the original and benchmark that we
+    # copied over.
     specs = [
+            (result.test_data.orig_html, ''),
             (result.test_data.rdbl_html, READABLE_SUFFIX),
             (result.result_html, RESULT_SUFFIX),
             (result.diff_html, DIFF_SUFFIX)
@@ -262,7 +264,7 @@ def write_result(output_dir_path, result):
         url_map = result.test_data.test.url_map
         url_path = url_map[url]
         path = os.path.join(output_dir_path, test_name, url_path) + suffix
-        write_output_fragment(url_map, url, html, path)
+        write_output_html(url_map, url, html, path)
 
 def print_test_info(test):
     name_string = '%s' % test.name
