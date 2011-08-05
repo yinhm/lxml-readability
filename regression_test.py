@@ -10,6 +10,7 @@ changes existing results, hopefully for the better.
 """
 from lxml.html import builder as B
 from regression_test_css import SUMMARY_CSS, READABILITY_CSS
+import argparse
 import logging
 import lxml.html
 import lxml.html.diff
@@ -98,7 +99,7 @@ def load_test_data(test):
     else:
         return None
 
-def load_readability_tests(dir_path, files):
+def load_readability_tests(dir_path, files, cases):
     yaml_files = [f for f in files if f.endswith(YAML_EXTENSION)]
     yaml_paths = [os.path.join(dir_path, f) for f in yaml_files]
     names = [re.sub('.yaml$', '', f) for f in yaml_files]
@@ -106,6 +107,7 @@ def load_readability_tests(dir_path, files):
     return [
             make_readability_test(dir_path, name, spec_dict)
             for (name, spec_dict) in zip(names, spec_dicts)
+            if cases is None or name in cases
             ]
 
 def execute_test(test_data):
@@ -288,9 +290,9 @@ def print_test_info(test):
         skipped = ' (SKIPPED)'
     print('%20s: %s%s' % (name_string, test.desc, skipped))
 
-def run_readability_tests():
+def run_readability_tests(cases):
     files = os.listdir(TEST_DATA_PATH)
-    tests = load_readability_tests(TEST_DATA_PATH, files)
+    tests = load_readability_tests(TEST_DATA_PATH, files, cases)
     test_datas = [load_test_data(t) for t in tests]
     results = [execute_test(t) for t in test_datas]
     for (test, result) in zip(tests, results):
@@ -299,12 +301,28 @@ def run_readability_tests():
             write_result(TEST_OUTPUT_PATH, result)
     write_summary(TEST_SUMMARY_PATH, zip(tests, results))
 
+DESCRIPTION = 'Run the readability regression test suite.'
+
 def main():
-    if len(sys.argv) > 1 and sys.argv[1] == '--debug':
-        logging.basicConfig(level = logging.DEBUG)
-    else:
-        logging.basicConfig(level = logging.INFO)
-    run_readability_tests()
+    parser = argparse.ArgumentParser(description = DESCRIPTION)
+
+    parser.add_argument(
+            '--debug',
+            action = 'store_const',
+            const = True,
+            default = False,
+            help = 'enable debug logging'
+            )
+    parser.add_argument(
+            '--case',
+            action = 'append',
+            help = 'a test case to run'
+            )
+
+    args = parser.parse_args()
+    level = logging.DEBUG if args.debug else logging.INFO
+    logging.basicConfig(level = level)
+    run_readability_tests(args.case)
 
 if __name__ == '__main__':
     main()
