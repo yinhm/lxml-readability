@@ -244,9 +244,10 @@ def convert_links(url_map, url, doc):
                 return link
     doc.rewrite_links(link_repl_func)
 
-def write_output_html(url_map, url, html, path):
+def write_output_html(url_map, url, html, path, should_add_css):
     doc = lxml.html.document_fromstring(html)
-    add_css(doc)
+    if should_add_css:
+        add_css(doc)
     convert_links(url_map, url, doc)
     html = lxml.html.tostring(doc)
     with open(path, 'w') as f:
@@ -267,17 +268,17 @@ def write_result(output_dir_path, result):
     # output.  Note that this will overwrite the original and benchmark that we
     # copied over.
     specs = [
-            (result.test_data.orig_html, ''),
-            (result.test_data.rdbl_html, READABLE_SUFFIX),
-            (result.result_html, RESULT_SUFFIX),
-            (result.diff_html, DIFF_SUFFIX)
+            (result.test_data.orig_html, '', False),
+            (result.test_data.rdbl_html, READABLE_SUFFIX, True),
+            (result.result_html, RESULT_SUFFIX, True),
+            (result.diff_html, DIFF_SUFFIX, True)
             ]
-    for (html, suffix) in specs:
+    for (html, suffix, add_css) in specs:
         url = result.test_data.test.url
         url_map = result.test_data.test.url_map
         url_path = url_map[url]
         path = os.path.join(output_dir_path, test_name, url_path) + suffix
-        write_output_html(url_map, url, html, path)
+        write_output_html(url_map, url, html, path, add_css)
 
 def print_test_info(test):
     name_string = '%s' % test.name
