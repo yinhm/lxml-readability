@@ -20,3 +20,14 @@ Usage:
     html = urllib.urlopen(url).read()
     readable_article = Document(html).summary()
     readable_title = Document(html).short_title()
+
+
+
+
+***
+Known Issues
+
+wget and parsing of wget is not as reliable as it should be.  wget sometimes
+fails because the names of the local files that it tries create are too long,
+so we end up with no local copy of necessary files.  The parsing is also not
+that robust, so create incorrect mappings in the generated URL map.
