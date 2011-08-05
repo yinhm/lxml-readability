@@ -46,12 +46,12 @@ class TestFindBaseUrl(unittest.TestCase):
                 (
                 'http://foo.com/article.123not',
                 'http://foo.com/article.123not',
-                '123not is not extension'
+                '123not is not an extension'
                 ),
                 (
                 'http://foo.com/path/to/article.123not',
                 'http://foo.com/path/to/article.123not',
-                '123not is not extension'
+                '123not is not an extension'
                 )
                 ]
         self._run_urls(specs)
