@@ -189,7 +189,6 @@ def make_paragraph_from_parts(parts):
         # No text or children.
         return None
     else:
-        logging.debug('P: %s' % tostring(p))
         return p
 
 def mark_if_whitespace(parts, left, right):
@@ -261,10 +260,6 @@ def insert_p(parent, at_elem, parts):
     if p is not None:
         index = parent.index(at_elem)
         parent.insert(index, p)
-        logging.debug(
-                'INSERTING AT %d IN PARENT: %s' %
-                (index, tostring(parent))
-                )
     del parts[:]
 
 def append_p(parent, parts):
@@ -392,8 +387,6 @@ def transform_double_breaks_into_paragraphs(doc):
 def transform_misused_divs_into_paragraphs(doc):
     for elem in tags(doc, 'div'):
         # transform <div>s that do not contain other block elements into <p>s
-        logging.debug("Examining %s to see if misused" % (describe(elem)))
-        logging.debug("  searching: %s" % unicode(''.join(map(tostring, list(elem)))))
         if not REGEXES['divToPElementsRe'].search(unicode(''.join(map(tostring, list(elem))))):
             logging.debug("Altering %s to p" % (describe(elem)))
             elem.tag = "p"
@@ -904,6 +897,7 @@ def eval_possible_next_page_link(
             )
 
     if not created:
+        logging.debug('found existing with score %d' % candidate.score)
         candidate.link_text += ' | ' + link_text
 
     link_class_name = link.get('class') or ''
@@ -913,7 +907,7 @@ def eval_possible_next_page_link(
     logging.debug('link_data: %s' % link_data)
 
     if base_url is not None and href.find(base_url) != 0:
-        logging.debug('no base_url')
+        logging.debug('no base_url (%s, %s)' % (base_url, href))
         candidate.score -= 25
 
     if REGEXES['nextLink'].search(link_data):
@@ -999,16 +993,17 @@ def find_next_page_url(parsed_urls, url, elem):
                 candidates,
                 link
                 )
-    top_page = None
-    for url, page in candidates.items():
-        logging.debug('next page score of %s: %s' % (url, page.score))
-        if 50 <= page.score and (not top_page or top_page.score < page.score):
-            top_page = page
+    top_candidate = None
+    for url, candidate in candidates.items():
+        score = candidate.score
+        logging.debug('next page score of %s: %s' % (url, candidate.score))
+        if 50 <= score and (not top_candidate or top_candidate.score < score):
+            top_candidate = candidate
 
-    if top_page:
-        logging.debug('next page link found: %s' % top_page.href)
-        parsed_urls.add(top_page.href)
-        return top_page.href
+    if top_candidate:
+        logging.debug('next page link found: %s' % top_candidate.href)
+        parsed_urls.add(top_candidate.href)
+        return top_candidate.href
     else:
         return None
 
