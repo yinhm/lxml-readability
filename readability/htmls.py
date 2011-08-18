@@ -4,6 +4,7 @@ from lxml.html import tostring
 import logging
 import lxml.html
 import re
+import unittest
 
 logging.getLogger().setLevel(logging.DEBUG)
 
@@ -40,9 +41,13 @@ def norm_title(title):
     return normalize_entities(normalize_spaces(title))
 
 def get_title(doc):
-    title = doc.find('.//title').text
-    if not title:
-        return '[no-title]'
+    titleElem = doc.find('.//title')
+    if titleElem is None:
+        return ''
+
+    title = titleElem.text
+    if title is None:
+        return ''
     
     return norm_title(title)
 
@@ -53,11 +58,9 @@ def add_match(collection, text, orig):
             collection.add(text)
 
 def shorten_title(doc):
-    title = doc.find('.//title').text
-    if not title:
+    title = orig = get_title(doc)
+    if title == '':
         return ''
-    
-    title = orig = norm_title(title)
 
     candidates = set()
 
