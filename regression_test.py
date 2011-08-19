@@ -7,6 +7,52 @@ as a benchmark.
 
 This allows you to tweak and change the readability algorithm and see how it
 changes existing results, hopefully for the better.
+
+
+Running the test
+----------------
+
+To run the regression suite:
+
+    $ python regression_test.py
+
+This will generate a regression_test_output/ directory.  Open
+regression_test_output/index.html in a web browser to examine the results.
+
+For each test, you can examine the original version, the benchmark readability
+version, the current readability version (using your working code), and a diff
+version between the benchmark and current versions.
+
+You can run a subset of tests by using the '--case' option:
+
+    $ python regression_test.py --case arstechnica-000 --case slate-000
+
+This invocation will only run the arstechnica-000 and slate-000 test cases.
+This is handy for speeding up your testing cycle if you are working on specific
+improvements.
+
+
+Generating a new test case
+--------------------------
+
+Each test case is defined by a specification YAML file (test_name.yaml) and a
+directory holding resources used by the test (test_name/).  These both live in
+the regression_test_data/ directory.
+
+By far, the easiest way to create a new regression test case is by using the
+gen_test.py program.
+
+For example:
+    
+    $ python gen_test.py create "http://foo.com/bar" foo-000 "foo article"
+
+This will generate a new test case named 'foo-000' for the given URL with the
+description "foo article".  The benchmark for the test will be generated with
+the current readability algorithm.
+
+This program does what it can to bring any resources used by the page local.
+For example, images used by the original page are downloaded so that the test
+can run entirely locally, and results can be viewed complete with images.
 """
 from lxml.html import builder as B
 from regression_test_css import SUMMARY_CSS, READABILITY_CSS
