@@ -50,9 +50,46 @@ This will generate a new test case named 'foo-000' for the given URL with the
 description "foo article".  The benchmark for the test will be generated with
 the current readability algorithm.
 
-This program does what it can to bring any resources used by the page local.
+This program does what it can to locally store any resources used by the page.
 For example, images used by the original page are downloaded so that the test
 can run entirely locally, and results can be viewed complete with images.
+There are cases where this will fail, though.  For example, if the benchmark
+does not pull in multi-page articles, and you later fix the algorithm to pull
+them in, those extra pages and their dependencies will not be local.
+
+Once generated, the test will automatically be included next time you run
+regression_test.py.
+
+This program can also be used to regenerate a benchmark result for an existing
+test:
+
+    $ python gen_test.py genbench foo-000
+
+If the new benchmark requires new external resources, like the multi-page
+example mentioned above, use the --refetch option:
+
+    $ python gen_test.py genbench --refetch foo-000
+
+
+Workflow
+--------
+
+Here is an example workflow for working on the readability algorithm:
+
+    1.  Find a page that the algorithm does not handle well http://foo.com/bar
+    2.  Generate a regression test case for it:
+
+        $ python gen_test.py create "http://foo.com/bar" foo-000 "foo article"
+
+    3.  Work on the algorithm, re-running the regression to see your
+        improvements:
+
+        $ python regression_test.py --case foo-000
+
+    4.  Periodically run the whole regression suite to make sure you are not
+        breaking the algorithm for other inputs.
+
+    5.  Regenerate the benchmarks as necessary with your improved algorithm.
 """
 from lxml.html import builder as B
 from regression_test_css import SUMMARY_CSS, READABILITY_CSS
