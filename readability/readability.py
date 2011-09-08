@@ -1172,28 +1172,51 @@ def pretty_print(html):
     doc = document_fromstring(html, remove_blank_text = True)
     print(tostring(doc, pretty_print = True))
 
-def readability_main():
+def parse_args():
     from optparse import OptionParser
-    parser = OptionParser(usage="%prog: [options] [file]")
-    parser.add_option('-v', '--verbose', action='store_true')
-    parser.add_option('-u', '--url', help="use URL instead of a local file")
-    (options, args) = parser.parse_args()
-    
-    if not (len(args) == 1 or options.url):
-        parser.print_help()
-        sys.exit(1)
-    logging.basicConfig(level=logging.INFO)
 
-    file = None
+    parser = OptionParser(usage = '%prog: [options]')
+    parser.add_option('-v', '--verbose', action = 'store_true')
+    parser.add_option('-u', '--url', help = 'load from URL')
+    parser.add_option('-f', '--file', help = 'load from file at path')
+    
+    parser.add_option(
+            '-o',
+            '--open-browser',
+            action = 'store_true',
+            help = 'try to open the result in a browser'
+            )
+
+    options, args = parser.parse_args()
+    return parser, options, args
+
+def check_options(options):
+    return options.file or options.url
+
+def file_from_options(options):
     if options.url:
         import urllib
-        file = urllib.urlopen(options.url)
+        return urllib.urlopen(options.url)
+    elif options.file:
+        return open(options.file)
     else:
-        file = open(args[0])
-    try:
-        print Document(file.read(), debug=options.verbose).summary().html
-    finally:
-        file.close()
+        raise Exception('either file or url must be set')
+
+def show_results(options, doc):
+    if options.open_browser:
+        print options
+    else:
+        print doc.summary().html
+
+def readability_main():
+    logging.basicConfig(level=logging.INFO)
+    parser, options, _ = parse_args()
+    if not check_options(options):
+        parser.print_help()
+        sys.exit(1)
+    file = file_from_options(options)
+    doc = Document(file.read(), debug = options.verbose)
+    show_results(options, doc)
 
 def main():
     if len(sys.argv) > 1 and sys.argv[1] == 'test':
