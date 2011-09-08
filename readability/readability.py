@@ -1268,9 +1268,15 @@ def make_doc(file, url, options):
         doc_options['url'] = url
     return Document(file.read(), **doc_options)
 
+def setup_logging(options):
+    if options.verbose:
+        logging.basicConfig(level = logging.DEBUG)
+    else:
+        logging.basicConfig(level = logging.INFO)
+
 def readability_main():
-    logging.basicConfig(level=logging.INFO)
     parser, options, _ = parse_args()
+    setup_logging(options)
     if not check_options(options):
         parser.print_help()
         sys.exit(1)
@@ -1291,7 +1297,6 @@ def main():
         del sys.argv[1]
         unittest.main()
     else:
-        logging.basicConfig(level = logging.INFO)
         readability_main()
 
 if __name__ == '__main__':
