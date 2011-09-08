@@ -8,10 +8,14 @@ from lxml.html import builder as B
 from lxml.html.diff import htmldiff
 import difflib
 import logging
+import os
 import re
 import sys
+import tempfile
 import urlfetch
+import urllib
 import urlparse
+import webbrowser
 
 REGEXES = {
     'unlikelyCandidatesRe': re.compile('combx|comment|community|disqus|extra|foot|header|menu|remark|rss|shoutbox|sidebar|sponsor|ad-break|agegate|pagination|pager|popup|tweet|twitter',re.I),
@@ -1196,17 +1200,73 @@ def check_options(options):
 def file_from_options(options):
     if options.url:
         import urllib
-        return urllib.urlopen(options.url)
+        try:
+            return urllib.urlopen(options.url), options.url, None
+        except IOError as e:
+            err = 'Failed to open \'%s\' with error:\n%s' % (options.url, e)
+            return None, None, err
     elif options.file:
-        return open(options.file)
+        return open(options.file), None, None
     else:
         raise Exception('either file or url must be set')
 
+DISPLAY_CSS = '''
+#article {
+    margin: 0 auto;
+    max-width: 705px;
+    min-width: 225px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 19px;
+    line-height: 29px;
+}
+
+#article p {
+    font-size: 19px;
+    line-height: 29px;
+    margin: 19px 0px 19px 0px;
+}
+
+h1.articleTitle {
+    text-align: center;
+}
+'''
+
+def full_html_from_doc(doc):
+    article_element = fragment_fromstring(doc.summary().html)
+    html_element = B.HTML(
+            B.HEAD(
+                B.TITLE(doc.title()),
+                B.STYLE(DISPLAY_CSS, type = 'text/css')
+                ),
+            B.BODY(
+                B.H1(doc.title(), {'class': 'articleTitle'}),
+                article_element
+                )
+            )
+    return tostring(html_element)
+
+def open_in_browser(doc):
+    html = full_html_from_doc(doc)
+    fd, path = tempfile.mkstemp(suffix = '.html')
+    file = os.fdopen(fd, 'w')
+    file.write(html)
+    url = 'file://%s' % urllib.pathname2url(path)
+    logging.debug(url)
+    webbrowser.open(url)
+
 def show_results(options, doc):
     if options.open_browser:
-        print options
+        open_in_browser(doc)
     else:
         print doc.summary().html
+
+def make_doc(file, url, options):
+    doc_options = {
+            'debug': options.verbose
+            }
+    if url:
+        doc_options['url'] = url
+    return Document(file.read(), **doc_options)
 
 def readability_main():
     logging.basicConfig(level=logging.INFO)
@@ -1214,8 +1274,11 @@ def readability_main():
     if not check_options(options):
         parser.print_help()
         sys.exit(1)
-    file = file_from_options(options)
-    doc = Document(file.read(), debug = options.verbose)
+    file, url, err = file_from_options(options)
+    if not file:
+        print err
+        sys.exit(1)
+    doc = make_doc(file, url, options)
     show_results(options, doc)
 
 def main():
