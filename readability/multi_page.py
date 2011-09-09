@@ -86,10 +86,12 @@ def clean_segment_short(segments, index, segment):
 
 def clean_segment(segments, index, segment):
     """
-    Cleans a single segment of a URL to find the base URL.  The base URL is as
-    a reference when evaluating URLs that might be next-page links.  Returns a
-    cleaned segment string or None, if the segment should be omitted entirely
-    from the base URL.
+    Cleans a single segment of a URL in finding the base URL.
+    
+    The base URL is used as a reference when evaluating URLs that might be
+    next-page links.  This is done by evaluating each path segment of the
+    original URL.  This function returns a cleaned segment string or None, if
+    the segment should be omitted entirely from the base URL.
     """
     funcs = [
             clean_segment_extension,
