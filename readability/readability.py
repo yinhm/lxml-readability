@@ -836,11 +836,13 @@ def strip_trailing_slash(s):
 
 def eval_href(parsed_urls, url, base_url, link):
     raw_href = link.get('href')
+
     if raw_href is None:
+        logging.debug('link with no href')
         return None, None, False
 
+    logging.debug('evaluating href: %s' % raw_href)
     href = strip_trailing_slash(raw_href)
-    logging.debug('evaluating next page link: %s' % href)
         
     # If we've already seen this page, ignore it.
     if href == base_url or href == url or href in parsed_urls:
@@ -881,10 +883,12 @@ def eval_possible_next_page_link(
 
     raw_href, href, ok = eval_href(parsed_urls, url, base_url, link)
     if not ok:
+        logging.debug('rejecting: href not ok')
         return
 
     link_text, ok = eval_link_text(link)
     if not ok:
+        logging.debug('rejecting: link text not ok')
         return
 
     # If the leftovers of the URL after removing the base URL don't contain any
@@ -892,6 +896,7 @@ def eval_possible_next_page_link(
     if base_url is not None:
         href_leftover = href.replace(base_url, '')
         if not re.search(r'\d', href_leftover):
+            logging.debug('rejecting: no digits')
             return
 
     candidate, created = find_or_create_page_candidate(
@@ -907,7 +912,6 @@ def eval_possible_next_page_link(
     link_class_name = link.get('class') or ''
     link_id = link.get('id') or ''
     link_data = ' '.join([link_text, link_class_name, link_id])
-    logging.debug('link: %s' % tostring(link))
     logging.debug('link_data: %s' % link_data)
 
     if base_url is not None and href.find(base_url) != 0:
@@ -990,6 +994,7 @@ def find_next_page_url(parsed_urls, url, elem):
     # in the article.
     candidates = {}
     for link in links:
+        logging.debug('link: %s' % tostring(link))
         eval_possible_next_page_link(
                 parsed_urls,
                 url,
