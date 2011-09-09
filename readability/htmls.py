@@ -1,4 +1,4 @@
-from cleaners import normalize_spaces, clean_attributes
+from cleaners import normalize_spaces, clean_attributes, html_cleaner
 from encoding import get_encoding
 from lxml.html import tostring
 import logging
@@ -113,3 +113,23 @@ def get_body(doc):
     except Exception: #FIXME find the equivalent lxml error
         logging.error("cleansing broke html content: %s\n---------\n%s" % (raw_html, cleaned))
         return raw_html
+
+def tags(node, *tag_names):
+    for tag_name in tag_names:
+        for e in node.findall('.//%s' % tag_name):
+            yield e
+
+def clean(text):
+    text = re.sub('\s*\n\s*', '\n', text)
+    text = re.sub('[ \t]{2,}', ' ', text)
+    return text.strip()
+
+def parse(input, url):
+    logging.debug('parse url: %s', url)
+    raw_doc = build_doc(input)
+    doc = html_cleaner.clean_html(raw_doc)
+    if url:
+        doc.make_links_absolute(url, resolve_base_href=True)
+    else:
+        doc.resolve_base_href()
+    return doc
