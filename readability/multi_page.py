@@ -14,6 +14,9 @@ import urlparse
 # algorithm incorrectly identifies next page links that would lead it to crawl
 # many, many, many pages.
 MAX_PAGES = 10
+
+# Each page is added as a separate div to the article document.  This is the
+# class used for each of those divs.
 PAGE_CLASS = 'article-page'
 
 def clean_segment_extension(segments, index, segment):
