@@ -10,6 +10,10 @@ import logging
 import re
 import urlparse
 
+# The maximum number of pages that we will append.  There are cases where the
+# algorithm incorrectly identifies next page links that would lead it to crawl
+# many, many, many pages.
+MAX_PAGES = 10
 PAGE_CLASS = 'article-page'
 
 def clean_segment_extension(segments, index, segment):
@@ -364,6 +368,10 @@ def append_next_page(
         options
         ):
     logging.debug('appending next page: %s' % page_url)
+
+    if page_index >= MAX_PAGES:
+        return
+
     fetcher = options['urlfetch']
     try:
         html = fetcher.urlread(page_url)
