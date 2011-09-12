@@ -3,9 +3,9 @@ from setuptools import setup, find_packages
 
 setup(
     name="lxml-readability",
-    version="0.5dev",
-    author="Yuri Baburov",
-    author_email="burchik+github@gmail.com",
+    version="0.06dev",
+    author="Yuri Baburov, Jaran Charumilind",
+    author_email="lorax@jcharum.fastmail.net",
     description="python port of arc90's readability bookmarklet",
     long_description=open("README").read(),
     license="Apache License 2.0",
