@@ -659,7 +659,7 @@ def get_article(doc, options):
 
             unicode_cleaned_article = sanitize(article, candidates, options)
             cleaned_doc = fragment_fromstring(unicode_cleaned_article)
-            cleaned_article = tostring(cleaned_doc)
+            cleaned_article = tounicode(cleaned_doc)
 
             of_acceptable_length = len(cleaned_article or '') >= options['retry_length']
             if ruthless and not of_acceptable_length:
@@ -727,8 +727,11 @@ class Document:
         url = self.options['url']
         if url is not None:
             parsed_urls.add(url)
-        next_page_url = find_next_page_url(parsed_urls, url, doc)
         page_0 = get_article(doc, self.options)
+        if page_0.html:
+            # we fetch page_0 only for now.
+            return Summary(page_0.confidence, page_0)
+        next_page_url = find_next_page_url(parsed_urls, url, doc)
         page_0_doc = fragment_fromstring(page_0.html)
         page_index = 0
         make_page_elem(page_index, page_0_doc)
