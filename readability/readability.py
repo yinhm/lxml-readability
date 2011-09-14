@@ -730,7 +730,7 @@ class Document:
         page_0 = get_article(doc, self.options)
         if page_0.html:
             # we fetch page_0 only for now.
-            return Summary(page_0.confidence, page_0)
+            return page_0
         next_page_url = find_next_page_url(parsed_urls, url, doc)
         page_0_doc = fragment_fromstring(page_0.html)
         page_index = 0
